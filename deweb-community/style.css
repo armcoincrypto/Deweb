@@ -1210,6 +1210,32 @@ body::before {
 }
 .profile-name{ font-weight: 900; }
 .profile-skills{ color: rgba(168,178,209,.95); margin: 10px 0; line-height: 1.5; font-size: 14px; }
+.profile-products {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.profile-product {
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.16);
+}
+.profile-product b,
+.profile-product span,
+.profile-product small {
+  display: block;
+}
+.profile-product b {
+  color: #fff;
+  margin-bottom: 3px;
+}
+.profile-product span,
+.profile-product small {
+  color: rgba(168,178,209,.95);
+  font-size: 12px;
+  line-height: 1.4;
+}
 .profile-actions{ display:flex; gap: 10px; flex-wrap: wrap; }
 .small-btn{
   border: 1px solid rgba(0,212,255,.30);
@@ -1254,8 +1280,32 @@ body::before {
 }
 .about-left{ flex: 1; max-width: 640px; }
 .about-left h1{ font-size: 54px; color: var(--accent-cyan); margin-bottom: 10px; }
-.about-text{ font-size: 18px; color: var(--text-gray); line-height: 1.8; transition: opacity .2s, transform .2s; }
+.about-text{ font-size: 17px; color: var(--text-gray); line-height: 1.75; transition: opacity .2s, transform .2s; }
 .about-text.is-fading{ opacity: 0; transform: translateY(6px); }
+.about-detail{
+  background: rgba(26,29,46,.36);
+  border: 1px solid rgba(0,212,255,.14);
+  border-radius: 22px;
+  padding: 18px 20px;
+}
+.about-detail h2{
+  margin: 0 0 10px;
+  color: var(--text-white);
+  font-size: 26px;
+}
+.about-detail p{
+  margin: 0 0 12px;
+  color: rgba(255,255,255,.86);
+}
+.about-detail ul{
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+}
+.about-detail li{
+  color: rgba(168,178,209,.96);
+}
 
 .about-values{
   margin-top: 16px;
@@ -1277,6 +1327,7 @@ body::before {
   display:grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
+  align-items: stretch;
 }
 
 .service-card{
@@ -1286,18 +1337,19 @@ body::before {
   background: linear-gradient(135deg, rgba(26,29,46,.82), rgba(10,14,39,.92));
   border: 2px solid rgba(0,212,255,.20);
   border-radius: 20px;
+  min-height: 116px;
   padding: 18px 14px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   text-align:center;
-  gap: 10px;
+  gap: 8px;
   transition: transform .2s, border-color .2s, box-shadow .2s;
 }
 .service-card:hover{ transform: translateY(-3px); border-color: var(--accent-cyan); box-shadow: 0 10px 26px rgba(0,212,255,.18); }
 .service-card.is-active{ border-color: var(--accent-cyan); box-shadow: 0 10px 28px rgba(0,212,255,.22); transform: translateY(-2px); }
-.service-icon{ font-size: 38px; }
+.service-icon{ font-size: 38px; line-height: 1; }
 .service-card h3{ font-size: 16px; color: var(--text-white); }
 
 /* ========================================
@@ -2020,7 +2072,7 @@ body::before {
 
 .account-dashboard-header {
   background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
-  padding: 12px 24px;
+  padding: 8px 18px;
   position: fixed;
   top: 0;
   left: 0;
@@ -2040,36 +2092,59 @@ body::before {
 }
 
 .navbar-dashboard {
-  position: static;
+  position: relative;
   top: auto;
   left: auto;
   transform: none;
   background: transparent;
   border-radius: 0;
   box-shadow: none;
-  padding: 0 24px;
+  padding: 0;
   width: 100%;
   max-width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-dashboard .logo {
+  width: 42px;
+  height: 42px;
+  font-size: 20px;
+}
+.navbar-dashboard .nav-links {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  gap: 14px;
 }
 
 .navbar-dashboard .nav-links a {
   color: var(--text-white);
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .navbar-dashboard .nav-links a.contact-pill {
   background: var(--accent-cyan);
   color: var(--primary-bg);
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 50px;
+}
+
+.navbar-dashboard .account-btn {
+  padding: 8px 13px;
+  font-size: 12px;
 }
 
 .nav-right-dashboard {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .nav-util {
@@ -2082,11 +2157,11 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  padding: 8px 12px;
+  padding: 7px 10px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.08);
   transition: background 0.15s, color 0.15s;
@@ -2098,8 +2173,8 @@ body::before {
 .nav-util-link svg { flex-shrink: 0; }
 
 .nav-icon-btn {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border: none;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.1);
@@ -2120,8 +2195,8 @@ body::before {
 }
 
 .nav-avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--accent-cyan);
   color: var(--primary-bg);
@@ -2146,7 +2221,7 @@ body::before {
   background: rgba(255, 255, 255, 0.1);
   border: none;
   border-radius: 10px;
-  padding: 8px 12px;
+  padding: 7px 10px;
   color: var(--text-white);
   font-weight: 600;
   font-size: 13px;
@@ -2161,7 +2236,7 @@ body::before {
   display: flex;
   flex: 1;
   min-height: 0;
-  padding-top: 64px; /* clear fixed header */
+  padding-top: 62px; /* clear fixed header */
 }
 
 .account-dashboard-sidebar {
@@ -2230,10 +2305,13 @@ body::before {
   font-weight: 800;
   color: #fff;
   margin: 0 0 28px;
+  text-align: center;
 }
 
 .dashboard-section {
   display: none;
+  max-width: 980px;
+  margin: 0 auto;
 }
 .dashboard-section.active {
   display: block;
@@ -2252,7 +2330,7 @@ body::before {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 20px;
+  padding: 14px 18px;
   background: rgba(255, 255, 255, 0.04);
   border-bottom: 1px solid rgba(0, 212, 255, 0.15);
   cursor: pointer;
@@ -2440,11 +2518,21 @@ body::before {
 }
 .section-block h3 { color: #fff; margin: 0 0 16px; font-size: 18px; }
 .section-block p, .section-block td { color: rgba(255, 255, 255, 0.85); }
+.section-kicker {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--accent-cyan);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 .section-table { width: 100%; border-collapse: collapse; }
 .section-table th, .section-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid rgba(0, 212, 255, 0.15); }
 .section-table th { color: rgba(255, 255, 255, 0.7); font-size: 12px; text-transform: uppercase; }
 .section-table tr:hover { background: rgba(0, 212, 255, 0.05); }
 .section-empty { text-align: center; padding: 48px 24px; color: rgba(255, 255, 255, 0.6); }
+.section-empty--small { padding: 24px; }
 .section-empty p { margin: 0 0 16px; }
 .cta-btn.primary { background: var(--accent-cyan); color: var(--primary-bg); border: none; padding: 12px 24px; border-radius: 10px; font-weight: 700; cursor: pointer; }
 .cta-btn.secondary { background: transparent; color: var(--accent-cyan); border: 2px solid var(--accent-cyan); padding: 10px 22px; border-radius: 10px; font-weight: 700; text-decoration: none; display: inline-block; cursor: pointer; }
@@ -2454,6 +2542,226 @@ body::before {
 .status-badge.status-paid, .status-badge.status-completed { background: rgba(45, 212, 191, 0.2); color: #2dd4bf; }
 .status-badge.status-pending, .status-badge.status-processing { background: rgba(250, 204, 21, 0.2); color: #facc15; }
 .status-badge.status-failed, .status-badge.status-cancelled { background: rgba(248, 113, 113, 0.2); color: #f87171; }
+
+.account-mode-card {
+  margin-top: 24px;
+}
+.account-mode-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+.account-mode-card__head p {
+  margin: 0;
+  max-width: 720px;
+}
+.seller-tools {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(0, 212, 255, 0.18);
+}
+.seller-tools__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 16px;
+}
+.seller-tools label,
+.wallet-tool-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 700;
+}
+.seller-tools input,
+.seller-tools textarea,
+.wallet-form-row input,
+.wallet-form-row select {
+  width: 100%;
+  border: 1px solid rgba(0, 212, 255, 0.28);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.22);
+  color: #fff;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+.seller-tools textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+.seller-saved-card {
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid rgba(0, 212, 255, 0.24);
+  border-radius: 16px;
+  background: rgba(0, 212, 255, 0.06);
+}
+.seller-saved-card h3 {
+  margin-bottom: 8px;
+}
+.seller-saved-card p {
+  margin: 6px 0 0;
+}
+.seller-policy-card {
+  margin: 16px 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(250, 204, 21, 0.32);
+  border-radius: 14px;
+  background: rgba(250, 204, 21, 0.08);
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.55;
+}
+
+.wallet-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+.wallet-hero h3,
+.account-mode-card h3 {
+  margin-bottom: 8px;
+}
+.wallet-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.wallet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.wallet-grid--tools {
+  align-items: stretch;
+}
+.wallet-balance-card {
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 212, 255, 0.22);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.11), rgba(184, 79, 255, 0.08));
+}
+.wallet-balance-card__label {
+  display: block;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.wallet-balance-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 24px;
+}
+.wallet-balance-card p,
+.wallet-note {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+}
+.wallet-tool-card {
+  margin-bottom: 0;
+}
+.wallet-tool-card p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.wallet-form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.wallet-form-row .cta-btn {
+  width: 100%;
+}
+
+.seller-products-layout {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.seller-product-form {
+  position: sticky;
+  top: 82px;
+}
+.seller-product-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 700;
+}
+.seller-product-form input,
+.seller-product-form textarea,
+.seller-product-form select {
+  width: 100%;
+  border: 1px solid rgba(0, 212, 255, 0.28);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.22);
+  color: #fff;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+.seller-product-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+.seller-product-form__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.seller-products-list {
+  display: grid;
+  gap: 16px;
+}
+.seller-product-card {
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+.seller-product-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+}
+.seller-product-card__head h3 {
+  margin-bottom: 8px;
+}
+.seller-product-card__head strong {
+  color: var(--accent-cyan);
+  white-space: nowrap;
+}
+.seller-product-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(80px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+.seller-product-stats span {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(0, 212, 255, 0.08);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
 
 /* Contact Preferences */
 .contact-prefs-grid {
@@ -2573,6 +2881,11 @@ body::before {
 }
 
 @media (max-width: 900px) {
+  .navbar-dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  }
   .account-dashboard-wrap {
     flex-direction: column;
     padding-top: 70px;
@@ -2588,6 +2901,27 @@ body::before {
   .nav-right-dashboard .nav-util,
   .nav-right-dashboard .nav-icon-btn {
     display: none;
+  }
+  .account-mode-card__head,
+  .wallet-hero {
+    flex-direction: column;
+  }
+  .wallet-actions {
+    justify-content: flex-start;
+  }
+  .wallet-grid,
+  .seller-tools__grid,
+  .seller-products-layout {
+    grid-template-columns: 1fr;
+  }
+  .seller-product-form {
+    position: static;
+  }
+  .seller-product-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .wallet-form-row {
+    grid-template-columns: 1fr;
   }
 }
 

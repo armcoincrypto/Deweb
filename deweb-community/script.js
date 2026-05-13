@@ -214,7 +214,16 @@ document.addEventListener("DOMContentLoaded", () => {
         v1b:"Speed", v1s:"Fast delivery without chaos",
         v2b:"Clarity", v2s:"Packages, scope, milestones",
         v3b:"Quality", v3s:"Production-first engineering",
-        cards:{ web:"Web & E-commerce", bots:"Bots & Automation", design:"Design & Branding", growth:"Growth & Support", market:"Marketplace", process:"Process" }
+        cards:{ web:"Web & E-commerce", bots:"Bots & Automation", design:"Design & Branding", growth:"Growth & Support", market:"Marketplace", process:"Process" },
+        detailKicker:"Selected section",
+        details:{
+          web:{ title:"Web & E-commerce", intro:"This section means complete website production, from the first idea to a launched product customers can use.", points:["We can build landing pages, company websites, service pages, dashboards, and online stores.","For e-commerce, the focus is product pages, cart, checkout, payments, order flow, and admin tools.","The final result should be fast, mobile-friendly, easy to understand, and ready for real users."] },
+          bots:{ title:"Bots & Automation", intro:"This section means using bots and automated workflows to save time and reduce manual work.", points:["Examples include Telegram bots, lead collection, booking flows, reminders, alerts, and customer support helpers.","Automation can connect forms, CRM, spreadsheets, notifications, payments, and internal tools.","The goal is simple: users do fewer repeated actions, and the business reacts faster."] },
+          design:{ title:"Design & Branding", intro:"This section explains how the product looks, feels, and earns trust before a customer buys.", points:["Design includes UI/UX, page layouts, Figma files, logos, colors, typography, and brand rules.","Good design makes the product easier to read, easier to use, and more professional.","For sellers and products, design also helps create strong marketplace cards, previews, and presentation."] },
+          growth:{ title:"Growth & Support", intro:"This section is about what happens after launch, because a real product needs care and improvement.", points:["Support can include updates, fixes, speed checks, security improvements, analytics, and SEO basics.","Growth work improves conversion, content, user experience, and the parts where customers leave.","Instead of launching once and stopping, the product can keep improving every month."] },
+          market:{ title:"Marketplace", intro:"This section means DEWEB is not only a studio, but also a place where customers and sellers can work together.", points:["Customers can compare sellers by profile, portfolio, products, announcements, reviews, and activity.","Sellers can create an account, add portfolio information, publish products, and receive orders.","Payments and delivery confirmations should protect both sides: if delivery is not confirmed, coins can return to the customer."] },
+          process:{ title:"Process", intro:"This section explains the order path so customers and sellers know what happens next.", points:["The flow starts with an inquiry, then a quote, scope, payment, production, review, and delivery.","Both customer and seller should confirm the result, so the platform can close the order correctly.","Clear statuses in the account make the work easier to follow and reduce confusion."] }
+        }
       },
       acc:{
         signin:"Sign in", signup:"Sign up", dashboard:"Dashboard",
@@ -252,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
       packages: { title: "IT-пакеты", subtitle: "Понятный объём, цена, сроки. Поддержка опционально.", cta: "Получить предложение →", cta2: "Связаться", web: { title: "Запуск сайта", desc: "Лендинг или корпоративный сайт.", li1: "UI/UX и адаптив", li2: "SEO и аналитика", li3: "Размещение и 30 дней поддержки" }, bot: { title: "Система Telegram-бота", desc: "Продажи, запись, CRM, платежи.", li1: "Админ-панель", li2: "Интеграции", li3: "Размещение" }, design: { title: "Бренд и UI Kit", desc: "Логотип, правила бренда, UI в Figma.", li1: "Логотип и идентичность", li2: "UI kit", li3: "Передача в разработку" }, support: { title: "Месячная поддержка", desc: "Правки, обновления, безопасность.", li1: "Приоритетные правки", li2: "Производительность", li3: "Отчёты" }, noteBadge: "Совет", noteText: "Не знаете, какой пакет подходит? Оформите заказ — предложим объём и цену." },
       order: { title: "Заказ от 0 до 100%", subtitle: "Оставьте заявку. Ответим с объёмом, ценой, сроками и способами оплаты.", s1: "Заявка", s1d: "вы отправляете детали", s2: "Предложение", s2d: "объём и цена", s3: "Оплата", s3d: "по этапам", s4: "Доставка", s4d: "тест и запуск", howTitle: "Как это в аккаунте", how1: "Статус заказа: Заявка → Предложение → Оплачено → В работе → Доставлено → Готово", how2: "Можно добавить файлы (в полной версии)", how3: "Разработчики могут брать задачи", openAccount: "Открыть аккаунт", service: "Услуга", budget: "Бюджет", deadline: "Срок", details: "Детали проекта", contact: "Контакт", opt: { website: "Сайт / Лендинг / E-commerce", bot: "Telegram-бот / Автоматизация", design: "Дизайн / Брендинг / UI", support: "Поддержка / Рост" }, pay: { card: "Карта", crypto: "Криптовалюта", bank: "Банк", cash: "Наличные" }, send: "Отправить заявку", note: "После отправки заказ появится в аккаунте." },
       market: { title: "Маркетплейс", subtitle: "Нанять специалистов или брать задачи как разработчик.", filters: "Фильтры", all: "Все роли", dev: "Разработчики", skillAll: "Все навыки", tipBadge: "Совет", tipText: "Разработчики: регистрация → роль «Разработчик» → портфолио → заявки в дашборде.", openAccount: "Открыть аккаунт", openOrders: "Открытые заказы", createOrder: "Создать заказ" },
-      about: { title: "О DEWEB", base: "DEWEB — IT-студия и маркетплейс. Сайты, автоматизация, боты, дизайн. Проверенные разработчики получают заказы, клиенты — предсказуемый результат.", v1b: "Скорость", v1s: "Быстро без хаоса", v2b: "Ясность", v2s: "Пакеты, объём, этапы", v3b: "Качество", v3s: "Продакшен-уровень", cards: { web: "Веб и E-commerce", bots: "Боты и автоматизация", design: "Дизайн и брендинг", growth: "Рост и поддержка", market: "Маркетплейс", process: "Процесс" } },
+      about: { title: "О DEWEB", base: "DEWEB — IT-студия и маркетплейс. Сайты, автоматизация, боты, дизайн. Проверенные разработчики получают заказы, клиенты — предсказуемый результат.", v1b: "Скорость", v1s: "Быстро без хаоса", v2b: "Ясность", v2s: "Пакеты, объём, этапы", v3b: "Качество", v3s: "Продакшен-уровень", cards: { web: "Веб и E-commerce", bots: "Боты и автоматизация", design: "Дизайн и брендинг", growth: "Рост и поддержка", market: "Маркетплейс", process: "Процесс" }, detailKicker: "Выбранный раздел", details: { web: { title: "Веб и E-commerce", intro: "Этот раздел означает полную разработку сайта: от идеи до запущенного продукта, которым могут пользоваться клиенты.", points: ["Мы можем создавать лендинги, корпоративные сайты, страницы услуг, кабинеты, панели и интернет-магазины.", "Для e-commerce важны карточки товаров, корзина, checkout, платежи, заказы и админ-инструменты.", "Итоговый продукт должен быть быстрым, адаптивным, понятным и готовым к реальным пользователям."] }, bots: { title: "Боты и автоматизация", intro: "Этот раздел помогает экономить время и убирать ручную повторяющуюся работу через ботов и автоматические процессы.", points: ["Примеры: Telegram-боты, сбор заявок, записи, напоминания, уведомления и помощники поддержки.", "Автоматизация может соединять формы, CRM, таблицы, уведомления, платежи и внутренние инструменты.", "Цель простая: меньше ручных действий и быстрее реакция бизнеса."] }, design: { title: "Дизайн и брендинг", intro: "Этот раздел объясняет, как продукт выглядит, ощущается и вызывает доверие до покупки.", points: ["Дизайн включает UI/UX, макеты, Figma-файлы, логотипы, цвета, типографику и правила бренда.", "Хороший дизайн делает продукт понятнее, удобнее и профессиональнее.", "Для продавцов и товаров дизайн помогает создавать сильные карточки, превью и презентацию в маркетплейсе."] }, growth: { title: "Рост и поддержка", intro: "Этот раздел о том, что происходит после запуска, потому что реальному продукту нужны поддержка и улучшения.", points: ["Поддержка включает обновления, исправления, проверку скорости, безопасность, аналитику и базовое SEO.", "Работа над ростом улучшает конверсию, контент, удобство и места, где пользователи уходят.", "Продукт может не просто запуститься один раз, а становиться лучше каждый месяц."] }, market: { title: "Маркетплейс", intro: "Этот раздел означает, что DEWEB — не только студия, но и место, где клиенты и продавцы могут работать вместе.", points: ["Клиенты сравнивают продавцов по профилю, портфолио, продуктам, объявлениям, отзывам и активности.", "Продавцы могут создать аккаунт, добавить портфолио, публиковать продукты и получать заказы.", "Оплата и подтверждение доставки должны защищать обе стороны: если доставка не подтверждена, монеты возвращаются клиенту."] }, process: { title: "Процесс", intro: "Этот раздел объясняет путь заказа, чтобы клиент и продавец понимали следующий шаг.", points: ["Путь начинается с заявки, затем идут предложение, объём, оплата, производство, проверка и доставка.", "Клиент и продавец должны подтвердить результат, чтобы платформа корректно закрыла заказ.", "Понятные статусы в аккаунте помогают следить за работой и уменьшают путаницу."] } } },
       acc: { signin: "Вход", signup: "Регистрация", dashboard: "Дашборд", signinBtn: "Войти", signupBtn: "Создать аккаунт", orContinueWith: "Или войти через", signInGoogle: "Google", signInApple: "Apple", signInFb: "Facebook", roleClient: "Клиент", roleDev: "Разработчик", siNote: "Нет аккаунта? Зарегистрируйтесь.", suNote: "После регистрации можно отслеживать заказы или откликаться на задачи.", logout: "Выйти", security: "Безопасность и аккаунт", password: "Пароль", passwordDesc: "Смените пароль или установите его при входе через соцсеть.", socialLogin: "Вход через соцсети", socialLoginDesc: "Управление входом через Google, Apple или Facebook.", activityLog: "Журнал активности", activityLogDesc: "Последние входы и действия.", manage: "Управление", viewActivity: "Смотреть активность", signedInWith: "Вход через" },
       dash: { clientOrders: "Мои заказы", devPortfolio: "Портфолио", devNew: "Новые заказы", devDone: "Выполнено" },
       contact: { placeholderMessage: "Напишите сообщение...", placeholderEmail: "Ваш e-mail...", sendButton: "ОТПРАВИТЬ" }
@@ -264,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
       packages: { title: "IT փաթեթներ", subtitle: "Հասկանալի շրջանակ, գին, ժամկետներ։ Աջակցությունը ընտրովի է։", cta: "Ստանալ առաջարկ →", cta2: "Կապվել", web: { title: "Կայքի մեկնարկ", desc: "Լենդինգ կամ կորպորատիվ կայք։", li1: "UI/UX և ադապտիվ", li2: "SEO և անալիտիկա", li3: "Տեղակայում և 30 օր աջակցություն" }, bot: { title: "Telegram բոտի համակարգ", desc: "Վաճառք, ամրագրում, CRM, վճարումներ։", li1: "Ադմին-պանել", li2: "Ինտեգրացիաներ", li3: "Տեղակայում" }, design: { title: "Ապրանքանիշ և UI Kit", desc: "Լոգո, ապրանքանիշի կանոններ, UI Figma-ում։", li1: "Լոգո և իդենտիկություն", li2: "UI kit", li3: "Հանձնում մշակողին" }, support: { title: "Ամսական աջակցություն", desc: "Ուղղումներ, թարմացումներ, անվտանգություն։", li1: "Առաջնահերթ ուղղումներ", li2: "Արագություն", li3: "Հաշվետվություններ" }, noteBadge: "Խորհուրդ", noteText: "Չգիտե՞ք, թե որ փաթեթը հարմար է։ Օգտագործեք «Պատվեր» — կառաջարկենք շրջանակ և գին։" },
       order: { title: "Պատվեր 0-ից 100%", subtitle: "Ուղարկեք հարցում։ Կպատասխանենք շրջանակով, գնով, ժամկետներով և վճարման եղանակներով։", s1: "Հարցում", s1d: "դուք ուղարկում եք մանրամասներ", s2: "Առաջարկ", s2d: "շրջանակ և գին", s3: "Վճարում", s3d: "փուլեր", s4: "Առաքում", s4d: "թեստ և մեկնարկ", howTitle: "Ինչպես է աշխատում հաշվում", how1: "Պատվերի կարգավիճակ՝ Հարցում → Առաջարկ → Վճարված → Ընթացքում → Առաքված → Պատրաստ", how2: "Կարող եք ավելացնել ֆայլեր (լրիվ տարբերակում)", how3: "Մշակողները կարող են վերցնել առաջադրանքներ", openAccount: "Բացել հաշիվ", service: "Ծառայություն", budget: "Բյուջե", deadline: "Ժամկետ", details: "Նախագծի մանրամասներ", contact: "Կապ", opt: { website: "Կայք / Լենդինգ / E-commerce", bot: "Telegram բոտ / Ավտոմատացում", design: "Դիզայն / Ապրանքանիշ / UI", support: "Աջակցություն / Աճ" }, pay: { card: "Քարտ", crypto: "Կրիպտո", bank: "Բանկ", cash: "Կանխիկ" }, send: "Ուղարկել հարցում", note: "Ուղարկելուց հետո պատվերը կերևա հաշվի դաշշբորդում։" },
       market: { title: "Մարկետփլեյս", subtitle: "Վարձեք մասնագետներ կամ վերցրեք առաջադրանքներ որպես մշակող։", filters: "Զտիչներ", all: "Բոլոր դերերը", dev: "Մշակողներ", skillAll: "Բոլոր հմտությունները", tipBadge: "Խորհուրդ", tipText: "Մշակողներ՝ գրանցում → «Մշակող» դեր → պորտֆոլիո → առաջադրանքներ դաշշբորդում։", openAccount: "Բացել հաշիվ", openOrders: "Բաց պատվերներ", createOrder: "Ստեղծել պատվեր" },
-      about: { title: "DEWEB-ի մասին", base: "DEWEB-ը IT արտադրության ստուդիա և մարկետփլեյս է։ Կայքեր, ավտոմատացում, բոտեր, դիզայն։ Ստուգված մշակողները ստանում են պատվերներ, կլիենտները՝ կանխատեսելի արդյունք։", v1b: "Արագություն", v1s: "Արագ առանց խառնաշփոթի", v2b: "Պարզություն", v2s: "Փաթեթներ, շրջանակ, փուլեր", v3b: "Որակ", v3s: "Արտադրության մակարդակ", cards: { web: "Վեբ և E-commerce", bots: "Բոտեր և ավտոմատացում", design: "Դիզայն և ապրանքանիշ", growth: "Աճ և աջակցություն", market: "Մարկետփլեյս", process: "Գործընթաց" } },
+      about: { title: "DEWEB-ի մասին", base: "DEWEB-ը IT արտադրության ստուդիա և մարկետփլեյս է։ Կայքեր, ավտոմատացում, բոտեր, դիզայն։ Ստուգված մշակողները ստանում են պատվերներ, կլիենտները՝ կանխատեսելի արդյունք։", v1b: "Արագություն", v1s: "Արագ առանց խառնաշփոթի", v2b: "Պարզություն", v2s: "Փաթեթներ, շրջանակ, փուլեր", v3b: "Որակ", v3s: "Արտադրության մակարդակ", cards: { web: "Վեբ և E-commerce", bots: "Բոտեր և ավտոմատացում", design: "Դիզայն և ապրանքանիշ", growth: "Աճ և աջակցություն", market: "Մարկետփլեյս", process: "Գործընթաց" }, detailKicker: "Ընտրված բաժին", details: { web: { title: "Վեբ և E-commerce", intro: "Այս բաժինը նշանակում է կայքի ամբողջական ստեղծում՝ գաղափարից մինչև գործարկված պրոդուկտ, որը կարող են օգտագործել հաճախորդները։", points: ["Կարող ենք ստեղծել լենդինգներ, կորպորատիվ կայքեր, ծառայությունների էջեր, դաշբորդներ և առցանց խանութներ։", "E-commerce-ի համար կարևոր են ապրանքի էջերը, զամբյուղը, checkout-ը, վճարումները, պատվերների հոսքը և ադմին գործիքները։", "Վերջնական արդյունքը պետք է լինի արագ, հարմար հեռախոսների համար, հասկանալի և պատրաստ իրական օգտատերերի համար։"] }, bots: { title: "Բոտեր և ավտոմատացում", intro: "Այս բաժինը օգնում է խնայել ժամանակը և նվազեցնել կրկնվող ձեռքով աշխատանքը բոտերի ու ավտոմատ հոսքերի միջոցով։", points: ["Օրինակներ՝ Telegram բոտեր, հայտերի հավաքում, ամրագրումներ, հիշեցումներ, ծանուցումներ և աջակցության օգնականներ։", "Ավտոմատացումը կարող է միացնել ձևեր, CRM, աղյուսակներ, ծանուցումներ, վճարումներ և ներքին գործիքներ։", "Նպատակը պարզ է՝ քիչ ձեռքով գործողություններ և բիզնեսի ավելի արագ արձագանք։"] }, design: { title: "Դիզայն և ապրանքանիշ", intro: "Այս բաժինը բացատրում է, թե ինչպես է պրոդուկտը երևում, զգացվում և վստահություն ստեղծում մինչև գնումը։", points: ["Դիզայնը ներառում է UI/UX, էջերի մակետներ, Figma ֆայլեր, լոգոներ, գույներ, տառատեսակներ և բրենդի կանոններ։", "Լավ դիզայնը պրոդուկտը դարձնում է ավելի հասկանալի, օգտագործելի և պրոֆեսիոնալ։", "Վաճառողների և ապրանքների համար դիզայնը օգնում է ստեղծել ուժեղ քարտեր, նախադիտումներ և ներկայացում մարկետփլեյսում։"] }, growth: { title: "Աճ և աջակցություն", intro: "Այս բաժինը վերաբերում է գործարկումից հետո աշխատանքին, որովհետև իրական պրոդուկտը խնամքի և բարելավման կարիք ունի։", points: ["Աջակցությունը կարող է ներառել թարմացումներ, ուղղումներ, արագության ստուգում, անվտանգություն, անալիտիկա և SEO հիմունքներ։", "Աճի աշխատանքը բարելավում է կոնվերսիան, բովանդակությունը, օգտատիրոջ փորձը և այն կետերը, որտեղ հաճախորդները հեռանում են։", "Պրոդուկտը կարող է ոչ թե մեկ անգամ գործարկվել ու կանգնել, այլ ամեն ամիս ավելի լավը դառնալ։"] }, market: { title: "Մարկետփլեյս", intro: "Այս բաժինը նշանակում է, որ DEWEB-ը միայն ստուդիա չէ, այլ նաև վայր, որտեղ հաճախորդներն ու վաճառողները կարող են աշխատել միասին։", points: ["Հաճախորդները կարող են համեմատել վաճառողներին ըստ պրոֆիլի, պորտֆոլիոյի, ապրանքների, հայտարարությունների, կարծիքների և ակտիվության։", "Վաճառողները կարող են ստեղծել հաշիվ, ավելացնել պորտֆոլիո, հրապարակել ապրանքներ և ստանալ պատվերներ։", "Վճարումն ու առաքման հաստատումը պետք է պաշտպանեն երկու կողմերին․ եթե առաքումը չի հաստատվում, մետաղադրամները կարող են վերադարձվել հաճախորդին։"] }, process: { title: "Գործընթաց", intro: "Այս բաժինը բացատրում է պատվերի ճանապարհը, որպեսզի հաճախորդն ու վաճառողը հասկանան հաջորդ քայլը։", points: ["Հոսքը սկսվում է հարցումով, հետո լինում է առաջարկ, շրջանակ, վճարում, արտադրություն, ստուգում և առաքում։", "Հաճախորդն ու վաճառողը պետք է հաստատեն արդյունքը, որպեսզի պլատֆորմը ճիշտ փակի պատվերը։", "Հստակ կարգավիճակները հաշվում օգնում են հետևել աշխատանքին և նվազեցնել շփոթությունը։"] } } },
       acc: { signin: "Մուտք", signup: "Գրանցում", dashboard: "Դաշշբորդ", signinBtn: "Մուտք", signupBtn: "Ստեղծել հաշիվ", orContinueWith: "Կամ շարունակել через", signInGoogle: "Google", signInApple: "Apple", signInFb: "Facebook", roleClient: "Կլիենտ", roleDev: "Մշակող", siNote: "Հաշիվ չունե՞ք։ Գրանցվեք։", suNote: "Գրանցումից հետո կարող եք հետևել պատվերներին կամ արձագանքել առաջադրանքներին։", logout: "Դուրս գալ", security: "Անվտանգություն և հաշիվ", password: "Գաղտնաբառ", passwordDesc: "Փոխեք գաղտնաբառը կամ սահմանեք, եթե մուտք եք գործել սոցիալական միջոցով։", socialLogin: "Սոցիալական մուտք", socialLoginDesc: "Կառավարեք մուտքը Google, Apple կամ Facebook-ով։", activityLog: "Գործունեության մատյան", activityLogDesc: "Վերջին մուտքերն ու գործողությունները։", manage: "Կառավարել", viewActivity: "Դիտել ակտիվությունը", signedInWith: "Մուտք" },
       dash: { clientOrders: "Իմ պատվերները", devPortfolio: "Պորտֆոլիո", devNew: "Նոր պատվերներ", devDone: "Կատարված" },
       contact: { placeholderMessage: "Գրեք ձեր հաղորդագրությունը...", placeholderEmail: "Ձեր e-mail...", sendButton: "ՈՒՂԱՐԿԵԼ" }
@@ -303,6 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let currentLang = localStorage.getItem("deweb_lang") || "en";
+  let rerenderAboutDetail = null;
 
   const langDD = document.getElementById("langDD");
   const langBtn = document.getElementById("langBtn");
@@ -326,6 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLang = l.code;
         localStorage.setItem("deweb_lang", currentLang);
         applyI18n(currentLang);
+        if (typeof rerenderAboutDetail === "function") rerenderAboutDetail();
         renderLangUI();
         closeLangMenu();
       });
@@ -489,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     set(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
   };
-  const DB_KEYS = { users:"deweb_users", session:"deweb_session", orders:"deweb_orders", activity:"deweb_activity" };
+  const DB_KEYS = { users:"deweb_users", session:"deweb_session", orders:"deweb_orders", activity:"deweb_activity", marketplaceProducts:"deweb_marketplace_products" };
 
   function getSession(){ return LS.get(DB_KEYS.session, null); }
   function setSession(s){ LS.set(DB_KEYS.session, s); }
@@ -497,6 +508,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getUsers(){ return LS.get(DB_KEYS.users, []); }
   function setUsers(u){ LS.set(DB_KEYS.users, u); }
+  function getMarketplaceProducts(){ return LS.get(DB_KEYS.marketplaceProducts, []); }
 
   function getActivity(){ return LS.get(DB_KEYS.activity, {}); }
   function setActivity(a){ LS.set(DB_KEYS.activity, a); }
@@ -741,7 +753,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const role = document.getElementById("marketRole")?.value || "all";
     const skill = document.getElementById("marketSkill")?.value || "all";
 
-    const users = getUsers().filter(u => u.role === "dev");
+    const products = getMarketplaceProducts();
+    const users = getUsers().filter(u => u.role === "dev" || u.accountMode === "seller");
     let list = users;
 
     if (role === "dev") list = users;
@@ -769,6 +782,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "profile-card";
       const initials = (u.name || "D").split(" ").map(x => x[0]).slice(0,2).join("").toUpperCase();
+      const sellerProducts = products.filter(p => p.sellerId === u.id);
+      const sellerInfo = u.sellerInfo || {};
+      const productHtml = sellerProducts.length ? `
+        <div class="profile-products">
+          ${sellerProducts.slice(0, 3).map(p => `
+            <div class="profile-product">
+              <b>${escapeHtml(p.title || "Product")}</b>
+              <span>${escapeHtml(p.category || "Service")} • ${escapeHtml(p.price || 0)} DEWEB</span>
+              <small>${escapeHtml(p.views || 0)} views • ${escapeHtml(p.clicks || 0)} clicks • ${escapeHtml(p.reviews || 0)} reviews</small>
+            </div>
+          `).join("")}
+        </div>
+      ` : "";
 
       card.innerHTML = `
         <div class="profile-head">
@@ -776,12 +802,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="avatar">${escapeHtml(initials)}</div>
             <div>
               <div class="profile-name">${escapeHtml(u.name)}</div>
-              <div style="margin-top:4px"><span class="badge">Developer</span></div>
+              <div style="margin-top:4px"><span class="badge">Seller</span></div>
             </div>
           </div>
         </div>
 
-        <div class="profile-skills">${escapeHtml(u.skills || "—")}</div>
+        <div class="profile-skills">${escapeHtml(u.skills || sellerInfo.productName || "—")}</div>
+        ${sellerInfo.announcement ? `<div class="profile-skills">${escapeHtml(sellerInfo.announcement)}</div>` : ""}
+        ${productHtml}
 
         <div class="profile-actions">
           ${
@@ -837,24 +865,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".service-card");
     if (!aboutText || !cards.length) return;
 
-    const texts = {
-      web: "Web production: landing pages, corporate websites, e-commerce stores, speed optimization and analytics setup.",
-      bots: "Bots & automation: Telegram bots, CRM integrations, lead collection, booking, monitoring and smart workflows.",
-      design: "Design & branding: UI/UX in Figma, logos, identity systems, product graphics and conversion-focused layouts.",
-      growth: "Growth & support: monthly maintenance, performance and security checks, SEO foundations, conversion improvements.",
-      market: "Marketplace: clients can hire specialists, developers can create profiles and claim tasks inside their dashboard.",
-      process: "Process: Inquiry → Quote → Milestone payments → Production → QA → Delivery → Ongoing support (optional)."
-    };
+    let activeAboutKey = "web";
 
     function setActive(card){
       cards.forEach(c => c.classList.remove("is-active"));
       card.classList.add("is-active");
     }
 
-    function setText(str){
+    function renderDetail(key){
+      const aboutDict = (I18N[currentLang] || I18N.en).about || I18N.en.about;
+      const details = aboutDict.details || I18N.en.about.details;
+      const item = details[key] || details.web;
+      return `
+        <div class="about-detail">
+          <span class="section-kicker">${aboutDict.detailKicker || "Selected section"}</span>
+          <h2>${item.title}</h2>
+          <p>${item.intro}</p>
+          <ul>
+            ${item.points.map(point => `<li>${point}</li>`).join("")}
+          </ul>
+        </div>
+      `;
+    }
+
+    function setText(key){
       aboutText.classList.add("is-fading");
       setTimeout(() => {
-        aboutText.textContent = str;
+        aboutText.innerHTML = renderDetail(key);
         aboutText.classList.remove("is-fading");
       }, 160);
     }
@@ -862,10 +899,15 @@ document.addEventListener("DOMContentLoaded", () => {
     cards.forEach((card) => {
       card.addEventListener("click", () => {
         const key = card.dataset.key;
+        activeAboutKey = key;
         setActive(card);
-        setText(texts[key] || aboutText.textContent);
+        setText(key);
       });
     });
+    rerenderAboutDetail = () => {
+      aboutText.innerHTML = renderDetail(activeAboutKey);
+    };
+    rerenderAboutDetail();
   }
 
   /* =========================

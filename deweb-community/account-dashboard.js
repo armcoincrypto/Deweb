@@ -12,9 +12,67 @@ const DB_KEYS = {
   session: "deweb_session",
   orders: "deweb_orders",
   savedCards: "deweb_saved_cards",
-  servicesCart: "deweb_services_cart"
+  servicesCart: "deweb_services_cart",
+  wallet: "deweb_wallet_demo",
+  marketplaceProducts: "deweb_marketplace_products"
 };
 const LS_LANG = "deweb_lang";
+const DASH_I18N = {
+  en: {
+    nav: ["Home", "Services", "Packages", "Order", "Marketplace", "About", "Contact"],
+    help: "Help", account: "Account", settings: "Account Settings",
+    sections: { profile: "My Profile", wallet: "Wallet", products: "My Products", orderHistory: "Order History", security: "Security" },
+    profile: {
+      fullName: "Full Name", address: "Address", organization: "Organization", email: "Email", phone: "Primary Mobile Phone",
+      kyc: "KYC Verification", tfa: "Two-Factor Authentication", currency: "Default Currency",
+      accountMode: "Account mode", customerSeller: "Customer or Seller",
+      modeText: "Add profile information for more access to tools, then switch to seller mode when you are ready to publish work.",
+      switchSeller: "Switch to Seller Account", switchCustomer: "Switch to Customer Account",
+      sellerProfile: "Seller profile", edit: "Edit", saveSeller: "Save seller demo info",
+      portfolioHeadline: "Portfolio headline", portfolioLink: "Portfolio link", productFocus: "Product / service focus", announcement: "Announcement",
+      save: "Save", home: "Go to Home", logout: "Log out", verify: "Verify", pending: "PENDING", verified: "VERIFIED", enabled: "ENABLED"
+    }
+  },
+  ru: {
+    nav: ["Главная", "Услуги", "Пакеты", "Заказ", "Маркетплейс", "О нас", "Контакты"],
+    help: "Помощь", account: "Аккаунт", settings: "Настройки аккаунта",
+    sections: { profile: "Мой профиль", wallet: "Кошелек", products: "Мои продукты", orderHistory: "История заказов", security: "Безопасность" },
+    profile: {
+      fullName: "Полное имя", address: "Адрес", organization: "Организация", email: "Email", phone: "Основной телефон",
+      kyc: "KYC-верификация", tfa: "Двухфакторная аутентификация", currency: "Валюта по умолчанию",
+      accountMode: "Режим аккаунта", customerSeller: "Клиент или продавец",
+      modeText: "Добавьте данные профиля для большего доступа к инструментам, затем переключитесь в режим продавца, когда будете готовы публиковать работы.",
+      switchSeller: "Переключиться на продавца", switchCustomer: "Переключиться на клиента",
+      sellerProfile: "Профиль продавца", edit: "Редактировать", saveSeller: "Сохранить данные продавца",
+      portfolioHeadline: "Заголовок портфолио", portfolioLink: "Ссылка на портфолио", productFocus: "Продукт / направление услуги", announcement: "Объявление",
+      save: "Сохранить", home: "На главную", logout: "Выйти", verify: "Подтвердить", pending: "В ОЖИДАНИИ", verified: "ПОДТВЕРЖДЕНО", enabled: "ВКЛЮЧЕНО"
+    }
+  },
+  hy: {
+    nav: ["Գլխավոր", "Ծառայություններ", "Փաթեթներ", "Պատվեր", "Մարկետփլեյս", "Մեր մասին", "Կապ"],
+    help: "Օգնություն", account: "Հաշիվ", settings: "Հաշվի կարգավորումներ",
+    sections: { profile: "Իմ պրոֆիլը", wallet: "Դրամապանակ", products: "Իմ ապրանքները", orderHistory: "Պատվերների պատմություն", security: "Անվտանգություն" },
+    profile: {
+      fullName: "Ամբողջական անուն", address: "Հասցե", organization: "Կազմակերպություն", email: "Email", phone: "Հիմնական հեռախոս",
+      kyc: "KYC ստուգում", tfa: "Երկգործոն նույնականացում", currency: "Լռելյայն արժույթ",
+      accountMode: "Հաշվի ռեժիմ", customerSeller: "Հաճախորդ կամ վաճառող",
+      modeText: "Լրացրեք պրոֆիլի տվյալները՝ ավելի շատ գործիքների հասանելիության համար, ապա անցեք վաճառողի ռեժիմի, երբ պատրաստ եք հրապարակել աշխատանքներ։",
+      switchSeller: "Անցնել վաճառողի հաշվին", switchCustomer: "Անցնել հաճախորդի հաշվին",
+      sellerProfile: "Վաճառողի պրոֆիլ", edit: "Խմբագրել", saveSeller: "Պահպանել վաճառողի տվյալները",
+      portfolioHeadline: "Պորտֆոլիոյի վերնագիր", portfolioLink: "Պորտֆոլիոյի հղում", productFocus: "Ապրանք / ծառայության ուղղություն", announcement: "Հայտարարություն",
+      save: "Պահպանել", home: "Գլխավոր էջ", logout: "Դուրս գալ", verify: "Հաստատել", pending: "ՍՊԱՍՎՈՒՄ Է", verified: "ՀԱՍՏԱՏՎԱԾ Է", enabled: "ՄԻԱՑՎԱԾ Է"
+    }
+  }
+};
+let currentDashLang = localStorage.getItem(LS_LANG) || "en";
+const sectionTitleKeys = { profile: "profile", wallet: "wallet", products: "products", "order-history": "orderHistory", security: "security" };
+function dashDict() { return DASH_I18N[currentDashLang] || DASH_I18N.en; }
+function dt(path) {
+  return path.split(".").reduce((obj, key) => obj?.[key], dashDict()) || path;
+}
+function sectionTitle(id) {
+  return dt("sections." + (sectionTitleKeys[id] || "profile"));
+}
 
 function getSession() { return LS.get(DB_KEYS.session, null); }
 function clearSession() { localStorage.removeItem(DB_KEYS.session); }
@@ -33,6 +91,32 @@ function updateMe(updates) {
   if (idx === -1) return;
   users[idx] = { ...users[idx], ...updates };
   setUsers(users);
+}
+function updateWallet(updates) {
+  const { userId, wallets, wallet } = getWallet();
+  wallets[userId] = { ...wallet, ...updates };
+  LS.set(DB_KEYS.wallet, wallets);
+}
+function getSellerProducts() {
+  const userId = findMe()?.id;
+  const products = LS.get(DB_KEYS.marketplaceProducts, []);
+  return Array.isArray(products) ? products.filter(p => p.sellerId === userId) : [];
+}
+function setSellerProductsForMe(productsForMe) {
+  const userId = findMe()?.id;
+  if (!userId) return;
+  const all = LS.get(DB_KEYS.marketplaceProducts, []);
+  const others = Array.isArray(all) ? all.filter(p => p.sellerId !== userId) : [];
+  LS.set(DB_KEYS.marketplaceProducts, [...others, ...productsForMe]);
+}
+function makeProductStats(product, index) {
+  return {
+    views: product.views ?? 120 + (index * 37),
+    clicks: product.clicks ?? 24 + (index * 9),
+    comments: product.comments ?? 3 + index,
+    reviews: product.reviews ?? 1 + index,
+    rating: product.rating ?? 4.8
+  };
 }
 
 function getInitials(name) {
@@ -55,23 +139,18 @@ if (!me) {
 
 // ——— Section switching with browser history ———
 const sections = [
-  "profile", "products", "renewals", "payment-methods", "order-history",
-  "security", "delegate", "domain-defaults", "contact-prefs", "payees"
+  "profile", "wallet", "products", "order-history", "security"
 ];
 const sectionTitles = {
   profile: "My Profile",
+  wallet: "Wallet",
   products: "My Products",
-  renewals: "Renewals & Billing",
-  "payment-methods": "Payment Methods",
   "order-history": "Order History",
-  security: "Security",
-  delegate: "Delegate Access",
-  "domain-defaults": "Domain Defaults",
-  "contact-prefs": "Contact Preferences",
-  payees: "Payees"
+  security: "Security"
 };
 
 let currentSection = "profile";
+let sellerEditing = false;
 
 function setActiveSection(id, pushHistory = true) {
   if (!sections.includes(id)) id = "profile";
@@ -90,7 +169,7 @@ function setActiveSection(id, pushHistory = true) {
   if (pushHistory) {
     const url = new URL(window.location);
     url.hash = id;
-    history.pushState({ section: id }, sectionTitles[id], url);
+    history.pushState({ section: id }, sectionTitle(id), url);
   }
 }
 
@@ -114,10 +193,10 @@ function initSectionFromHash() {
   const hash = window.location.hash.replace("#", "");
   if (hash && sections.includes(hash)) {
     // Replace current state so first back goes to previous page
-    history.replaceState({ section: hash }, sectionTitles[hash], window.location.href);
+    history.replaceState({ section: hash }, sectionTitle(hash), window.location.href);
     setActiveSection(hash, false);
   } else {
-    history.replaceState({ section: "profile" }, sectionTitles["profile"], window.location.href);
+    history.replaceState({ section: "profile" }, sectionTitle("profile"), window.location.href);
   }
 }
 
@@ -125,17 +204,12 @@ function renderSectionContent(id) {
   const container = document.getElementById("section-" + id);
   if (!container) return;
   if (id === "profile") return;
-  const title = sectionTitles[id];
+  const title = sectionTitle(id);
   const renderers = {
+    wallet: renderWallet,
     products: renderProducts,
-    renewals: renderRenewals,
-    "payment-methods": renderPaymentMethods,
     "order-history": renderOrderHistory,
-    security: renderSecurity,
-    delegate: renderDelegate,
-    "domain-defaults": renderDomainDefaults,
-    "contact-prefs": renderContactPrefs,
-    payees: renderPayees
+    security: renderSecurity
   };
   const fn = renderers[id];
   const html = fn ? fn() : `<div class="section-empty"><p>Content for ${title} will be available here.</p></div>`;
@@ -143,42 +217,64 @@ function renderSectionContent(id) {
 }
 
 function renderProducts() {
-  const orders = LS.get(DB_KEYS.orders, []);
-  const cart = LS.get(DB_KEYS.servicesCart, []);
-  const myOrders = orders.filter(o => o.userId === findMe()?.id);
-  const paid = myOrders.filter(o => o.status === "paid" || o.status === "completed");
-  const pending = myOrders.filter(o => o.status === "pending" || o.status === "processing");
-  const failed = myOrders.filter(o => o.status === "failed" || o.status === "cancelled");
+  const user = findMe() || {};
+  if (user.accountMode !== "seller") {
+    return `
+      <div class="section-empty">
+        <p>Switch to seller account from My Profile to add and manage products.</p>
+        <button type="button" class="cta-btn primary" data-section-jump="profile">Go to My Profile</button>
+      </div>
+    `;
+  }
+  const products = getSellerProducts();
   return `
-    <div class="section-block">
-      <h3>Purchase history</h3>
-      ${myOrders.length === 0 ? '<div class="section-empty"><p>No orders yet.</p><a href="services.html" class="cta-btn primary">Browse services</a></div>' : `
-        <table class="section-table">
-          <thead><tr><th>Order ID</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead>
-          <tbody>
-            ${myOrders.slice(0, 20).map(o => `
-              <tr>
-                <td>#${(o.id || o.orderId || "—").toString().slice(0, 8)}</td>
-                <td>${o.date || "—"}</td>
-                <td>${Array.isArray(o.items) ? o.items.length : 0} item(s)</td>
-                <td>${o.total != null ? o.total + " " + (o.currency || "USD") : "—"}</td>
-                <td><span class="status-badge status-${(o.status || "").toLowerCase()}">${(o.status || "—")}</span></td>
-              </tr>
-            `).join("")}
-          </tbody>
-        </table>
-      `}
-    </div>
-    <div class="section-block">
-      <h3>Items to pay</h3>
-      ${pending.length === 0 && cart.length === 0 ? '<div class="section-empty"><p>No pending payments.</p></div>' : `
-        ${pending.length ? `<p>You have <strong>${pending.length}</strong> order(s) pending payment.</p>` : ""}
-        ${cart.length ? `<p>Cart: <strong>${cart.length}</strong> item(s) — <a href="services.html" class="cta-btn primary">Go to cart</a></p>` : ""}
-      `}
-    </div>
-    <div class="section-block">
-      <h3>Paid / Failed</h3>
-      <p>Paid: <strong>${paid.length}</strong> — Failed: <strong>${failed.length}</strong></p>
+    <div class="seller-products-layout">
+      <div class="section-block seller-product-form">
+        <span class="section-kicker">Marketplace product</span>
+        <h3 id="productFormTitle">Add Product</h3>
+        <input type="hidden" id="sellerProductId" />
+        <label>Product title<input type="text" id="sellerProductTitle" placeholder="Example: Web3 landing page" /></label>
+        <label>Price in DEWEB<input type="number" id="sellerProductPrice" min="0" placeholder="Example: 500" /></label>
+        <label>Category
+          <select id="sellerProductCategory">
+            <option>Web development</option>
+            <option>Design</option>
+            <option>Automation</option>
+            <option>Marketing</option>
+            <option>Smart contract</option>
+          </select>
+        </label>
+        <label>Description<textarea id="sellerProductDescription" placeholder="Describe what customers receive."></textarea></label>
+        <div class="seller-product-form__actions">
+          <button type="button" class="cta-btn primary" id="saveSellerProductBtn">Add Product</button>
+          <button type="button" class="cta-btn secondary" id="cancelSellerProductEditBtn" style="display:none">Cancel</button>
+        </div>
+      </div>
+      <div class="seller-products-list">
+        ${products.length === 0 ? '<div class="section-empty"><p>No products yet. Add your first seller product.</p></div>' : products.map((product, index) => {
+          const stats = makeProductStats(product, index);
+          return `
+            <div class="seller-product-card">
+              <div class="seller-product-card__head">
+                <div>
+                  <span class="section-kicker">${product.category || "Product"}</span>
+                  <h3>${product.title || "Untitled product"}</h3>
+                  <p>${product.description || "No description yet."}</p>
+                </div>
+                <strong>${product.price || 0} DEWEB</strong>
+              </div>
+              <div class="seller-product-stats">
+                <span>${stats.views} views</span>
+                <span>${stats.clicks} clicks</span>
+                <span>${stats.comments} comments</span>
+                <span>${stats.reviews} reviews</span>
+                <span>${stats.rating} rating</span>
+              </div>
+              <button type="button" class="cta-btn secondary" data-edit-product="${product.id}">Edit</button>
+            </div>
+          `;
+        }).join("")}
+      </div>
     </div>
   `;
 }
@@ -198,6 +294,114 @@ function renderRenewals() {
     <div class="section-block">
       <h3>Billing history</h3>
       <div class="section-empty"><p>Invoices and billing history will be listed here.</p></div>
+    </div>
+  `;
+}
+
+function getWallet() {
+  const userId = findMe()?.id || "guest";
+  const wallets = LS.get(DB_KEYS.wallet, {});
+  const wallet = wallets[userId] || {
+    created: false,
+    connected: false,
+    provider: "",
+    address: "",
+    deweb: 0,
+    pendingWithdraw: 0
+  };
+  return { userId, wallets, wallet };
+}
+
+function renderWallet() {
+  const cards = LS.get(DB_KEYS.savedCards, []);
+  const myId = findMe()?.id;
+  const myCards = Array.isArray(cards) ? cards.filter(c => c.userId === myId) : [];
+  const { wallet } = getWallet();
+  const connectedLabel = wallet.connected
+    ? `${wallet.provider || "Wallet"} connected (${wallet.address || "demo address"})`
+    : "No decentralized wallet connected";
+  return `
+    <div class="wallet-hero section-block">
+      <div>
+        <span class="section-kicker">DEWEB wallet</span>
+        <h3>${wallet.created ? "Your Wallet" : "Create Wallet"}</h3>
+        <p>Hold DEWEB coins, connect Ronin, MetaMask, WalletConnect, Coinbase Wallet, or another decentralized wallet, and prepare swap or withdrawal actions.</p>
+      </div>
+      <div class="wallet-actions">
+        <button type="button" class="cta-btn primary" id="createWalletBtn">${wallet.created ? "Wallet Created" : "Create Wallet"}</button>
+        <button type="button" class="cta-btn secondary" id="connectWalletBtn">Connect Wallet</button>
+      </div>
+    </div>
+    <div class="wallet-grid">
+      <div class="wallet-balance-card">
+        <span class="wallet-balance-card__label">DEWEB balance</span>
+        <strong>${Number(wallet.deweb || 0).toLocaleString()} DEWEB</strong>
+        <p>Coins from customer purchases and crypto/card top-ups appear here.</p>
+      </div>
+      <div class="wallet-balance-card">
+        <span class="wallet-balance-card__label">Connected wallet</span>
+        <strong>${wallet.connected ? wallet.provider : "Not connected"}</strong>
+        <p>${connectedLabel}</p>
+      </div>
+      <div class="wallet-balance-card">
+        <span class="wallet-balance-card__label">Withdrawal status</span>
+        <strong>${wallet.pendingWithdraw ? wallet.pendingWithdraw + " DEWEB pending" : "No pending withdrawal"}</strong>
+        <p>Withdrawals become available after confirmed delivery or completed swap flow.</p>
+      </div>
+    </div>
+    <div class="wallet-grid wallet-grid--tools">
+      <div class="section-block wallet-tool-card">
+        <h3>Swap crypto to DEWEB</h3>
+        <p>UI demo for USDT, ETH, BTC, and DASH conversion into DEWEB coins. Later this can connect to the swap website/API you provide.</p>
+        <div class="wallet-form-row">
+          <select id="walletSwapFrom">
+            <option>USDT</option>
+            <option>ETH</option>
+            <option>BTC</option>
+            <option>DASH</option>
+          </select>
+          <input type="number" id="walletSwapAmount" min="0" placeholder="Amount" />
+        </div>
+        <button type="button" class="cta-btn primary" id="swapToDewebBtn">Preview Swap</button>
+        <p class="wallet-note">Converted crypto is marked to arrive in the platform owner MetaMask wallet in the future payment flow.</p>
+      </div>
+      <div class="section-block wallet-tool-card">
+        <h3>Add coins by card</h3>
+        <p>Customers can top up DEWEB coins with credit card payment or with the future swap website.</p>
+        <div class="wallet-form-row">
+          <input type="number" id="cardTopupAmount" min="0" placeholder="DEWEB amount" />
+          <button type="button" class="cta-btn secondary" id="cardTopupBtn">Add by Credit Card</button>
+        </div>
+      </div>
+      <div class="section-block wallet-tool-card">
+        <h3>Withdraw / change DEWEB</h3>
+        <p>Show when and how users can change DEWEB coins back to supported crypto after order confirmation.</p>
+        <div class="wallet-form-row">
+          <select id="walletWithdrawTo">
+            <option>USDT</option>
+            <option>ETH</option>
+            <option>BTC</option>
+            <option>DASH</option>
+          </select>
+          <input type="number" id="walletWithdrawAmount" min="0" placeholder="DEWEB amount" />
+        </div>
+        <button type="button" class="cta-btn secondary" id="withdrawDewebBtn">Request Withdraw</button>
+      </div>
+    </div>
+    <div class="section-block">
+      <h3>Payment Methods</h3>
+      ${myCards.length === 0 ? '<div class="section-empty section-empty--small"><p>No saved cards.</p><p>Add a card when checking out or topping up DEWEB coins.</p></div>' : `
+        <table class="section-table">
+          <thead><tr><th>Type</th><th>Last 4</th><th>Expiry</th><th>Default</th></tr></thead>
+          <tbody>
+            ${myCards.map(c => `<tr><td>${c.brand || "Card"}</td><td>**** ${(c.last4 || "****")}</td><td>${c.expiry || "-"}</td><td>${c.default ? "Yes" : "-"}</td></tr>`).join("")}
+          </tbody>
+        </table>
+      `}
+    </div>
+    <div class="section-block">
+      <h3>Renewals & Billing</h3>
+      <div class="section-empty section-empty--small"><p>No upcoming renewals.</p><p>Invoices, renewals, and billing history will appear below payment methods.</p></div>
     </div>
   `;
 }
@@ -449,6 +653,37 @@ function fillProfile() {
     if (tfaEnabled) { setup2faBtn.textContent = "Manage"; setup2faBtn.classList.add("secondary"); }
     else { setup2faBtn.textContent = "Setup 2FA"; setup2faBtn.classList.remove("secondary"); }
   }
+
+  // Seller mode and demo seller tools
+  const sellerModeBtn = document.getElementById("sellerModeBtn");
+  const sellerTools = document.getElementById("sellerTools");
+  const sellerProductsNav = document.getElementById("sellerProductsNav");
+  const isSeller = user.accountMode === "seller";
+  if (sellerModeBtn) sellerModeBtn.textContent = isSeller ? dt("profile.switchCustomer") : dt("profile.switchSeller");
+  if (sellerTools) sellerTools.style.display = isSeller ? "block" : "none";
+  if (sellerProductsNav) sellerProductsNav.style.display = isSeller ? "" : "none";
+  const sellerInfo = user.sellerInfo || {};
+  const sellerHasInfo = Boolean(sellerInfo.portfolioTitle || sellerInfo.portfolioLink || sellerInfo.productName || sellerInfo.announcement);
+  const sellerSavedCard = document.getElementById("sellerSavedCard");
+  const sellerEditForm = document.getElementById("sellerEditForm");
+  const sellerSavedTitle = document.getElementById("sellerSavedTitle");
+  const sellerSavedLink = document.getElementById("sellerSavedLink");
+  const sellerSavedProduct = document.getElementById("sellerSavedProduct");
+  const sellerSavedAnnouncement = document.getElementById("sellerSavedAnnouncement");
+  if (sellerSavedCard) sellerSavedCard.style.display = isSeller && sellerHasInfo && !sellerEditing ? "flex" : "none";
+  if (sellerEditForm) sellerEditForm.style.display = isSeller && (!sellerHasInfo || sellerEditing) ? "block" : "none";
+  if (sellerSavedTitle) sellerSavedTitle.textContent = sellerInfo.portfolioTitle || "Seller profile";
+  if (sellerSavedLink) sellerSavedLink.textContent = sellerInfo.portfolioLink ? `Portfolio: ${sellerInfo.portfolioLink}` : "Portfolio: not added";
+  if (sellerSavedProduct) sellerSavedProduct.textContent = sellerInfo.productName ? `Focus: ${sellerInfo.productName}` : "Focus: not added";
+  if (sellerSavedAnnouncement) sellerSavedAnnouncement.textContent = sellerInfo.announcement ? `Announcement: ${sellerInfo.announcement}` : "Announcement: not added";
+  const sellerPortfolioTitle = document.getElementById("sellerPortfolioTitle");
+  const sellerPortfolioLink = document.getElementById("sellerPortfolioLink");
+  const sellerProductName = document.getElementById("sellerProductName");
+  const sellerAnnouncement = document.getElementById("sellerAnnouncement");
+  if (sellerPortfolioTitle) sellerPortfolioTitle.value = sellerInfo.portfolioTitle || "";
+  if (sellerPortfolioLink) sellerPortfolioLink.value = sellerInfo.portfolioLink || "";
+  if (sellerProductName) sellerProductName.value = sellerInfo.productName || "";
+  if (sellerAnnouncement) sellerAnnouncement.value = sellerInfo.announcement || "";
 }
 
 function setProfileDirty(dirty) {
@@ -608,6 +843,149 @@ document.getElementById("setup2faBtn")?.addEventListener("click", (e) => {
   }
 });
 
+document.getElementById("sellerModeBtn")?.addEventListener("click", () => {
+  const user = findMe();
+  if (!user) return;
+  const nextMode = user.accountMode === "seller" ? "customer" : "seller";
+  sellerEditing = nextMode === "seller" && !user.sellerInfo;
+  updateMe({ accountMode: nextMode, role: nextMode === "seller" ? "dev" : "customer" });
+  fillProfile();
+  if (nextMode === "customer" && currentSection === "products") setActiveSection("profile", true);
+});
+
+document.getElementById("saveSellerToolsBtn")?.addEventListener("click", () => {
+  const portfolioTitle = document.getElementById("sellerPortfolioTitle")?.value || "";
+  const portfolioLink = document.getElementById("sellerPortfolioLink")?.value || "";
+  const productName = document.getElementById("sellerProductName")?.value || "";
+  const announcement = document.getElementById("sellerAnnouncement")?.value || "";
+  updateMe({
+    accountMode: "seller",
+    role: "dev",
+    skills: `${portfolioTitle} ${productName}`.trim(),
+    portfolio: portfolioLink,
+    sellerInfo: {
+      portfolioTitle,
+      portfolioLink,
+      productName,
+      announcement
+    }
+  });
+  sellerEditing = false;
+  fillProfile();
+  alert("Seller info saved and printed in your account section.");
+});
+
+document.getElementById("editSellerToolsBtn")?.addEventListener("click", () => {
+  sellerEditing = true;
+  fillProfile();
+});
+
+document.addEventListener("click", (e) => {
+  const target = e.target;
+  if (!target) return;
+  if (target.id === "createWalletBtn") {
+    updateWallet({ created: true, deweb: getWallet().wallet.deweb || 0 });
+    renderSectionContent("wallet");
+    return;
+  }
+  if (target.id === "connectWalletBtn") {
+    const provider = prompt("Connect wallet demo: type MetaMask, Ronin, WalletConnect, Coinbase Wallet, etc.", "MetaMask");
+    if (!provider) return;
+    updateWallet({
+      created: true,
+      connected: true,
+      provider,
+      address: "0xDEWEB...2026"
+    });
+    renderSectionContent("wallet");
+    return;
+  }
+  if (target.id === "swapToDewebBtn") {
+    const amount = Number(document.getElementById("walletSwapAmount")?.value || 0);
+    if (!amount || amount <= 0) {
+      alert("Enter crypto amount for swap preview.");
+      return;
+    }
+    const from = document.getElementById("walletSwapFrom")?.value || "USDT";
+    const current = Number(getWallet().wallet.deweb || 0);
+    const demoDeweb = Math.round(amount * 100);
+    updateWallet({ created: true, deweb: current + demoDeweb });
+    alert(`${amount} ${from} demo swap preview added ${demoDeweb} DEWEB. Future flow sends the paid crypto to your MetaMask wallet.`);
+    renderSectionContent("wallet");
+    return;
+  }
+  if (target.id === "cardTopupBtn") {
+    const amount = Number(document.getElementById("cardTopupAmount")?.value || 0);
+    if (!amount || amount <= 0) {
+      alert("Enter DEWEB amount to add by credit card.");
+      return;
+    }
+    const current = Number(getWallet().wallet.deweb || 0);
+    updateWallet({ created: true, deweb: current + amount });
+    alert(`${amount} DEWEB added in demo mode.`);
+    renderSectionContent("wallet");
+    return;
+  }
+  if (target.id === "withdrawDewebBtn") {
+    const amount = Number(document.getElementById("walletWithdrawAmount")?.value || 0);
+    const current = Number(getWallet().wallet.deweb || 0);
+    if (!amount || amount <= 0) {
+      alert("Enter DEWEB amount to withdraw.");
+      return;
+    }
+    if (amount > current) {
+      alert("Not enough DEWEB coins for this withdrawal.");
+      return;
+    }
+    updateWallet({ deweb: current - amount, pendingWithdraw: amount });
+    alert("Withdrawal request saved in demo mode. Real withdrawal will depend on connected wallet, swap provider, and order confirmation.");
+    renderSectionContent("wallet");
+    return;
+  }
+  if (target.dataset.sectionJump) {
+    setActiveSection(target.dataset.sectionJump, true);
+    return;
+  }
+  if (target.id === "saveSellerProductBtn") {
+    const products = getSellerProducts();
+    const id = document.getElementById("sellerProductId")?.value || `product-${Date.now()}`;
+    const existingIndex = products.findIndex(p => p.id === id);
+    const existing = existingIndex >= 0 ? products[existingIndex] : {};
+    const nextProduct = {
+      ...existing,
+      id,
+      sellerId: findMe()?.id,
+      sellerName: findMe()?.name || "Seller",
+      title: document.getElementById("sellerProductTitle")?.value || "Untitled product",
+      price: Number(document.getElementById("sellerProductPrice")?.value || 0),
+      category: document.getElementById("sellerProductCategory")?.value || "Web development",
+      description: document.getElementById("sellerProductDescription")?.value || "",
+      updatedAt: new Date().toISOString()
+    };
+    if (existingIndex >= 0) products[existingIndex] = nextProduct;
+    else products.unshift({ ...nextProduct, ...makeProductStats(nextProduct, products.length) });
+    setSellerProductsForMe(products);
+    renderSectionContent("products");
+    return;
+  }
+  if (target.id === "cancelSellerProductEditBtn") {
+    renderSectionContent("products");
+    return;
+  }
+  if (target.dataset.editProduct) {
+    const product = getSellerProducts().find(p => p.id === target.dataset.editProduct);
+    if (!product) return;
+    document.getElementById("sellerProductId").value = product.id;
+    document.getElementById("sellerProductTitle").value = product.title || "";
+    document.getElementById("sellerProductPrice").value = product.price || "";
+    document.getElementById("sellerProductCategory").value = product.category || "Web development";
+    document.getElementById("sellerProductDescription").value = product.description || "";
+    document.getElementById("productFormTitle").textContent = "Edit Product";
+    document.getElementById("saveSellerProductBtn").textContent = "Save Product";
+    document.getElementById("cancelSellerProductEditBtn").style.display = "inline-block";
+  }
+});
+
 // ——— Contact Preferences save handler ———
 document.addEventListener("click", (e) => {
   if (e.target && e.target.id === "saveContactPrefsBtn") {
@@ -624,8 +1002,65 @@ document.addEventListener("click", (e) => {
   }
 });
 
+function applyDashboardI18n() {
+  const d = dashDict();
+  document.documentElement.lang = currentDashLang;
+  document.querySelectorAll(".navbar-dashboard .nav-links a").forEach((link, index) => {
+    if (d.nav[index]) link.textContent = d.nav[index];
+  });
+  const helpSpan = document.querySelector("#helpCenter span");
+  if (helpSpan) helpSpan.textContent = d.help;
+  const accountBtn = document.getElementById("accountBtn");
+  if (accountBtn) accountBtn.textContent = d.account;
+  const sidebarTitle = document.querySelector(".sidebar-title");
+  if (sidebarTitle) sidebarTitle.textContent = d.settings;
+  document.querySelectorAll(".sidebar-link[data-section]").forEach(link => {
+    link.textContent = sectionTitle(link.dataset.section);
+  });
+  const profileTitle = document.querySelector("#section-profile .dashboard-page-title");
+  if (profileTitle) profileTitle.textContent = sectionTitle("profile");
+  const profileLabels = {
+    profileName: d.profile.fullName,
+    profileAddress: d.profile.address,
+    profileOrganization: d.profile.organization,
+    profileEmail: d.profile.email,
+    profilePhone: d.profile.phone,
+    profileKyc: d.profile.kyc,
+    profile2fa: d.profile.tfa,
+    profileCurrency: d.profile.currency
+  };
+  Object.entries(profileLabels).forEach(([valueId, label]) => {
+    const row = document.getElementById(valueId)?.closest(".profile-row");
+    const labelEl = row?.querySelector(".profile-row__label");
+    if (labelEl) labelEl.childNodes[0].textContent = label + " ";
+  });
+  const accountModeKicker = document.querySelector(".account-mode-card .section-kicker");
+  if (accountModeKicker) accountModeKicker.textContent = d.profile.accountMode;
+  const accountModeTitle = document.querySelector(".account-mode-card h3");
+  if (accountModeTitle) accountModeTitle.textContent = d.profile.customerSeller;
+  const accountModeText = document.querySelector(".account-mode-card__head p");
+  if (accountModeText) accountModeText.textContent = d.profile.modeText;
+  document.getElementById("sellerSavedCard")?.querySelector(".section-kicker") && (document.getElementById("sellerSavedCard").querySelector(".section-kicker").textContent = d.profile.sellerProfile);
+  const editSellerBtn = document.getElementById("editSellerToolsBtn");
+  if (editSellerBtn) editSellerBtn.textContent = d.profile.edit;
+  const saveSellerBtn = document.getElementById("saveSellerToolsBtn");
+  if (saveSellerBtn) saveSellerBtn.textContent = d.profile.saveSeller;
+  const sellerLabels = document.querySelectorAll("#sellerEditForm label");
+  [d.profile.portfolioHeadline, d.profile.portfolioLink, d.profile.productFocus, d.profile.announcement].forEach((text, index) => {
+    if (sellerLabels[index]) sellerLabels[index].childNodes[0].textContent = text + " ";
+  });
+  const profileSave = document.getElementById("profileSaveBtn");
+  if (profileSave) profileSave.textContent = d.profile.save;
+  const homeLink = document.querySelector(".dashboard-actions--profile a");
+  if (homeLink) homeLink.textContent = d.profile.home;
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) logoutBtn.textContent = d.profile.logout;
+  fillProfile();
+  if (currentSection !== "profile") renderSectionContent(currentSection);
+}
+
 // ——— Init ———
-fillProfile();
+applyDashboardI18n();
 document.getElementById("navAvatar").textContent = getInitials(findMe()?.name);
 initSectionFromHash(); // Set initial section from URL hash
 
@@ -640,21 +1075,21 @@ const langBtn = document.getElementById("langBtn");
 const langLabel = document.getElementById("langLabel");
 const langMenu = document.getElementById("langMenu");
 const LANGS = [{ code: "hy", label: "HY" }, { code: "en", label: "EN" }, { code: "ru", label: "RU" }];
-let currentLang = localStorage.getItem(LS_LANG) || "en";
 
 function renderLangUI() {
-  const selected = LANGS.find(l => l.code === currentLang) || LANGS[1];
+  const selected = LANGS.find(l => l.code === currentDashLang) || LANGS[1];
   if (langLabel) langLabel.textContent = selected.label;
   if (!langMenu) return;
   langMenu.innerHTML = "";
-  LANGS.filter(l => l.code !== currentLang).forEach(l => {
+  LANGS.filter(l => l.code !== currentDashLang).forEach(l => {
     const item = document.createElement("button");
     item.type = "button";
     item.className = "lang-dd__item";
     item.textContent = l.label;
     item.onclick = () => {
-      currentLang = l.code;
-      localStorage.setItem(LS_LANG, currentLang);
+      currentDashLang = l.code;
+      localStorage.setItem(LS_LANG, currentDashLang);
+      applyDashboardI18n();
       renderLangUI();
       if (langDD) langDD.classList.remove("open");
     };
