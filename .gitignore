@@ -68,6 +68,10 @@ web_modules/
 # dotenv environment variable files
 .env
 .env.*
+
+# Backend SQLite database
+backend/data/*.sqlite
+backend/data/*.sqlite-*
 !.env.example
 
 # parcel-bundler cache (https://parceljs.org/)

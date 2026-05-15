@@ -2,11 +2,33 @@
 
 DeWeb community marketplace platform.
 
-## Project structure (file order)
+## Run frontend (static)
 
-- **deweb-community/**
+```bash
+cd deweb-community
+python3 -m http.server 8001
+```
+
+Open: `http://localhost:8001/index.html`
+
+## Run backend (API)
+
+```bash
+cd backend
+cp .env.example .env
+npm install
+npm run dev
+```
+
+API: `http://localhost:3000/api/health`
+
+## Project structure
+
+- **deweb-community/** — Frontend (HTML/CSS/JS)
   - `index.html` — Main entry (slider: Home → Services → Packages → Order → Marketplace → About → Contact)
-  - `services.html` — Service details page (linked from “Open details” / standalone)
-  - `style.css` — Global styles (sections follow slide order 1–7, then modals, responsive)
-  - `script.js` — Main app (slider, i18n, account, orders, marketplace, services panel)
-  - `services.js` — Used only by `services.html` (category details, offer form)
+  - `services.html` — Service details page
+  - `style.css` — Global styles
+  - `script.js` — Main app (slider, i18n, account, orders, marketplace)
+  - `account-dashboard.js` — Account dashboard
+  - `api.js` — Backend API client helper
+- **backend/** — Node.js API (Express + SQLite)
