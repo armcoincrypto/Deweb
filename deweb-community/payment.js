@@ -1,92 +1,59 @@
-// payment.js — Payment page: Card / Crypto / Bank, save card, use saved card
+// payment.js — Pay cart with internal DEWEB coins; top-up via external swap site
 
 const CART_KEY = "deweb_services_cart";
-const SAVED_CARDS_KEY = "deweb_saved_cards";
 const LS_LANG = "deweb_lang";
 
 const LANGS = [
   { code: "hy", label: "HY" },
   { code: "en", label: "EN" },
-  { code: "ru", label: "RU" },
+  { code: "ru", label: "RU" }
 ];
 
 let currentLang = localStorage.getItem(LS_LANG) || "en";
 let cart = [];
-let savedCards = [];
+let cryptoConfig = null;
+let walletBalance = 0;
 
 const I18N = {
   en: {
-    payTitle: "Pay",
-    payWith: "Pay with",
-    payCard: "Card",
-    payCrypto: "Crypto",
-    payBank: "Bank transfer",
-    payNow: "Pay now",
-    useSavedCard: "Use saved card",
-    orNewCard: "Or enter new card below.",
-    cardNumber: "Card number",
-    cardExpiry: "Expiry (MM/YY)",
-    cardCvc: "CVC",
-    nameOnCard: "Name on card",
-    saveCardToAccount: "Save card to my account",
-    walletAddress: "Wallet address",
-    networkOptional: "Network (optional)",
-    paymentReference: "Payment reference / Order ID",
-    bankHint: "We will send bank details and amount to your email after you confirm.",
-    backToDeweb: "← Back to DEWEB",
-    cart: "Cart",
+    payTitle: "Pay with DEWEB",
+    payWithDeweb: "Pay with DEWEB",
+    topUp: "Buy crypto / Get DEWEB coins",
     orderSummary: "Order summary",
     items: "items",
-    successSent: "Thank you! Payment received. We will contact you soon.",
+    balance: "Your DEWEB balance",
+    balanceHint: "Top up on the swap site, then pay here with DEWEB.",
+    successSent: "Order paid with DEWEB. Thank you!",
+    backToDeweb: "← Back to DEWEB",
+    cart: "Cart",
+    signInRequired: "Sign in to pay with DEWEB."
   },
   ru: {
-    payTitle: "Оплатить",
-    payWith: "Оплатить",
-    payCard: "Карта",
-    payCrypto: "Криптовалюта",
-    payBank: "Банковский перевод",
-    payNow: "Оплатить сейчас",
-    useSavedCard: "Использовать сохранённую карту",
-    orNewCard: "Или введите новую карту ниже.",
-    cardNumber: "Номер карты",
-    cardExpiry: "Срок (ММ/ГГ)",
-    cardCvc: "CVC",
-    nameOnCard: "Имя на карте",
-    saveCardToAccount: "Сохранить карту в аккаунте",
-    walletAddress: "Адрес кошелька",
-    networkOptional: "Сеть (необязательно)",
-    paymentReference: "Референс / ID заказа",
-    bankHint: "Мы отправим реквизиты и сумму на вашу почту после подтверждения.",
-    backToDeweb: "← Назад в DEWEB",
-    cart: "Корзина",
+    payTitle: "Оплата DEWEB",
+    payWithDeweb: "Оплатить DEWEB",
+    topUp: "Купить крипто / Получить DEWEB",
     orderSummary: "Заказ",
     items: "товаров",
-    successSent: "Спасибо! Оплата получена. Мы скоро свяжемся с вами.",
+    balance: "Баланс DEWEB",
+    balanceHint: "Пополните на swap-сайте, затем оплатите DEWEB.",
+    successSent: "Заказ оплачен DEWEB. Спасибо!",
+    backToDeweb: "← Назад в DEWEB",
+    cart: "Корзина",
+    signInRequired: "Войдите, чтобы оплатить DEWEB."
   },
   hy: {
-    payTitle: "Վճարել",
-    payWith: "Վճարել",
-    payCard: "Քարտ",
-    payCrypto: "Կրիպտո",
-    payBank: "Բանկային փոխանցում",
-    payNow: "Վճարել հիմա",
-    useSavedCard: "Օգտագործել պահված քարտ",
-    orNewCard: "Կամ մուտքագրեք նոր քարտ։",
-    cardNumber: "Քարտի համար",
-    cardExpiry: "Ժամկետ (ԹԹ/ԱԱ)",
-    cardCvc: "CVC",
-    nameOnCard: "Անուն քարտի վրա",
-    saveCardToAccount: "Պահել քարտը իմ հաշվում",
-    walletAddress: "Դրամապանակի հասցե",
-    networkOptional: "Ցանց (ընտրովի)",
-    paymentReference: "Վճարման հղում / Պատվերի ID",
-    bankHint: "Հաստատելուց հետո բանկային տվյալներն ու գումարը կուղարկենք ձեր email-ին։",
-    backToDeweb: "← Հետ DEWEB",
-    cart: "Զամբյուղ",
+    payTitle: "Վճարել DEWEB-ով",
+    payWithDeweb: "Վճարել DEWEB-ով",
+    topUp: "Գնել կրիպտո / Ստանալ DEWEB",
     orderSummary: "Պատվեր",
     items: "ապրանք",
-    successSent: "Շնորհակալություն։ Վճարումը ստացվեց։ Շուտով կկապվենք։",
-  },
+    balance: "DEWEB մնացորդ",
+    balanceHint: "Լիցքավորեք swap կայքում, ապա վճարեք DEWEB-ով։",
+    successSent: "Պատվերը վճարված է DEWEB-ով։ Շնորհակալություն։",
+    backToDeweb: "← Հետ DEWEB",
+    cart: "Զամբյուղ",
+    signInRequired: "Մուտք գործեք DEWEB վճարման համար։"
+  }
 };
 
 function t(key) {
@@ -95,144 +62,113 @@ function t(key) {
 
 function loadCart() {
   try {
-    const s = sessionStorage.getItem(CART_KEY);
-    cart = s ? JSON.parse(s) : [];
-  } catch (_) {
+    cart = JSON.parse(sessionStorage.getItem(CART_KEY) || "[]");
+  } catch {
     cart = [];
   }
 }
 
-function loadSavedCards() {
+function cartTotalDeweb() {
+  let total = 0;
+  const promo = sessionStorage.getItem("deweb_promo");
+  if (promo === "HAYUGEN") return 355;
+  cart.forEach((it) => {
+    const m = String(it.price || "").replace(/,/g, "").match(/[\d.]+/);
+    total += (m ? Number(m[0]) : 0) * Number(it.qty || 1);
+  });
+  return Math.ceil(total);
+}
+
+async function loadCryptoConfig() {
   try {
-    const s = localStorage.getItem(SAVED_CARDS_KEY);
-    savedCards = s ? JSON.parse(s) : [];
-  } catch (_) {
-    savedCards = [];
+    cryptoConfig = await window.DEWEB_API.Crypto.config();
+  } catch {
+    cryptoConfig = null;
   }
 }
 
-function saveSavedCards() {
-  localStorage.setItem(SAVED_CARDS_KEY, JSON.stringify(savedCards));
-}
-
-function maskCardNumber(num) {
-  const digits = (num || "").replace(/\D/g, "");
-  if (digits.length < 4) return "••••";
-  return "•••• " + digits.slice(-4);
+async function loadBalance() {
+  if (!window.DEWEB_API?.isLoggedIn()) {
+    walletBalance = 0;
+    return;
+  }
+  try {
+    const data = await window.DEWEB_API.Wallet.get();
+    walletBalance = Number(data.wallet?.deweb || 0);
+  } catch {
+    walletBalance = 0;
+  }
 }
 
 function applyI18n() {
-  const title = document.getElementById("paymentTitle");
-  if (title) title.textContent = t("payTitle");
-  const payWith = document.getElementById("payWithLabel");
-  if (payWith) payWith.textContent = t("payWith");
-  document.getElementById("payCard").textContent = t("payCard");
-  document.getElementById("payCrypto").textContent = t("payCrypto");
-  document.getElementById("payBank").textContent = t("payBank");
-  const payCardBtn = document.getElementById("payCardBtn");
-  if (payCardBtn) payCardBtn.textContent = t("payNow");
-  const payCryptoBtn = document.getElementById("payCryptoBtn");
-  if (payCryptoBtn) payCryptoBtn.textContent = t("payNow");
-  const payBankBtn = document.getElementById("payBankBtn");
-  if (payBankBtn) payBankBtn.textContent = t("payNow");
-  const saveCardLabel = document.getElementById("saveCardLabel");
-  if (saveCardLabel) saveCardLabel.textContent = t("saveCardToAccount");
-  const savedCardsWrap = document.getElementById("savedCardsWrap");
-  if (savedCardsWrap) {
-    const label = savedCardsWrap.querySelector("label");
-    if (label) label.textContent = t("useSavedCard");
-    const hint = savedCardsWrap.querySelector(".payment-method-hint");
-    if (hint) hint.textContent = t("orNewCard");
-  }
-  const cardNumber = document.getElementById("cardNumber");
-  if (cardNumber) cardNumber.placeholder = "4242 4242 4242 4242";
-  const cardExpiry = document.getElementById("cardExpiry");
-  if (cardExpiry) cardExpiry.placeholder = "MM/YY";
-  const cardName = document.getElementById("cardName");
-  if (cardName) cardName.placeholder = t("nameOnCard");
-  const bankHint = document.querySelector("#panelBank .payment-method-hint");
-  if (bankHint) bankHint.textContent = t("bankHint");
-  const backToDeweb = document.getElementById("backToDeweb");
-  if (backToDeweb) backToDeweb.textContent = t("backToDeweb");
-  const backToCart = document.getElementById("backToCart");
-  if (backToCart) backToCart.textContent = t("cart");
+  document.getElementById("paymentTitle").textContent = t("payTitle");
+  document.getElementById("payWithDewebBtn").textContent = t("payWithDeweb");
+  document.getElementById("topUpSwapBtn").textContent = t("topUp");
+  document.getElementById("backToDeweb").textContent = t("backToDeweb");
+  document.getElementById("backToCart").textContent = t("cart");
+  document.querySelector("#balanceBox .wallet-balance-card__label").textContent = t("balance");
+  document.getElementById("balanceHint").textContent = t("balanceHint");
 }
 
 function renderSummary() {
   const el = document.getElementById("paymentSummary");
-  if (!el) return;
-  if (cart.length === 0) {
-    el.textContent = "";
-    return;
-  }
-  const count = cart.length;
-  el.innerHTML = `<p class="sub">${t("orderSummary")}: ${count} ${t("items")}</p>`;
+  const total = cartTotalDeweb();
+  el.innerHTML = `<p class="sub">${t("orderSummary")}: ${cart.length} ${t("items")} — <strong>${total} DEWEB</strong></p>`;
+  document.getElementById("dewebBalance").textContent = walletBalance.toLocaleString() + " DEWEB";
+  const need = cartTotalDeweb();
+  document.getElementById("insufficientHint").style.display = walletBalance < need ? "block" : "none";
 }
 
-function renderSavedCardsSelect() {
-  const wrap = document.getElementById("savedCardsWrap");
-  const select = document.getElementById("savedCardSelect");
-  if (!wrap || !select) return;
-  if (savedCards.length === 0) {
-    wrap.style.display = "none";
+async function openSwapLink(mode) {
+  if (!window.DEWEB_API?.isLoggedIn()) {
+    alert(t("signInRequired"));
+    window.location.href = "account.html";
     return;
   }
-  wrap.style.display = "block";
-  select.innerHTML = "<option value=\"\">— " + t("useSavedCard") + " —</option>" +
-    savedCards.map((c, i) => `<option value="${i}">${c.mask}</option>`).join("");
+  try {
+    const amount = mode === "buy" ? "" : String(document.getElementById("withdrawAmount")?.value || "");
+    const data = await window.DEWEB_API.Crypto.swapLink(mode, { amount, coin: "USDT" });
+    window.open(data.url, "_blank", "noopener");
+  } catch (err) {
+    const fallback = mode === "buy" ? cryptoConfig?.swapBuyUrl : cryptoConfig?.swapSellUrl;
+    if (fallback) window.open(fallback, "_blank", "noopener");
+    else alert(err.message || "Swap site URL not configured yet.");
+  }
 }
 
-// Tabs
-document.querySelectorAll(".payment-tab").forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const method = tab.dataset.method;
-    document.querySelectorAll(".payment-tab").forEach((t) => t.classList.toggle("active", t.dataset.method === method));
-    document.querySelectorAll(".payment-method").forEach((p) => {
-      p.style.display = p.dataset.panel === method ? "block" : "none";
+document.getElementById("topUpSwapBtn")?.addEventListener("click", () => openSwapLink("buy"));
+
+document.getElementById("payWithDewebBtn")?.addEventListener("click", async () => {
+  if (!window.DEWEB_API?.isLoggedIn()) {
+    alert(t("signInRequired"));
+    window.location.href = "account.html";
+    return;
+  }
+  const total = cartTotalDeweb();
+  if (walletBalance < total) {
+    document.getElementById("insufficientHint").style.display = "block";
+    if (confirm("Not enough DEWEB. Open swap site to top up?")) openSwapLink("buy");
+    return;
+  }
+  try {
+    const data = await window.DEWEB_API.Checkout.pay({
+      items: cart,
+      paymentMethod: "deweb",
+      promoCode: sessionStorage.getItem("deweb_promo") || ""
     });
-  });
-});
-
-function completePayment() {
-  alert(t("successSent"));
-  sessionStorage.removeItem(CART_KEY);
-  window.location.href = "services.html";
-}
-
-document.getElementById("payCardBtn")?.addEventListener("click", () => {
-  const select = document.getElementById("savedCardSelect");
-  const useSaved = select && select.value !== "";
-  if (useSaved) {
-    completePayment();
-    return;
+    alert(data.message || t("successSent"));
+    sessionStorage.removeItem(CART_KEY);
+    sessionStorage.removeItem("deweb_promo");
+    window.location.href = "account-dashboard.html#order-history";
+  } catch (err) {
+    if (err.message?.includes("Not enough") || err.message?.includes("402")) {
+      if (confirm("Not enough DEWEB. Open swap site to top up?")) openSwapLink("buy");
+    } else {
+      alert(err.message || "Payment failed.");
+    }
   }
-  const number = document.getElementById("cardNumber")?.value?.replace(/\s/g, "") || "";
-  const expiry = document.getElementById("cardExpiry")?.value?.trim() || "";
-  const cvc = document.getElementById("cardCvc")?.value?.trim() || "";
-  const name = document.getElementById("cardName")?.value?.trim() || "";
-  if (!number || number.replace(/\D/g, "").length < 13) {
-    alert("Please enter a valid card number.");
-    return;
-  }
-  const saveCheck = document.getElementById("saveCardCheck")?.checked;
-  if (saveCheck) {
-    const last4 = number.replace(/\D/g, "").slice(-4);
-    savedCards.push({ id: Date.now().toString(36), mask: maskCardNumber(number), last4 });
-    saveSavedCards();
-    renderSavedCardsSelect();
-  }
-  completePayment();
 });
 
-document.getElementById("payCryptoBtn")?.addEventListener("click", () => {
-  completePayment();
-});
-
-document.getElementById("payBankBtn")?.addEventListener("click", () => {
-  completePayment();
-});
-
-// Lang dropdown
 const langDD = document.getElementById("langDD");
 const langBtn = document.getElementById("langBtn");
 const langLabel = document.getElementById("langLabel");
@@ -251,24 +187,19 @@ function renderLangUI() {
     item.onclick = () => {
       currentLang = l.code;
       localStorage.setItem(LS_LANG, currentLang);
-      renderLangUI();
-      if (langDD) langDD.classList.remove("open");
       applyI18n();
       renderSummary();
-      renderSavedCardsSelect();
+      renderLangUI();
+      if (langDD) langDD.classList.remove("open");
     };
     langMenu.appendChild(item);
   });
 }
 
-function toggleLangMenu() {
-  if (langDD) langDD.classList.toggle("open");
-}
-
 if (langBtn && langDD) {
   langBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    toggleLangMenu();
+    langDD.classList.toggle("open");
   });
   document.addEventListener("click", (e) => {
     if (langDD && !langDD.contains(e.target)) langDD.classList.remove("open");
@@ -279,9 +210,11 @@ loadCart();
 if (cart.length === 0) {
   window.location.href = "cart.html";
 } else {
-  loadSavedCards();
-  renderLangUI();
-  applyI18n();
-  renderSummary();
-  renderSavedCardsSelect();
+  void (async () => {
+    await loadCryptoConfig();
+    await loadBalance();
+    renderLangUI();
+    applyI18n();
+    renderSummary();
+  })();
 }

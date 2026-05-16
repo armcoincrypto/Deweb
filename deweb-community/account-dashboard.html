@@ -120,16 +120,6 @@
               </div>
               <button type="button" class="profile-action-btn" id="startKycBtn">Start KYC</button>
             </div>
-            <div class="profile-row profile-row--action" data-field="2fa">
-              <span class="profile-row__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
-              </span>
-              <div class="profile-row__content">
-                <span class="profile-row__label">Two-Factor Authentication <span class="profile-badge verified" id="tfaEnabledBadge" style="display:none">ENABLED</span></span>
-                <span class="profile-row__value" id="profile2fa">Disabled</span>
-              </div>
-              <button type="button" class="profile-action-btn" id="setup2faBtn">Setup 2FA</button>
-            </div>
             <div class="profile-row" data-field="currency">
               <span class="profile-row__icon">💰</span>
               <div class="profile-row__content">
@@ -226,6 +216,8 @@
     </div>
   </footer>
 
+  <script src="api.js"></script>
+  <script src="wallet-connect.js"></script>
   <script src="account-dashboard.js"></script>
 </body>
 </html>

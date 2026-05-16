@@ -1,0 +1,35 @@
+{
+  "web": {
+    "badge": { "en": "Web", "ru": "Веб", "hy": "Վեբ" },
+    "title": { "en": "Web & E-commerce", "ru": "Веб и E-commerce", "hy": "Վեբ և E-commerce" },
+    "subtitle": { "en": "Landing pages, corporate sites, online stores.", "ru": "Лендинги, корпоративные сайты, интернет-магазины.", "hy": "Լենդինգներ, կորպորատիվ կայքեր, առցանց խանութներ։" },
+    "items": [
+      { "name": { "en": "Landing Page", "ru": "Лендинг", "hy": "Լենդինգ" }, "desc": { "en": "1-page conversion-focused website.", "ru": "Одностраничный сайт.", "hy": "Մեկ էջ։" }, "price": "from $299" },
+      { "name": { "en": "Corporate Website", "ru": "Корпоративный сайт", "hy": "Կորպորատիվ կայք" }, "desc": { "en": "Multi-page company site.", "ru": "Многостраничный сайт.", "hy": "Բազմաէջ կայք։" }, "price": "from $799" }
+    ]
+  },
+  "bots": {
+    "badge": { "en": "Bots", "ru": "Боты", "hy": "Բոտեր" },
+    "title": { "en": "Bots & Automation", "ru": "Боты и автоматизация", "hy": "Բոտեր և ավտոմատացում" },
+    "subtitle": { "en": "Automate sales, support, bookings.", "ru": "Автоматизация продаж и поддержки.", "hy": "Վաճառք և աջակցություն։" },
+    "items": [
+      { "name": { "en": "Telegram Sales Bot", "ru": "Telegram-бот", "hy": "Telegram բոտ" }, "desc": { "en": "Leads, products, FAQs.", "ru": "Заявки, товары, FAQ.", "hy": "Լիդեր, FAQ։" }, "price": "from $399" }
+    ]
+  },
+  "design": {
+    "badge": { "en": "Design", "ru": "Дизайн", "hy": "Դիզայն" },
+    "title": { "en": "Design & Branding", "ru": "Дизайн и брендинг", "hy": "Դիզայն և ապրանքանիշ" },
+    "subtitle": { "en": "Brand identity and UI.", "ru": "Фирменный стиль и UI.", "hy": "Բրենդ և UI։" },
+    "items": [
+      { "name": { "en": "Logo + Identity", "ru": "Логотип", "hy": "Լոգո" }, "desc": { "en": "Logo + brand rules.", "ru": "Логотип и правила.", "hy": "Լոգո և կանոններ։" }, "price": "from $199" }
+    ]
+  },
+  "support": {
+    "badge": { "en": "Support", "ru": "Поддержка", "hy": "Աջակցություն" },
+    "title": { "en": "Growth & Support", "ru": "Рост и поддержка", "hy": "Աճ և աջակցություն" },
+    "subtitle": { "en": "Monthly support and fixes.", "ru": "Поддержка и правки.", "hy": "Ամսական աջակցություն։" },
+    "items": [
+      { "name": { "en": "Monthly Maintenance", "ru": "Поддержка", "hy": "Պահպանում" }, "desc": { "en": "Fixes and updates.", "ru": "Правки и обновления.", "hy": "Ուղղումներ։" }, "price": "from $199/mo" }
+    ]
+  }
+}

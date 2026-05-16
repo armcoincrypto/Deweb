@@ -101,7 +101,63 @@ db.exec(`
     created_at TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
   );
+
+  CREATE TABLE IF NOT EXISTS contact_messages (
+    id TEXT PRIMARY KEY,
+    email TEXT NOT NULL,
+    message TEXT NOT NULL,
+    name TEXT,
+    created_at TEXT NOT NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS wallet_transactions (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    counterparty_id TEXT,
+    type TEXT NOT NULL,
+    amount REAL NOT NULL,
+    balance_after REAL NOT NULL,
+    meta TEXT,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS service_inquiries (
+    id TEXT PRIMARY KEY,
+    user_id TEXT,
+    email TEXT NOT NULL,
+    name TEXT,
+    message TEXT NOT NULL,
+    budget TEXT,
+    deadline TEXT,
+    category TEXT,
+    created_at TEXT NOT NULL
+  );
 `);
+
+const orderColumns = [
+  ["client_email", "TEXT"],
+  ["client_name", "TEXT"],
+  ["client_phone", "TEXT"],
+  ["pay_method", "TEXT"],
+  ["details", "TEXT"],
+  ["source", "TEXT"]
+];
+for (const [col, type] of orderColumns) {
+  try {
+    db.prepare(`SELECT ${col} FROM orders LIMIT 1`).get();
+  } catch {
+    db.exec(`ALTER TABLE orders ADD COLUMN ${col} ${type}`);
+  }
+}
+
+export function logActivity(userId, method, meta = null) {
+  db.prepare(
+    "INSERT INTO activity (user_id, method, meta, created_at) VALUES (?, ?, ?, ?)"
+  ).run(userId, method, meta ? JSON.stringify(meta) : null, nowIso());
+}
+
+export const GUEST_USER_ID = "deweb-guest";
 
 export function uid() {
   return `${Date.now().toString(16)}${Math.random().toString(16).slice(2)}`;

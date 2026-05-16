@@ -75,39 +75,153 @@ function sectionTitle(id) {
 }
 
 function getSession() { return LS.get(DB_KEYS.session, null); }
-function clearSession() { localStorage.removeItem(DB_KEYS.session); }
-function getUsers() { return LS.get(DB_KEYS.users, []); }
-function setUsers(users) { LS.set(DB_KEYS.users, users); }
-function findMe() {
-  const s = getSession();
-  if (!s) return null;
-  return getUsers().find(u => u.id === s.userId) || null;
+function clearSession() {
+  localStorage.removeItem(DB_KEYS.session);
+  window.DEWEB_API?.setToken(null);
 }
-function updateMe(updates) {
-  const me = findMe();
-  if (!me) return;
-  const users = getUsers();
-  const idx = users.findIndex(u => u.id === me.id);
-  if (idx === -1) return;
-  users[idx] = { ...users[idx], ...updates };
-  setUsers(users);
+function normalizeUser(u) {
+  if (!u) return null;
+  let sellerInfo = u.sellerInfo;
+  if (typeof sellerInfo === "string") {
+    try { sellerInfo = JSON.parse(sellerInfo); } catch { sellerInfo = {}; }
+  }
+  let contactPrefs = u.contactPrefs;
+  if (typeof contactPrefs === "string") {
+    try { contactPrefs = JSON.parse(contactPrefs); } catch { contactPrefs = {}; }
+  }
+  return {
+    ...u,
+    emailVerified: Boolean(u.emailVerified),
+    phoneVerified: Boolean(u.phoneVerified),
+    tfaEnabled: Boolean(u.tfaEnabled),
+    sellerInfo: sellerInfo || {},
+    contactPrefs: contactPrefs || {}
+  };
 }
-function updateWallet(updates) {
-  const { userId, wallets, wallet } = getWallet();
-  wallets[userId] = { ...wallet, ...updates };
-  LS.set(DB_KEYS.wallet, wallets);
+
+let currentUser = null;
+let cachedWallet = null;
+let cachedSellerProducts = null;
+let cachedOrders = null;
+let cryptoConfig = null;
+
+function findMe() { return currentUser; }
+
+async function loadCurrentUser() {
+  const API = window.DEWEB_API;
+  if (!API?.getToken()) return null;
+  try {
+    const data = await API.Auth.me();
+    currentUser = normalizeUser(data.user);
+    return currentUser;
+  } catch {
+    API.setToken(null);
+    return null;
+  }
 }
-function getSellerProducts() {
+
+async function updateMe(updates) {
+  const API = window.DEWEB_API;
+  if (!API?.getToken()) return;
+  try {
+    const data = await API.Users.updateMe(updates);
+    currentUser = normalizeUser(data.user);
+    fillProfile();
+  } catch (err) {
+    alert(err.message || "Could not save profile.");
+  }
+}
+
+async function refreshWallet() {
+  const API = window.DEWEB_API;
+  if (!API?.getToken()) return;
+  try {
+    const data = await API.Wallet.get();
+    cachedWallet = data.wallet;
+  } catch {
+    cachedWallet = cachedWallet || getWalletLocal().wallet;
+  }
+}
+
+async function updateWallet(updates) {
+  const API = window.DEWEB_API;
+  if (!API?.getToken()) return;
+  try {
+    const data = await API.Wallet.update(updates);
+    cachedWallet = data.wallet;
+  } catch (err) {
+    alert(err.message || "Wallet update failed.");
+  }
+}
+
+function getWalletLocal() {
+  const userId = findMe()?.id || "guest";
+  const wallets = LS.get(DB_KEYS.wallet, {});
+  const wallet = wallets[userId] || {
+    created: false, connected: false, provider: "", address: "", deweb: 0, pendingWithdraw: 0
+  };
+  return { userId, wallet };
+}
+
+function getWallet() {
+  return { userId: findMe()?.id, wallet: cachedWallet || getWalletLocal().wallet };
+}
+
+function getSellerProductsLocal() {
   const userId = findMe()?.id;
   const products = LS.get(DB_KEYS.marketplaceProducts, []);
   return Array.isArray(products) ? products.filter(p => p.sellerId === userId) : [];
 }
-function setSellerProductsForMe(productsForMe) {
-  const userId = findMe()?.id;
-  if (!userId) return;
-  const all = LS.get(DB_KEYS.marketplaceProducts, []);
-  const others = Array.isArray(all) ? all.filter(p => p.sellerId !== userId) : [];
-  LS.set(DB_KEYS.marketplaceProducts, [...others, ...productsForMe]);
+
+async function refreshSellerProducts() {
+  const API = window.DEWEB_API;
+  if (!API?.getToken()) {
+    cachedSellerProducts = getSellerProductsLocal();
+    return;
+  }
+  try {
+    const data = await API.Products.mine();
+    cachedSellerProducts = data.products || [];
+  } catch {
+    cachedSellerProducts = getSellerProductsLocal();
+  }
+}
+
+function getSellerProducts() {
+  return cachedSellerProducts ?? [];
+}
+
+async function loadCryptoConfig() {
+  try {
+    cryptoConfig = await window.DEWEB_API.Crypto.config();
+  } catch {
+    cryptoConfig = null;
+  }
+}
+
+async function openSwapSite(mode, amount = "") {
+  try {
+    const data = await window.DEWEB_API.Crypto.swapLink(mode, { amount, coin: "USDT" });
+    window.open(data.url, "_blank", "noopener");
+  } catch (err) {
+    const url = mode === "sell" ? cryptoConfig?.swapSellUrl : cryptoConfig?.swapBuyUrl;
+    if (url) window.open(url, "_blank", "noopener");
+    else alert(err.message || "Swap site not configured. Add SWAP_SITE_BUY_URL to backend .env");
+  }
+}
+
+async function refreshOrders() {
+  const API = window.DEWEB_API;
+  if (!API?.getToken()) {
+    cachedOrders = (LS.get(DB_KEYS.orders, []) || []).filter(o => o.userId === findMe()?.id);
+    return;
+  }
+  try {
+    const data = await API.Orders.mine();
+    cachedOrders = data.orders || [];
+  } catch {
+    cachedOrders = (LS.get(DB_KEYS.orders, []) || []).filter(o => o.userId === findMe()?.id);
+  }
 }
 function makeProductStats(product, index) {
   return {
@@ -129,12 +243,6 @@ function formatPhone(str) {
   const d = (str || "").replace(/\D/g, "");
   if (d.length >= 10) return "+" + d.slice(0, 3) + "." + d.slice(3);
   return str || "—";
-}
-
-// ——— Not logged in → redirect ———
-const me = findMe();
-if (!me) {
-  window.location.href = "account.html";
 }
 
 // ——— Section switching with browser history ———
@@ -163,7 +271,7 @@ function setActiveSection(id, pushHistory = true) {
   document.querySelectorAll(".sidebar-link[data-section]").forEach(a => {
     a.classList.toggle("active", a.getAttribute("data-section") === id);
   });
-  if (id !== "profile") renderSectionContent(id);
+  if (id !== "profile") void renderSectionContent(id);
   
   // Update browser history (pushState) so back button works
   if (pushHistory) {
@@ -200,10 +308,16 @@ function initSectionFromHash() {
   }
 }
 
-function renderSectionContent(id) {
+async function renderSectionContent(id) {
   const container = document.getElementById("section-" + id);
   if (!container) return;
   if (id === "profile") return;
+  if (id === "wallet") {
+    await refreshWallet();
+    await loadCryptoConfig();
+  }
+  if (id === "products") await refreshSellerProducts();
+  if (id === "order-history") await refreshOrders();
   const title = sectionTitle(id);
   const renderers = {
     wallet: renderWallet,
@@ -298,110 +412,53 @@ function renderRenewals() {
   `;
 }
 
-function getWallet() {
-  const userId = findMe()?.id || "guest";
-  const wallets = LS.get(DB_KEYS.wallet, {});
-  const wallet = wallets[userId] || {
-    created: false,
-    connected: false,
-    provider: "",
-    address: "",
-    deweb: 0,
-    pendingWithdraw: 0
-  };
-  return { userId, wallets, wallet };
-}
-
 function renderWallet() {
-  const cards = LS.get(DB_KEYS.savedCards, []);
-  const myId = findMe()?.id;
-  const myCards = Array.isArray(cards) ? cards.filter(c => c.userId === myId) : [];
   const { wallet } = getWallet();
+  const deposits = cryptoConfig?.depositAddresses || {};
+  const depositLines = Object.entries(deposits)
+    .filter(([, addr]) => addr)
+    .map(([coin, addr]) => `<li><b>${coin}</b>: <code>${addr}</code></li>`)
+    .join("");
   const connectedLabel = wallet.connected
-    ? `${wallet.provider || "Wallet"} connected (${wallet.address || "demo address"})`
-    : "No decentralized wallet connected";
+    ? `${wallet.provider} — ${wallet.address}`
+    : "Connect MetaMask or Ronin to link your on-chain address.";
   return `
     <div class="wallet-hero section-block">
       <div>
         <span class="section-kicker">DEWEB wallet</span>
-        <h3>${wallet.created ? "Your Wallet" : "Create Wallet"}</h3>
-        <p>Hold DEWEB coins, connect Ronin, MetaMask, WalletConnect, Coinbase Wallet, or another decentralized wallet, and prepare swap or withdrawal actions.</p>
+        <h3>Internal DEWEB balance</h3>
+        <p>Crypto-only. Top up via swap site or send crypto to our wallets. Pay sellers with DEWEB. Withdraw on the swap site.</p>
       </div>
-      <div class="wallet-actions">
-        <button type="button" class="cta-btn primary" id="createWalletBtn">${wallet.created ? "Wallet Created" : "Create Wallet"}</button>
-        <button type="button" class="cta-btn secondary" id="connectWalletBtn">Connect Wallet</button>
+      <div class="wallet-actions wallet-actions--connect">
+        <button type="button" class="cta-btn primary" id="connectMetaMaskBtn">Connect MetaMask</button>
+        <button type="button" class="cta-btn secondary" id="connectRoninBtn">Connect Ronin</button>
       </div>
     </div>
     <div class="wallet-grid">
       <div class="wallet-balance-card">
         <span class="wallet-balance-card__label">DEWEB balance</span>
         <strong>${Number(wallet.deweb || 0).toLocaleString()} DEWEB</strong>
-        <p>Coins from customer purchases and crypto/card top-ups appear here.</p>
+        <p>Use DEWEB to buy services and pay marketplace sellers.</p>
       </div>
       <div class="wallet-balance-card">
         <span class="wallet-balance-card__label">Connected wallet</span>
         <strong>${wallet.connected ? wallet.provider : "Not connected"}</strong>
         <p>${connectedLabel}</p>
       </div>
-      <div class="wallet-balance-card">
-        <span class="wallet-balance-card__label">Withdrawal status</span>
-        <strong>${wallet.pendingWithdraw ? wallet.pendingWithdraw + " DEWEB pending" : "No pending withdrawal"}</strong>
-        <p>Withdrawals become available after confirmed delivery or completed swap flow.</p>
-      </div>
     </div>
     <div class="wallet-grid wallet-grid--tools">
       <div class="section-block wallet-tool-card">
-        <h3>Swap crypto to DEWEB</h3>
-        <p>UI demo for USDT, ETH, BTC, and DASH conversion into DEWEB coins. Later this can connect to the swap website/API you provide.</p>
-        <div class="wallet-form-row">
-          <select id="walletSwapFrom">
-            <option>USDT</option>
-            <option>ETH</option>
-            <option>BTC</option>
-            <option>DASH</option>
-          </select>
-          <input type="number" id="walletSwapAmount" min="0" placeholder="Amount" />
-        </div>
-        <button type="button" class="cta-btn primary" id="swapToDewebBtn">Preview Swap</button>
-        <p class="wallet-note">Converted crypto is marked to arrive in the platform owner MetaMask wallet in the future payment flow.</p>
+        <h3>Get DEWEB coins</h3>
+        <p>Buy or swap crypto on our partner site. When done, DEWEB is credited to your account.</p>
+        <button type="button" class="cta-btn primary" id="buyOnSwapBtn">Open swap site — Buy / Top up</button>
+        ${depositLines ? `<p class="wallet-note">Or send crypto to:</p><ul class="wallet-deposit-list">${depositLines}</ul>` : ""}
       </div>
       <div class="section-block wallet-tool-card">
-        <h3>Add coins by card</h3>
-        <p>Customers can top up DEWEB coins with credit card payment or with the future swap website.</p>
-        <div class="wallet-form-row">
-          <input type="number" id="cardTopupAmount" min="0" placeholder="DEWEB amount" />
-          <button type="button" class="cta-btn secondary" id="cardTopupBtn">Add by Credit Card</button>
-        </div>
+        <h3>Withdraw DEWEB → crypto</h3>
+        <p>Exchange DEWEB to crypto on the swap site.</p>
+        <input type="number" id="walletWithdrawAmount" min="0" placeholder="DEWEB amount (optional)" style="max-width:200px;margin-bottom:10px;display:block" />
+        <button type="button" class="cta-btn secondary" id="withdrawOnSwapBtn">Open swap site — Withdraw</button>
       </div>
-      <div class="section-block wallet-tool-card">
-        <h3>Withdraw / change DEWEB</h3>
-        <p>Show when and how users can change DEWEB coins back to supported crypto after order confirmation.</p>
-        <div class="wallet-form-row">
-          <select id="walletWithdrawTo">
-            <option>USDT</option>
-            <option>ETH</option>
-            <option>BTC</option>
-            <option>DASH</option>
-          </select>
-          <input type="number" id="walletWithdrawAmount" min="0" placeholder="DEWEB amount" />
-        </div>
-        <button type="button" class="cta-btn secondary" id="withdrawDewebBtn">Request Withdraw</button>
-      </div>
-    </div>
-    <div class="section-block">
-      <h3>Payment Methods</h3>
-      ${myCards.length === 0 ? '<div class="section-empty section-empty--small"><p>No saved cards.</p><p>Add a card when checking out or topping up DEWEB coins.</p></div>' : `
-        <table class="section-table">
-          <thead><tr><th>Type</th><th>Last 4</th><th>Expiry</th><th>Default</th></tr></thead>
-          <tbody>
-            ${myCards.map(c => `<tr><td>${c.brand || "Card"}</td><td>**** ${(c.last4 || "****")}</td><td>${c.expiry || "-"}</td><td>${c.default ? "Yes" : "-"}</td></tr>`).join("")}
-          </tbody>
-        </table>
-      `}
-    </div>
-    <div class="section-block">
-      <h3>Renewals & Billing</h3>
-      <div class="section-empty section-empty--small"><p>No upcoming renewals.</p><p>Invoices, renewals, and billing history will appear below payment methods.</p></div>
     </div>
   `;
 }
@@ -429,22 +486,21 @@ function renderPaymentMethods() {
 }
 
 function renderOrderHistory() {
-  const orders = LS.get(DB_KEYS.orders, []);
-  const myId = findMe()?.id;
-  const myOrders = (orders || []).filter(o => o.userId === myId);
+  const myOrders = cachedOrders || [];
   return `
     <div class="section-block">
       <h3>All orders</h3>
       ${myOrders.length === 0 ? '<div class="section-empty"><p>No orders yet.</p><a href="services.html" class="cta-btn primary">Browse services</a></div>' : `
         <table class="section-table">
-          <thead><tr><th>Order</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>
+          <thead><tr><th>Order</th><th>Service</th><th>Date</th><th>Total</th><th>Stage</th></tr></thead>
           <tbody>
             ${myOrders.slice(0, 30).map(o => `
               <tr>
-                <td>#${(o.id || o.orderId || "—").toString().slice(0, 12)}</td>
-                <td>${o.date || "—"}</td>
+                <td>#${(o.id || "—").toString().slice(0, 12)}</td>
+                <td>${o.service || o.source || "—"}</td>
+                <td>${(o.date || o.createdAt || "—").toString().slice(0, 10)}</td>
                 <td>${o.total != null ? o.total + " " + (o.currency || "USD") : "—"}</td>
-                <td>${o.status || "—"}</td>
+                <td>${o.stage || o.status || "—"}</td>
               </tr>
             `).join("")}
           </tbody>
@@ -883,63 +939,39 @@ document.getElementById("editSellerToolsBtn")?.addEventListener("click", () => {
 document.addEventListener("click", (e) => {
   const target = e.target;
   if (!target) return;
-  if (target.id === "createWalletBtn") {
-    updateWallet({ created: true, deweb: getWallet().wallet.deweb || 0 });
-    renderSectionContent("wallet");
+  if (target.id === "connectMetaMaskBtn") {
+    void (async () => {
+      try {
+        const w = await window.DEWEB_WALLET.connectMetaMask();
+        await window.DEWEB_API.Wallet.connect(w);
+        await refreshWallet();
+        renderSectionContent("wallet");
+      } catch (err) {
+        alert(err.message);
+      }
+    })();
     return;
   }
-  if (target.id === "connectWalletBtn") {
-    const provider = prompt("Connect wallet demo: type MetaMask, Ronin, WalletConnect, Coinbase Wallet, etc.", "MetaMask");
-    if (!provider) return;
-    updateWallet({
-      created: true,
-      connected: true,
-      provider,
-      address: "0xDEWEB...2026"
-    });
-    renderSectionContent("wallet");
+  if (target.id === "connectRoninBtn") {
+    void (async () => {
+      try {
+        const w = await window.DEWEB_WALLET.connectRonin();
+        await window.DEWEB_API.Wallet.connect(w);
+        await refreshWallet();
+        renderSectionContent("wallet");
+      } catch (err) {
+        alert(err.message);
+      }
+    })();
     return;
   }
-  if (target.id === "swapToDewebBtn") {
-    const amount = Number(document.getElementById("walletSwapAmount")?.value || 0);
-    if (!amount || amount <= 0) {
-      alert("Enter crypto amount for swap preview.");
-      return;
-    }
-    const from = document.getElementById("walletSwapFrom")?.value || "USDT";
-    const current = Number(getWallet().wallet.deweb || 0);
-    const demoDeweb = Math.round(amount * 100);
-    updateWallet({ created: true, deweb: current + demoDeweb });
-    alert(`${amount} ${from} demo swap preview added ${demoDeweb} DEWEB. Future flow sends the paid crypto to your MetaMask wallet.`);
-    renderSectionContent("wallet");
+  if (target.id === "buyOnSwapBtn") {
+    void openSwapSite("buy");
     return;
   }
-  if (target.id === "cardTopupBtn") {
-    const amount = Number(document.getElementById("cardTopupAmount")?.value || 0);
-    if (!amount || amount <= 0) {
-      alert("Enter DEWEB amount to add by credit card.");
-      return;
-    }
-    const current = Number(getWallet().wallet.deweb || 0);
-    updateWallet({ created: true, deweb: current + amount });
-    alert(`${amount} DEWEB added in demo mode.`);
-    renderSectionContent("wallet");
-    return;
-  }
-  if (target.id === "withdrawDewebBtn") {
-    const amount = Number(document.getElementById("walletWithdrawAmount")?.value || 0);
-    const current = Number(getWallet().wallet.deweb || 0);
-    if (!amount || amount <= 0) {
-      alert("Enter DEWEB amount to withdraw.");
-      return;
-    }
-    if (amount > current) {
-      alert("Not enough DEWEB coins for this withdrawal.");
-      return;
-    }
-    updateWallet({ deweb: current - amount, pendingWithdraw: amount });
-    alert("Withdrawal request saved in demo mode. Real withdrawal will depend on connected wallet, swap provider, and order confirmation.");
-    renderSectionContent("wallet");
+  if (target.id === "withdrawOnSwapBtn") {
+    const amount = document.getElementById("walletWithdrawAmount")?.value || "";
+    void openSwapSite("sell", amount);
     return;
   }
   if (target.dataset.sectionJump) {
@@ -947,25 +979,7 @@ document.addEventListener("click", (e) => {
     return;
   }
   if (target.id === "saveSellerProductBtn") {
-    const products = getSellerProducts();
-    const id = document.getElementById("sellerProductId")?.value || `product-${Date.now()}`;
-    const existingIndex = products.findIndex(p => p.id === id);
-    const existing = existingIndex >= 0 ? products[existingIndex] : {};
-    const nextProduct = {
-      ...existing,
-      id,
-      sellerId: findMe()?.id,
-      sellerName: findMe()?.name || "Seller",
-      title: document.getElementById("sellerProductTitle")?.value || "Untitled product",
-      price: Number(document.getElementById("sellerProductPrice")?.value || 0),
-      category: document.getElementById("sellerProductCategory")?.value || "Web development",
-      description: document.getElementById("sellerProductDescription")?.value || "",
-      updatedAt: new Date().toISOString()
-    };
-    if (existingIndex >= 0) products[existingIndex] = nextProduct;
-    else products.unshift({ ...nextProduct, ...makeProductStats(nextProduct, products.length) });
-    setSellerProductsForMe(products);
-    renderSectionContent("products");
+    void saveSellerProduct();
     return;
   }
   if (target.id === "cancelSellerProductEditBtn") {
@@ -1056,18 +1070,53 @@ function applyDashboardI18n() {
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) logoutBtn.textContent = d.profile.logout;
   fillProfile();
-  if (currentSection !== "profile") renderSectionContent(currentSection);
+  if (currentSection !== "profile") void renderSectionContent(currentSection);
 }
 
-// ——— Init ———
-applyDashboardI18n();
-document.getElementById("navAvatar").textContent = getInitials(findMe()?.name);
-initSectionFromHash(); // Set initial section from URL hash
+async function saveSellerProduct() {
+  const API = window.DEWEB_API;
+  if (!API?.getToken()) return;
+  const id = document.getElementById("sellerProductId")?.value || "";
+  const existing = getSellerProducts().find(p => p.id === id);
+  const body = {
+    id: id || undefined,
+    title: document.getElementById("sellerProductTitle")?.value || "Untitled product",
+    price: Number(document.getElementById("sellerProductPrice")?.value || 0),
+    category: document.getElementById("sellerProductCategory")?.value || "Web development",
+    description: document.getElementById("sellerProductDescription")?.value || "",
+    views: existing?.views,
+    clicks: existing?.clicks,
+    comments: existing?.comments,
+    reviews: existing?.reviews,
+    rating: existing?.rating
+  };
+  try {
+    await API.Products.save(body);
+    await refreshSellerProducts();
+    await renderSectionContent("products");
+  } catch (err) {
+    alert(err.message || "Could not save product.");
+  }
+}
+
+async function boot() {
+  const me = await loadCurrentUser();
+  if (!me) {
+    window.location.href = "account.html";
+    return;
+  }
+  applyDashboardI18n();
+  document.getElementById("navAvatar").textContent = getInitials(me.name);
+  initSectionFromHash();
+  renderLangUI();
+}
 
 document.getElementById("logoutBtn")?.addEventListener("click", () => {
   clearSession();
   window.location.href = "account.html";
 });
+
+boot();
 
 // Lang dropdown
 const langDD = document.getElementById("langDD");
@@ -1100,4 +1149,3 @@ if (langBtn && langDD) {
   langBtn.addEventListener("click", (e) => { e.stopPropagation(); langDD.classList.toggle("open"); });
   document.addEventListener("click", (e) => { if (langDD && !langDD.contains(e.target)) langDD.classList.remove("open"); });
 }
-renderLangUI();

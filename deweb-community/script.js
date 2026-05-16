@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const openAccountBtn = document.getElementById("openAccountBtn");
   if (openAccountBtn && openAccountBtn.tagName === "A") {
     try {
+      const hasToken = Boolean(localStorage.getItem("deweb_token"));
       const session = JSON.parse(localStorage.getItem("deweb_session") || "null");
-      if (session && session.userId) openAccountBtn.href = "account-dashboard.html";
+      if (hasToken || (session && session.userId)) openAccountBtn.href = "account-dashboard.html";
     } catch (_) {}
     openAccountBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -116,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      CONTACT FORM
      ========================= */
-  window.submitForm = function submitForm() {
+  window.submitForm = async function submitForm() {
     const emailEl = document.getElementById("email");
     const suggestionsEl = document.getElementById("suggestions");
 
@@ -127,9 +128,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!email || !msg) return alert("Please fill in all fields!");
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) return alert("Please enter a valid email address!");
-    alert("Thank you! Your message has been received. We will contact you soon!");
-    emailEl.value = "";
-    suggestionsEl.value = "";
+
+    try {
+      const data = await window.DEWEB_API.Contact.send({ email, message: msg });
+      alert(data.message || "Thank you! Your message has been received.");
+      emailEl.value = "";
+      suggestionsEl.value = "";
+    } catch (err) {
+      alert(err.message || "Could not send message.");
+    }
   };
 
   /* =========================
@@ -534,7 +541,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      Orders: create inquiry
      ========================= */
-  document.getElementById("orderForm")?.addEventListener("submit", (e) => {
+  document.getElementById("orderForm")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const service = document.getElementById("orderService").value;
@@ -548,30 +555,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!details || !email) return alert("Please fill details + email.");
 
-    const me = findMe();
-    const order = {
-      id: "ORD-" + Math.floor(Math.random()*90000 + 10000),
-      createdAt: new Date().toISOString(),
-      clientId: me?.id || null,
-      clientEmail: email,
-      clientName: name || me?.name || "Client",
-      phone,
-      service,
-      budget,
-      deadline,
-      pay,
-      details,
-      stage: "Inquiry",
-      assignedDevId: null
-    };
-
-    const orders = getOrders();
-    orders.unshift(order);
-    setOrders(orders);
-
-    alert("Inquiry sent! Open Account to track it.");
-    renderOpenOrders();
-    renderMarketplace();
+    try {
+      await window.DEWEB_API.Inquiries.create({
+        service,
+        budget,
+        deadline,
+        details,
+        clientEmail: email,
+        clientName: name || "Client",
+        phone,
+        pay,
+        source: "index-order"
+      });
+      alert("Inquiry sent! Sign in to track it in your dashboard.");
+      e.target.reset();
+      await renderOpenOrders();
+      renderMarketplace();
+    } catch (err) {
+      alert(err.message || "Could not send inquiry.");
+    }
   });
 
   /* =========================
@@ -705,16 +707,20 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       newBox.querySelectorAll("[data-claim]").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", async () => {
           const id = btn.dataset.claim;
-          const orders = getOrders();
-          const target = orders.find(x => x.id === id);
-          if (!target) return;
-          target.assignedDevId = me.id;
-          target.stage = "In Progress";
-          setOrders(orders);
-          refreshDashboard();
-          renderOpenOrders();
+          if (!window.DEWEB_API?.isLoggedIn()) {
+            alert("Sign in as a developer to claim orders.");
+            window.location.href = "account.html";
+            return;
+          }
+          try {
+            await window.DEWEB_API.Orders.claim(id);
+            refreshDashboard();
+            await renderOpenOrders();
+          } catch (err) {
+            alert(err.message || "Could not claim order.");
+          }
         });
       });
 
@@ -745,6 +751,25 @@ document.addEventListener("DOMContentLoaded", () => {
     setUsers(users);
   }
 
+  let marketDevelopers = null;
+  let marketProducts = null;
+
+  async function loadMarketData() {
+    const API = window.DEWEB_API;
+    if (!API) return;
+    try {
+      const [devRes, prodRes] = await Promise.all([
+        API.Users.developers(),
+        API.Products.list()
+      ]);
+      marketDevelopers = devRes.users || [];
+      marketProducts = prodRes.products || [];
+    } catch (_) {
+      marketDevelopers = null;
+      marketProducts = null;
+    }
+  }
+
   function renderMarketplace(){
     const grid = document.getElementById("marketGrid");
     if (!grid) return;
@@ -753,8 +778,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const role = document.getElementById("marketRole")?.value || "all";
     const skill = document.getElementById("marketSkill")?.value || "all";
 
-    const products = getMarketplaceProducts();
-    const users = getUsers().filter(u => u.role === "dev" || u.accountMode === "seller");
+    const products = marketProducts || getMarketplaceProducts();
+    const users = (marketDevelopers || getUsers().filter(u => u.role === "dev" || u.accountMode === "seller"));
     let list = users;
 
     if (role === "dev") list = users;
@@ -824,9 +849,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     grid.querySelectorAll("[data-hire]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        alert("Hiring flow: In full version this opens chat + contract + payment. For now, create an order on the Order slide.");
-        goToSlide(3);
+      btn.addEventListener("click", async () => {
+        if (!window.DEWEB_API?.isLoggedIn()) {
+          alert("Sign in to buy with DEWEB coins.");
+          window.location.href = "account.html";
+          return;
+        }
+        const sellerId = btn.dataset.hire;
+        const product = products.find(p => p.sellerId === sellerId);
+        if (!product) {
+          alert("No product listed. Contact seller from Order slide.");
+          goToSlide(3);
+          return;
+        }
+        if (!confirm(`Pay ${product.price} DEWEB for "${product.title}"?`)) return;
+        try {
+          await window.DEWEB_API.Products.purchase(product.id);
+          alert("Paid with DEWEB. Seller received coins.");
+          void loadMarketData().then(() => renderMarketplace());
+        } catch (err) {
+          if (err.message?.includes("Not enough")) {
+            if (confirm("Not enough DEWEB. Open wallet to top up?")) {
+              window.location.href = "account-dashboard.html#wallet";
+            }
+          } else alert(err.message || "Purchase failed.");
+        }
       });
     });
   }
@@ -834,11 +881,17 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =========================
      Open orders list
      ========================= */
-  function renderOpenOrders(){
+  async function renderOpenOrders(){
     const box = document.getElementById("openOrdersList");
     if (!box) return;
 
-    const open = getOrders().filter(o => o.stage === "Inquiry" && !o.assignedDevId);
+    let open = [];
+    try {
+      const data = await window.DEWEB_API.Orders.open();
+      open = data.orders || [];
+    } catch {
+      open = getOrders().filter(o => o.stage === "Inquiry" && !o.assignedDevId);
+    }
     box.innerHTML = open.length ? "" : `<div class="dash-item">No open orders yet. Create one.</div>`;
 
     open.forEach(o => {
@@ -846,14 +899,26 @@ document.addEventListener("DOMContentLoaded", () => {
       el.className = "dash-item";
       el.innerHTML = `
         <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-          <b>${o.id}</b>
-          <span class="badge">${escapeHtml(o.service)}</span>
+          <b>${escapeHtml(o.id)}</b>
+          <span class="badge">${escapeHtml(o.service || "Inquiry")}</span>
         </div>
         <div style="margin-top:8px;color:rgba(168,178,209,.95)">
-          Budget: ${escapeHtml(o.budget)} • ${escapeHtml(o.deadline || "no deadline")}
+          Budget: ${escapeHtml(o.budget || "—")} • ${escapeHtml(o.deadline || "no deadline")}
         </div>
+        ${window.DEWEB_API?.isLoggedIn() ? `<button class="cta-btn primary" style="margin-top:10px" data-claim-open="${escapeAttr(o.id)}">Claim</button>` : ""}
       `;
       box.appendChild(el);
+    });
+
+    box.querySelectorAll("[data-claim-open]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        try {
+          await window.DEWEB_API.Orders.claim(btn.dataset.claimOpen);
+          await renderOpenOrders();
+        } catch (err) {
+          alert(err.message || "Could not claim order.");
+        }
+      });
     });
   }
 
@@ -946,8 +1011,8 @@ document.addEventListener("DOMContentLoaded", () => {
   bindMarketFilters();
   initAboutSwitcher();
 
-  renderMarketplace();
-  renderOpenOrders();
+  void loadMarketData().then(() => renderMarketplace());
+  void renderOpenOrders();
   refreshDashboard();
 
   if (window.location.hash === "#account") window.location.href = "account.html";

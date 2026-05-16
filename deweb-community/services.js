@@ -318,7 +318,11 @@ function getSelectedProductData() {
 
 function getSelectedPrice() {
   const code = document.getElementById("promoCode")?.value?.trim().toUpperCase();
-  if (code === PROMO_CODE) return PROMO_PRICE;
+  if (code === PROMO_CODE) {
+    sessionStorage.setItem("deweb_promo", PROMO_CODE);
+    return PROMO_PRICE;
+  }
+  sessionStorage.removeItem("deweb_promo");
   const it = getSelectedProductData();
   return it ? it.price : "—";
 }
@@ -394,16 +398,31 @@ function renderPage() {
   });
 }
 
-document.getElementById("offerForm")?.addEventListener("submit", (e) => {
+document.getElementById("offerForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = document.getElementById("offerEmail").value.trim();
   const text = document.getElementById("offerText").value.trim();
+  const name = document.getElementById("offerName")?.value?.trim() || "";
+  const budget = document.getElementById("offerBudget")?.value?.trim() || "";
+  const deadline = document.getElementById("offerDeadline")?.value?.trim() || "";
   if (!email || !text) {
     alert(t("fillRequired"));
     return;
   }
-  alert(t("successSent"));
-  e.target.reset();
+  try {
+    const data = await window.DEWEB_API.Offers.create({
+      email,
+      message: text,
+      name,
+      budget,
+      deadline,
+      category: selectedProduct?.cat || ""
+    });
+    alert(data.message || t("successSent"));
+    e.target.reset();
+  } catch (err) {
+    alert(err.message || "Could not send inquiry.");
+  }
 });
 
 document.getElementById("promoCode")?.addEventListener("input", updateOfferAndBuy);

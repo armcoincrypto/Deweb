@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { db, uid, nowIso, toUserRow } from "../db.js";
+import { db, uid, nowIso, toUserRow, logActivity } from "../db.js";
 import { requireAuth } from "../middleware/auth.js";
+import { transferDeweb } from "./crypto.js";
 
 const router = Router();
 
@@ -86,6 +87,37 @@ router.post("/", requireAuth, (req, res) => {
 
   const row = db.prepare("SELECT * FROM marketplace_products WHERE id = ?").get(id);
   res.status(existing ? 200 : 201).json({ product: toProduct(row) });
+});
+
+router.post("/:id/purchase", requireAuth, (req, res) => {
+  const product = db.prepare("SELECT * FROM marketplace_products WHERE id = ?").get(req.params.id);
+  if (!product) return res.status(404).json({ error: "Product not found." });
+  if (product.seller_id === req.userId) {
+    return res.status(400).json({ error: "You cannot buy your own product." });
+  }
+
+  const price = Number(product.price || 0);
+  if (price <= 0) return res.status(400).json({ error: "Invalid product price." });
+
+  try {
+    transferDeweb(req.userId, product.seller_id, price, {
+      productId: product.id,
+      title: product.title
+    });
+  } catch (e) {
+    if (e.message === "INSUFFICIENT_DEWEB") {
+      return res.status(402).json({ error: "Not enough DEWEB coins.", needTopUp: true });
+    }
+    throw e;
+  }
+
+  logActivity(req.userId, "product_purchase", { productId: product.id, sellerId: product.seller_id, price });
+  const buyerWallet = db.prepare("SELECT deweb FROM wallets WHERE user_id = ?").get(req.userId);
+  res.json({
+    ok: true,
+    message: `Paid ${price} DEWEB to seller.`,
+    balance: buyerWallet?.deweb || 0
+  });
 });
 
 export default router;

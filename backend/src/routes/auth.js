@@ -1,15 +1,9 @@
 import { Router } from "express";
 import bcrypt from "bcryptjs";
-import { db, uid, nowIso, toUserRow } from "../db.js";
+import { db, uid, nowIso, toUserRow, logActivity } from "../db.js";
 import { signToken, requireAuth } from "../middleware/auth.js";
 
 const router = Router();
-
-function logActivity(userId, method, meta = null) {
-  db.prepare(
-    "INSERT INTO activity (user_id, method, meta, created_at) VALUES (?, ?, ?, ?)"
-  ).run(userId, method, meta ? JSON.stringify(meta) : null, nowIso());
-}
 
 router.post("/register", (req, res) => {
   const username = String(req.body.username || "").trim();
