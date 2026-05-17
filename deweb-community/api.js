@@ -1,6 +1,12 @@
 // DEWEB API client (load before other scripts)
 (function (global) {
-  const API_BASE = global.DEWEB_API_URL || "http://localhost:3000/api";
+  function defaultApiBase() {
+    if (global.DEWEB_API_URL) return global.DEWEB_API_URL;
+    const h = global.location?.hostname || "";
+    if (h === "localhost" || h === "127.0.0.1") return "http://localhost:3000/api";
+    return "/api";
+  }
+  const API_BASE = defaultApiBase();
   const TOKEN_KEY = "deweb_token";
 
   function getToken() {

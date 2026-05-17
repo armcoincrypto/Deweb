@@ -1,6 +1,10 @@
 (function () {
   const GUEST_KEY = "deweb_support_guest";
-  const API_BASE = window.DEWEB_API_URL || "http://localhost:3000/api";
+  const API_BASE =
+    window.DEWEB_API_URL ||
+    (["localhost", "127.0.0.1"].includes(location.hostname)
+      ? "http://localhost:3000/api"
+      : "/api");
 
   function getGuestKey() {
     let k = localStorage.getItem(GUEST_KEY);
