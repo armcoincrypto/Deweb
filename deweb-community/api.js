@@ -57,7 +57,11 @@
     Auth: {
       register: (body) => api("/auth/register", { method: "POST", body: JSON.stringify(body) }),
       login: (body) => api("/auth/login", { method: "POST", body: JSON.stringify(body) }),
-      me: () => api("/auth/me")
+      me: () => api("/auth/me"),
+      autoAdmin: () => api("/auth/auto-admin", { method: "POST", body: "{}" })
+    },
+    Setup: {
+      config: () => api("/setup/config")
     },
     Users: {
       updateMe: (body) => api("/users/me", { method: "PATCH", body: JSON.stringify(body) }),
@@ -108,6 +112,21 @@
     },
     Services: {
       catalog: () => api("/services/catalog")
+    },
+    Support: {
+      thread: () => api("/support/thread"),
+      message: (body) => api("/support/message", { method: "POST", body: JSON.stringify(body) })
+    },
+    Admin: {
+      stats: () => api("/admin/stats"),
+      users: (q) => api(`/admin/users${q ? "?q=" + encodeURIComponent(q) : ""}`),
+      orders: () => api("/admin/orders"),
+      creditUser: (userId, amount) =>
+        api("/admin/wallet/credit", { method: "POST", body: JSON.stringify({ userId, amount }) }),
+      supportThreads: () => api("/admin/support/threads"),
+      supportMessages: (id) => api(`/admin/support/threads/${id}/messages`),
+      supportReply: (id, message) =>
+        api(`/admin/support/threads/${id}/reply`, { method: "POST", body: JSON.stringify({ message }) })
     }
   };
 })(window);

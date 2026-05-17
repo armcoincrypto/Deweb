@@ -133,6 +133,25 @@ db.exec(`
     category TEXT,
     created_at TEXT NOT NULL
   );
+
+  CREATE TABLE IF NOT EXISTS support_threads (
+    id TEXT PRIMARY KEY,
+    user_id TEXT,
+    guest_key TEXT,
+    status TEXT NOT NULL DEFAULT 'ai',
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS support_messages (
+    id TEXT PRIMARY KEY,
+    thread_id TEXT NOT NULL,
+    sender TEXT NOT NULL,
+    body TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (thread_id) REFERENCES support_threads(id)
+  );
 `);
 
 const orderColumns = [
@@ -178,9 +197,11 @@ export function parseJson(value, fallback = null) {
 
 export function toUserRow(row) {
   if (!row) return null;
+  const isAdmin = row.role === "admin" || row.id === "deweb-admin";
   return {
     id: row.id,
     role: row.role,
+    isAdmin,
     accountMode: row.account_mode,
     name: row.name,
     username: row.username,

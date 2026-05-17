@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>DEWEB — Admin</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .admin-wrap { max-width: 1100px; margin: 100px auto 40px; padding: 0 20px; color: #eee; }
+    .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .admin-stat { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; }
+    .admin-stat strong { display: block; font-size: 22px; color: #a29bfe; }
+    .admin-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .admin-tabs button { padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: #ccc; cursor: pointer; }
+    .admin-tabs button.active { background: #6c5ce7; color: #fff; border-color: #6c5ce7; }
+    .admin-panel { display: none; }
+    .admin-panel.active { display: block; }
+    .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .admin-table th, .admin-table td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: left; }
+    .support-thread { padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); margin-bottom: 8px; cursor: pointer; }
+    .support-thread.pending { border-left: 3px solid #fdcb6e; }
+    .support-chat { max-height: 320px; overflow-y: auto; margin: 12px 0; }
+    .support-reply { display: flex; gap: 8px; }
+    .support-reply textarea { flex: 1; min-height: 60px; border-radius: 8px; padding: 8px; background: #1a1a24; color: #fff; border: 1px solid rgba(255,255,255,0.12); }
+    .admin-btn { padding: 10px 16px; background: #6c5ce7; color: #fff; border: none; border-radius: 8px; cursor: pointer; }
+    .admin-credit { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .admin-credit input { padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: #1a1a24; color: #fff; }
+  </style>
+</head>
+<body class="details-body">
+  <header class="account-dashboard-header">
+    <nav class="navbar navbar-dashboard">
+      <div class="logo">D</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="account-dashboard.html">Account</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="admin-wrap">
+    <h1>DEWEB Admin</h1>
+    <p id="adminGate">Checking access…</p>
+    <div id="adminApp" style="display:none">
+      <div class="admin-stats" id="adminStats"></div>
+      <div class="admin-tabs">
+        <button type="button" data-tab="support" class="active">Support</button>
+        <button type="button" data-tab="users">Users</button>
+        <button type="button" data-tab="orders">Orders</button>
+        <button type="button" data-tab="treasury">Treasury</button>
+      </div>
+
+      <div id="tab-support" class="admin-panel active">
+        <div id="supportThreadList"></div>
+        <div id="supportThreadDetail" style="display:none">
+          <h3 id="supportThreadTitle">Thread</h3>
+          <div class="support-chat" id="supportChat"></div>
+          <div class="support-reply">
+            <textarea id="supportReplyInput" placeholder="Reply as admin…"></textarea>
+            <button type="button" class="admin-btn" id="supportReplyBtn">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-users" class="admin-panel">
+        <input type="search" id="userSearch" placeholder="Search users…" />
+        <table class="admin-table"><thead><tr><th>Email</th><th>Role</th><th>DEWEB</th></tr></thead><tbody id="usersTable"></tbody></table>
+        <div class="admin-credit">
+          <input type="text" id="creditUserId" placeholder="User ID" />
+          <input type="number" id="creditAmount" placeholder="DEWEB amount" min="1" />
+          <button type="button" class="admin-btn" id="creditBtn">Send from treasury</button>
+        </div>
+      </div>
+
+      <div id="tab-orders" class="admin-panel">
+        <table class="admin-table"><thead><tr><th>ID</th><th>Status</th><th>Total</th></tr></thead><tbody id="ordersTable"></tbody></table>
+      </div>
+
+      <div id="tab-treasury" class="admin-panel">
+        <p>Admin treasury holds DEWEB sent to users when they top up with crypto (1 DEWEB = 1 USD).</p>
+        <button type="button" class="admin-btn" id="refreshStatsBtn">Refresh</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="api.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

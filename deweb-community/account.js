@@ -115,8 +115,42 @@ document.getElementById("forgotPass")?.addEventListener("click", (e) => {
   alert("Password reset will be available soon.");
 });
 
-if (isLoggedIn()) {
-  goToDashboard();
-} else {
-  renderLangUI();
+async function tryAdminAutoLogin() {
+  const API = window.DEWEB_API;
+  if (!API || isLoggedIn()) return false;
+  try {
+    const cfg = await API.Setup.config();
+    const siUser = document.getElementById("siUsername");
+    const siPass = document.getElementById("siPass");
+    if (siUser && cfg.adminEmail) siUser.value = cfg.adminEmail;
+    if (siPass && cfg.adminAutoLogin) siPass.placeholder = "Auto sign-in from .env…";
+
+    if (!cfg.adminAutoLogin) {
+      renderLangUI();
+      return false;
+    }
+
+    const data = await API.Auth.autoAdmin();
+    API.setToken(data.token);
+    window.location.href = data.redirect || (data.user?.isAdmin ? "admin.html" : "account-dashboard.html");
+    return true;
+  } catch (err) {
+    console.warn("[DEWEB] Admin auto-login:", err.message);
+    renderLangUI();
+    return false;
+  }
 }
+
+(async function boot() {
+  if (isLoggedIn()) {
+    try {
+      const { user } = await API().Auth.me();
+      window.location.href = user?.isAdmin ? "admin.html" : "account-dashboard.html";
+    } catch {
+      goToDashboard();
+    }
+    return;
+  }
+  const auto = await tryAdminAutoLogin();
+  if (!auto) renderLangUI();
+})();

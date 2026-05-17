@@ -15,6 +15,9 @@ import cryptoRoutes from "./routes/crypto.js";
 import activityRoutes from "./routes/activity.js";
 import serviceRoutes from "./routes/services.js";
 import offerRoutes from "./routes/offers.js";
+import adminRoutes from "./routes/admin.js";
+import supportRoutes from "./routes/support.js";
+import setupRoutes from "./routes/setup.js";
 
 runSeed();
 
@@ -41,6 +44,9 @@ app.use("/api/crypto", cryptoRoutes);
 app.use("/api/activity", activityRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/offers", offerRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/support", supportRoutes);
+app.use("/api/setup", setupRoutes);
 
 app.use((err, _req, res, _next) => {
   console.error(err);

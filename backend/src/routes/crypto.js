@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { db, uid, nowIso, logActivity } from "../db.js";
 import { requireAuth } from "../middleware/auth.js";
+import { getAdminUserId } from "../utils/admin.js";
 
 const router = Router();
 
@@ -63,12 +64,20 @@ router.post("/webhook/credit", (req, res) => {
     return res.status(400).json({ error: "userId and dewebAmount required." });
   }
 
-  creditWallet(userId, dewebAmount, {
-    type: "crypto_deposit",
-    txRef,
-    coin: req.body.coin,
-    cryptoAmount: req.body.cryptoAmount
-  });
+  const adminId = getAdminUserId();
+  try {
+    transferDeweb(adminId, userId, dewebAmount, {
+      type: "crypto_deposit",
+      txRef,
+      coin: req.body.coin,
+      cryptoAmount: req.body.cryptoAmount
+    });
+  } catch (e) {
+    if (e.message === "INSUFFICIENT_DEWEB") {
+      return res.status(503).json({ error: "Admin treasury has insufficient DEWEB. Contact platform admin." });
+    }
+    throw e;
+  }
 
   logActivity(userId, "deweb_credited", { dewebAmount, txRef });
   res.json({ ok: true, credited: dewebAmount });

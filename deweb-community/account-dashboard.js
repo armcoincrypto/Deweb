@@ -1101,6 +1101,8 @@ async function saveSellerProduct() {
 
 async function boot() {
   const me = await loadCurrentUser();
+  const adminNav = document.getElementById("adminNavLink");
+  if (adminNav && me?.isAdmin) adminNav.style.display = "";
   if (!me) {
     window.location.href = "account.html";
     return;
