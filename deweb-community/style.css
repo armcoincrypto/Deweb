@@ -2944,7 +2944,6 @@ body::before {
 }
 @media (max-width: 780px){
   .navbar{ gap: 10px; padding: 10px 12px; }
-  .nav-links{ display:none; } /* keep it clean on mobile for now */
   .contact-form{ flex-direction: column; }
   .hero-stats{ grid-template-columns: 1fr; }
 }
