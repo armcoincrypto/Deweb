@@ -405,6 +405,20 @@ body.nav-menu-open {
     text-align: center;
   }
 
+  .wallet-linked-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wallet-connect-btn {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .sidebar-legal {
+    display: block;
+    margin-top: 16px;
+  }
+
   .market-card,
   .package-card {
     min-height: auto;

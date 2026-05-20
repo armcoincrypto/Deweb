@@ -152,6 +152,28 @@ db.exec(`
     created_at TEXT NOT NULL,
     FOREIGN KEY (thread_id) REFERENCES support_threads(id)
   );
+
+  CREATE TABLE IF NOT EXISTS user_linked_wallets (
+    user_id TEXT NOT NULL,
+    provider TEXT NOT NULL,
+    address TEXT NOT NULL,
+    connected_at TEXT NOT NULL,
+    PRIMARY KEY (user_id, provider),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS crypto_topups (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    provider TEXT NOT NULL,
+    from_address TEXT NOT NULL,
+    tx_hash TEXT,
+    deweb_amount REAL NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending',
+    created_at TEXT NOT NULL,
+    credited_at TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
 `);
 
 const orderColumns = [

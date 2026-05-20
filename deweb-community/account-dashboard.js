@@ -101,6 +101,7 @@ function normalizeUser(u) {
 
 let currentUser = null;
 let cachedWallet = null;
+let cachedLinkedWallets = [];
 let cachedSellerProducts = null;
 let cachedOrders = null;
 let cryptoConfig = null;
@@ -138,8 +139,10 @@ async function refreshWallet() {
   try {
     const data = await API.Wallet.get();
     cachedWallet = data.wallet;
+    cachedLinkedWallets = data.linkedWallets || [];
   } catch {
     cachedWallet = cachedWallet || getWalletLocal().wallet;
+    cachedLinkedWallets = cachedLinkedWallets || [];
   }
 }
 
@@ -412,52 +415,92 @@ function renderRenewals() {
   `;
 }
 
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function getLinkedByProvider(provider) {
+  return (cachedLinkedWallets || []).find((w) => w.provider === provider);
+}
+
+function renderLinkedWalletCard(provider) {
+  const linked = getLinkedByProvider(provider);
+  if (linked) {
+    return `
+      <div class="wallet-linked-card wallet-linked-card--active">
+        <div class="wallet-linked-card__head">
+          <span class="wallet-linked-card__provider">${escapeHtml(provider)}</span>
+          <span class="wallet-linked-card__badge">Connected</span>
+        </div>
+        <div class="wallet-linked-card__address" title="${escapeHtml(linked.address)}">${escapeHtml(linked.address)}</div>
+        <button type="button" class="wallet-connect-btn cta-btn secondary" data-unlink="${escapeHtml(provider)}">Disconnect</button>
+      </div>
+    `;
+  }
+  const btnId = provider === "MetaMask" ? "connectMetaMaskBtn" : "connectRoninBtn";
+  return `
+    <div class="wallet-linked-card">
+      <div class="wallet-linked-card__head">
+        <span class="wallet-linked-card__provider">${escapeHtml(provider)}</span>
+      </div>
+      <p class="wallet-linked-card__empty">Not connected</p>
+      <button type="button" class="wallet-connect-btn cta-btn secondary" id="${btnId}">Connect ${escapeHtml(provider)}</button>
+    </div>
+  `;
+}
+
 function renderWallet() {
   const { wallet } = getWallet();
-  const deposits = cryptoConfig?.depositAddresses || {};
-  const depositLines = Object.entries(deposits)
-    .filter(([, addr]) => addr)
-    .map(([coin, addr]) => `<li><b>${coin}</b>: <code>${addr}</code></li>`)
+  const linked = cachedLinkedWallets || [];
+  const providerOptions = linked
+    .map((w) => `<option value="${escapeHtml(w.provider)}">${escapeHtml(w.provider)} — ${escapeHtml(w.address.slice(0, 10))}…</option>`)
     .join("");
-  const connectedLabel = wallet.connected
-    ? `${wallet.provider} — ${wallet.address}`
-    : "Connect MetaMask or Ronin to link your on-chain address.";
+  const canTopUp = linked.length > 0;
+
   return `
     <div class="wallet-hero section-block">
       <div>
         <span class="section-kicker">DEWEB wallet</span>
         <h3>Internal DEWEB balance</h3>
-        <p>Crypto-only. Top up via swap site or send crypto to our wallets. Pay sellers with DEWEB. Withdraw on the swap site.</p>
-      </div>
-      <div class="wallet-actions wallet-actions--connect">
-        <button type="button" class="cta-btn primary" id="connectMetaMaskBtn">Connect MetaMask</button>
-        <button type="button" class="cta-btn secondary" id="connectRoninBtn">Connect Ronin</button>
+        <p>1 DEWEB = 1 USD. Connect MetaMask and/or Ronin (one address each per account). Send crypto from your wallet to get DEWEB instantly after confirmation.</p>
       </div>
     </div>
-    <div class="wallet-grid">
-      <div class="wallet-balance-card">
-        <span class="wallet-balance-card__label">DEWEB balance</span>
-        <strong>${Number(wallet.deweb || 0).toLocaleString()} DEWEB</strong>
-        <p>Use DEWEB to buy services and pay marketplace sellers.</p>
-      </div>
-      <div class="wallet-balance-card">
-        <span class="wallet-balance-card__label">Connected wallet</span>
-        <strong>${wallet.connected ? wallet.provider : "Not connected"}</strong>
-        <p>${connectedLabel}</p>
-      </div>
+
+    <div class="wallet-balance-card wallet-balance-card--wide">
+      <span class="wallet-balance-card__label">DEWEB balance</span>
+      <strong class="wallet-balance-card__amount">${Number(wallet.deweb || 0).toLocaleString()} DEWEB</strong>
+      <p>Use DEWEB to buy services and pay marketplace sellers.</p>
     </div>
+
+    <h3 class="wallet-section-title">Your connected wallets</h3>
+    <p class="wallet-section-sub">You can connect both MetaMask and Ronin on one account.</p>
+    <div class="wallet-linked-grid">
+      ${renderLinkedWalletCard("MetaMask")}
+      ${renderLinkedWalletCard("Ronin")}
+    </div>
+
     <div class="wallet-grid wallet-grid--tools">
-      <div class="section-block wallet-tool-card">
+      <div class="section-block wallet-tool-card wallet-tool-card--topup">
         <h3>Get DEWEB coins</h3>
-        <p>Buy or swap crypto on our partner site. When done, DEWEB is credited to your account.</p>
-        <button type="button" class="cta-btn primary" id="buyOnSwapBtn">Open swap site — Buy / Top up</button>
-        ${depositLines ? `<p class="wallet-note">Or send crypto to:</p><ul class="wallet-deposit-list">${depositLines}</ul>` : ""}
+        <p>Enter how much DEWEB you want (1 DEWEB = $1). Press <strong>Get</strong> — your wallet opens to send crypto to DEWEB. After the transfer is confirmed, DEWEB is added to your balance.</p>
+        <label class="wallet-field-label" for="dewebTopupAmount">Amount (DEWEB / USD)</label>
+        <input type="number" id="dewebTopupAmount" min="1" step="1" placeholder="e.g. 100" class="account-page__input wallet-topup-input" />
+        <label class="wallet-field-label" for="dewebTopupProvider">Pay from wallet</label>
+        <select id="dewebTopupProvider" class="account-page__input wallet-topup-select" ${canTopUp ? "" : "disabled"}>
+          ${canTopUp ? providerOptions : '<option value="">Connect a wallet first</option>'}
+        </select>
+        <button type="button" class="wallet-connect-btn cta-btn secondary" id="getDewebBtn" ${canTopUp ? "" : "disabled"}>Get DEWEB</button>
+        <p class="wallet-note">Alternative: <button type="button" class="link-btn" id="buyOnSwapBtn">open partner swap site</button></p>
       </div>
       <div class="section-block wallet-tool-card">
         <h3>Withdraw DEWEB → crypto</h3>
         <p>Exchange DEWEB to crypto on the swap site.</p>
-        <input type="number" id="walletWithdrawAmount" min="0" placeholder="DEWEB amount (optional)" style="max-width:200px;margin-bottom:10px;display:block" />
-        <button type="button" class="cta-btn secondary" id="withdrawOnSwapBtn">Open swap site — Withdraw</button>
+        <input type="number" id="walletWithdrawAmount" min="0" placeholder="DEWEB amount (optional)" class="account-page__input wallet-topup-input" />
+        <button type="button" class="wallet-connect-btn cta-btn secondary" id="withdrawOnSwapBtn">Open swap site — Withdraw</button>
       </div>
     </div>
   `;
@@ -943,7 +986,7 @@ document.addEventListener("click", (e) => {
     void (async () => {
       try {
         const w = await window.DEWEB_WALLET.connectMetaMask();
-        await window.DEWEB_API.Wallet.connect(w);
+        await window.DEWEB_API.Wallet.link(w);
         await refreshWallet();
         renderSectionContent("wallet");
       } catch (err) {
@@ -956,11 +999,60 @@ document.addEventListener("click", (e) => {
     void (async () => {
       try {
         const w = await window.DEWEB_WALLET.connectRonin();
-        await window.DEWEB_API.Wallet.connect(w);
+        await window.DEWEB_API.Wallet.link(w);
         await refreshWallet();
         renderSectionContent("wallet");
       } catch (err) {
         alert(err.message);
+      }
+    })();
+    return;
+  }
+  if (target.dataset.unlink) {
+    void (async () => {
+      if (!confirm(`Disconnect ${target.dataset.unlink}?`)) return;
+      try {
+        await window.DEWEB_API.Wallet.unlink(target.dataset.unlink);
+        await refreshWallet();
+        renderSectionContent("wallet");
+      } catch (err) {
+        alert(err.message);
+      }
+    })();
+    return;
+  }
+  if (target.id === "getDewebBtn") {
+    void (async () => {
+      const amount = Number(document.getElementById("dewebTopupAmount")?.value || 0);
+      const provider = document.getElementById("dewebTopupProvider")?.value || "";
+      if (amount <= 0) return alert("Enter how much DEWEB you want (minimum 1).");
+      if (!provider) return alert("Connect MetaMask or Ronin first.");
+      try {
+        const intent = await window.DEWEB_API.Wallet.topupIntent({ provider, dewebAmount: amount });
+        const ok = confirm(
+          `${intent.message}\n\nTreasury: ${intent.treasuryAddress}\n\nOpen ${provider} to confirm the transfer?`
+        );
+        if (!ok) return;
+        const txHash = await window.DEWEB_WALLET.sendTopUp(provider, {
+          fromAddress: intent.fromAddress,
+          treasuryAddress: intent.treasuryAddress,
+          valueWei: intent.valueWei
+        });
+        const result = await window.DEWEB_API.Wallet.topupConfirm({
+          txHash,
+          provider,
+          dewebAmount: amount,
+          fromAddress: intent.fromAddress
+        });
+        await refreshWallet();
+        renderSectionContent("wallet");
+        alert(`Success! ${result.credited} DEWEB added to your balance.`);
+      } catch (err) {
+        if (err?.code === 4001 || /user rejected|denied/i.test(String(err.message))) {
+          alert("Transaction cancelled in your wallet.");
+        } else {
+          alert(err.message || "Top-up failed.");
+        }
       }
     })();
     return;

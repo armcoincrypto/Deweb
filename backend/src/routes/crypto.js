@@ -15,8 +15,15 @@ router.get("/config", (_req, res) => {
       USDT: process.env.TREASURY_USDT || "",
       ETH: process.env.TREASURY_ETH || "",
       BTC: process.env.TREASURY_BTC || "",
-      DASH: process.env.TREASURY_DASH || ""
+      DASH: process.env.TREASURY_DASH || "",
+      RONIN: process.env.TREASURY_RONIN || process.env.TREASURY_ETH || ""
     },
+    treasuryByProvider: {
+      MetaMask: process.env.TREASURY_ETH || "",
+      Ronin: process.env.TREASURY_RONIN || process.env.TREASURY_ETH || ""
+    },
+    ethUsdRate: Number(process.env.ETH_USD_RATE || 3500),
+    dewebUsdRate: Number(process.env.DEWEB_USD_RATE || 1),
     walletProviders: ["MetaMask", "Ronin"],
     dewebIsInternal: true
   });

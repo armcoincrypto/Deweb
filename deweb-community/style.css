@@ -2685,6 +2685,161 @@ body::before {
   width: 100%;
 }
 
+.wallet-connect-btn {
+  min-width: 200px;
+  width: 100%;
+  max-width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+  justify-content: center;
+}
+
+.wallet-section-title {
+  margin: 8px 0 6px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.wallet-section-sub {
+  margin: 0 0 16px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+}
+
+.wallet-balance-card--wide {
+  margin-bottom: 24px;
+}
+
+.wallet-balance-card__amount {
+  font-size: 32px !important;
+}
+
+.wallet-linked-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.wallet-linked-card {
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.22);
+  background: rgba(26, 29, 46, 0.65);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.wallet-linked-card--active {
+  border-color: rgba(0, 212, 255, 0.45);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(184, 79, 255, 0.06));
+}
+
+.wallet-linked-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.wallet-linked-card__provider {
+  font-weight: 800;
+  font-size: 16px;
+  color: #00d4ff;
+}
+
+.wallet-linked-card__badge {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7ee787;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(126, 231, 135, 0.12);
+}
+
+.wallet-linked-card__address {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wallet-linked-card__empty {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+.wallet-field-label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wallet-topup-input,
+.wallet-topup-select {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 4px;
+}
+
+.wallet-tool-card--topup .wallet-connect-btn {
+  margin-top: 12px;
+}
+
+.sidebar-legal {
+  margin-top: 24px;
+  padding: 16px 14px 20px;
+  border-top: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.sidebar-legal__title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #00d4ff;
+  margin-bottom: 10px;
+}
+
+.sidebar-legal__text {
+  font-size: 11px;
+  line-height: 1.55;
+  color: rgba(168, 178, 209, 0.85);
+  margin-bottom: 10px;
+}
+
+.sidebar-legal__link {
+  font-size: 12px;
+  font-weight: 700;
+  color: #00d4ff;
+  text-decoration: none;
+}
+
+.sidebar-legal__link:hover {
+  text-decoration: underline;
+}
+
 .seller-products-layout {
   display: grid;
   grid-template-columns: 340px minmax(0, 1fr);

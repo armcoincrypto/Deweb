@@ -110,6 +110,11 @@
       get: () => api("/wallet/me"),
       update: (body) => api("/wallet/me", { method: "PATCH", body: JSON.stringify(body) }),
       connect: (body) => api("/wallet/connect", { method: "POST", body: JSON.stringify(body) }),
+      linked: () => api("/wallet/linked"),
+      link: (body) => api("/wallet/linked", { method: "POST", body: JSON.stringify(body) }),
+      unlink: (provider) => api(`/wallet/linked/${encodeURIComponent(provider)}`, { method: "DELETE" }),
+      topupIntent: (body) => api("/wallet/topup/intent", { method: "POST", body: JSON.stringify(body) }),
+      topupConfirm: (body) => api("/wallet/topup/confirm", { method: "POST", body: JSON.stringify(body) }),
       transfer: (body) => api("/wallet/transfer", { method: "POST", body: JSON.stringify(body) }),
       transactions: () => api("/wallet/transactions")
     },
