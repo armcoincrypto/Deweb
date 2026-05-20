@@ -806,9 +806,9 @@ function fillProfile() {
   const verifyEmailBtn = document.getElementById("verifyEmailBtn");
   const verifyPhoneBtn = document.getElementById("verifyPhoneBtn");
   if (emailBadge) emailBadge.style.display = emailVerified ? "inline" : "none";
-  if (verifyEmailBtn) verifyEmailBtn.style.display = user.email && !emailVerified ? "inline" : "none";
+  if (verifyEmailBtn) verifyEmailBtn.style.display = user.email && !emailVerified ? "inline-block" : "none";
   if (phoneBadge) phoneBadge.style.display = phoneVerified ? "inline" : "none";
-  if (verifyPhoneBtn) verifyPhoneBtn.style.display = user.phone && !phoneVerified ? "inline" : "none";
+  if (verifyPhoneBtn) verifyPhoneBtn.style.display = user.phone && !phoneVerified ? "inline-block" : "none";
 
   // KYC status
   const kycStatus = user.kycStatus || "not_submitted"; // not_submitted, pending, verified
@@ -1280,6 +1280,7 @@ async function saveSellerProduct() {
 }
 
 async function boot() {
+  document.querySelectorAll(".sidebar-legal").forEach((el) => el.remove());
   const me = await loadCurrentUser();
   const adminNav = document.getElementById("adminNavLink");
   if (adminNav && me?.isAdmin) adminNav.style.display = "";

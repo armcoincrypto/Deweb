@@ -412,6 +412,22 @@ body.nav-menu-open {
   .wallet-connect-btn {
     min-width: 0;
     width: 100%;
+    min-height: 52px;
+    font-size: 16px;
+  }
+
+  .profile-action-btn {
+    width: 100%;
+    margin: 8px 0 0;
+    min-height: 48px;
+  }
+
+  .profile-row--verify {
+    flex-wrap: wrap;
+  }
+
+  .profile-row--verify .profile-row__arrow--edit {
+    display: none;
   }
 
   .market-card,

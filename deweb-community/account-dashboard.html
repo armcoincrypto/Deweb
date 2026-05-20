@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0a0e27" />
   <title>DEWEB — Account</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="mobile.css" />
+  <link rel="stylesheet" href="style.css?v=20260520" />
+  <link rel="stylesheet" href="mobile.css?v=20260520" />
   <link rel="stylesheet" href="cookies.css" />
 </head>
 <body class="details-body account-dashboard-body">
@@ -101,20 +101,22 @@
             <div class="profile-row profile-row--verify" data-field="email">
               <span class="profile-row__icon">✉</span>
               <div class="profile-row__content">
-                <span class="profile-row__label">Email <span class="profile-badge verified" id="emailVerifiedBadge" style="display:none">VERIFIED</span><button type="button" class="profile-verify-btn" id="verifyEmailBtn" style="display:none">Verify</button></span>
+                <span class="profile-row__label">Email <span class="profile-badge verified" id="emailVerifiedBadge" style="display:none">VERIFIED</span></span>
                 <span class="profile-row__value" id="profileEmail">—</span>
                 <input type="email" class="profile-row__input" id="editEmail" style="display:none" />
               </div>
-              <span class="profile-row__arrow">›</span>
+              <button type="button" class="profile-action-btn" id="verifyEmailBtn" style="display:none">Verify email</button>
+              <span class="profile-row__arrow profile-row__arrow--edit">›</span>
             </div>
             <div class="profile-row profile-row--verify" data-field="phone">
               <span class="profile-row__icon">📱</span>
               <div class="profile-row__content">
-                <span class="profile-row__label">Primary Mobile Phone <span class="profile-badge verified" id="phoneVerifiedBadge" style="display:none">VERIFIED</span><button type="button" class="profile-verify-btn" id="verifyPhoneBtn" style="display:none">Verify</button></span>
+                <span class="profile-row__label">Primary Mobile Phone <span class="profile-badge verified" id="phoneVerifiedBadge" style="display:none">VERIFIED</span></span>
                 <span class="profile-row__value" id="profilePhone">—</span>
                 <input type="tel" class="profile-row__input" id="editPhone" style="display:none" />
               </div>
-              <span class="profile-row__arrow">›</span>
+              <button type="button" class="profile-action-btn" id="verifyPhoneBtn" style="display:none">Verify phone</button>
+              <span class="profile-row__arrow profile-row__arrow--edit">›</span>
             </div>
             <div class="profile-row profile-row--action" data-field="kyc">
               <span class="profile-row__icon">
@@ -226,7 +228,7 @@
   <script src="api.js"></script>
   <script src="mobile-nav.js" defer></script>
   <script src="wallet-connect.js"></script>
-  <script src="account-dashboard.js"></script>
+  <script src="account-dashboard.js?v=20260520"></script>
   <link rel="stylesheet" href="support-widget.css" />
   <script src="support-widget.js"></script>
 </body>
