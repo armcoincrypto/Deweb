@@ -7,6 +7,22 @@ import { runSeed } from "../seed.js";
 
 const router = Router();
 
+function validatePassword(password) {
+  if (password.length < 8) {
+    return "Password must be at least 8 characters.";
+  }
+  if (!/[A-Z]/.test(password)) {
+    return "Password must include at least one uppercase letter.";
+  }
+  if (!/[0-9]/.test(password)) {
+    return "Password must include at least one number.";
+  }
+  if (!/[!@#$%^&*()]/.test(password)) {
+    return "Password must include at least one symbol: ! @ # $ % ^ & * ( )";
+  }
+  return null;
+}
+
 router.post("/register", (req, res) => {
   const username = String(req.body.username || "").trim();
   const email = String(req.body.email || "").trim().toLowerCase();
@@ -15,6 +31,11 @@ router.post("/register", (req, res) => {
 
   if (!username || !email || !password) {
     return res.status(400).json({ error: "Username, email, and password are required." });
+  }
+
+  const passErr = validatePassword(password);
+  if (passErr) {
+    return res.status(400).json({ error: passErr });
   }
 
   const exists = db.prepare("SELECT id FROM users WHERE email = ?").get(email);

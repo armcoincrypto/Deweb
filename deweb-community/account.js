@@ -13,6 +13,22 @@ const I18N = {
 };
 function t(key) { return I18N[currentLang]?.[key] ?? I18N.en[key] ?? key; }
 
+function validatePassword(pass) {
+  if (pass.length < 8) {
+    return "Password must be at least 8 characters.";
+  }
+  if (!/[A-Z]/.test(pass)) {
+    return "Password must include at least one uppercase letter (A–Z).";
+  }
+  if (!/[0-9]/.test(pass)) {
+    return "Password must include at least one number (0–9).";
+  }
+  if (!/[!@#$%^&*()]/.test(pass)) {
+    return "Password must include at least one symbol: ! @ # $ % ^ & * ( )";
+  }
+  return null;
+}
+
 function goToDashboard() {
   window.location.href = "account-dashboard.html";
 }
@@ -35,6 +51,16 @@ function setPanel(name) {
   if (accountFormTitle) accountFormTitle.textContent = name === "signup" ? t("signup") : t("signin");
   if (heroSignIn) heroSignIn.style.display = name === "signin" ? "block" : "none";
   if (heroSignUp) heroSignUp.style.display = name === "signup" ? "block" : "none";
+
+  const siUser = document.getElementById("siUsername");
+  const suEmail = document.getElementById("suEmail");
+  if (name === "signup" && suEmail && !suEmail.value) {
+    suEmail.placeholder = "dewebexample@gmail.com";
+  }
+  if (name === "signin" && siUser) {
+    siUser.value = "";
+    siUser.placeholder = "Email or username";
+  }
 }
 
 document.getElementById("goSignUp")?.addEventListener("click", () => setPanel("signup"));
@@ -43,14 +69,14 @@ document.getElementById("goSignIn")?.addEventListener("click", () => setPanel("s
 document.getElementById("signInBtn")?.addEventListener("click", async () => {
   const username = (document.getElementById("siUsername")?.value || "").trim();
   const pass = document.getElementById("siPass")?.value || "";
-  if (!username || !pass) return alert("Enter username/email and password.");
+  if (!username || !pass) return alert("Enter email/username and password.");
 
   try {
     const data = await API().Auth.login({ username, password: pass });
     API().setToken(data.token);
     goToDashboard();
   } catch (err) {
-    alert(err.message || "Login failed. Is the backend running on port 3000?");
+    alert(err.message || "Login failed.");
   }
 });
 
@@ -59,8 +85,12 @@ document.getElementById("signUpBtn")?.addEventListener("click", async () => {
   const email = (document.getElementById("suEmail")?.value || "").trim().toLowerCase();
   const pass = document.getElementById("suPass")?.value || "";
   const newsletter = document.getElementById("suNewsletter")?.checked || false;
+  const terms = document.getElementById("suTerms")?.checked;
 
-  if (!username || !email || !pass) return alert("Fill required fields.");
+  if (!username || !email || !pass) return alert("Fill all required fields.");
+  if (!terms) return alert("You must agree to the Privacy Policy and Terms of Use.");
+  const passErr = validatePassword(pass);
+  if (passErr) return alert(passErr);
 
   try {
     const data = await API().Auth.register({ username, email, password: pass, newsletter });
@@ -120,11 +150,6 @@ async function tryAdminAutoLogin() {
   if (!API || isLoggedIn()) return false;
   try {
     const cfg = await API.Setup.config();
-    const siUser = document.getElementById("siUsername");
-    const siPass = document.getElementById("siPass");
-    if (siUser && cfg.adminEmail) siUser.value = cfg.adminEmail;
-    if (siPass && cfg.adminAutoLogin) siPass.placeholder = "Auto sign-in from .env…";
-
     if (!cfg.adminAutoLogin) {
       renderLangUI();
       return false;
@@ -142,6 +167,17 @@ async function tryAdminAutoLogin() {
 }
 
 (async function boot() {
+  const siUser = document.getElementById("siUsername");
+  const suEmail = document.getElementById("suEmail");
+  if (siUser) {
+    siUser.value = "";
+    siUser.placeholder = "Email or username";
+  }
+  if (suEmail) {
+    suEmail.value = "";
+    suEmail.placeholder = "dewebexample@gmail.com";
+  }
+
   if (isLoggedIn()) {
     try {
       const { user } = await API().Auth.me();

@@ -7,8 +7,10 @@
   <title>DEWEB — Sign in</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="mobile.css" />
+  <link rel="stylesheet" href="cookies.css" />
 </head>
 <body class="details-body account-page-body">
+  <script src="cookies.js"></script>
 
   <nav class="navbar navbar-account">
     <div class="logo">D</div>
@@ -69,8 +71,8 @@
 
         <!-- Sign In form -->
         <div class="account-page__panel active" data-panel="signin" role="tabpanel">
-          <label class="account-page__label" for="siUsername">Username</label>
-          <input id="siUsername" type="text" placeholder="Username" class="account-page__input" autocomplete="username" />
+          <label class="account-page__label" for="siUsername">Email or username</label>
+          <input id="siUsername" type="text" placeholder="Email or username" class="account-page__input" autocomplete="username" value="" />
           <label class="account-page__label" for="siPass">Password</label>
           <div class="account-page__input-wrap">
             <input id="siPass" type="password" placeholder="••••••••" class="account-page__input" autocomplete="current-password" />
@@ -88,12 +90,17 @@
           <label class="account-page__label" for="suUsername">Username</label>
           <input id="suUsername" type="text" placeholder="Username" class="account-page__input" autocomplete="username" />
           <label class="account-page__label" for="suEmail">Email</label>
-          <input id="suEmail" type="email" placeholder="Email" class="account-page__input" autocomplete="email" />
+          <input id="suEmail" type="email" placeholder="dewebexample@gmail.com" class="account-page__input" autocomplete="email" value="" />
           <label class="account-page__label" for="suPass">Password</label>
           <div class="account-page__input-wrap">
-            <input id="suPass" type="password" placeholder="••••••••" class="account-page__input" autocomplete="new-password" />
+            <input id="suPass" type="password" placeholder="Create a strong password" class="account-page__input" autocomplete="new-password" />
             <button type="button" class="account-page__toggle-pwd" id="toggleSuPass" aria-label="Show password">👁</button>
           </div>
+          <p class="account-page__hint">At least 8 characters, 1 uppercase letter, 1 number, and 1 symbol (!@#$%^&*).</p>
+          <label class="account-page__checkbox">
+            <input type="checkbox" id="suTerms" required />
+            <span>I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and <a href="privacy-policy.html#terms" target="_blank">Terms of Use</a>.</span>
+          </label>
           <label class="account-page__checkbox">
             <input type="checkbox" id="suNewsletter" />
             <span>I want to receive periodic DEWEB newsletters with updates and offers!</span>

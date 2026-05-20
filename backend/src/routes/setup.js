@@ -7,8 +7,6 @@ const router = Router();
 router.get("/config", (_req, res) => {
   const adminEmail = getAdminEmail();
   res.json({
-    adminEmail,
-    adminUsername: "dewebadmin",
     adminAutoLogin: isAdminAutoLoginEnabled() && Boolean(adminEmail && process.env.ADMIN_PASSWORD)
   });
 });
