@@ -19,9 +19,11 @@ APP_DIR="/var/www/deweb"
 EMAIL="${ADMIN_EMAIL:-admin@${DOMAIN}}"
 
 echo "==> Domain: $DOMAIN (and www.$DOMAIN)"
-echo "==> Make sure GoDaddy DNS A records point to this server IP first."
-echo "    Press Enter to continue or Ctrl+C to cancel."
-read -r _
+if [[ "${SKIP_CONFIRM:-}" != "1" ]]; then
+  echo "==> Make sure GoDaddy DNS A records point to this server IP first."
+  echo "    Press Enter to continue or Ctrl+C to cancel."
+  read -r _
+fi
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq
