@@ -10,19 +10,16 @@ router.get("/config", (_req, res) => {
   res.json({
     swapBuyUrl: process.env.SWAP_SITE_BUY_URL || "",
     swapSellUrl: process.env.SWAP_SITE_SELL_URL || "",
-    supportedCoins: ["USDT", "ETH", "BTC", "DASH"],
+    topUpCoin: "USDT",
+    supportedCoins: ["USDT"],
     depositAddresses: {
-      USDT: process.env.TREASURY_USDT || "",
-      ETH: process.env.TREASURY_ETH || "",
-      BTC: process.env.TREASURY_BTC || "",
-      DASH: process.env.TREASURY_DASH || "",
-      RONIN: process.env.TREASURY_RONIN || process.env.TREASURY_ETH || ""
+      USDT: process.env.TREASURY_USDT || ""
     },
-    treasuryByProvider: {
-      MetaMask: process.env.TREASURY_ETH || "",
-      Ronin: process.env.TREASURY_RONIN || process.env.TREASURY_ETH || ""
+    usdtContracts: {
+      MetaMask: process.env.USDT_CONTRACT_ETH || "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      Ronin: process.env.USDT_CONTRACT_RONIN || "0x97a9107c1791bc656a31382e6A152ef171ad99cD"
     },
-    ethUsdRate: Number(process.env.ETH_USD_RATE || 3500),
+    treasuryUsdt: process.env.TREASURY_USDT || "",
     dewebUsdRate: Number(process.env.DEWEB_USD_RATE || 1),
     walletProviders: ["MetaMask", "Ronin"],
     dewebIsInternal: true

@@ -1,4 +1,4 @@
-// wallet-connect.js — MetaMask & Ronin connect + top-up transfers
+// wallet-connect.js — MetaMask & Ronin connect + USDT top-up
 
 function getProvider(name) {
   if (name === "Ronin") {
@@ -25,16 +25,16 @@ window.DEWEB_WALLET = {
   },
 
   /**
-   * Open connected wallet to send native coin to DEWEB treasury.
+   * Send USDT (ERC-20) to DEWEB treasury via connected wallet.
    * @returns {string} transaction hash
    */
-  async sendTopUp(provider, { fromAddress, treasuryAddress, valueWei }) {
+  async sendTopUp(provider, { fromAddress, tokenContract, txData }) {
     const eth = getProvider(provider);
     if (!eth) {
       throw new Error(`${provider} wallet not available. Install the extension.`);
     }
-    if (!treasuryAddress) {
-      throw new Error("Treasury address not configured.");
+    if (!tokenContract || !txData) {
+      throw new Error("USDT transfer not configured.");
     }
 
     const accounts = await eth.request({ method: "eth_requestAccounts" });
@@ -46,8 +46,9 @@ window.DEWEB_WALLET = {
       params: [
         {
           from,
-          to: treasuryAddress,
-          value: valueWei
+          to: tokenContract,
+          data: txData,
+          value: "0x0"
         }
       ]
     });

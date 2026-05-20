@@ -2,7 +2,7 @@ const FAQ = [
   {
     keys: ["deweb", "coin", "balance", "top up", "buy"],
     answer:
-      "DEWEB is our internal coin (1 DEWEB = 1 USD). Top up via Wallet → Open swap site, or send crypto to our treasury addresses. After confirmation, DEWEB is added to your account."
+      "DEWEB is our internal coin (1 DEWEB = 1 USD). Top up with USDT only from Wallet (MetaMask or Ronin). 1 USDT = 1 DEWEB. After your USDT transfer is confirmed, DEWEB is added to your account."
   },
   {
     keys: ["withdraw", "sell", "cash out"],

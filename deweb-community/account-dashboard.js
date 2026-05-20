@@ -466,7 +466,7 @@ function renderWallet() {
       <div>
         <span class="section-kicker">DEWEB wallet</span>
         <h3>Internal DEWEB balance</h3>
-        <p>1 DEWEB = 1 USD. Connect MetaMask and/or Ronin (one address each per account). Send crypto from your wallet to get DEWEB instantly after confirmation.</p>
+        <p>1 DEWEB = 1 USD. Connect MetaMask and/or Ronin. Top up with <strong>USDT only</strong> (1 USDT = 1 DEWEB).</p>
       </div>
     </div>
 
@@ -485,9 +485,9 @@ function renderWallet() {
 
     <div class="wallet-grid wallet-grid--tools">
       <div class="section-block wallet-tool-card wallet-tool-card--topup">
-        <h3>Get DEWEB coins</h3>
-        <p>Enter how much DEWEB you want (1 DEWEB = $1). Press <strong>Get</strong> — your wallet opens to send crypto to DEWEB. After the transfer is confirmed, DEWEB is added to your balance.</p>
-        <label class="wallet-field-label" for="dewebTopupAmount">Amount (DEWEB / USD)</label>
+        <h3>Get DEWEB coins (USDT only)</h3>
+        <p>Enter how much DEWEB you want (1 DEWEB = 1 USDT = $1). Press <strong>Get</strong> — your wallet opens to send <strong>USDT</strong> to DEWEB. We only accept USDT. After confirmation, DEWEB is added to your balance.</p>
+        <label class="wallet-field-label" for="dewebTopupAmount">Amount (DEWEB / USDT)</label>
         <input type="number" id="dewebTopupAmount" min="1" step="1" placeholder="e.g. 100" class="account-page__input wallet-topup-input" />
         <label class="wallet-field-label" for="dewebTopupProvider">Pay from wallet</label>
         <select id="dewebTopupProvider" class="account-page__input wallet-topup-select" ${canTopUp ? "" : "disabled"}>
@@ -1035,8 +1035,8 @@ document.addEventListener("click", (e) => {
         if (!ok) return;
         const txHash = await window.DEWEB_WALLET.sendTopUp(provider, {
           fromAddress: intent.fromAddress,
-          treasuryAddress: intent.treasuryAddress,
-          valueWei: intent.valueWei
+          tokenContract: intent.tokenContract,
+          txData: intent.txData
         });
         const result = await window.DEWEB_API.Wallet.topupConfirm({
           txHash,

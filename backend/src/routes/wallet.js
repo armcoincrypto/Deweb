@@ -3,6 +3,7 @@ import { db, uid, nowIso, logActivity } from "../db.js";
 import { requireAuth } from "../middleware/auth.js";
 import { transferDeweb, debitWallet } from "./crypto.js";
 import { getAdminUserId } from "../utils/admin.js";
+import { getUsdtConfig, usdtAmountToRaw, encodeUsdtTransfer } from "../utils/usdt.js";
 
 const router = Router();
 const PROVIDERS = ["MetaMask", "Ronin"];
@@ -190,28 +191,30 @@ router.post("/topup/intent", requireAuth, (req, res) => {
     return res.status(400).json({ error: `Connect ${provider} first.` });
   }
 
-  const treasury =
-    provider === "Ronin"
-      ? process.env.TREASURY_RONIN || process.env.TREASURY_ETH || ""
-      : process.env.TREASURY_ETH || "";
+  const { treasury, contract } = getUsdtConfig(provider);
   if (!treasury) {
-    return res.status(503).json({ error: "Treasury wallet not configured on server." });
+    return res.status(503).json({
+      error: "USDT treasury not configured. Set TREASURY_USDT in server .env."
+    });
   }
 
-  const ethUsd = Number(process.env.ETH_USD_RATE || 3500);
-  const ethAmount = dewebAmount / ethUsd;
-  const wei = BigInt(Math.floor(ethAmount * 1e18));
+  const usdtAmount = dewebAmount;
+  const amountRaw = usdtAmountToRaw(usdtAmount);
+  const txData = encodeUsdtTransfer(treasury, amountRaw);
 
   res.json({
     provider,
+    coin: "USDT",
     dewebAmount,
     usdAmount: dewebAmount,
+    usdtAmount,
     fromAddress: linked.address,
     treasuryAddress: treasury,
-    ethAmount,
-    valueWei: "0x" + wei.toString(16),
+    tokenContract: contract,
+    txData,
+    amountRaw: amountRaw.toString(),
     chainHint: provider === "Ronin" ? "ronin" : "ethereum",
-    message: `Send ~${ethAmount.toFixed(6)} ETH (≈ $${dewebAmount} USD) to receive ${dewebAmount} DEWEB.`
+    message: `Send ${usdtAmount} USDT (≈ $${usdtAmount} USD) to receive ${dewebAmount} DEWEB. Only USDT is accepted.`
   });
 });
 
