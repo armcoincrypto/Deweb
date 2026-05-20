@@ -21,7 +21,7 @@ const DASH_I18N = {
   en: {
     nav: ["Home", "Services", "Packages", "Order", "Marketplace", "About", "Contact"],
     help: "Help", account: "Account", settings: "Account Settings",
-    sections: { profile: "My Profile", wallet: "Wallet", products: "My Products", orderHistory: "Order History", security: "Security" },
+    sections: { profile: "My Profile", wallet: "Wallet", products: "My Products", orderHistory: "Order History", security: "Security", privacyPolicy: "Privacy & Policy" },
     profile: {
       fullName: "Full Name", address: "Address", organization: "Organization", email: "Email", phone: "Primary Mobile Phone",
       kyc: "KYC Verification", tfa: "Two-Factor Authentication", currency: "Default Currency",
@@ -36,7 +36,7 @@ const DASH_I18N = {
   ru: {
     nav: ["Главная", "Услуги", "Пакеты", "Заказ", "Маркетплейс", "О нас", "Контакты"],
     help: "Помощь", account: "Аккаунт", settings: "Настройки аккаунта",
-    sections: { profile: "Мой профиль", wallet: "Кошелек", products: "Мои продукты", orderHistory: "История заказов", security: "Безопасность" },
+    sections: { profile: "Мой профиль", wallet: "Кошелек", products: "Мои продукты", orderHistory: "История заказов", security: "Безопасность", privacyPolicy: "Конфиденциальность и политика" },
     profile: {
       fullName: "Полное имя", address: "Адрес", organization: "Организация", email: "Email", phone: "Основной телефон",
       kyc: "KYC-верификация", tfa: "Двухфакторная аутентификация", currency: "Валюта по умолчанию",
@@ -51,7 +51,7 @@ const DASH_I18N = {
   hy: {
     nav: ["Գլխավոր", "Ծառայություններ", "Փաթեթներ", "Պատվեր", "Մարկետփլեյս", "Մեր մասին", "Կապ"],
     help: "Օգնություն", account: "Հաշիվ", settings: "Հաշվի կարգավորումներ",
-    sections: { profile: "Իմ պրոֆիլը", wallet: "Դրամապանակ", products: "Իմ ապրանքները", orderHistory: "Պատվերների պատմություն", security: "Անվտանգություն" },
+    sections: { profile: "Իմ պրոֆիլը", wallet: "Դրամապանակ", products: "Իմ ապրանքները", orderHistory: "Պատվերների պատմություն", security: "Անվտանգություն", privacyPolicy: "Գաղտնիություն և քաղաքականություն" },
     profile: {
       fullName: "Ամբողջական անուն", address: "Հասցե", organization: "Կազմակերպություն", email: "Email", phone: "Հիմնական հեռախոս",
       kyc: "KYC ստուգում", tfa: "Երկգործոն նույնականացում", currency: "Լռելյայն արժույթ",
@@ -65,7 +65,7 @@ const DASH_I18N = {
   }
 };
 let currentDashLang = localStorage.getItem(LS_LANG) || "en";
-const sectionTitleKeys = { profile: "profile", wallet: "wallet", products: "products", "order-history": "orderHistory", security: "security" };
+const sectionTitleKeys = { profile: "profile", wallet: "wallet", products: "products", "order-history": "orderHistory", security: "security", "privacy-policy": "privacyPolicy" };
 function dashDict() { return DASH_I18N[currentDashLang] || DASH_I18N.en; }
 function dt(path) {
   return path.split(".").reduce((obj, key) => obj?.[key], dashDict()) || path;
@@ -250,14 +250,15 @@ function formatPhone(str) {
 
 // ——— Section switching with browser history ———
 const sections = [
-  "profile", "wallet", "products", "order-history", "security"
+  "profile", "wallet", "products", "order-history", "security", "privacy-policy"
 ];
 const sectionTitles = {
   profile: "My Profile",
   wallet: "Wallet",
   products: "My Products",
   "order-history": "Order History",
-  security: "Security"
+  security: "Security",
+  "privacy-policy": "Privacy & Policy"
 };
 
 let currentSection = "profile";
@@ -326,7 +327,8 @@ async function renderSectionContent(id) {
     wallet: renderWallet,
     products: renderProducts,
     "order-history": renderOrderHistory,
-    security: renderSecurity
+    security: renderSecurity,
+    "privacy-policy": renderPrivacyPolicy
   };
   const fn = renderers[id];
   const html = fn ? fn() : `<div class="section-empty"><p>Content for ${title} will be available here.</p></div>`;
@@ -567,6 +569,92 @@ function renderSecurity() {
     <div class="section-block">
       <h3>Active sessions</h3>
       <p>Current session: this device. Sign out elsewhere from this page.</p>
+    </div>
+  `;
+}
+
+function renderPrivacyPolicy() {
+  return `
+    <div class="dashboard-legal section-block">
+      <p class="dashboard-legal__updated">Last updated: May 2026 · DEWEB (dewebam.com)</p>
+      <p class="dashboard-legal__intro">
+        DEWEB (“we”, “us”, “our”) operates the dewebam.com platform — an IT studio and marketplace
+        where clients order services and sellers offer products using DEWEB internal coins.
+      </p>
+
+      <h2>1. Information we collect</h2>
+      <ul>
+        <li><strong>Account data:</strong> username, email, password (stored encrypted), profile and seller information.</li>
+        <li><strong>Transaction data:</strong> orders, wallet balance, DEWEB transfers, and USDT top-up transaction references.</li>
+        <li><strong>Communications:</strong> contact form messages, support chat, and service inquiries.</li>
+        <li><strong>Technical data:</strong> IP address, browser type, and cookies (see Cookie Policy below).</li>
+      </ul>
+
+      <h2>2. How we use your information</h2>
+      <ul>
+        <li>Provide and secure your account and payments.</li>
+        <li>Process orders between customers and sellers.</li>
+        <li>Send support responses and optional newsletters (if you opt in).</li>
+        <li>Comply with legal obligations and prevent fraud.</li>
+      </ul>
+
+      <h2>3. Sharing of data</h2>
+      <p>
+        We do not sell your personal data. We may share information with payment partners only as
+        needed to complete USDT top-ups or withdrawals, and with service providers that host our
+        infrastructure under confidentiality obligations.
+      </p>
+
+      <h2>4. Security</h2>
+      <p>
+        We use HTTPS, encrypted passwords, and access controls. No method of transmission over the
+        internet is 100% secure; we work to protect your data using industry-standard practices.
+      </p>
+
+      <h2>5. Your rights</h2>
+      <p>
+        You may request access, correction, or deletion of your account data by contacting us through
+        the support widget or contact form. You may withdraw marketing consent at any time in
+        your account settings.
+      </p>
+
+      <h2>6. Retention</h2>
+      <p>
+        We retain account and transaction records as long as your account is active and as required
+        for legal, tax, or dispute resolution purposes.
+      </p>
+
+      <h2>7. Terms of Use</h2>
+      <ul>
+        <li>You must be at least 18 years old to use DEWEB.</li>
+        <li>DEWEB coins are internal platform credits (1 DEWEB = 1 USDT = 1 USD), not a public cryptocurrency unless stated otherwise.</li>
+        <li>Top-ups are accepted in <strong>USDT only</strong> via connected MetaMask or Ronin wallets.</li>
+        <li>Sellers must deliver agreed work; buyers pay in DEWEB per platform rules.</li>
+        <li>Prohibited: fraud, illegal content, abuse of other users, or circumventing platform fees.</li>
+        <li>We may suspend accounts that violate these terms.</li>
+        <li>The platform is provided “as is”; liability is limited to the extent permitted by applicable law.</li>
+      </ul>
+
+      <h2>8. Cookie Policy</h2>
+      <p><strong>Required cookies</strong> (necessary to use the site):</p>
+      <ul>
+        <li>Authentication session (login token).</li>
+        <li>Cookie consent preference.</li>
+        <li>Security and load-balancing.</li>
+      </ul>
+      <p><strong>Optional cookies</strong> (if you choose “Accept all”):</p>
+      <ul>
+        <li>Language preference.</li>
+        <li>Anonymous usage analytics to improve the product.</li>
+      </ul>
+      <p>
+        If you decline cookies, the site cannot function and you will not be able to register or sign in.
+      </p>
+
+      <h2>9. Contact</h2>
+      <p>
+        Questions about this policy: use the support chat on dewebam.com or the Contact section on the home page.
+      </p>
     </div>
   `;
 }

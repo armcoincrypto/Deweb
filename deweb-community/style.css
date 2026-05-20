@@ -2807,37 +2807,43 @@ body::before {
   margin-top: 12px;
 }
 
-.sidebar-legal {
-  margin-top: 24px;
-  padding: 16px 14px 20px;
-  border-top: 1px solid rgba(0, 212, 255, 0.15);
+.dashboard-legal {
+  max-width: 820px;
+  line-height: 1.7;
 }
 
-.sidebar-legal__title {
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.dashboard-legal__updated {
+  font-size: 14px;
+  color: rgba(168, 178, 209, 0.75);
+  margin-bottom: 20px;
+}
+
+.dashboard-legal__intro {
+  color: rgba(168, 178, 209, 0.95);
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.dashboard-legal h2 {
   color: #00d4ff;
+  font-size: 20px;
+  margin: 28px 0 12px;
+}
+
+.dashboard-legal p,
+.dashboard-legal li {
+  color: rgba(168, 178, 209, 0.9);
+  font-size: 15px;
   margin-bottom: 10px;
 }
 
-.sidebar-legal__text {
-  font-size: 11px;
-  line-height: 1.55;
-  color: rgba(168, 178, 209, 0.85);
-  margin-bottom: 10px;
+.dashboard-legal ul {
+  padding-left: 22px;
+  margin-bottom: 16px;
 }
 
-.sidebar-legal__link {
-  font-size: 12px;
-  font-weight: 700;
-  color: #00d4ff;
-  text-decoration: none;
-}
-
-.sidebar-legal__link:hover {
-  text-decoration: underline;
+.dashboard-legal strong {
+  color: #e8ecf4;
 }
 
 .seller-products-layout {

@@ -414,11 +414,6 @@ body.nav-menu-open {
     width: 100%;
   }
 
-  .sidebar-legal {
-    display: block;
-    margin-top: 16px;
-  }
-
   .market-card,
   .package-card {
     min-height: auto;
