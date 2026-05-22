@@ -1,19 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { pricingPlans } from "@/lib/data";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 
 export function Pricing() {
+  const t = useTranslations("home");
+  const tp = useTranslations("pricing");
+
   return (
-    <section id="about" className="section-padding">
+    <section id="pricing" className="section-padding">
       <div className="container-narrow">
         <SectionHeading
-          kicker="Pricing"
-          title="Plans that scale with your ambition"
-          subtitle="Start free. Upgrade when you need priority matching, AI tools, and dedicated support."
+          kicker={t("pricingKicker")}
+          title={t("pricingTitle")}
+          subtitle={tp("subtitle")}
         />
         <div className="grid gap-6 lg:grid-cols-3">
           {pricingPlans.map((plan, i) => (
@@ -53,7 +57,7 @@ export function Pricing() {
               </ul>
               <div className="mt-8">
                 <GlowButton
-                  href="#hero"
+                  href="/signup"
                   variant={plan.highlighted ? "primary" : "ghost"}
                   className="w-full !block text-center"
                 >

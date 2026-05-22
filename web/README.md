@@ -1,6 +1,6 @@
-# DEWEB — Premium Homepage (Next.js)
+# DEWEB — SaaS Marketplace Platform (Next.js)
 
-Futuristic SaaS landing page for the DEWEB IT marketplace: supplier bidding, competitive offers, AI automation, and trust at scale.
+Multi-page IT marketplace: supplier bidding, services, marketplace, customer & supplier dashboards, EN/AM/RU i18n.
 
 ## Stack
 
@@ -17,7 +17,29 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000/en](http://localhost:3000/en)
+
+## Routes
+
+| Path | Page |
+|------|------|
+| `/en`, `/am`, `/ru` | Home |
+| `/en/services` | Services catalog |
+| `/en/marketplace` | Supplier marketplace |
+| `/en/about` | About |
+| `/en/pricing` | Pricing |
+| `/en/contact` | Contact |
+| `/en/login`, `/en/signup` | Auth |
+| `/en/dashboard/customer` | Customer dashboard |
+| `/en/dashboard/supplier` | Supplier dashboard |
+
+## Languages
+
+- `en` English
+- `am` Armenian
+- `ru` Russian
+
+Language switcher in navbar; URLs are locale-prefixed for SEO.
 
 ## Build for production
 

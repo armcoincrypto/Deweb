@@ -1,23 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { categories } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function MarketplaceCategories() {
+  const t = useTranslations("home");
+
   return (
-    <section id="marketplace" className="section-padding bg-gradient-to-b from-transparent via-deweb-cyan/[0.02] to-transparent">
+    <section className="section-padding bg-gradient-to-b from-transparent via-deweb-cyan/[0.02] to-transparent">
       <div className="container-narrow">
         <SectionHeading
-          kicker="Marketplace"
-          title="Every IT category. One competitive platform."
-          subtitle="Browse verified suppliers across AI, web, mobile, design, and custom software."
+          kicker={t("marketKicker")}
+          title={t("marketTitle")}
+          subtitle={t("marketSubtitle")}
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((cat, i) => (
-            <motion.a
+            <motion.div
               key={cat.name}
-              href="#hero"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -26,8 +29,9 @@ export function MarketplaceCategories() {
                 scale: 1.02,
                 boxShadow: "0 0 40px rgba(0, 242, 255, 0.15)",
               }}
-              className="group glass-panel flex items-center gap-4 p-6 transition-all"
+              className="group relative glass-panel flex items-center gap-4 p-6 transition-all"
             >
+              <Link href="/marketplace" className="absolute inset-0 z-10 rounded-2xl" aria-label={cat.name} />
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 text-2xl transition-all group-hover:bg-deweb-cyan/20 group-hover:shadow-glow-sm">
                 {cat.icon}
               </span>
@@ -40,7 +44,7 @@ export function MarketplaceCategories() {
               <span className="ml-auto text-deweb-cyan opacity-0 transition-opacity group-hover:opacity-100">
                 →
               </span>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
       </div>

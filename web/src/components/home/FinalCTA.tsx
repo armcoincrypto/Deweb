@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { GlowButton } from "@/components/ui/GlowButton";
 
 export function FinalCTA() {
+  const t = useTranslations("home");
+
   return (
     <section className="section-padding pb-32">
       <div className="container-narrow px-4 sm:px-6 lg:px-8">
@@ -18,18 +21,17 @@ export function FinalCTA() {
           <div className="absolute -bottom-20 -right-20 h-60 w-60 rounded-full bg-purple-500/20 blur-3xl" />
           <div className="relative">
             <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-              Ready to Build the Future?
+              {t("ctaFinalTitle")}
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-white/60">
-              Post your project today. Let verified suppliers compete. Choose the best offer and
-              launch with DEWEB escrow and AI-powered delivery.
+              {t("ctaFinalSubtitle")}
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <GlowButton href="#hero" variant="primary">
-                Start Your Project Now
+              <GlowButton href="/signup" variant="primary">
+                {t("ctaFinalPrimary")}
               </GlowButton>
-              <GlowButton href="#marketplace" variant="secondary">
-                Browse Suppliers
+              <GlowButton href="/marketplace" variant="secondary">
+                {t("ctaFinalSecondary")}
               </GlowButton>
             </div>
           </div>

@@ -1,14 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { trustedCompanies } from "@/lib/data";
 
 export function TrustedCompanies() {
+  const t = useTranslations("home");
+
   return (
     <section className="section-padding border-y border-white/[0.06] bg-black/20">
       <div className="container-narrow">
         <p className="mb-10 text-center text-xs font-bold uppercase tracking-[0.25em] text-white/35">
-          Trusted by teams building at scale
+          {t("trusted")}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
           {trustedCompanies.map((name, i) => (
