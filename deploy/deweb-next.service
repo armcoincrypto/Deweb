@@ -1,0 +1,17 @@
+[Unit]
+Description=DEWEB Next.js homepage
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/deweb/web
+Environment=NODE_ENV=production
+Environment=PORT=3001
+Environment=NEXT_PUBLIC_LEGACY_URL=https://dewebam.com
+ExecStart=/usr/bin/npm run start
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

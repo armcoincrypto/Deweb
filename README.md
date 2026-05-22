@@ -52,6 +52,7 @@ Switch to **Seller** in My Profile to add products; they appear on the main mark
 
 ## Project structure
 
+- **web/** — Premium Next.js homepage (Tailwind, Framer Motion) — `cd web && npm run dev`
 - **deweb-community/** — Frontend (HTML/CSS/JS), `api.js` client
 - **backend/** — Express API, SQLite, seed data
 

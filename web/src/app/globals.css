@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --deweb-cyan: #00f2ff;
+    --deweb-bg: #05070a;
+    --deweb-glass: rgba(12, 18, 28, 0.65);
+    --deweb-border: rgba(0, 242, 255, 0.18);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-deweb-bg text-white antialiased;
+    background-color: var(--deweb-bg);
+  }
+
+  ::selection {
+    background: rgba(0, 242, 255, 0.35);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+      0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  }
+
+  .glass-panel-glow {
+    @apply glass-panel;
+    box-shadow:
+      0 0 0 1px rgba(0, 242, 255, 0.12) inset,
+      0 0 60px rgba(0, 242, 255, 0.08),
+      0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-gradient-cyan {
+    @apply bg-gradient-to-r from-white via-deweb-cyan to-white bg-clip-text text-transparent;
+    background-size: 200% auto;
+  }
+
+  .glow-border {
+    position: relative;
+  }
+
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 242, 255, 0.5),
+      rgba(124, 58, 237, 0.3),
+      rgba(0, 242, 255, 0.2)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .section-padding {
+    @apply px-4 py-20 sm:px-6 lg:px-8 lg:py-28;
+  }
+
+  .container-narrow {
+    @apply mx-auto max-w-7xl;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0e14;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 242, 255, 0.25);
+  border-radius: 4px;
+}
