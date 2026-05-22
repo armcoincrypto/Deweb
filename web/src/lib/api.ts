@@ -254,6 +254,7 @@ export type Product = {
   description?: string;
   sellerName?: string;
   rating?: number;
+  imageUrl?: string;
 };
 
 export type ProjectOrder = {
