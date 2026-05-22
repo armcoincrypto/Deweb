@@ -11,8 +11,9 @@ git pull origin main
 
 echo "==> Build Next.js homepage..."
 cd "$APP_DIR/web"
-export NODE_ENV=production
 export NEXT_PUBLIC_LEGACY_URL="https://${DOMAIN}"
+# Install all deps (dev needed for build); NODE_ENV=production skips devDependencies
+unset NODE_ENV
 npm install
 npm run build
 
