@@ -2,119 +2,206 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { SupplierCard } from "@/components/marketplace/SupplierCard";
-import { dewebApi, type Product } from "@/lib/api";
-import { categories } from "@/lib/data";
+import { dewebApi, getToken, type MarketplaceListing } from "@/lib/api";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { cn } from "@/lib/utils";
+
+type Filter = "customer_request" | "worker_offer";
 
 export function MarketplaceView() {
   const t = useTranslations("marketplace");
-  const tc = useTranslations("common");
-  const [products, setProducts] = useState<Product[]>([]);
+  const [filter, setFilter] = useState<Filter>("customer_request");
+  const [listings, setListings] = useState<MarketplaceListing[]>([]);
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [applyMsg, setApplyMsg] = useState("");
+  const [selected, setSelected] = useState<MarketplaceListing | null>(null);
+  const [applyForm, setApplyForm] = useState({ message: "", price: "", timeline: "" });
+
+  function load() {
+    setLoading(true);
+    dewebApi.listings
+      .list(filter)
+      .then((d) => setListings(d.listings || []))
+      .catch(() => setListings([]))
+      .finally(() => setLoading(false));
+  }
 
   useEffect(() => {
-    dewebApi.products
-      .list()
-      .then((d) => setProducts(d.products || []))
-      .catch(() => setProducts([]))
-      .finally(() => setLoading(false));
-  }, []);
+    load();
+  }, [filter]);
 
-  const filtered = products.filter((p) => {
+  const filtered = listings.filter((l) => {
     const q = search.toLowerCase();
-    const matchQ =
-      !q ||
-      p.title?.toLowerCase().includes(q) ||
-      p.category?.toLowerCase().includes(q) ||
-      p.description?.toLowerCase().includes(q);
-    const matchCat =
-      category === "all" || p.category?.toLowerCase().includes(category.toLowerCase());
-    return matchQ && matchCat;
+    if (!q) return true;
+    return (
+      l.title?.toLowerCase().includes(q) ||
+      l.description?.toLowerCase().includes(q) ||
+      l.authorName?.toLowerCase().includes(q)
+    );
   });
 
-  const demoProducts: Product[] =
-    filtered.length > 0
-      ? filtered
-      : [
-          { id: "1", title: "Full-Stack Web App", price: 4500, category: "Web Development", description: "React + Node delivery with milestones.", rating: 4.9, sellerName: "Nexus Labs" },
-          { id: "2", title: "AI Chatbot Integration", price: 2800, category: "AI & Automation", description: "Custom GPT workflows for support.", rating: 4.8, sellerName: "CloudForge" },
-          { id: "3", title: "Mobile Banking UI", price: 6200, category: "UI/UX Design", description: "Figma to production-ready UI.", rating: 5.0, sellerName: "PixelStack" },
-          { id: "4", title: "E-commerce Store", price: 8900, category: "E-commerce", description: "Shopify + custom checkout.", rating: 4.7, sellerName: "DevMint" },
-          { id: "5", title: "Telegram Sales Bot", price: 1200, category: "Bots & SaaS", description: "Lead capture and auto-replies.", rating: 4.6, sellerName: "AutoStack" },
-          { id: "6", title: "SEO Growth Package", price: 900, category: "SEO", description: "Technical audit + content plan.", rating: 4.5, sellerName: "RankFlow" },
-        ];
+  async function submitApply() {
+    if (!selected || !getToken()) {
+      setApplyMsg(t("loginToApply"));
+      return;
+    }
+    try {
+      await dewebApi.listings.apply(selected.id, {
+        message: applyForm.message,
+        price: Number(applyForm.price) || selected.budget,
+        timeline: applyForm.timeline,
+      });
+      setApplyMsg(t("applicationSent"));
+      setSelected(null);
+    } catch (e) {
+      setApplyMsg(e instanceof Error ? e.message : t("error"));
+    }
+  }
 
   return (
     <>
       <PageHeader title={t("title")} subtitle={t("subtitle")} />
 
       <div className="container-narrow px-4 py-10 sm:px-6 lg:px-8">
-        <div className="glass-panel mb-8 flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <input
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={t("search")}
-            className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white placeholder:text-white/35 focus:border-deweb-cyan/50 focus:outline-none sm:max-w-md"
-          />
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-deweb-cyan/50 focus:outline-none"
+        <div className="mb-8 flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={() => setFilter("customer_request")}
+            className={cn(
+              "rounded-full px-5 py-2.5 text-sm font-bold",
+              filter === "customer_request"
+                ? "bg-deweb-cyan text-deweb-bg"
+                : "border border-white/15 text-white/60"
+            )}
           >
-            <option value="all">{t("filterAll")}</option>
-            {categories.map((c) => (
-              <option key={c.name} value={c.name}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-          <div className="flex items-center gap-2 text-sm text-emerald-400">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-            248 {t("suppliersOnline")}
-          </div>
+            {t("filterCustomer")}
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilter("worker_offer")}
+            className={cn(
+              "rounded-full px-5 py-2.5 text-sm font-bold",
+              filter === "worker_offer"
+                ? "bg-deweb-cyan text-deweb-bg"
+                : "border border-white/15 text-white/60"
+            )}
+          >
+            {t("filterWorker")}
+          </button>
+          <Link
+            href="/account/listings"
+            className="ml-auto rounded-full border border-deweb-cyan/40 px-5 py-2.5 text-sm font-bold text-deweb-cyan"
+          >
+            {t("postYours")}
+          </Link>
         </div>
 
-        {loading && (
-          <p className="text-center text-white/50">{tc("loading")}</p>
-        )}
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder={t("search")}
+          className="mb-8 w-full max-w-md rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white"
+        />
+
+        {loading && <p className="text-white/50">{t("loading")}</p>}
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {demoProducts.map((p, i) => (
-            <SupplierCard key={p.id} product={p} index={i} />
+          {filtered.map((l) => (
+            <button
+              key={l.id}
+              type="button"
+              onClick={() => {
+                setSelected(l);
+                setApplyForm({
+                  message: "",
+                  price: String(l.budget || ""),
+                  timeline: "",
+                });
+                setApplyMsg("");
+              }}
+              className="text-left"
+            >
+              <GlassCard className="h-full p-6 hover:border-deweb-cyan/30">
+                <span className="text-[10px] font-bold uppercase text-deweb-cyan">
+                  {l.listingType === "customer_request" ? t("customerNeed") : t("workerOffer")}
+                </span>
+                <h3 className="mt-2 font-bold text-white">{l.title}</h3>
+                <p className="mt-2 line-clamp-3 text-sm text-white/55">{l.description}</p>
+                <p className="mt-4 font-bold text-deweb-cyan">
+                  {l.budgetLabel || (l.budget ? `$${l.budget}` : "—")}
+                </p>
+                {l.deadline && (
+                  <p className="mt-1 text-xs text-white/40">
+                    {t("deadline")}: {l.deadline}
+                  </p>
+                )}
+                <p className="mt-3 text-xs text-white/35">{l.authorName}</p>
+              </GlassCard>
+            </button>
           ))}
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <div className="glass-panel-glow p-6">
-            <h3 className="font-bold text-white">{t("liveActivity")}</h3>
-            <ul className="mt-4 space-y-3 text-sm text-white/60">
-              <li>☆ Marcus bid $6,850 on E-commerce API — <span className="text-emerald-400">2m ago</span></li>
-              <li>☆ Elena won SaaS Landing — <span className="text-deweb-cyan">12m ago</span></li>
-              <li>☆ James posted DevOps Pipeline — <span className="text-white/40">18m ago</span></li>
-            </ul>
+        {!loading && filtered.length === 0 && (
+          <p className="text-center text-white/45">{t("noListings")}</p>
+        )}
+
+        {selected && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
+            <GlassCard className="max-w-lg w-full p-6">
+              <h3 className="text-xl font-bold text-white">{selected.title}</h3>
+              <p className="mt-2 text-sm text-white/60">{selected.description}</p>
+              {!getToken() ? (
+                <p className="mt-4">
+                  <Link href="/account/login" className="text-deweb-cyan font-bold">
+                    {t("loginToApply")}
+                  </Link>
+                </p>
+              ) : (
+                <div className="mt-4 space-y-3">
+                  <textarea
+                    value={applyForm.message}
+                    onChange={(e) => setApplyForm((f) => ({ ...f, message: e.target.value }))}
+                    placeholder={t("yourProposal")}
+                    rows={3}
+                    className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white text-sm"
+                  />
+                  <input
+                    type="number"
+                    value={applyForm.price}
+                    onChange={(e) => setApplyForm((f) => ({ ...f, price: e.target.value }))}
+                    placeholder={t("yourPrice")}
+                    className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white"
+                  />
+                  <input
+                    value={applyForm.timeline}
+                    onChange={(e) => setApplyForm((f) => ({ ...f, timeline: e.target.value }))}
+                    placeholder={t("timeline")}
+                    className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white"
+                  />
+                  <button
+                    type="button"
+                    onClick={submitApply}
+                    className="w-full rounded-full bg-deweb-cyan py-3 font-bold text-deweb-bg"
+                  >
+                    {t("sendRequest")}
+                  </button>
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={() => setSelected(null)}
+                className="mt-4 text-sm text-white/45"
+              >
+                {t("close")}
+              </button>
+              {applyMsg && <p className="mt-2 text-sm text-emerald-400">{applyMsg}</p>}
+            </GlassCard>
           </div>
-          <div className="glass-panel p-6">
-            <h3 className="font-bold text-white">{t("openProjects")}</h3>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li className="flex justify-between border-b border-white/5 pb-2">
-                <span className="text-white/80">Custom AI CRM</span>
-                <span className="font-bold text-deweb-cyan">$5k–$10k</span>
-              </li>
-              <li className="flex justify-between border-b border-white/5 pb-2">
-                <span className="text-white/80">Mobile Banking UI</span>
-                <span className="font-bold text-deweb-cyan">$4k–$8k</span>
-              </li>
-              <li className="flex justify-between">
-                <span className="text-white/80">Marketplace MVP</span>
-                <span className="font-bold text-deweb-cyan">$12k–$25k</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

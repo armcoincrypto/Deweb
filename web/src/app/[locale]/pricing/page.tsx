@@ -1,9 +1,12 @@
-import { Pricing } from "@/components/home/Pricing";
+"use client";
 
-export default function PricingPage() {
-  return (
-    <div className="pt-8">
-      <Pricing />
-    </div>
-  );
+import { useEffect } from "react";
+import { useRouter } from "@/i18n/routing";
+
+export default function PricingRedirect() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/marketplace");
+  }, [router]);
+  return null;
 }

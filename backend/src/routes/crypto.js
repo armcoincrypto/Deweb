@@ -13,16 +13,17 @@ router.get("/config", (_req, res) => {
     topUpCoin: "USDT",
     supportedCoins: ["USDT"],
     depositAddresses: {
-      USDT: process.env.TREASURY_USDT || ""
+      MetaMask: process.env.TREASURY_USDT_METAMASK || "",
+      Ronin: process.env.TREASURY_USDT_RONIN || ""
     },
     usdtContracts: {
       MetaMask: process.env.USDT_CONTRACT_ETH || "0xdAC17F958D2ee523a2206206994597C13D831ec7",
       Ronin: process.env.USDT_CONTRACT_RONIN || "0x97a9107c1791bc656a31382e6A152ef171ad99cD"
     },
-    treasuryUsdt: process.env.TREASURY_USDT || "",
     dewebUsdRate: Number(process.env.DEWEB_USD_RATE || 1),
     walletProviders: ["MetaMask", "Ronin"],
-    dewebIsInternal: true
+    dewebIsInternal: true,
+    emailVerificationRequired: true
   });
 });
 

@@ -4,6 +4,7 @@ import { db, uid, nowIso, toUserRow, logActivity } from "../db.js";
 import { signToken, requireAuth } from "../middleware/auth.js";
 import { isAdminEmail, getAdminEmail, isAdminAutoLoginEnabled } from "../utils/admin.js";
 import { runSeed } from "../seed.js";
+import { sendUserEmail } from "../services/mail.js";
 
 const router = Router();
 
@@ -61,6 +62,7 @@ router.post("/register", (req, res) => {
   `).run(id);
 
   logActivity(id, "signup");
+  queueVerificationEmail(id, email).catch(() => null);
 
   res.status(201).json({
     success: true,
@@ -142,6 +144,60 @@ router.get("/me", requireAuth, (req, res) => {
   const user = toUserRow(db.prepare("SELECT * FROM users WHERE id = ?").get(req.userId));
   if (!user) return res.status(404).json({ error: "User not found." });
   res.json({ user });
+});
+
+async function queueVerificationEmail(userId, email) {
+  db.prepare("UPDATE email_verification_tokens SET used = 1 WHERE user_id = ? AND used = 0").run(userId);
+  const token = uid() + uid();
+  const expiresAt = new Date(Date.now() + 86400000 * 2).toISOString();
+  db.prepare(`
+    INSERT INTO email_verification_tokens (id, user_id, token, expires_at, created_at)
+    VALUES (?, ?, ?, ?, ?)
+  `).run(uid(), userId, token, expiresAt, nowIso());
+
+  const base = process.env.PUBLIC_WEB_URL || process.env.CORS_ORIGIN || "https://dewebam.com";
+  const link = `${base}/en/account/verify-email?token=${token}`;
+  await sendUserEmail({
+    to: email,
+    subject: "[DEWEB] Verify your email",
+    text: `Verify your email to connect MetaMask/Ronin and get DEWEB coins:\n\n${link}\n\nLink expires in 48 hours.`
+  });
+  return link;
+}
+
+router.post("/send-verification", requireAuth, async (req, res) => {
+  const row = db.prepare("SELECT id, email, email_verified FROM users WHERE id = ?").get(req.userId);
+  if (!row) return res.status(404).json({ error: "User not found." });
+  if (row.email_verified) {
+    return res.json({ ok: true, message: "Email already verified." });
+  }
+  const link = await queueVerificationEmail(row.id, row.email);
+  const smtpOk = Boolean(process.env.SMTP_USER && process.env.SMTP_PASS);
+  res.json({
+    ok: true,
+    message: smtpOk
+      ? "Verification email sent. Check your inbox."
+      : "SMTP not configured. Use the verification link below.",
+    verifyUrl: smtpOk ? undefined : link
+  });
+});
+
+router.get("/verify-email", (req, res) => {
+  const token = String(req.query.token || "").trim();
+  if (!token) return res.status(400).json({ error: "Token required." });
+
+  const row = db.prepare(`
+    SELECT * FROM email_verification_tokens WHERE token = ? AND used = 0
+  `).get(token);
+  if (!row || new Date(row.expires_at) < new Date()) {
+    return res.status(400).json({ error: "Invalid or expired verification link." });
+  }
+
+  db.prepare("UPDATE users SET email_verified = 1 WHERE id = ?").run(row.user_id);
+  db.prepare("UPDATE email_verification_tokens SET used = 1 WHERE id = ?").run(row.id);
+  logActivity(row.user_id, "email_verified");
+
+  res.json({ ok: true, message: "Email verified. You can connect your wallet now." });
 });
 
 /**

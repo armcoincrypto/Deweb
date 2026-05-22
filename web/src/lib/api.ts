@@ -96,6 +96,49 @@ export const dewebApi = {
         method: "POST",
         body: JSON.stringify({ token, password }),
       }),
+    sendVerification: () =>
+      api<{ ok: boolean; message: string; verifyUrl?: string }>("/auth/send-verification", {
+        method: "POST",
+        body: "{}",
+      }),
+  },
+  listings: {
+    list: (type?: "customer_request" | "worker_offer" | "all") =>
+      api<{ listings: MarketplaceListing[] }>(
+        `/listings${type && type !== "all" ? `?type=${type}` : ""}`
+      ),
+    mine: () => api<{ listings: MarketplaceListing[] }>("/listings/mine"),
+    create: (body: Record<string, unknown>) =>
+      api<{ listing: MarketplaceListing }>("/listings", {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
+    remove: (id: string) =>
+      api(`/listings/${id}`, { method: "DELETE" }),
+    apply: (id: string, body: { message?: string; price?: number; timeline?: string }) =>
+      api(`/listings/${id}/apply`, { method: "POST", body: JSON.stringify(body) }),
+    applications: (id: string) =>
+      api<{ applications: ListingApplication[] }>(`/listings/${id}/applications`),
+    acceptApplication: (appId: string) =>
+      api<{ ok: boolean; chatId: string }>(`/listings/applications/${appId}/accept`, {
+        method: "POST",
+        body: "{}",
+      }),
+  },
+  dealChat: {
+    mine: () => api<{ chats: DealChatSummary[] }>("/deal-chat/mine"),
+    messages: (chatId: string) =>
+      api<{ messages: DealMessage[] }>(`/deal-chat/${chatId}/messages`),
+    send: (chatId: string, body: string) =>
+      api<{ message: DealMessage; warning?: string }>(`/deal-chat/${chatId}/messages`, {
+        method: "POST",
+        body: JSON.stringify({ body }),
+      }),
+    attach: (chatId: string, body: { filename: string; dataBase64: string; note?: string }) =>
+      api(`/deal-chat/${chatId}/attachment`, {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
   },
   users: {
     updateMe: (body: Record<string, unknown>) =>
@@ -127,28 +170,37 @@ export const dewebApi = {
       api<{ bid: Bid }>(`/bids/${bidId}/reject`, { method: "POST", body: "{}" }),
   },
   wallet: {
-    me: () => api<{ wallet: Wallet }>("/wallet/me"),
+    me: () => api<{ wallet: Wallet; emailVerified?: boolean }>("/wallet/me"),
+    config: () => api<Record<string, unknown>>("/wallet/config"),
     linked: () => api<{ linkedWallets: LinkedWallet[] }>("/wallet/linked"),
     link: (body: { provider: string; address: string }) =>
       api("/wallet/linked", { method: "POST", body: JSON.stringify(body) }),
     unlink: (provider: string) =>
       api(`/wallet/linked/${encodeURIComponent(provider)}`, { method: "DELETE" }),
     topupIntent: (body: { dewebAmount: number; provider: string }) =>
-      api("/wallet/topup/intent", { method: "POST", body: JSON.stringify(body) }),
-    topupConfirm: (body: {
+      api<{
+        chainId: number;
+        treasuryAddress: string;
+        tokenContract: string;
+        txData: string;
+        fromAddress: string;
+        usdtAmount: number;
+      }>("/wallet/topup/intent", { method: "POST", body: JSON.stringify(body) }),
+    topupSubmit: (body: {
       provider: string;
       dewebAmount: number;
       txHash: string;
       fromAddress?: string;
-    }) => api("/wallet/topup/confirm", { method: "POST", body: JSON.stringify(body) }),
-    transactions: () => api<{ transactions: WalletTx[] }>("/wallet/transactions"),
-    cryptoConfig: () =>
+    }) =>
       api<{
-        treasuryUsdt: string;
-        dewebUsdRate: number;
-        swapBuyUrl: string;
-        swapSellUrl: string;
-      }>("/crypto/config"),
+        topupId?: string;
+        status: string;
+        credited?: number;
+        error?: string;
+      }>("/wallet/topup/submit", { method: "POST", body: JSON.stringify(body) }),
+    topupStatus: (id: string) =>
+      api<{ status: string; credited?: number; error?: string }>(`/wallet/topup/${id}/status`),
+    transactions: () => api<{ transactions: WalletTx[] }>("/wallet/transactions"),
   },
   admin: {
     stats: () => api<AdminStats>("/admin/stats"),
@@ -289,5 +341,45 @@ export type WalletTx = {
   type: string;
   amount: number;
   balanceAfter: number;
+  createdAt: string;
+};
+
+export type MarketplaceListing = {
+  id: string;
+  userId: string;
+  listingType: "customer_request" | "worker_offer";
+  title: string;
+  description?: string;
+  budget?: number;
+  budgetLabel?: string;
+  deadline?: string;
+  category?: string;
+  authorName?: string;
+  status: string;
+};
+
+export type ListingApplication = {
+  id: string;
+  applicantId: string;
+  applicantName?: string;
+  message?: string;
+  price?: number;
+  timeline?: string;
+  status: string;
+};
+
+export type DealChatSummary = {
+  id: string;
+  listingTitle?: string;
+  partnerName?: string;
+  listingId: string;
+};
+
+export type DealMessage = {
+  id: string;
+  senderId: string;
+  body: string;
+  attachmentName?: string;
+  moderated?: boolean;
   createdAt: string;
 };

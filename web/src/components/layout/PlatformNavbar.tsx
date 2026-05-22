@@ -23,7 +23,6 @@ export function PlatformNavbar() {
     { href: "/services", label: t("services") },
     { href: "/marketplace", label: t("marketplace") },
     { href: "/about", label: t("about") },
-    { href: "/pricing", label: t("pricing") },
     { href: "/contact", label: t("contact") },
   ] as const;
 

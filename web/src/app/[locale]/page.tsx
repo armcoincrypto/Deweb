@@ -7,7 +7,6 @@ import { FeaturedSuppliers } from "@/components/home/FeaturedSuppliers";
 import { AIAutomation } from "@/components/home/AIAutomation";
 import { StatsBar } from "@/components/home/StatsBar";
 import { Testimonials } from "@/components/home/Testimonials";
-import { PricingSection } from "@/components/home/PricingSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export default function HomePage() {
@@ -22,7 +21,6 @@ export default function HomePage() {
       <AIAutomation />
       <StatsBar />
       <Testimonials />
-      <PricingSection />
       <FinalCTA />
     </>
   );

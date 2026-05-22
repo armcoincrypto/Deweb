@@ -221,6 +221,70 @@ db.exec(`
     label TEXT,
     updated_at TEXT NOT NULL
   );
+
+  CREATE TABLE IF NOT EXISTS email_verification_tokens (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    token TEXT NOT NULL UNIQUE,
+    expires_at TEXT NOT NULL,
+    used INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS marketplace_listings (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    listing_type TEXT NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT,
+    budget REAL,
+    budget_label TEXT,
+    deadline TEXT,
+    category TEXT,
+    status TEXT NOT NULL DEFAULT 'open',
+    author_name TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS listing_applications (
+    id TEXT PRIMARY KEY,
+    listing_id TEXT NOT NULL,
+    applicant_id TEXT NOT NULL,
+    applicant_name TEXT,
+    message TEXT,
+    price REAL,
+    timeline TEXT,
+    status TEXT NOT NULL DEFAULT 'pending',
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (listing_id) REFERENCES marketplace_listings(id),
+    FOREIGN KEY (applicant_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS deal_chats (
+    id TEXT PRIMARY KEY,
+    listing_id TEXT NOT NULL,
+    customer_id TEXT NOT NULL,
+    worker_id TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'active',
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    FOREIGN KEY (listing_id) REFERENCES marketplace_listings(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS deal_messages (
+    id TEXT PRIMARY KEY,
+    chat_id TEXT NOT NULL,
+    sender_id TEXT NOT NULL,
+    body TEXT NOT NULL,
+    attachment_name TEXT,
+    attachment_sent INTEGER NOT NULL DEFAULT 0,
+    moderated INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (chat_id) REFERENCES deal_chats(id)
+  );
 `);
 
 const migrateColumns = [

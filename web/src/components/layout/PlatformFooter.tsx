@@ -25,7 +25,6 @@ export function PlatformFooter() {
           <ul className="mt-4 space-y-2 text-sm text-white/60">
             <li><Link href="/services" className="hover:text-deweb-cyan">{t("services")}</Link></li>
             <li><Link href="/marketplace" className="hover:text-deweb-cyan">{t("marketplace")}</Link></li>
-            <li><Link href="/pricing" className="hover:text-deweb-cyan">{t("pricing")}</Link></li>
           </ul>
         </div>
         <div>

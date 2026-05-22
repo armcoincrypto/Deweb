@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { db, uid, nowIso, logActivity } from "../db.js";
 import { requireAuth } from "../middleware/auth.js";
-import { transferDeweb, debitWallet } from "./crypto.js";
-import { getAdminUserId } from "../utils/admin.js";
+import { requireEmailVerified } from "../middleware/requireEmailVerified.js";
+import { transferDeweb } from "./crypto.js";
 import { getUsdtConfig, usdtAmountToRaw, encodeUsdtTransfer } from "../utils/usdt.js";
+import { processTopupVerification } from "../services/topupProcessor.js";
 
 const router = Router();
 const PROVIDERS = ["MetaMask", "Ronin"];
@@ -52,6 +53,28 @@ function syncLegacyWallet(userId) {
   }
 }
 
+router.get("/config", (_req, res) => {
+  const mm = getUsdtConfig("MetaMask");
+  const rn = getUsdtConfig("Ronin");
+  res.json({
+    providers: PROVIDERS,
+    coin: "USDT",
+    dewebUsdRate: Number(process.env.DEWEB_USD_RATE || 1),
+    metamask: {
+      treasuryAddress: mm.treasury,
+      tokenContract: mm.contract,
+      chainId: mm.chainId,
+      rpcConfigured: Boolean(mm.rpcUrl)
+    },
+    ronin: {
+      treasuryAddress: rn.treasury,
+      tokenContract: rn.contract,
+      chainId: rn.chainId,
+      rpcConfigured: Boolean(rn.rpcUrl)
+    }
+  });
+});
+
 router.get("/me", requireAuth, (req, res) => {
   let row = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
   if (!row) {
@@ -62,8 +85,12 @@ router.get("/me", requireAuth, (req, res) => {
     row = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
   }
   syncLegacyWallet(req.userId);
-  const linked = getLinkedWallets(req.userId);
-  res.json({ wallet: toWallet(row), linkedWallets: linked });
+  const user = db.prepare("SELECT email_verified FROM users WHERE id = ?").get(req.userId);
+  res.json({
+    wallet: toWallet(row),
+    linkedWallets: getLinkedWallets(req.userId),
+    emailVerified: Boolean(user?.email_verified)
+  });
 });
 
 router.get("/linked", requireAuth, (req, res) => {
@@ -71,7 +98,7 @@ router.get("/linked", requireAuth, (req, res) => {
   res.json({ linkedWallets: getLinkedWallets(req.userId) });
 });
 
-router.post("/linked", requireAuth, (req, res) => {
+router.post("/linked", requireAuth, requireEmailVerified, (req, res) => {
   const provider = String(req.body.provider || "").trim();
   const address = String(req.body.address || "").trim();
   if (!PROVIDERS.includes(provider)) {
@@ -103,7 +130,7 @@ router.post("/linked", requireAuth, (req, res) => {
   res.json({ linkedWallets: getLinkedWallets(req.userId) });
 });
 
-router.delete("/linked/:provider", requireAuth, (req, res) => {
+router.delete("/linked/:provider", requireAuth, requireEmailVerified, (req, res) => {
   const provider = String(req.params.provider || "").trim();
   if (!PROVIDERS.includes(provider)) {
     return res.status(400).json({ error: "Invalid provider." });
@@ -119,68 +146,14 @@ router.delete("/linked/:provider", requireAuth, (req, res) => {
   res.json({ linkedWallets: remaining });
 });
 
-router.patch("/me", requireAuth, (req, res) => {
-  const current = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
-  if (!current) {
-    db.prepare(`
-      INSERT INTO wallets (user_id, created, connected, deweb, pending_withdraw)
-      VALUES (?, 0, 0, 0, 0)
-    `).run(req.userId);
-  }
-
-  const row = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
-  const next = {
-    created: req.body.created !== undefined ? (req.body.created ? 1 : 0) : (row?.created || 0),
-    connected: req.body.connected !== undefined ? (req.body.connected ? 1 : 0) : (row?.connected || 0),
-    provider: req.body.provider !== undefined ? req.body.provider : (row?.provider || ""),
-    address: req.body.address !== undefined ? req.body.address : (row?.address || ""),
-    pendingWithdraw: req.body.pendingWithdraw !== undefined
-      ? Number(req.body.pendingWithdraw)
-      : (row?.pending_withdraw || 0)
-  };
-
-  db.prepare(`
-    UPDATE wallets
-    SET created = ?, connected = ?, provider = ?, address = ?, pending_withdraw = ?
-    WHERE user_id = ?
-  `).run(
-    next.created, next.connected, next.provider, next.address, next.pendingWithdraw,
-    req.userId
-  );
-
-  const updated = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
-  res.json({ wallet: toWallet(updated), linkedWallets: getLinkedWallets(req.userId), updatedAt: nowIso() });
-});
-
-router.post("/connect", requireAuth, (req, res) => {
-  req.body.provider = req.body.provider;
-  req.body.address = req.body.address;
-  const provider = String(req.body.provider || "").trim();
-  const address = String(req.body.address || "").trim();
-  if (!provider || !address) {
-    return res.status(400).json({ error: "provider and address required." });
-  }
-  db.prepare(`
-    INSERT INTO user_linked_wallets (user_id, provider, address, connected_at)
-    VALUES (?, ?, ?, ?)
-    ON CONFLICT(user_id, provider) DO UPDATE SET address = excluded.address, connected_at = excluded.connected_at
-  `).run(req.userId, provider, address, nowIso());
-  db.prepare(`
-    UPDATE wallets SET created = 1, connected = 1, provider = ?, address = ? WHERE user_id = ?
-  `).run(provider, address, req.userId);
-  logActivity(req.userId, "wallet_connected", { provider, address });
-  const row = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
-  res.json({ wallet: toWallet(row), linkedWallets: getLinkedWallets(req.userId) });
-});
-
-router.post("/topup/intent", requireAuth, (req, res) => {
+router.post("/topup/intent", requireAuth, requireEmailVerified, (req, res) => {
   const provider = String(req.body.provider || "").trim();
   const dewebAmount = Number(req.body.dewebAmount || 0);
   if (!PROVIDERS.includes(provider)) {
     return res.status(400).json({ error: "Select MetaMask or Ronin." });
   }
   if (dewebAmount <= 0) {
-    return res.status(400).json({ error: "Enter a positive DEWEB amount (1 DEWEB = 1 USD)." });
+    return res.status(400).json({ error: "Enter a positive amount (1 DEWEB = 1 USDT)." });
   }
 
   const linked = db.prepare(`
@@ -190,41 +163,40 @@ router.post("/topup/intent", requireAuth, (req, res) => {
     return res.status(400).json({ error: `Connect ${provider} first.` });
   }
 
-  const { treasury, contract } = getUsdtConfig(provider);
-  if (!treasury) {
+  const cfg = getUsdtConfig(provider);
+  if (!cfg.treasury) {
     return res.status(503).json({
-      error: "USDT treasury not configured. Set TREASURY_USDT in server .env."
+      error: `Set TREASURY_USDT_${provider === "Ronin" ? "RONIN" : "METAMASK"} in server .env.`
     });
   }
 
   const usdtAmount = dewebAmount;
   const amountRaw = usdtAmountToRaw(usdtAmount);
-  const txData = encodeUsdtTransfer(treasury, amountRaw);
+  const txData = encodeUsdtTransfer(cfg.treasury, amountRaw);
 
   res.json({
     provider,
     coin: "USDT",
     dewebAmount,
-    usdAmount: dewebAmount,
     usdtAmount,
     fromAddress: linked.address,
-    treasuryAddress: treasury,
-    tokenContract: contract,
+    treasuryAddress: cfg.treasury,
+    tokenContract: cfg.contract,
+    chainId: cfg.chainId,
     txData,
     amountRaw: amountRaw.toString(),
-    chainHint: provider === "Ronin" ? "ronin" : "ethereum",
-    message: `Send ${usdtAmount} USDT (≈ $${usdtAmount} USD) to receive ${dewebAmount} DEWEB. Only USDT is accepted.`
+    message: `Send exactly ${usdtAmount} USDT to the DEWEB treasury address shown. DEWEB is credited automatically after confirmation.`
   });
 });
 
-router.post("/topup/confirm", requireAuth, (req, res) => {
+async function submitTopup(req, res) {
   const provider = String(req.body.provider || "").trim();
   const dewebAmount = Number(req.body.dewebAmount || 0);
   const txHash = String(req.body.txHash || "").trim();
   const fromAddress = String(req.body.fromAddress || "").trim();
 
-  if (!txHash || dewebAmount <= 0) {
-    return res.status(400).json({ error: "txHash and dewebAmount required." });
+  if (!txHash || dewebAmount <= 0 || !PROVIDERS.includes(provider)) {
+    return res.status(400).json({ error: "provider, txHash, and dewebAmount required." });
   }
 
   const linked = db.prepare(`
@@ -234,56 +206,60 @@ router.post("/topup/confirm", requireAuth, (req, res) => {
     return res.status(400).json({ error: "Wallet not linked." });
   }
 
-  const dup = db.prepare("SELECT id FROM crypto_topups WHERE tx_hash = ?").get(txHash);
+  const from = (fromAddress || linked.address).toLowerCase();
+  const dup = db.prepare("SELECT id, status FROM crypto_topups WHERE tx_hash = ?").get(txHash);
   if (dup) {
-    return res.status(409).json({ error: "This transaction was already processed." });
+    if (dup.status === "credited") {
+      return res.status(409).json({ error: "This transaction was already credited." });
+    }
+    const result = await processTopupVerification(dup.id);
+    const row = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
+    return res.json({ topupId: dup.id, ...result, wallet: toWallet(row) });
   }
 
-  const autoApprove = process.env.TOPUP_AUTO_APPROVE !== "false";
   const topupId = uid();
   const t = nowIso();
-  const status = autoApprove ? "credited" : "pending";
-
   db.prepare(`
     INSERT INTO crypto_topups (id, user_id, provider, from_address, tx_hash, deweb_amount, status, created_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(topupId, req.userId, provider, fromAddress || linked.address, txHash, dewebAmount, status, t);
+    VALUES (?, ?, ?, ?, ?, ?, 'verifying', ?)
+  `).run(topupId, req.userId, provider, from, txHash, dewebAmount, t);
 
-  if (autoApprove) {
-    try {
-      transferDeweb(getAdminUserId(), req.userId, dewebAmount, {
-        type: "wallet_topup",
-        txHash,
-        provider,
-        fromAddress: fromAddress || linked.address
-      });
-    } catch (e) {
-      if (e.message === "INSUFFICIENT_DEWEB") {
-        return res.status(503).json({ error: "Platform treasury low. Contact support with your tx hash." });
-      }
-      throw e;
-    }
-    db.prepare("UPDATE crypto_topups SET credited_at = ? WHERE id = ?").run(nowIso(), topupId);
-    logActivity(req.userId, "deweb_topup", { dewebAmount, txHash, provider });
-  } else {
-    logActivity(req.userId, "deweb_topup_pending", { dewebAmount, txHash, provider, topupId });
-  }
-
+  const result = await processTopupVerification(topupId);
   const row = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
-  res.json({
-    ok: true,
-    status,
-    credited: autoApprove ? dewebAmount : 0,
-    pendingApproval: !autoApprove,
-    message: autoApprove
-      ? `Credited ${dewebAmount} DEWEB.`
-      : "Top-up submitted. An admin will verify your USDT transaction and credit DEWEB.",
-    wallet: toWallet(row),
-    linkedWallets: getLinkedWallets(req.userId)
+  res.json({ topupId, ...result, wallet: toWallet(row), linkedWallets: getLinkedWallets(req.userId) });
+}
+
+router.post("/topup/submit", requireAuth, requireEmailVerified, (req, res) => {
+  submitTopup(req, res).catch((e) => {
+    console.error(e);
+    res.status(500).json({ error: e.message || "Top-up failed." });
   });
 });
 
-router.post("/transfer", requireAuth, (req, res) => {
+router.post("/topup/confirm", requireAuth, requireEmailVerified, (req, res) => {
+  submitTopup(req, res).catch((e) => {
+    console.error(e);
+    res.status(500).json({ error: e.message || "Top-up failed." });
+  });
+});
+
+router.get("/topup/:id/status", requireAuth, requireEmailVerified, async (req, res) => {
+  const topup = db.prepare("SELECT * FROM crypto_topups WHERE id = ? AND user_id = ?").get(
+    req.params.id,
+    req.userId
+  );
+  if (!topup) return res.status(404).json({ error: "Top-up not found." });
+
+  const result =
+    topup.status === "credited" || topup.status === "failed"
+      ? { status: topup.status, credited: topup.status === "credited" ? topup.deweb_amount : 0 }
+      : await processTopupVerification(topup.id);
+
+  const row = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
+  res.json({ topupId: topup.id, ...result, wallet: toWallet(row) });
+});
+
+router.post("/transfer", requireAuth, requireEmailVerified, (req, res) => {
   const toUserId = String(req.body.toUserId || "").trim();
   const amount = Number(req.body.amount || 0);
   if (!toUserId || amount <= 0) {

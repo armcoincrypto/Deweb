@@ -19,22 +19,18 @@ export default function AccountHomePage() {
       <p className="mt-2 text-white/50">{t("overviewSubtitle")}</p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {!isSeller && (
-          <Link href="/account/projects">
-            <GlassCard className="p-6 hover:border-deweb-cyan/30">
-              <h3 className="font-bold text-deweb-cyan">{t("postProject")}</h3>
-              <p className="mt-2 text-sm text-white/50">{t("postProjectHint")}</p>
-            </GlassCard>
-          </Link>
-        )}
-        {isSeller && (
-          <Link href="/account/proposals">
-            <GlassCard className="p-6">
-              <h3 className="font-bold text-deweb-cyan">{t("proposals")}</h3>
-              <p className="mt-2 text-sm text-white/50">{t("proposalsHint")}</p>
-            </GlassCard>
-          </Link>
-        )}
+        <Link href="/account/listings">
+          <GlassCard className="p-6 hover:border-deweb-cyan/30">
+            <h3 className="font-bold text-deweb-cyan">{t("myListings")}</h3>
+            <p className="mt-2 text-sm text-white/50">{t("listingsSubtitle")}</p>
+          </GlassCard>
+        </Link>
+        <Link href="/account/messages">
+          <GlassCard className="p-6">
+            <h3 className="font-bold text-deweb-cyan">{t("messages")}</h3>
+            <p className="mt-2 text-sm text-white/50">{t("chatSubtitle")}</p>
+          </GlassCard>
+        </Link>
         <Link href="/account/wallet">
           <GlassCard className="p-6">
             <h3 className="font-bold text-deweb-cyan">{t("wallet")}</h3>

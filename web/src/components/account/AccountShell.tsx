@@ -35,15 +35,17 @@ export function AccountShell({
   const customerLinks = [
     { href: "/account", label: t("overview") },
     { href: "/account/profile", label: t("profile") },
-    { href: "/account/projects", label: t("myProjects") },
+    { href: "/account/listings", label: t("myListings") },
+    { href: "/account/messages", label: t("messages") },
     { href: "/account/wallet", label: t("wallet") },
   ];
 
   const supplierLinks = [
     { href: "/account", label: t("overview") },
     { href: "/account/profile", label: t("profile") },
+    { href: "/account/listings", label: t("myListings") },
+    { href: "/account/messages", label: t("messages") },
     { href: "/account/proposals", label: t("proposals") },
-    { href: "/account/products", label: t("products") },
     { href: "/account/wallet", label: t("wallet") },
   ];
 

@@ -19,6 +19,8 @@ import offerRoutes from "./routes/offers.js";
 import adminRoutes from "./routes/admin.js";
 import supportRoutes from "./routes/support.js";
 import setupRoutes from "./routes/setup.js";
+import listingRoutes from "./routes/listings.js";
+import dealChatRoutes from "./routes/dealChat.js";
 
 runSeed();
 
@@ -49,6 +51,8 @@ app.use("/api/offers", offerRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/support", supportRoutes);
 app.use("/api/setup", setupRoutes);
+app.use("/api/listings", listingRoutes);
+app.use("/api/deal-chat", dealChatRoutes);
 
 app.use((err, _req, res, _next) => {
   console.error(err);
