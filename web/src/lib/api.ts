@@ -17,8 +17,25 @@ export type User = {
   accountMode?: string;
   account_mode?: string;
   isAdmin?: boolean;
-  deweb?: number;
+  phone?: string;
+  address?: string;
+  company?: string;
+  currency?: string;
+  emailVerified?: boolean;
+  phoneVerified?: boolean;
+  kycStatus?: string;
+  sellerInfo?: Record<string, unknown>;
 };
+
+export type Wallet = {
+  deweb: number;
+  connected?: boolean;
+  provider?: string;
+  address?: string;
+  pendingWithdraw?: number;
+};
+
+export type LinkedWallet = { provider: string; address: string };
 
 export function getToken(): string | null {
   if (typeof window === "undefined") return null;
@@ -55,31 +72,76 @@ export const dewebApi = {
     login: (body: { email: string; password: string }) =>
       api<{ token: string; user: User }>("/auth/login", {
         method: "POST",
-        body: JSON.stringify(body),
+        body: JSON.stringify({ email, password }),
       }),
     register: (body: {
       username: string;
       email: string;
       password: string;
+      accountMode?: string;
       newsletter?: boolean;
     }) =>
-      api<{ token: string; user: User }>("/auth/register", {
-        method: "POST",
-        body: JSON.stringify(body),
-      }),
+      api<{ success: boolean; requireLogin: boolean; email: string; message: string }>(
+        "/auth/register",
+        { method: "POST", body: JSON.stringify(body) }
+      ),
     me: () => api<{ user: User }>("/auth/me"),
+    forgotPassword: (email: string) =>
+      api<{ success: boolean; message: string; resetUrl?: string }>("/auth/forgot-password", {
+        method: "POST",
+        body: JSON.stringify({ email }),
+      }),
+    resetPassword: (token: string, password: string) =>
+      api<{ success: boolean; message: string }>("/auth/reset-password", {
+        method: "POST",
+        body: JSON.stringify({ token, password }),
+      }),
+  },
+  users: {
+    updateMe: (body: Record<string, unknown>) =>
+      api<{ user: User }>("/users/me", { method: "PATCH", body: JSON.stringify(body) }),
+    developers: () => api<{ users: User[] }>("/users/developers"),
   },
   products: {
     list: () => api<{ products: Product[] }>("/products"),
     mine: () => api<{ products: Product[] }>("/products/mine"),
-  },
-  users: {
-    developers: () => api<{ developers: Developer[] }>("/users/developers"),
-    updateMe: (body: Record<string, unknown>) =>
-      api<{ user: User }>("/users/me", { method: "PATCH", body: JSON.stringify(body) }),
+    save: (body: Record<string, unknown>) =>
+      api<{ product: Product }>("/products", { method: "POST", body: JSON.stringify(body) }),
   },
   orders: {
-    open: () => api<{ orders: Order[] }>("/orders/open"),
+    mine: () => api<{ orders: ProjectOrder[] }>("/orders/mine"),
+    open: () => api<{ orders: ProjectOrder[] }>("/orders/open"),
+    create: (body: Record<string, unknown>) =>
+      api<{ order: ProjectOrder }>("/orders", { method: "POST", body: JSON.stringify(body) }),
+  },
+  bids: {
+    list: (orderId: string) => api<{ bids: Bid[] }>(`/bids/order/${orderId}`),
+    submit: (orderId: string, body: { price: number; timeline?: string; message?: string }) =>
+      api<{ bid: Bid }>(`/bids/order/${orderId}`, {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
+    accept: (bidId: string) =>
+      api<{ order: ProjectOrder; bid: Bid }>(`/bids/${bidId}/accept`, { method: "POST", body: "{}" }),
+    reject: (bidId: string) =>
+      api<{ bid: Bid }>(`/bids/${bidId}/reject`, { method: "POST", body: "{}" }),
+  },
+  wallet: {
+    me: () => api<{ wallet: Wallet }>("/wallet/me"),
+    linked: () => api<{ wallets: LinkedWallet[] }>("/wallet/linked"),
+    link: (body: { provider: string; address: string }) =>
+      api("/wallet/linked", { method: "POST", body: JSON.stringify(body) }),
+    unlink: (provider: string) =>
+      api(`/wallet/linked/${encodeURIComponent(provider)}`, { method: "DELETE" }),
+    topupIntent: (body: { dewebAmount: number; provider: string }) =>
+      api("/wallet/topup/intent", { method: "POST", body: JSON.stringify(body) }),
+    topupConfirm: (body: {
+      provider: string;
+      dewebAmount: number;
+      txHash: string;
+      fromAddress?: string;
+    }) => api("/wallet/topup/confirm", { method: "POST", body: JSON.stringify(body) }),
+    transactions: () => api<{ transactions: WalletTx[] }>("/wallet/transactions"),
   },
 };
 
@@ -91,21 +153,37 @@ export type Product = {
   description?: string;
   sellerName?: string;
   rating?: number;
-  views?: number;
 };
 
-export type Developer = {
+export type ProjectOrder = {
   id: string;
-  name: string;
-  email?: string;
-  portfolioTitle?: string;
-  productName?: string;
-  announcement?: string;
-};
-
-export type Order = {
-  id: string;
-  title: string;
+  userId?: string;
+  service?: string;
   budget?: string;
+  details?: string;
+  deadline?: string;
+  total?: number;
+  stage?: string;
   status?: string;
+  assignedDevId?: string;
+  createdAt?: string;
+};
+
+export type Bid = {
+  id: string;
+  orderId: string;
+  sellerId: string;
+  sellerName?: string;
+  price: number;
+  timeline?: string;
+  message?: string;
+  status: string;
+};
+
+export type WalletTx = {
+  id: string;
+  type: string;
+  amount: number;
+  balanceAfter: number;
+  createdAt: string;
 };

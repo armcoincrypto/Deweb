@@ -38,9 +38,9 @@ export function PlatformFooter() {
         <div>
           <h4 className="text-xs font-bold uppercase tracking-wider text-white/40">Account</h4>
           <ul className="mt-4 space-y-2 text-sm text-white/60">
-            <li><Link href="/login" className="hover:text-deweb-cyan">{t("login")}</Link></li>
-            <li><Link href="/signup" className="hover:text-deweb-cyan">{t("signup")}</Link></li>
-            <li><Link href="/dashboard" className="hover:text-deweb-cyan">{t("dashboard")}</Link></li>
+            <li><Link href="/account/login" className="hover:text-deweb-cyan">{t("login")}</Link></li>
+            <li><Link href="/account/signup" className="hover:text-deweb-cyan">{t("signup")}</Link></li>
+            <li><Link href="/account" className="hover:text-deweb-cyan">{t("dashboard")}</Link></li>
           </ul>
         </div>
       </div>

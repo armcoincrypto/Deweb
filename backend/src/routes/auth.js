@@ -46,13 +46,14 @@ router.post("/register", (req, res) => {
   const id = uid();
   const passwordHash = bcrypt.hashSync(password, 10);
   const createdAt = nowIso();
-  const role = isAdminEmail(email) ? "admin" : "client";
+  const accountMode = req.body.accountMode === "seller" ? "seller" : "customer";
+  const role = isAdminEmail(email) ? "admin" : accountMode === "seller" ? "dev" : "client";
 
   db.prepare(`
     INSERT INTO users (
       id, role, account_mode, name, username, email, password_hash, newsletter, created_at
-    ) VALUES (?, ?, 'customer', ?, ?, ?, ?, ?, ?)
-  `).run(id, role, username, username, email, passwordHash, newsletter ? 1 : 0, createdAt);
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(id, role, accountMode, username, username, email, passwordHash, newsletter ? 1 : 0, createdAt);
 
   db.prepare(`
     INSERT INTO wallets (user_id, created, connected, deweb, pending_withdraw)
@@ -61,9 +62,58 @@ router.post("/register", (req, res) => {
 
   logActivity(id, "signup");
 
-  const token = signToken(id);
-  const user = toUserRow(db.prepare("SELECT * FROM users WHERE id = ?").get(id));
-  res.status(201).json({ token, user });
+  res.status(201).json({
+    success: true,
+    requireLogin: true,
+    email,
+    username,
+    message: "Account created. Please sign in with your email and password."
+  });
+});
+
+router.post("/forgot-password", (req, res) => {
+  const email = String(req.body.email || "").trim().toLowerCase();
+  if (!email) return res.status(400).json({ error: "Email is required." });
+
+  const row = db.prepare("SELECT id FROM users WHERE email = ?").get(email);
+  if (row) {
+    const token = uid() + uid();
+    const expiresAt = new Date(Date.now() + 3600000).toISOString();
+    db.prepare(
+      "INSERT INTO password_reset_tokens (id, user_id, token, expires_at, created_at) VALUES (?, ?, ?, ?, ?)"
+    ).run(uid(), row.id, token, expiresAt, nowIso());
+    const base = process.env.PUBLIC_WEB_URL || process.env.CORS_ORIGIN || "https://dewebam.com";
+    res.json({
+      success: true,
+      message: "If this email is registered, reset instructions were sent.",
+      resetUrl: `${base}/en/account/reset-password?token=${token}`
+    });
+    return;
+  }
+  res.json({ success: true, message: "If this email is registered, reset instructions were sent." });
+});
+
+router.post("/reset-password", (req, res) => {
+  const token = String(req.body.token || "").trim();
+  const password = String(req.body.password || "");
+  if (!token || !password) {
+    return res.status(400).json({ error: "Token and new password are required." });
+  }
+  const passErr = validatePassword(password);
+  if (passErr) return res.status(400).json({ error: passErr });
+
+  const row = db.prepare(`
+    SELECT * FROM password_reset_tokens WHERE token = ? AND used = 0
+  `).get(token);
+  if (!row || new Date(row.expires_at) < new Date()) {
+    return res.status(400).json({ error: "Invalid or expired reset link." });
+  }
+
+  const hash = bcrypt.hashSync(password, 10);
+  db.prepare("UPDATE users SET password_hash = ? WHERE id = ?").run(hash, row.user_id);
+  db.prepare("UPDATE password_reset_tokens SET used = 1 WHERE id = ?").run(row.id);
+
+  res.json({ success: true, message: "Password updated. You can sign in now." });
 });
 
 router.post("/login", (req, res) => {

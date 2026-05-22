@@ -6,6 +6,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { PlatformNavbar } from "@/components/layout/PlatformNavbar";
 import { PlatformFooter } from "@/components/layout/PlatformFooter";
 import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
+import { AuthProvider } from "@/lib/auth-context";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -42,12 +43,14 @@ export default async function LocaleLayout({
         style={{ backgroundColor: "#05070a", color: "#ffffff" }}
       >
         <NextIntlClientProvider messages={messages}>
-          <ParticlesBackground />
-          <div className="relative z-10 flex min-h-screen flex-col">
-            <PlatformNavbar />
-            <div className="flex-1">{children}</div>
-            <PlatformFooter />
-          </div>
+          <AuthProvider>
+            <ParticlesBackground />
+            <div className="relative z-10 flex min-h-screen flex-col">
+              <PlatformNavbar />
+              <div className="flex-1">{children}</div>
+              <PlatformFooter />
+            </div>
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,9 +1,12 @@
-import { AuthForm } from "@/components/auth/AuthForm";
+"use client";
 
-export default function LoginPage() {
-  return (
-    <div className="container-narrow px-4 py-28 sm:px-6 lg:px-8">
-      <AuthForm mode="login" />
-    </div>
-  );
+import { useEffect } from "react";
+import { useRouter } from "@/i18n/routing";
+
+export default function LoginRedirect() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/account/login");
+  }, [router]);
+  return null;
 }

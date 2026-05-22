@@ -162,6 +162,30 @@ db.exec(`
     FOREIGN KEY (user_id) REFERENCES users(id)
   );
 
+  CREATE TABLE IF NOT EXISTS password_reset_tokens (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    token TEXT NOT NULL UNIQUE,
+    expires_at TEXT NOT NULL,
+    used INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS project_bids (
+    id TEXT PRIMARY KEY,
+    order_id TEXT NOT NULL,
+    seller_id TEXT NOT NULL,
+    seller_name TEXT,
+    price REAL NOT NULL,
+    timeline TEXT,
+    message TEXT,
+    status TEXT NOT NULL DEFAULT 'pending',
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (seller_id) REFERENCES users(id)
+  );
+
   CREATE TABLE IF NOT EXISTS crypto_topups (
     id TEXT PRIMARY KEY,
     user_id TEXT NOT NULL,

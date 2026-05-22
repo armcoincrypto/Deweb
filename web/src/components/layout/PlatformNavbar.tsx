@@ -6,10 +6,12 @@ import { Link } from "@/i18n/routing";
 import { useState } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
 
 export function PlatformNavbar() {
   const t = useTranslations("nav");
+  const { user, loading, displayName, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -61,18 +63,38 @@ export function PlatformNavbar() {
 
         <div className="hidden items-center gap-2 md:flex">
           <LanguageSwitcher />
-          <Link
-            href="/login"
-            className="px-3 py-2 text-sm font-semibold text-white/75 hover:text-white"
-          >
-            {t("login")}
-          </Link>
-          <GlowButton href="/dashboard" variant="secondary" className="!px-4 !py-2 !text-xs">
-            {t("dashboard")}
-          </GlowButton>
-          <GlowButton href="/signup" variant="primary" className="!px-4 !py-2 !text-xs">
-            {t("postProject")}
-          </GlowButton>
+          {!loading && user ? (
+            <>
+              <Link
+                href="/account"
+                className="flex items-center gap-2 rounded-full border border-deweb-cyan/30 bg-deweb-cyan/10 px-4 py-2 text-sm font-bold text-deweb-cyan"
+              >
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-deweb-cyan text-xs font-black text-deweb-bg">
+                  {displayName[0]?.toUpperCase() || "U"}
+                </span>
+                {displayName}
+              </Link>
+              <button
+                type="button"
+                onClick={logout}
+                className="px-2 text-xs text-white/45 hover:text-white"
+              >
+                {t("logout")}
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/account/login"
+                className="px-3 py-2 text-sm font-semibold text-white/75 hover:text-white"
+              >
+                {t("login")}
+              </Link>
+              <GlowButton href="/account/signup" variant="primary" className="!px-4 !py-2 !text-xs">
+                {t("postProject")}
+              </GlowButton>
+            </>
+          )}
         </div>
 
         <button
@@ -98,13 +120,21 @@ export function PlatformNavbar() {
             </Link>
           ))}
           <div className="mt-4 flex flex-col gap-3">
-            <LanguageSwitcher className="w-full justify-center" />
-            <GlowButton href="/signup" variant="primary">
-              {t("postProject")}
-            </GlowButton>
-            <Link href="/login" className="text-center text-sm text-white/70">
-              {t("login")}
-            </Link>
+            <LanguageSwitcher />
+            {user ? (
+              <Link href="/account" className="text-center font-bold text-deweb-cyan">
+                {displayName}
+              </Link>
+            ) : (
+              <>
+                <GlowButton href="/account/signup" variant="primary">
+                  {t("postProject")}
+                </GlowButton>
+                <Link href="/account/login" className="text-center text-sm text-white/70">
+                  {t("login")}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
