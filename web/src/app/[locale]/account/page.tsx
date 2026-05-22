@@ -9,17 +9,10 @@ import { GlassCard } from "@/components/ui/GlassCard";
 export default function AccountHomePage() {
   const t = useTranslations("account");
   const { user, displayName } = useAuth();
-  const router = useRouter();
   const isSeller = user?.accountMode === "seller" || user?.account_mode === "seller";
 
-  useEffect(() => {
-    if (user && isSeller) {
-      /* stay on overview */
-    }
-  }, [user, isSeller]);
-
   return (
-    <AccountShell role={isSeller ? "supplier" : "customer"}>
+    <AccountRoleShell>
       <h1 className="text-2xl font-bold text-white">
         {t("hello")}, {displayName}
       </h1>
