@@ -88,7 +88,16 @@
     "sendRequest": "Send request",
     "close": "Close",
     "loading": "Loading…",
-    "error": "Something went wrong"
+    "error": "Something went wrong",
+    "verified": "Verified",
+    "from": "from",
+    "perProject": "per project",
+    "viewProfile": "View profile",
+    "submitProposal": "Submit proposal",
+    "liveActivity": "Live activity",
+    "openProjects": "Open projects",
+    "suppliersOnline": "suppliers online",
+    "filterAll": "All categories"
   },
   "about": {
     "title": "About DEWEB",
