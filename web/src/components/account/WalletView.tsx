@@ -41,7 +41,7 @@ export function WalletView() {
     }
     const accounts = (await window.ethereum.request({
       method: "eth_requestAccounts",
-    })) as string[];
+    })) as unknown as string[];
     const address = accounts[0];
     await dewebApi.wallet.link({ provider: "MetaMask", address });
     await load();
@@ -54,7 +54,7 @@ export function WalletView() {
       setError(t("installRonin"));
       return;
     }
-    const accounts = (await ronin.request({ method: "eth_requestAccounts" })) as string[];
+    const accounts = (await ronin.request({ method: "eth_requestAccounts" })) as unknown as string[];
     await dewebApi.wallet.link({ provider: "Ronin", address: accounts[0] });
     await load();
     setMsg(t("connected"));
