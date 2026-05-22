@@ -1,6 +1,51 @@
 # deweb-community
 
-DeWeb community marketplace — full-stack demo (static frontend + Node API + SQLite).
+DeWeb community marketplace — full-stack SaaS platform (Next.js + legacy UI + Node API + SQLite).
+
+**GitHub:** https://github.com/gagpoghosyan99/deweb-community  
+**Live site:** https://dewebam.com (redirects to `/en`)
+
+## GitHub — connect & sync
+
+This folder is already linked to the repo:
+
+```text
+origin  https://github.com/gagpoghosyan99/deweb-community.git
+```
+
+### Clone on a new computer
+
+```bash
+git clone https://github.com/gagpoghosyan99/deweb-community.git
+cd deweb-community
+```
+
+### Push your changes
+
+```bash
+git add .
+git commit -m "Describe your change"
+git push origin main
+```
+
+### Update production server from GitHub
+
+On the VPS (after you push to `main`):
+
+```bash
+cd /var/www/deweb
+git pull origin main
+bash deploy/setup-next-homepage.sh   # Next.js site
+# API only:
+cd backend && npm install --omit=dev && systemctl restart deweb-api
+```
+
+### What is **not** on GitHub (secrets)
+
+- `backend/.env` — passwords, JWT, Gmail, treasury wallets (keep local + on server only)
+- `web/node_modules/`, `web/.next/`
+
+Copy secrets manually: `cp backend/.env.example backend/.env` then edit.
 
 ## Quick start (full working site)
 
