@@ -267,6 +267,8 @@ export type ProjectOrder = {
   stage?: string;
   status?: string;
   assignedDevId?: string;
+  escrowAmount?: number;
+  escrowStatus?: string;
   createdAt?: string;
 };
 
