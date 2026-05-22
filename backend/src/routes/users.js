@@ -18,7 +18,8 @@ const allowedFields = {
   kycStatus: "kyc_status",
   tfaEnabled: "tfa_enabled",
   skills: "skills",
-  portfolio: "portfolio"
+  portfolio: "portfolio",
+  avatarUrl: "avatar_url"
 };
 
 router.patch("/me", requireAuth, (req, res) => {

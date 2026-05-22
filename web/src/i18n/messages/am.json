@@ -15,7 +15,8 @@
     "dashboard": "Հաշիվ",
     "postProject": "Հրապարակել նախագիծ",
     "getOffers": "Ստանալ առաջարկներ",
-    "logout": "Ելք"
+    "logout": "Ելք",
+    "admin": "Ադմին"
   },
   "home": {
     "badge": "IT շուկա · մրցային սակագնում",
@@ -209,6 +210,7 @@
     "topupFailed": "Ձախողվեց"
   },
   "dashboard": {
+    "dashboard": "Վահանակ",
     "customer": "Հաճախորդ",
     "supplier": "Մատակարար",
     "overview": "Ամփոփում",

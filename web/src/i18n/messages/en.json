@@ -15,7 +15,8 @@
     "dashboard": "Account",
     "postProject": "Post a Project",
     "getOffers": "Get Offers",
-    "logout": "Log out"
+    "logout": "Log out",
+    "admin": "Admin"
   },
   "home": {
     "badge": "IT marketplace · competitive bidding",
@@ -206,9 +207,12 @@
     "installRonin": "Install Ronin extension",
     "walletNotFound": "Wallet extension not found",
     "topupSuccess": "DEWEB added to your balance",
-    "topupFailed": "Top-up failed"
+    "topupPending": "Submitted for admin verification. DEWEB will be credited after USDT is confirmed.",
+    "topupFailed": "Top-up failed",
+    "escrowOnAccept": "Accepting a proposal locks DEWEB in escrow until the job is completed."
   },
   "dashboard": {
+    "dashboard": "Dashboard",
     "customer": "Customer",
     "supplier": "Supplier",
     "overview": "Overview",

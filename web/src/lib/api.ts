@@ -128,7 +128,7 @@ export const dewebApi = {
   },
   wallet: {
     me: () => api<{ wallet: Wallet }>("/wallet/me"),
-    linked: () => api<{ wallets: LinkedWallet[] }>("/wallet/linked"),
+    linked: () => api<{ linkedWallets: LinkedWallet[] }>("/wallet/linked"),
     link: (body: { provider: string; address: string }) =>
       api("/wallet/linked", { method: "POST", body: JSON.stringify(body) }),
     unlink: (provider: string) =>
@@ -142,7 +142,108 @@ export const dewebApi = {
       fromAddress?: string;
     }) => api("/wallet/topup/confirm", { method: "POST", body: JSON.stringify(body) }),
     transactions: () => api<{ transactions: WalletTx[] }>("/wallet/transactions"),
+    cryptoConfig: () =>
+      api<{
+        treasuryUsdt: string;
+        dewebUsdRate: number;
+        swapBuyUrl: string;
+        swapSellUrl: string;
+      }>("/crypto/config"),
   },
+  admin: {
+    stats: () => api<AdminStats>("/admin/stats"),
+    users: (q?: string) => api<{ users: AdminUser[] }>(`/admin/users${q ? `?q=${encodeURIComponent(q)}` : ""}`),
+    user: (id: string) => api<{ user: AdminUser; linkedWallets: LinkedWallet[] }>(`/admin/users/${id}`),
+    updateUser: (id: string, body: Record<string, unknown>) =>
+      api(`/admin/users/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
+    orders: () => api<{ orders: AdminOrder[] }>("/admin/orders"),
+    order: (id: string) => api<{ order: AdminOrder; bids: Bid[]; escrow: EscrowHold | null }>(`/admin/orders/${id}`),
+    updateOrder: (id: string, body: Record<string, unknown>) =>
+      api(`/admin/orders/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
+    bids: () => api<{ bids: Record<string, unknown>[] }>("/admin/bids"),
+    topups: (status?: string) =>
+      api<{ topups: CryptoTopup[] }>(`/admin/topups${status ? `?status=${status}` : ""}`),
+    approveTopup: (id: string, note?: string) =>
+      api(`/admin/topups/${id}/approve`, { method: "POST", body: JSON.stringify({ note }) }),
+    rejectTopup: (id: string, note?: string) =>
+      api(`/admin/topups/${id}/reject`, { method: "POST", body: JSON.stringify({ note }) }),
+    escrow: (status = "held") => api<{ escrow: EscrowHold[] }>(`/admin/escrow?status=${status}`),
+    releaseEscrow: (id: string) =>
+      api(`/admin/escrow/${id}/release`, { method: "POST", body: "{}" }),
+    refundEscrow: (id: string) =>
+      api(`/admin/escrow/${id}/refund`, { method: "POST", body: "{}" }),
+    transactions: () => api<{ transactions: WalletTx[] }>("/admin/transactions"),
+    linkedWallets: () => api<{ connections: Record<string, unknown>[] }>("/admin/wallets/linked"),
+    products: () => api<{ products: Product[] }>("/admin/products"),
+    updateProduct: (id: string, body: Record<string, unknown>) =>
+      api(`/admin/products/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
+    deleteProduct: (id: string) =>
+      api(`/admin/products/${id}`, { method: "DELETE" }),
+    creditUser: (userId: string, amount: number) =>
+      api("/admin/wallet/credit", { method: "POST", body: JSON.stringify({ userId, amount }) }),
+    debitUser: (userId: string, amount: number) =>
+      api("/admin/wallet/debit", { method: "POST", body: JSON.stringify({ userId, amount }) }),
+    mint: (amount: number) =>
+      api("/admin/wallet/mint", { method: "POST", body: JSON.stringify({ amount }) }),
+    platformStats: () => api<{ stats: { key: string; value: string }[] }>("/admin/platform-stats"),
+    savePlatformStats: (stats: Record<string, string>) =>
+      api("/admin/platform-stats", { method: "PUT", body: JSON.stringify({ stats }) }),
+    supportThreads: () => api<{ threads: SupportThread[] }>("/admin/support/threads"),
+    supportMessages: (id: string) =>
+      api<{ thread: SupportThread; messages: { sender: string; body: string }[] }>(
+        `/admin/support/threads/${id}/messages`
+      ),
+    supportReply: (id: string, message: string) =>
+      api(`/admin/support/threads/${id}/reply`, {
+        method: "POST",
+        body: JSON.stringify({ message }),
+      }),
+    supportStatus: (id: string, status: string) =>
+      api(`/admin/support/threads/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ status }),
+      }),
+  },
+};
+
+export type AdminStats = {
+  adminBalance: number;
+  dewebUsdRate: number;
+  users: number;
+  orders: number;
+  openSupport: number;
+  pendingTopups: number;
+  heldEscrow: number;
+  linkedWallets: number;
+  transactionVolume: number;
+  displayStats: Record<string, string>;
+};
+
+export type AdminUser = User & { dewebBalance?: number };
+export type AdminOrder = ProjectOrder & { raw?: Record<string, unknown> };
+export type EscrowHold = {
+  id: string;
+  orderId: string;
+  buyerId: string;
+  sellerId: string;
+  amount: number;
+  status: string;
+};
+export type CryptoTopup = {
+  id: string;
+  user_id: string;
+  email?: string;
+  tx_hash: string;
+  deweb_amount: number;
+  status: string;
+  provider: string;
+  created_at: string;
+};
+export type SupportThread = {
+  id: string;
+  status: string;
+  email?: string;
+  last_message?: string;
 };
 
 export type Product = {

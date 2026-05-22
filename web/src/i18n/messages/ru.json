@@ -15,7 +15,8 @@
     "dashboard": "Аккаунт",
     "postProject": "Опубликовать проект",
     "getOffers": "Получить предложения",
-    "logout": "Выход"
+    "logout": "Выход",
+    "admin": "Админ"
   },
   "home": {
     "badge": "IT-маркетплейс · конкурентные ставки",
@@ -209,6 +210,7 @@
     "topupFailed": "Ошибка пополнения"
   },
   "dashboard": {
+    "dashboard": "Панель",
     "customer": "Клиент",
     "supplier": "Поставщик",
     "overview": "Обзор",

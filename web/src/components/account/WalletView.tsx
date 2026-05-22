@@ -26,8 +26,9 @@ export function WalletView() {
       dewebApi.wallet.linked(),
     ]);
     setWallet(w.wallet);
-    setLinked(l.wallets || []);
-    if (l.wallets?.length) setProvider(l.wallets[0].provider);
+    const linkedList = l.linkedWallets || [];
+    setLinked(linkedList);
+    if (linkedList.length) setProvider(linkedList[0].provider);
   }, []);
 
   useEffect(() => {
@@ -85,14 +86,14 @@ export function WalletView() {
           },
         ],
       });
-      await dewebApi.wallet.topupConfirm({
+      const result = await dewebApi.wallet.topupConfirm({
         txHash: String(txHash),
         provider,
         dewebAmount: Number(amount),
         fromAddress: intent.fromAddress,
-      });
+      }) as { pendingApproval?: boolean; message?: string };
       await load();
-      setMsg(t("topupSuccess"));
+      setMsg(result.pendingApproval ? t("topupPending") : t("topupSuccess"));
     } catch (e) {
       setError(e instanceof Error ? e.message : t("topupFailed"));
     }

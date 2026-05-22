@@ -22,7 +22,9 @@ export function toOrder(row) {
     details: row.details,
     source: row.source,
     date: row.order_date,
-    createdAt: row.created_at
+    createdAt: row.created_at,
+    escrowAmount: row.escrow_amount,
+    escrowStatus: row.escrow_status
   };
 }
 

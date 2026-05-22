@@ -2,6 +2,7 @@ import { Router } from "express";
 import { db, uid, nowIso, logActivity } from "../db.js";
 import { requireAuth } from "../middleware/auth.js";
 import { toOrder } from "../utils/helpers.js";
+import { holdEscrowForOrder } from "../services/escrow.js";
 
 const router = Router();
 
@@ -111,6 +112,25 @@ router.post("/:bidId/accept", requireAuth, (req, res) => {
     return res.status(403).json({ error: "Only the project owner can accept proposals." });
   }
 
+  const price = Number(bid.price || 0);
+  let escrow = null;
+  try {
+    if (price > 0) {
+      escrow = holdEscrowForOrder(bid.order_id, req.userId, bid.seller_id, price, { bidId: bid.id });
+    }
+  } catch (e) {
+    if (e.message === "INSUFFICIENT_DEWEB") {
+      return res.status(402).json({
+        error: "Not enough DEWEB in your wallet to fund this project. Top up and try again.",
+        needTopUp: true
+      });
+    }
+    if (e.message === "ESCROW_EXISTS") {
+      return res.status(409).json({ error: "Escrow already exists for this project." });
+    }
+    throw e;
+  }
+
   db.prepare(`
     UPDATE orders SET assigned_dev_id = ?, seller_id = ?, total = ?, stage = 'In Progress', status = 'in_progress'
     WHERE id = ?
@@ -121,10 +141,10 @@ router.post("/:bidId/accept", requireAuth, (req, res) => {
     UPDATE project_bids SET status = 'rejected' WHERE order_id = ? AND id != ? AND status = 'pending'
   `).run(bid.order_id, bid.id);
 
-  logActivity(req.userId, "bid_accepted", { orderId: bid.order_id, bidId: bid.id });
+  logActivity(req.userId, "bid_accepted", { orderId: bid.order_id, bidId: bid.id, escrowAmount: price });
 
   const updated = db.prepare("SELECT * FROM orders WHERE id = ?").get(bid.order_id);
-  res.json({ order: toOrder(updated), bid: toBid(bid) });
+  res.json({ order: toOrder(updated), bid: toBid(bid), escrow });
 });
 
 router.post("/:bidId/reject", requireAuth, (req, res) => {

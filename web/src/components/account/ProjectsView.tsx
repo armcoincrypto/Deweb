@@ -55,9 +55,14 @@ export function ProjectsView() {
   }
 
   async function acceptBid(bidId: string) {
-    await dewebApi.bids.accept(bidId);
-    loadOrders();
-    if (selected) openBids(selected);
+    setError("");
+    try {
+      await dewebApi.bids.accept(bidId);
+      loadOrders();
+      if (selected) openBids(selected);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t("error"));
+    }
   }
 
   async function rejectBid(bidId: string) {

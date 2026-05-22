@@ -19,6 +19,7 @@ function toProduct(row) {
     comments: row.comments,
     reviews: row.reviews,
     rating: row.rating,
+    imageUrl: row.image_url || "",
     updatedAt: row.updated_at
   };
 }
@@ -57,29 +58,30 @@ router.post("/", requireAuth, (req, res) => {
     clicks: Number(req.body.clicks || 24),
     comments: Number(req.body.comments || 3),
     reviews: Number(req.body.reviews || 1),
-    rating: Number(req.body.rating || 4.8)
+    rating: Number(req.body.rating || 4.8),
+    imageUrl: String(req.body.imageUrl || req.body.image_url || "").trim()
   };
 
   if (existing) {
     db.prepare(`
       UPDATE marketplace_products
-      SET title = ?, price = ?, category = ?, description = ?,
+      SET title = ?, price = ?, category = ?, description = ?, image_url = ?,
           views = ?, clicks = ?, comments = ?, reviews = ?, rating = ?, updated_at = ?
       WHERE id = ? AND seller_id = ?
     `).run(
-      payload.title, payload.price, payload.category, payload.description,
+      payload.title, payload.price, payload.category, payload.description, payload.imageUrl,
       payload.views, payload.clicks, payload.comments, payload.reviews, payload.rating,
       updatedAt, id, req.userId
     );
   } else {
     db.prepare(`
       INSERT INTO marketplace_products (
-        id, seller_id, seller_name, title, price, category, description,
+        id, seller_id, seller_name, title, price, category, description, image_url,
         views, clicks, comments, reviews, rating, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       id, req.userId, user.name || "Seller",
-      payload.title, payload.price, payload.category, payload.description,
+      payload.title, payload.price, payload.category, payload.description, payload.imageUrl,
       payload.views, payload.clicks, payload.comments, payload.reviews, payload.rating,
       updatedAt
     );

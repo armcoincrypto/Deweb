@@ -65,6 +65,14 @@ export function PlatformNavbar() {
           <LanguageSwitcher />
           {!loading && user ? (
             <>
+              {user.isAdmin && (
+                <Link
+                  href="/admin"
+                  className="rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-2 text-xs font-bold text-amber-300"
+                >
+                  {t("admin")}
+                </Link>
+              )}
               <Link
                 href="/account"
                 className="flex items-center gap-2 rounded-full border border-deweb-cyan/30 bg-deweb-cyan/10 px-4 py-2 text-sm font-bold text-deweb-cyan"

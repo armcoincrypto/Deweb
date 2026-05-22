@@ -194,11 +194,49 @@ db.exec(`
     tx_hash TEXT,
     deweb_amount REAL NOT NULL,
     status TEXT NOT NULL DEFAULT 'pending',
+    admin_note TEXT,
     created_at TEXT NOT NULL,
     credited_at TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id)
   );
+
+  CREATE TABLE IF NOT EXISTS escrow_holds (
+    id TEXT PRIMARY KEY,
+    order_id TEXT NOT NULL,
+    buyer_id TEXT NOT NULL,
+    seller_id TEXT NOT NULL,
+    amount REAL NOT NULL,
+    status TEXT NOT NULL DEFAULT 'held',
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    released_at TEXT,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (buyer_id) REFERENCES users(id),
+    FOREIGN KEY (seller_id) REFERENCES users(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS platform_stats (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL,
+    label TEXT,
+    updated_at TEXT NOT NULL
+  );
 `);
+
+const migrateColumns = [
+  ["orders", "escrow_amount", "REAL"],
+  ["orders", "escrow_status", "TEXT"],
+  ["marketplace_products", "image_url", "TEXT"],
+  ["users", "avatar_url", "TEXT"],
+  ["crypto_topups", "admin_note", "TEXT"]
+];
+for (const [table, col, type] of migrateColumns) {
+  try {
+    db.prepare(`SELECT ${col} FROM ${table} LIMIT 1`).get();
+  } catch {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${col} ${type}`);
+  }
+}
 
 const orderColumns = [
   ["client_email", "TEXT"],
@@ -265,6 +303,21 @@ export function toUserRow(row) {
     portfolio: row.portfolio,
     sellerInfo: parseJson(row.seller_info, {}),
     contactPrefs: parseJson(row.contact_prefs, {}),
+    avatarUrl: row.avatar_url || "",
     createdAt: row.created_at
   };
+}
+
+export function getPlatformStat(key, fallback = "") {
+  const row = db.prepare("SELECT value FROM platform_stats WHERE key = ?").get(key);
+  return row?.value ?? fallback;
+}
+
+export function setPlatformStat(key, value, label = "") {
+  const t = nowIso();
+  db.prepare(`
+    INSERT INTO platform_stats (key, value, label, updated_at)
+    VALUES (?, ?, ?, ?)
+    ON CONFLICT(key) DO UPDATE SET value = excluded.value, label = excluded.label, updated_at = excluded.updated_at
+  `).run(key, String(value), label, t);
 }

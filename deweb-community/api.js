@@ -131,13 +131,42 @@
     Admin: {
       stats: () => api("/admin/stats"),
       users: (q) => api(`/admin/users${q ? "?q=" + encodeURIComponent(q) : ""}`),
+      user: (id) => api(`/admin/users/${id}`),
+      updateUser: (id, body) =>
+        api(`/admin/users/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
       orders: () => api("/admin/orders"),
+      order: (id) => api(`/admin/orders/${id}`),
+      updateOrder: (id, body) =>
+        api(`/admin/orders/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
+      bids: () => api("/admin/bids"),
+      topups: (status) => api(`/admin/topups${status ? "?status=" + status : ""}`),
+      approveTopup: (id, note) =>
+        api(`/admin/topups/${id}/approve`, { method: "POST", body: JSON.stringify({ note }) }),
+      rejectTopup: (id, note) =>
+        api(`/admin/topups/${id}/reject`, { method: "POST", body: JSON.stringify({ note }) }),
+      escrow: (status) => api(`/admin/escrow?status=${status || "held"}`),
+      releaseEscrow: (id) => api(`/admin/escrow/${id}/release`, { method: "POST", body: "{}" }),
+      refundEscrow: (id) => api(`/admin/escrow/${id}/refund`, { method: "POST", body: "{}" }),
+      transactions: () => api("/admin/transactions"),
+      linkedWallets: () => api("/admin/wallets/linked"),
+      products: () => api("/admin/products"),
+      updateProduct: (id, body) =>
+        api(`/admin/products/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
       creditUser: (userId, amount) =>
         api("/admin/wallet/credit", { method: "POST", body: JSON.stringify({ userId, amount }) }),
+      debitUser: (userId, amount) =>
+        api("/admin/wallet/debit", { method: "POST", body: JSON.stringify({ userId, amount }) }),
+      mint: (amount) =>
+        api("/admin/wallet/mint", { method: "POST", body: JSON.stringify({ amount }) }),
+      platformStats: () => api("/admin/platform-stats"),
+      savePlatformStats: (stats) =>
+        api("/admin/platform-stats", { method: "PUT", body: JSON.stringify({ stats }) }),
       supportThreads: () => api("/admin/support/threads"),
       supportMessages: (id) => api(`/admin/support/threads/${id}/messages`),
       supportReply: (id, message) =>
-        api(`/admin/support/threads/${id}/reply`, { method: "POST", body: JSON.stringify({ message }) })
+        api(`/admin/support/threads/${id}/reply`, { method: "POST", body: JSON.stringify({ message }) }),
+      supportStatus: (id, status) =>
+        api(`/admin/support/threads/${id}`, { method: "PATCH", body: JSON.stringify({ status }) })
     }
   };
 })(window);

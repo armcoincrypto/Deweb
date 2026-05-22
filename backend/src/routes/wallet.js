@@ -134,7 +134,6 @@ router.patch("/me", requireAuth, (req, res) => {
     connected: req.body.connected !== undefined ? (req.body.connected ? 1 : 0) : (row?.connected || 0),
     provider: req.body.provider !== undefined ? req.body.provider : (row?.provider || ""),
     address: req.body.address !== undefined ? req.body.address : (row?.address || ""),
-    deweb: row?.deweb || 0,
     pendingWithdraw: req.body.pendingWithdraw !== undefined
       ? Number(req.body.pendingWithdraw)
       : (row?.pending_withdraw || 0)
@@ -142,10 +141,10 @@ router.patch("/me", requireAuth, (req, res) => {
 
   db.prepare(`
     UPDATE wallets
-    SET created = ?, connected = ?, provider = ?, address = ?, deweb = ?, pending_withdraw = ?
+    SET created = ?, connected = ?, provider = ?, address = ?, pending_withdraw = ?
     WHERE user_id = ?
   `).run(
-    next.created, next.connected, next.provider, next.address, next.deweb, next.pendingWithdraw,
+    next.created, next.connected, next.provider, next.address, next.pendingWithdraw,
     req.userId
   );
 
@@ -240,34 +239,45 @@ router.post("/topup/confirm", requireAuth, (req, res) => {
     return res.status(409).json({ error: "This transaction was already processed." });
   }
 
+  const autoApprove = process.env.TOPUP_AUTO_APPROVE !== "false";
   const topupId = uid();
   const t = nowIso();
+  const status = autoApprove ? "credited" : "pending";
+
   db.prepare(`
     INSERT INTO crypto_topups (id, user_id, provider, from_address, tx_hash, deweb_amount, status, created_at)
-    VALUES (?, ?, ?, ?, ?, ?, 'credited', ?)
-  `).run(topupId, req.userId, provider, fromAddress || linked.address, txHash, dewebAmount, t);
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(topupId, req.userId, provider, fromAddress || linked.address, txHash, dewebAmount, status, t);
 
-  try {
-    transferDeweb(getAdminUserId(), req.userId, dewebAmount, {
-      type: "wallet_topup",
-      txHash,
-      provider,
-      fromAddress: fromAddress || linked.address
-    });
-  } catch (e) {
-    if (e.message === "INSUFFICIENT_DEWEB") {
-      return res.status(503).json({ error: "Platform treasury low. Contact support with your tx hash." });
+  if (autoApprove) {
+    try {
+      transferDeweb(getAdminUserId(), req.userId, dewebAmount, {
+        type: "wallet_topup",
+        txHash,
+        provider,
+        fromAddress: fromAddress || linked.address
+      });
+    } catch (e) {
+      if (e.message === "INSUFFICIENT_DEWEB") {
+        return res.status(503).json({ error: "Platform treasury low. Contact support with your tx hash." });
+      }
+      throw e;
     }
-    throw e;
+    db.prepare("UPDATE crypto_topups SET credited_at = ? WHERE id = ?").run(nowIso(), topupId);
+    logActivity(req.userId, "deweb_topup", { dewebAmount, txHash, provider });
+  } else {
+    logActivity(req.userId, "deweb_topup_pending", { dewebAmount, txHash, provider, topupId });
   }
-
-  db.prepare("UPDATE crypto_topups SET credited_at = ? WHERE id = ?").run(nowIso(), topupId);
-  logActivity(req.userId, "deweb_topup", { dewebAmount, txHash, provider });
 
   const row = db.prepare("SELECT * FROM wallets WHERE user_id = ?").get(req.userId);
   res.json({
     ok: true,
-    credited: dewebAmount,
+    status,
+    credited: autoApprove ? dewebAmount : 0,
+    pendingApproval: !autoApprove,
+    message: autoApprove
+      ? `Credited ${dewebAmount} DEWEB.`
+      : "Top-up submitted. An admin will verify your USDT transaction and credit DEWEB.",
     wallet: toWallet(row),
     linkedWallets: getLinkedWallets(req.userId)
   });
