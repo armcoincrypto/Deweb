@@ -72,7 +72,7 @@ export const dewebApi = {
     login: (body: { email: string; password: string }) =>
       api<{ token: string; user: User }>("/auth/login", {
         method: "POST",
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(body),
       }),
     register: (body: {
       username: string;
