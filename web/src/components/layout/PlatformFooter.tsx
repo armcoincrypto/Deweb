@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 
 export function PlatformFooter() {
   const t = useTranslations("nav");
@@ -11,9 +12,7 @@ export function PlatformFooter() {
       <div className="container-narrow grid gap-10 px-4 sm:grid-cols-2 lg:grid-cols-4 sm:px-6 lg:px-8">
         <div>
           <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-deweb-cyan text-sm font-black text-deweb-bg">
-              D
-            </span>
+            <BrandLogo size={36} />
             <span className="font-bold text-white">DEWEB</span>
           </div>
           <p className="mt-3 text-sm text-white/45">
@@ -25,6 +24,7 @@ export function PlatformFooter() {
           <ul className="mt-4 space-y-2 text-sm text-white/60">
             <li><Link href="/services" className="hover:text-deweb-cyan">{t("services")}</Link></li>
             <li><Link href="/marketplace" className="hover:text-deweb-cyan">{t("marketplace")}</Link></li>
+            <li><Link href="/blog" className="hover:text-deweb-cyan">{t("blog")}</Link></li>
           </ul>
         </div>
         <div>

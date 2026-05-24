@@ -22,9 +22,9 @@ export function Hero() {
             {t("badge")}
           </span>
 
-          <h1 className="mt-8 text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-r from-white via-deweb-cyan to-white bg-clip-text text-transparent">
+          <h1 className="mt-8 flex flex-col items-center text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            <span>{t("title")}</span>
+            <span className="mt-1 bg-gradient-to-r from-white via-deweb-cyan to-white bg-clip-text text-transparent">
               {t("titleAccent")}
             </span>
           </h1>

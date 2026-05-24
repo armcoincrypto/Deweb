@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { serviceCategories } from "@/lib/services-data";
@@ -17,40 +18,44 @@ export function ServicesView() {
         <h2 className="mb-8 text-2xl font-bold text-white">{t("categoriesTitle")}</h2>
         <div className="grid gap-6 md:grid-cols-2">
           {serviceCategories.map((cat, i) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.04 }}
-              className="glass-panel-glow group p-8"
-            >
-              <span className="text-3xl">{cat.icon}</span>
-              <h3 className="mt-4 text-xl font-bold text-white group-hover:text-deweb-cyan transition-colors">
-                {cat.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/55">{cat.desc}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {cat.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/60"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <p className="text-white/40">Timeline</p>
-                  <p className="font-semibold text-white">{cat.timeline}</p>
+            <Link key={cat.id} href={`/services/${cat.id}`} className="block">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.04 }}
+                className="glass-panel-glow group h-full p-8"
+              >
+                <span className="text-3xl">{cat.icon}</span>
+                <h3 className="mt-4 text-xl font-bold text-white transition-colors group-hover:text-deweb-cyan">
+                  {cat.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/55">{cat.desc}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {cat.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/60"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-                <div>
-                  <p className="text-white/40">Price range</p>
-                  <p className="font-semibold text-deweb-cyan">{cat.price}</p>
+                <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-white/40">{t("timeline")}</p>
+                    <p className="font-semibold text-white">{cat.timeline}</p>
+                  </div>
+                  <div>
+                    <p className="text-white/40">{t("priceRange")}</p>
+                    <p className="font-semibold text-deweb-cyan">{cat.price}</p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+                <span className="mt-6 inline-block text-sm font-semibold text-deweb-cyan group-hover:underline">
+                  {t("learnMore")} →
+                </span>
+              </motion.div>
+            </Link>
           ))}
         </div>
 

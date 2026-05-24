@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { useState } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +23,7 @@ export function PlatformNavbar() {
     { href: "/", label: t("home") },
     { href: "/services", label: t("services") },
     { href: "/marketplace", label: t("marketplace") },
+    { href: "/blog", label: t("blog") },
     { href: "/about", label: t("about") },
     { href: "/contact", label: t("contact") },
   ] as const;
@@ -40,9 +42,7 @@ export function PlatformNavbar() {
     >
       <div className="container-narrow flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="group flex shrink-0 items-center gap-2.5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-deweb-cyan to-deweb-cyan-dim text-lg font-black text-deweb-bg shadow-glow-sm">
-            D
-          </span>
+          <BrandLogo size={40} priority className="transition-transform group-hover:scale-105" />
           <span className="text-xl font-bold tracking-tight text-white group-hover:text-deweb-cyan transition-colors">
             DEWEB
           </span>

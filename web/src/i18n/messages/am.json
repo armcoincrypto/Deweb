@@ -7,6 +7,7 @@
     "home": "Գլխավոր",
     "services": "Ծառայություններ",
     "marketplace": "Շուկա",
+    "blog": "Բլոգ",
     "about": "Մեր մասին",
     "pricing": "Գնացուցակ",
     "contact": "Կապ",
@@ -67,7 +68,10 @@
     "process2": "Համապատասխանեցում և սակագնում",
     "process3": "Կառուցում և մայլեր",
     "process4": "Գործարկում և աջակցություն",
-    "cta": "Պատվիրել անհատական գնառաջարկ"
+    "cta": "Պատվիրել անհատական գնառաջարկ",
+    "learnMore": "Learn more",
+    "timeline": "Timeline",
+    "priceRange": "Price range"
   },
   "marketplace": {
     "title": "Շուկա",
@@ -105,7 +109,12 @@
     "mission": "Մեր առաքելությունը",
     "missionText": "IT գնումները դարձնել թափանցիկ, արագ և արդար մրցակցական սակագնումով։",
     "vision": "Մեր տեսլականը",
-    "visionText": "Դառնալ AI-ով շարժվող IT շուկաների հիմնական հարթակը աշխարհում։"
+    "visionText": "Դառնալ AI-ով շարժվող IT շուկաների հիմնական հարթակը աշխարհում։",
+    "teamTitle": "Meet our team",
+    "teamSubtitle": "Three specialists building the future of competitive IT delivery.",
+    "featuresTitle": "Everything we offer",
+    "featuresSubtitle": "From websites to AI automation — explore each service and meet the expert behind it.",
+    "learnMore": "Learn more"
   },
   "pricing": {
     "title": "Գնացուցակ",
@@ -114,10 +123,15 @@
   "contact": {
     "title": "Կապ",
     "subtitle": "Հարցեր նախագծերի, մատակարարների կամ ընկերության պլանների մասին։",
+    "followUs": "Հետևեք DEWEB-ին",
+    "connectWithUs": "Կապվեք մեզ հետ",
     "name": "Անուն",
     "email": "Էլ. փոստ",
     "message": "Հաղորդագրություն",
-    "send": "Ուղարկել"
+    "send": "Ուղարկել",
+    "sending": "Ուղարկվում է…",
+    "success": "Շնորհակալություն։ Ձեր հաղորդագրությունը ստացվել է։",
+    "error": "Սխալ։ Խնդրում ենք կրկին փորձել։"
   },
   "auth": {
     "platformTagline": "Մատակարարները մրցում են։ Հաճախորդը հաղթում է։",
@@ -264,7 +278,9 @@
     "send": "Ուղարկել",
     "moderated": "Կոնտակտը հեռացված է",
     "fileShared": "Ֆայլ",
-    "fileEmailed": "Ֆայլը ուղարկված է email-ով"
+    "fileEmailed": "Ֆայլը ուղարկված է email-ով",
+    "topupPending": "Submitted for admin verification. DEWEB will be credited after USDT is confirmed.",
+    "escrowOnAccept": "Accepting a proposal locks DEWEB in escrow until the job is completed."
   },
   "dashboard": {
     "dashboard": "Վահանակ",
@@ -298,5 +314,70 @@
     "error": "Սխալ է տեղի ունեցել",
     "save": "Պահպանել",
     "cancel": "Չեղարկել"
+  },
+  "serviceDetail": {
+    "pageTitle": "{service} — What We Offer",
+    "whatWeOffer": "What we offer",
+    "whatItMeans": "What it means",
+    "whatsIncluded": "What's included",
+    "deliverables": "Deliverables",
+    "yourExpert": "Your expert",
+    "timeline": "Timeline",
+    "priceRange": "Price range",
+    "technologies": "Technologies",
+    "getQuote": "Get a quote",
+    "backToServices": "Back to services"
+  },
+  "blog": {
+    "kicker": "Insights",
+    "title": "Blog",
+    "subtitle": "Marketplace tips, tech guides, and growth strategies from the DEWEB team.",
+    "readMore": "Read article",
+    "backToBlog": "Back to blog",
+    "exploreMarketplace": "Explore marketplace",
+    "posts": {
+      "how-competitive-bidding-saves-it-budgets": {
+        "title": "How competitive bidding saves IT budgets",
+        "excerpt": "Why posting projects to multiple suppliers drives better pricing and faster delivery.",
+        "body1": "Traditional IT procurement often means negotiating with a single vendor — leaving money and options on the table. Competitive bidding changes that by inviting verified suppliers to submit offers side by side.",
+        "body2": "On DEWEB, clients post a brief with budget and timeline. Suppliers compete with transparent pricing, portfolios, and delivery plans. You compare everything in one dashboard before choosing.",
+        "body3": "The result: average savings of 15–30% on project costs, faster turnaround, and higher confidence in your supplier choice."
+      },
+      "choosing-the-right-web-stack": {
+        "title": "Choosing the right web stack in 2026",
+        "excerpt": "Next.js, WordPress, or custom — how to pick the best foundation for your project.",
+        "body1": "Your web stack affects speed, scalability, and long-term maintenance costs. Next.js excels for modern apps and SEO; WordPress fits content-heavy sites with easy admin access.",
+        "body2": "We help clients evaluate trade-offs: team skills, content needs, integrations, and budget. The right choice depends on your goals, not trends alone.",
+        "body3": "DEWEB suppliers specialize across stacks — post your project and receive tailored recommendations with competitive bids."
+      },
+      "ai-automation-for-small-business": {
+        "title": "AI automation for small business",
+        "excerpt": "Practical AI workflows that save hours without enterprise budgets.",
+        "body1": "AI isn't just for big tech. Small businesses use chatbots, email automation, and CRM sync to handle support and operations around the clock.",
+        "body2": "Start with high-repetition tasks: lead qualification, appointment booking, invoice reminders. Custom agents can integrate with tools you already use.",
+        "body3": "DEWEB connects you with AI specialists who scope, build, and deploy automation — with milestone-based delivery and escrow protection."
+      },
+      "escrow-payments-why-they-matter": {
+        "title": "Why escrow payments matter for IT projects",
+        "excerpt": "Protect both clients and suppliers with milestone-based DEWEB coin escrow.",
+        "body1": "IT projects involve trust on both sides. Clients worry about delivery; suppliers worry about payment. Escrow holds funds until milestones are approved.",
+        "body2": "DEWEB uses DEWEB coins (1:1 USDT) locked in escrow when you accept a proposal. Funds release as work completes — reducing disputes and fraud.",
+        "body3": "Transparent milestones, chat moderation, and verified suppliers make remote IT deals safer for everyone."
+      },
+      "building-trust-with-verified-suppliers": {
+        "title": "Building trust with verified suppliers",
+        "excerpt": "How DEWEB vets talent and keeps marketplace quality high.",
+        "body1": "Not every freelancer is equal. DEWEB verifies supplier profiles, portfolios, and track records before they bid on projects.",
+        "body2": "Customers see ratings, past work, and skills upfront. Suppliers build reputation through successful deliveries and client reviews.",
+        "body3": "Verification plus competitive bidding creates a marketplace where quality rises and bad actors get filtered out."
+      },
+      "ecommerce-trends-2026": {
+        "title": "E-commerce trends to watch in 2026",
+        "excerpt": "Headless commerce, mobile-first checkout, and AI-powered personalization.",
+        "body1": "E-commerce keeps evolving. Headless setups offer flexibility; mobile checkout optimization drives conversion; AI personalizes product recommendations.",
+        "body2": "Payment diversity — cards, wallets, crypto — matters for global audiences. Fast load times and Core Web Vitals affect both SEO and sales.",
+        "body3": "Whether Shopify, WooCommerce, or custom — DEWEB suppliers compete to build stores that convert and scale."
+      }
+    }
   }
 }

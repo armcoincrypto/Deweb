@@ -8,10 +8,11 @@ import { cn } from "@/lib/utils";
 
 const labels: Record<Locale, string> = {
   en: "English",
-  am: "Հայերեն",
+  es: "Español",
   ru: "Русский",
+  am: "Հայերեն",
 };
-const short: Record<Locale, string> = { en: "EN", am: "AM", ru: "RU" };
+const short: Record<Locale, string> = { en: "EN", es: "ES", ru: "RU", am: "AM" };
 
 export function LanguageSwitcher({ className }: { className?: string }) {
   const locale = useLocale() as Locale;

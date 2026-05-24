@@ -1,6 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
+import { BrandLogo } from "@/components/layout/BrandLogo";
 import { useTranslations } from "next-intl";
 
 export function AuthLayout({
@@ -22,9 +23,7 @@ export function AuthLayout({
       <div className="mx-auto max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex items-center gap-2">
-            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-deweb-cyan text-xl font-black text-deweb-bg shadow-glow-sm">
-              D
-            </span>
+            <BrandLogo size={48} />
           </Link>
           <p className="mt-4 text-sm text-white/45">{t("platformTagline")}</p>
         </div>
