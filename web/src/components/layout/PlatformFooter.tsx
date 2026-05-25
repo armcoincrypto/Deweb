@@ -7,7 +7,6 @@ import { SocialLinks } from "@/components/contact/SocialLinks";
 
 export function PlatformFooter() {
   const t = useTranslations("nav");
-  const tContact = useTranslations("contact");
 
   return (
     <footer className="border-t border-white/[0.06] bg-black/50 py-14">
@@ -35,10 +34,7 @@ export function PlatformFooter() {
             <li><Link href="/about" className="hover:text-deweb-cyan">{t("about")}</Link></li>
             <li><Link href="/contact" className="hover:text-deweb-cyan">{t("contact")}</Link></li>
           </ul>
-          <p className="mt-6 text-xs font-bold uppercase tracking-wider text-white/40">
-            {tContact("connectWithUs")}
-          </p>
-          <SocialLinks size="sm" className="mt-3 justify-start" />
+          <SocialLinks size="sm" className="mt-4 justify-start" />
         </div>
         <div>
           <h4 className="text-xs font-bold uppercase tracking-wider text-white/40">Account</h4>

@@ -23,7 +23,7 @@ function SocialIcon({
   large: boolean;
   gradientId: string;
 }) {
-  const iconClass = large ? "h-10 w-10 sm:h-12 sm:w-12" : "h-5 w-5";
+  const iconClass = large ? "h-10 w-10 sm:h-12 sm:w-12" : "h-3.5 w-3.5";
 
   switch (platform) {
     case "linkedin":
@@ -80,7 +80,7 @@ export function SocialLinks({ size = "lg", className }: SocialLinksProps) {
     <div
       className={cn(
         "flex flex-wrap items-center justify-center",
-        large ? "gap-6 sm:gap-8" : "gap-4",
+        large ? "gap-6 sm:gap-8" : "gap-2.5",
         className
       )}
     >
@@ -100,7 +100,7 @@ export function SocialLinks({ size = "lg", className }: SocialLinksProps) {
               "border-deweb-cyan/40 bg-deweb-cyan/5 hover:border-deweb-cyan hover:bg-deweb-cyan/15 hover:shadow-glow-sm",
               large
                 ? "h-28 w-28 sm:h-36 sm:w-36 hover:scale-105"
-                : "h-11 w-11 hover:scale-110",
+                : "h-8 w-8 border-white/15 hover:scale-105",
               platform === "linkedin" && "text-[#0a66c2]",
               platform === "x" && "text-white"
             )}
