@@ -33,8 +33,10 @@ export function PlatformFooter() {
           <ul className="mt-4 space-y-2 text-sm text-white/60">
             <li><Link href="/about" className="hover:text-deweb-cyan">{t("about")}</Link></li>
             <li><Link href="/contact" className="hover:text-deweb-cyan">{t("contact")}</Link></li>
+            <li className="pt-0.5">
+              <SocialLinks size="footer" />
+            </li>
           </ul>
-          <SocialLinks size="sm" className="mt-4 justify-start" />
         </div>
         <div>
           <h4 className="text-xs font-bold uppercase tracking-wider text-white/40">Account</h4>

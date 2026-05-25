@@ -10,20 +10,25 @@ import {
 } from "@/lib/social-links";
 
 type SocialLinksProps = {
-  size?: "lg" | "sm";
+  size?: "lg" | "sm" | "footer";
   className?: string;
 };
 
 function SocialIcon({
   platform,
-  large,
+  variant,
   gradientId,
 }: {
   platform: SocialPlatform;
-  large: boolean;
+  variant: "lg" | "sm" | "footer";
   gradientId: string;
 }) {
-  const iconClass = large ? "h-10 w-10 sm:h-12 sm:w-12" : "h-3.5 w-3.5";
+  const iconClass =
+    variant === "lg"
+      ? "h-10 w-10 sm:h-12 sm:w-12"
+      : variant === "footer"
+        ? "h-4 w-4"
+        : "h-3.5 w-3.5";
 
   switch (platform) {
     case "linkedin":
@@ -54,7 +59,7 @@ function SocialIcon({
       );
     case "telegram":
       return (
-        <svg className={iconClass} viewBox="0 0 24 24" fill="#29B6F6" aria-hidden="true">
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" />
         </svg>
       );
@@ -67,8 +72,14 @@ function SocialIcon({
   }
 }
 
+const footerHover: Record<SocialPlatform, string> = {
+  linkedin: "hover:text-[#0a66c2]",
+  instagram: "hover:opacity-100",
+  telegram: "hover:text-[#29B6F6]",
+  x: "hover:text-white",
+};
+
 export function SocialLinks({ size = "lg", className }: SocialLinksProps) {
-  const large = size === "lg";
   const gradientId = useId().replace(/:/g, "");
   const [links, setLinks] = useState(defaultSocialLinks);
 
@@ -76,11 +87,16 @@ export function SocialLinks({ size = "lg", className }: SocialLinksProps) {
     fetchSocialLinks().then(setLinks);
   }, []);
 
+  const isLarge = size === "lg";
+  const isFooter = size === "footer";
+
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center justify-center",
-        large ? "gap-6 sm:gap-8" : "gap-2.5",
+        "flex flex-wrap items-center",
+        isLarge && "justify-center gap-6 sm:gap-8",
+        size === "sm" && "justify-center gap-2.5",
+        isFooter && "gap-3.5",
         className
       )}
     >
@@ -96,16 +112,22 @@ export function SocialLinks({ size = "lg", className }: SocialLinksProps) {
             title={label}
             aria-label={label}
             className={cn(
-              "group flex items-center justify-center rounded-full border transition-all duration-300",
-              "border-deweb-cyan/40 bg-deweb-cyan/5 hover:border-deweb-cyan hover:bg-deweb-cyan/15 hover:shadow-glow-sm",
-              large
-                ? "h-28 w-28 sm:h-36 sm:w-36 hover:scale-105"
-                : "h-8 w-8 border-white/15 hover:scale-105",
-              platform === "linkedin" && "text-[#0a66c2]",
-              platform === "x" && "text-white"
+              "transition-colors duration-200",
+              isFooter &&
+                cn(
+                  "inline-flex items-center justify-center text-white/55 opacity-90",
+                  footerHover[platform]
+                ),
+              !isFooter &&
+                "group flex items-center justify-center rounded-full border border-deweb-cyan/40 bg-deweb-cyan/5 hover:border-deweb-cyan hover:bg-deweb-cyan/15 hover:shadow-glow-sm",
+              isLarge && "h-28 w-28 sm:h-36 sm:w-36 hover:scale-105",
+              size === "sm" && !isFooter && "h-8 w-8 border-white/15 hover:scale-105",
+              !isFooter && platform === "linkedin" && "text-[#0a66c2]",
+              !isFooter && platform === "x" && "text-white",
+              isFooter && platform === "telegram" && "text-[#29B6F6]/85"
             )}
           >
-            <SocialIcon platform={platform} large={large} gradientId={gradientId} />
+            <SocialIcon platform={platform} variant={size} gradientId={gradientId} />
           </a>
         );
       })}
