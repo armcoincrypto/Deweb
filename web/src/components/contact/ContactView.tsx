@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { SocialLinks } from "@/components/contact/SocialLinks";
 import { api } from "@/lib/api";
 
 export function ContactView() {
@@ -38,9 +39,14 @@ export function ContactView() {
       <PageHeader title={t("title")} subtitle={t("subtitle")} />
 
       <div className="container-narrow px-4 pb-16 sm:px-6 lg:px-8">
+        <p className="text-center text-sm font-semibold uppercase tracking-wider text-white/45">
+          {t("followUs")}
+        </p>
+        <SocialLinks size="lg" className="mt-8" />
+
         <form
           onSubmit={handleSubmit}
-          className="glass-panel-glow mx-auto max-w-2xl space-y-4 p-8"
+          className="glass-panel-glow mx-auto mt-14 max-w-2xl space-y-4 p-8"
         >
           <label className="block text-xs font-bold uppercase text-white/40">
             {t("name")}
