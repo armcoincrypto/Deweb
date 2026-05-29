@@ -256,6 +256,39 @@ export const dewebApi = {
         body: JSON.stringify({ status }),
       }),
   },
+  services: {
+    page: () => api<ServicesPageData>("/services/page"),
+    estimate: (body: { message: string; budget?: string; category?: string }) =>
+      api<{
+        detectedCategory: string;
+        suggestedTimeline: string;
+        budgetParsed: { min: number | null; max: number | null; currency: string };
+        confidence: string;
+      }>("/services/estimate", { method: "POST", body: JSON.stringify(body) }),
+    catalog: () => api<{ catalog: Record<string, unknown> }>("/services/catalog"),
+    publicStats: () =>
+      api<{ users: string; orders: string; volume: string; successRate: string }>(
+        "/services/public-stats"
+      ),
+  },
+  offers: {
+    create: (body: {
+      email: string;
+      message: string;
+      name?: string;
+      budget?: string;
+      deadline?: string;
+      category?: string;
+    }) =>
+      api<{
+        ok: boolean;
+        id: string;
+        detectedCategory: string;
+        suggestedTimeline: string;
+        priority: string;
+        message: string;
+      }>("/offers", { method: "POST", body: JSON.stringify(body) }),
+  },
 };
 
 export type AdminStats = {
@@ -382,4 +415,35 @@ export type DealMessage = {
   attachmentName?: string;
   moderated?: boolean;
   createdAt: string;
+};
+
+export type ServicesPageData = {
+  hero: {
+    title: string;
+    subtitle: string;
+    trustBadges: string[];
+    orbitIcons: string[];
+  };
+  featured: {
+    id: string;
+    icon: string;
+    title: string;
+    features: string[];
+    timeline: string;
+    price: string;
+    highlight: string;
+    imageAccent: string;
+  }[];
+  grid: {
+    id: string;
+    icon: string;
+    title: string;
+    desc: string;
+    tech: string[];
+    timeline: string;
+    price: string;
+  }[];
+  stats: { value: string; label: string }[];
+  process: { step: number; icon: string; title: string; desc: string }[];
+  live?: { users: number; orders: number; inquiries: number; successRate: string };
 };

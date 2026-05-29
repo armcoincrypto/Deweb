@@ -7,7 +7,11 @@ import { PlatformNavbar } from "@/components/layout/PlatformNavbar";
 import { PlatformFooter } from "@/components/layout/PlatformFooter";
 import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
 import { AuthProvider } from "@/lib/auth-context";
+import { siteMetadata, siteViewport } from "@/lib/site-metadata";
 import "../globals.css";
+
+export const metadata = siteMetadata;
+export const viewport = siteViewport;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

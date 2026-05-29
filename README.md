@@ -33,12 +33,18 @@ git push origin main
 On the VPS (after you push to `main`):
 
 ```bash
-cd /var/www/deweb
-git pull origin main
-bash deploy/setup-next-homepage.sh   # Next.js site
-# API only:
-cd backend && npm install --omit=dev && systemctl restart deweb-api
+ssh deweb
+bash /var/www/deweb/deploy/update.sh
 ```
+
+Or from your Mac — one command (push + deploy):
+
+```bash
+./deploy/push-and-deploy.sh              # push already-committed changes
+./deploy/push-and-deploy.sh "fix footer" # commit, push, deploy
+```
+
+SSH alias `deweb` → `root@95.111.233.120` (passwordless key auth).
 
 ### What is **not** on GitHub (secrets)
 

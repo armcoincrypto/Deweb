@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -67,8 +66,8 @@ export function ServiceDetailView({ service }: ServiceDetailViewProps) {
 
           <div className="space-y-6">
             <GlassCard className="p-8 text-center">
-              <div className="relative mx-auto h-28 w-28 overflow-hidden rounded-2xl border-2 border-deweb-cyan/30">
-                <Image src={expert.avatar} alt={expert.name} fill className="object-cover" unoptimized />
+              <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-2xl border-2 border-deweb-cyan/30 bg-gradient-to-br from-[#0a1628] via-[#0d2840] to-[#051018] text-3xl font-bold text-deweb-cyan shadow-glow-sm">
+                {expert.initials}
               </div>
               <p className="mt-4 text-xs font-bold uppercase tracking-wider text-deweb-cyan">
                 {t("yourExpert")}

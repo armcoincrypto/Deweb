@@ -292,7 +292,12 @@ const migrateColumns = [
   ["orders", "escrow_status", "TEXT"],
   ["marketplace_products", "image_url", "TEXT"],
   ["users", "avatar_url", "TEXT"],
-  ["crypto_topups", "admin_note", "TEXT"]
+  ["crypto_topups", "admin_note", "TEXT"],
+  ["service_inquiries", "priority", "TEXT"],
+  ["service_inquiries", "detected_category", "TEXT"],
+  ["service_inquiries", "budget_min", "REAL"],
+  ["service_inquiries", "budget_max", "REAL"],
+  ["service_inquiries", "meta", "TEXT"]
 ];
 for (const [table, col, type] of migrateColumns) {
   try {

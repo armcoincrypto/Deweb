@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import { useState } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
@@ -10,8 +10,37 @@ import { BrandLogo } from "@/components/layout/BrandLogo";
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
 
+const PRIMARY_NAV = ["/", "/services", "/marketplace"] as const;
+
+function isNavActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function navLinkClass(pathname: string, href: string, mobile = false) {
+  const active = isNavActive(pathname, href);
+  const isPrimary = (PRIMARY_NAV as readonly string[]).includes(href);
+
+  if (mobile) {
+    return cn(
+      "block py-3 font-medium transition-colors",
+      active ? "text-deweb-cyan" : "text-white/80"
+    );
+  }
+
+  return cn(
+    "relative text-sm font-medium transition-colors",
+    active
+      ? isPrimary
+        ? "text-deweb-cyan after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-0.5 after:rounded-full after:bg-deweb-cyan after:shadow-[0_0_10px_rgba(0,242,255,0.55)]"
+        : "text-deweb-cyan"
+      : "text-white/65 hover:text-deweb-cyan"
+  );
+}
+
 export function PlatformNavbar() {
   const t = useTranslations("nav");
+  const pathname = usePathname();
   const { user, loading, displayName, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -53,7 +82,8 @@ export function PlatformNavbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-white/65 transition-colors hover:text-deweb-cyan"
+              className={navLinkClass(pathname, link.href)}
+              aria-current={isNavActive(pathname, link.href) ? "page" : undefined}
             >
               {link.label}
             </Link>
@@ -120,8 +150,9 @@ export function PlatformNavbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="block py-3 text-white/80"
+              className={navLinkClass(pathname, link.href, true)}
               onClick={() => setMobileOpen(false)}
+              aria-current={isNavActive(pathname, link.href) ? "page" : undefined}
             >
               {link.label}
             </Link>
