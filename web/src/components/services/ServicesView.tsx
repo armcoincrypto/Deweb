@@ -91,8 +91,8 @@ export function ServicesView() {
 
   return (
     <div className="pb-20">
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32">
+      {/* Hero title */}
+      <section className="relative overflow-hidden pt-28 sm:pt-32">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,242,255,0.08),transparent_60%)]" />
         <div className="container-narrow relative px-4 text-center sm:px-6 lg:px-8">
           <motion.h1
@@ -102,9 +102,12 @@ export function ServicesView() {
           >
             {data.hero.title}
           </motion.h1>
+        </div>
 
-          <ShopifySpotlight />
+        {/* Full-bleed Shopify strip — outside container-narrow */}
+        <ShopifySpotlight />
 
+        <div className="container-narrow relative px-4 pb-16 text-center sm:px-6 lg:px-8">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

@@ -26,85 +26,92 @@ export function ShopifySpotlight() {
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.15, duration: 0.5 }}
-      className="relative left-1/2 mt-10 w-screen max-w-[100vw] -translate-x-1/2 overflow-hidden border-y border-[#95BF47]/25 bg-gradient-to-r from-[#0a1208] via-[#0d1a10] to-[#0a1208]"
+      transition={{ delay: 0.12, duration: 0.45 }}
+      className="relative mt-10 w-full overflow-hidden border-y border-[#95BF47]/30 bg-gradient-to-r from-[#071008] via-[#0d1a10] to-[#071008]"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(149,191,71,0.14),transparent_50%),radial-gradient(ellipse_at_80%_50%,rgba(0,242,255,0.08),transparent_45%)]" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#95BF47]/60 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_50%,rgba(149,191,71,0.16),transparent_45%),radial-gradient(ellipse_at_85%_50%,rgba(0,242,255,0.07),transparent_40%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#95BF47]/70 to-transparent" />
 
-      <div className="relative mx-auto flex max-w-[1400px] flex-col gap-8 px-4 py-8 sm:px-6 lg:flex-row lg:items-stretch lg:gap-0 lg:px-8 lg:py-0">
-        {/* Brand + title */}
-        <div className="flex shrink-0 flex-col justify-center gap-4 border-[#95BF47]/15 py-4 lg:w-[22%] lg:border-r lg:py-10 lg:pr-8">
-          <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#95BF47]/30 bg-[#95BF47]/10 p-2.5 shadow-[0_0_30px_rgba(149,191,71,0.2)]">
-              <Image src="/shopify-logo.svg" alt="Shopify" width={40} height={46} className="h-auto w-full" />
-            </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#95BF47]">
-                {t("partner")}
-              </p>
-              <h2 className="text-xl font-bold leading-tight text-white sm:text-2xl lg:text-[1.65rem]">
-                {t("title")}
-              </h2>
-            </div>
-          </div>
-        </div>
-
-        {/* Pricing — real packages */}
-        <div className="flex shrink-0 flex-col justify-center gap-3 border-[#95BF47]/15 py-4 lg:w-[24%] lg:border-r lg:py-10 lg:px-8">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">{t("pricingLabel")}</p>
-          <div className="space-y-2">
-            {PACKAGES.map((pkg) => (
-              <div
-                key={pkg.name}
-                className="flex items-baseline justify-between gap-3 rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2"
-              >
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold text-white/90">{pkg.name}</p>
-                  <p className="truncate text-[10px] text-white/45">{pkg.note}</p>
-                </div>
-                <p className="shrink-0 text-sm font-bold text-[#95BF47]">{pkg.price}</p>
+      <div className="relative w-full px-4 py-8 sm:px-8 lg:px-12 lg:py-10">
+        <div className="grid w-full gap-8 lg:grid-cols-[1.1fr_1fr_1.2fr_1.1fr] lg:gap-0 lg:divide-x lg:divide-[#95BF47]/15">
+          {/* Brand */}
+          <div className="flex flex-col justify-center lg:pr-10">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-[#95BF47]/35 bg-[#95BF47]/10 p-3 shadow-[0_0_40px_rgba(149,191,71,0.22)]">
+                <Image src="/shopify-logo.svg" alt="Shopify" width={44} height={50} className="h-auto w-full" />
               </div>
-            ))}
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#95BF47]">
+                  {t("partner")}
+                </p>
+                <h2 className="mt-1 text-2xl font-bold leading-tight text-white sm:text-3xl">{t("title")}</h2>
+              </div>
+            </div>
           </div>
-          <p className="text-[11px] text-white/40">{t("timeline")}: 2–8 weeks</p>
+
+          {/* Pricing */}
+          <div className="flex flex-col justify-center lg:px-10">
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/40">{t("pricingLabel")}</p>
+            <div className="mt-3 space-y-2">
+              {PACKAGES.map((pkg) => (
+                <div
+                  key={pkg.name}
+                  className="flex items-center justify-between gap-4 rounded-xl border border-white/[0.07] bg-white/[0.04] px-4 py-2.5"
+                >
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-white">{pkg.name}</p>
+                    <p className="text-[11px] text-white/45">{pkg.note}</p>
+                  </div>
+                  <p className="shrink-0 text-base font-bold text-[#95BF47]">{pkg.price}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-xs text-white/40">{t("timeline")}: 2–8 weeks</p>
+          </div>
+
+          {/* What we offer */}
+          <div className="flex flex-col justify-center lg:px-10">
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/40">{t("offerLabel")}</p>
+            <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {OFFERS.map((item) => (
+                <span key={item} className="flex items-center gap-2 text-sm text-white/80">
+                  <span className="text-[#95BF47]">✓</span>
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Opportunity */}
+          <div className="flex flex-col justify-center lg:pl-10">
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-deweb-cyan/80">
+              {t("opportunityLabel")}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-white/65">{t("opportunityText")}</p>
+            <ul className="mt-3 space-y-1.5 text-xs text-white/50">
+              <li>• {t("stat1")}</li>
+              <li>• {t("stat2")}</li>
+              <li>• {t("stat3")}</li>
+            </ul>
+          </div>
         </div>
 
-        {/* What we offer */}
-        <div className="flex flex-1 flex-col justify-center gap-3 border-[#95BF47]/15 py-4 lg:border-r lg:py-10 lg:px-8">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">{t("offerLabel")}</p>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
-            {OFFERS.map((item) => (
-              <span key={item} className="flex items-center gap-1.5 text-xs text-white/75 sm:text-sm">
-                <span className="text-[#95BF47]">✓</span>
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Opportunity + CTA */}
-        <div className="flex shrink-0 flex-col justify-center gap-4 py-4 lg:w-[26%] lg:py-10 lg:pl-8">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-deweb-cyan/80">
-            {t("opportunityLabel")}
+        {/* Full-width CTA bar */}
+        <div className="mt-8 flex w-full flex-col items-stretch justify-between gap-4 border-t border-[#95BF47]/20 pt-8 sm:flex-row sm:items-center">
+          <p className="text-center text-sm text-white/50 sm:text-left lg:max-w-xl">
+            {t("ctaHint")}
           </p>
-          <p className="text-sm leading-relaxed text-white/65">{t("opportunityText")}</p>
-          <ul className="space-y-1 text-xs text-white/50">
-            <li>• {t("stat1")}</li>
-            <li>• {t("stat2")}</li>
-            <li>• {t("stat3")}</li>
-          </ul>
-          <div className="flex flex-wrap gap-3 pt-1">
-            <GlowButton href="/services/ecommerce" variant="primary" className="!px-5 !py-2.5 !text-xs">
-              {t("cta")}
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-end">
+            <GlowButton href="#consultation" variant="primary" className="w-full !px-8 !py-3.5 sm:w-auto">
+              {t("getConsultation")}
             </GlowButton>
             <Link
-              href="#consultation"
-              className="inline-flex items-center text-xs font-semibold text-[#95BF47] hover:underline"
+              href="/services/ecommerce"
+              className="text-sm font-semibold text-[#95BF47] hover:underline"
             >
-              {t("consult")} →
+              {t("cta")} →
             </Link>
           </div>
         </div>
