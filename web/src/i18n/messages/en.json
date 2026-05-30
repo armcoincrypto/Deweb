@@ -95,7 +95,21 @@
     "formSubmit": "Send request",
     "formSuccess": "Request sent! We'll respond within 24 hours.",
     "formError": "Could not send. Please try again.",
-    "estimateHint": "Suggested timeline"
+    "estimateHint": "Suggested timeline",
+    "shopifySpotlight": {
+      "partner": "Official Shopify Partner",
+      "title": "Shopify Development",
+      "pricingLabel": "Real pricing",
+      "offerLabel": "What we deliver",
+      "opportunityLabel": "The Shopify opportunity",
+      "opportunityText": "Shopify powers 4.5M+ stores worldwide. Ecommerce sales exceed $6 trillion globally — brands that launch on Shopify reach 175+ countries with built-in payments, inventory, and marketing tools from day one.",
+      "stat1": "10%+ of all US ecommerce runs on Shopify",
+      "stat2": "Average 36% conversion lift after CRO optimization",
+      "stat3": "Shopify Plus for $1M+ brands — we build & migrate",
+      "timeline": "Typical delivery",
+      "cta": "Get Shopify Quote",
+      "consult": "Free consultation"
+    }
   },
   "serviceDetail": {
     "pageTitle": "{service} — What We Offer",

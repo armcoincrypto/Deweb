@@ -7,37 +7,40 @@ import { Link } from "@/i18n/routing";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ConsultationForm } from "@/components/services/ConsultationForm";
+import { ShopifySpotlight } from "@/components/services/ShopifySpotlight";
 import { dewebApi, type ServicesPageData } from "@/lib/api";
 import { servicesPageFallback } from "@/lib/services-data";
 
 function OrbitHero({ icons }: { icons: string[] }) {
+  const count = icons.length;
+  const radius = 38;
+
   return (
-    <div className="relative mx-auto mt-12 h-56 w-56 sm:h-72 sm:w-72">
+    <div className="relative mx-auto mt-12 aspect-square w-56 sm:w-72">
       <div className="absolute inset-0 rounded-full bg-deweb-cyan/10 blur-3xl" />
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-4 rounded-full border border-deweb-cyan/30 shadow-[0_0_60px_rgba(0,242,255,0.15)]"
-      />
+      <div className="absolute inset-[12%] rounded-full border border-deweb-cyan/35 shadow-[0_0_60px_rgba(0,242,255,0.15)]" />
       {icons.map((icon, i) => {
-        const angle = (i / icons.length) * Math.PI * 2;
-        const r = 42;
-        const x = 50 + Math.cos(angle) * r;
-        const y = 50 + Math.sin(angle) * r;
+        const angle = (i / count) * Math.PI * 2 - Math.PI / 2;
+        const x = 50 + radius * Math.cos(angle);
+        const y = 50 + radius * Math.sin(angle);
         return (
-          <motion.span
-            key={icon + i}
-            className="absolute flex h-11 w-11 items-center justify-center rounded-xl border border-deweb-cyan/25 bg-deweb-bg/80 text-xl shadow-glow backdrop-blur-sm sm:h-12 sm:w-12 sm:text-2xl"
+          <div
+            key={`${icon}-${i}`}
+            className="absolute"
             style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 3 + i * 0.4, repeat: Infinity, ease: "easeInOut" }}
           >
-            {icon}
-          </motion.span>
+            <motion.span
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-deweb-cyan/25 bg-deweb-bg/90 text-xl shadow-glow backdrop-blur-sm sm:h-12 sm:w-12 sm:text-2xl"
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 3 + i * 0.35, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {icon}
+            </motion.span>
+          </div>
         );
       })}
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="rounded-full border border-deweb-cyan/40 bg-deweb-cyan/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-deweb-cyan">
+        <span className="rounded-full border border-deweb-cyan/40 bg-deweb-bg/90 px-4 py-2 text-xs font-bold uppercase tracking-widest text-deweb-cyan backdrop-blur-sm">
           DEWEB
         </span>
       </div>
@@ -99,6 +102,9 @@ export function ServicesView() {
           >
             {data.hero.title}
           </motion.h1>
+
+          <ShopifySpotlight />
+
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
