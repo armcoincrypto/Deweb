@@ -12,7 +12,7 @@ cd "$APP_DIR/backend"
 npm install --omit=dev
 systemctl restart deweb-api
 
-if [[ -d "$APP_DIR/web/package.json" ]]; then
+if [[ -f "$APP_DIR/web/package.json" ]]; then
   echo "==> Next.js homepage..."
   cd "$APP_DIR/web"
   export NEXT_PUBLIC_LEGACY_URL="https://${DOMAIN}"
