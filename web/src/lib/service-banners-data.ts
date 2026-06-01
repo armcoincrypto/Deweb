@@ -106,14 +106,3 @@ export const serviceBanners: ServiceBanner[] = [
     visual: "enterprise",
   },
 ];
-
-export const bannerGridLayout: { id: string; className: string }[] = [
-  { id: "shopify", className: "col-span-12" },
-  { id: "ai-chatbots", className: "col-span-12 lg:col-span-6" },
-  { id: "custom-software", className: "col-span-12 lg:col-span-6" },
-  { id: "marketplace", className: "col-span-12 lg:col-span-6" },
-  { id: "mobile", className: "col-span-12 lg:col-span-6" },
-  { id: "uiux", className: "col-span-12 lg:col-span-6" },
-  { id: "seo", className: "col-span-12 lg:col-span-6" },
-  { id: "enterprise", className: "col-span-12" },
-];
