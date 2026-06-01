@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ConsultationForm } from "@/components/services/ConsultationForm";
-import { ShopifySpotlight } from "@/components/services/ShopifySpotlight";
+import { ServiceBanners } from "@/components/services/ServiceBanners";
 import { dewebApi, type ServicesPageData } from "@/lib/api";
 import { servicesPageFallback } from "@/lib/services-data";
+import { serviceBanners } from "@/lib/service-banners-data";
 
 function OrbitHero({ icons }: { icons: string[] }) {
   const count = icons.length;
@@ -48,34 +48,6 @@ function OrbitHero({ icons }: { icons: string[] }) {
   );
 }
 
-function FeaturedMockup({ accent }: { accent: string }) {
-  const isShopify = accent === "shopify";
-  return (
-    <div className="relative hidden h-full min-h-[220px] overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-deweb-bg via-[#0a1520] to-[#061018] lg:block">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,242,255,0.12),transparent_55%)]" />
-      <div className="relative p-5">
-        <div className="mb-3 flex gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
-        </div>
-        <div className="space-y-2">
-          <div className="h-3 w-3/4 rounded bg-white/10" />
-          <div className="grid grid-cols-3 gap-2">
-            {[1, 2, 3].map((n) => (
-              <div key={n} className="h-16 rounded-lg border border-white/5 bg-white/[0.03]" />
-            ))}
-          </div>
-          <div className="h-20 rounded-lg border border-deweb-cyan/20 bg-deweb-cyan/5" />
-        </div>
-      </div>
-      <div className="absolute bottom-4 right-4 rounded-full border border-deweb-cyan/40 bg-deweb-bg/90 px-3 py-1.5 text-[10px] font-bold text-deweb-cyan">
-        {isShopify ? "Live Store" : "AI Assistant"}
-      </div>
-    </div>
-  );
-}
-
 export function ServicesView() {
   const t = useTranslations("services");
   const [data, setData] = useState<ServicesPageData>(servicesPageFallback);
@@ -84,15 +56,12 @@ export function ServicesView() {
     dewebApi.services.page().then(setData).catch(() => {});
   }, []);
 
-  const categories = [
-    ...data.featured.map((f) => ({ id: f.id, title: f.title })),
-    ...data.grid.map((g) => ({ id: g.id, title: g.title })),
-  ];
+  const categories = serviceBanners.map((b) => ({ id: b.slug, title: b.title }));
 
   return (
     <div className="pb-20">
-      {/* Hero title */}
-      <section className="relative overflow-hidden pt-28 sm:pt-32">
+      {/* Hero */}
+      <section className="relative overflow-hidden pt-28 pb-8 sm:pt-32">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,242,255,0.08),transparent_60%)]" />
         <div className="container-narrow relative px-4 text-center sm:px-6 lg:px-8">
           <motion.h1
@@ -102,12 +71,6 @@ export function ServicesView() {
           >
             {data.hero.title}
           </motion.h1>
-        </div>
-
-        {/* Full-bleed Shopify strip — outside container-narrow */}
-        <ShopifySpotlight />
-
-        <div className="container-narrow relative px-4 pb-16 text-center sm:px-6 lg:px-8">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -147,93 +110,8 @@ export function ServicesView() {
         </div>
       </section>
 
-      {/* Featured cards */}
-      <section className="container-narrow px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-6 lg:grid-cols-2">
-          {data.featured.map((item, i) => (
-            <GlassCard key={item.id} glow delay={i * 0.08} className="overflow-hidden p-0">
-              <div className="grid lg:grid-cols-2">
-                <div className="p-8">
-                  <span className="text-3xl">{item.icon}</span>
-                  <h3 className="mt-4 text-2xl font-bold text-white">{item.title}</h3>
-                  <ul className="mt-4 space-y-2">
-                    {item.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-sm text-white/65">
-                        <span className="mt-0.5 text-deweb-cyan">•</span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <p className="text-white/40">{t("timeline")}</p>
-                      <p className="font-semibold text-white">{item.timeline}</p>
-                    </div>
-                    <div>
-                      <p className="text-white/40">{t("priceRange")}</p>
-                      <p className="font-semibold text-deweb-cyan">{item.price}</p>
-                    </div>
-                  </div>
-                  <Link
-                    href={`/services/${item.id}`}
-                    className="mt-6 inline-block text-sm font-semibold text-deweb-cyan hover:underline"
-                  >
-                    {t("learnMore")} →
-                  </Link>
-                </div>
-                <div className="relative p-4 lg:p-6">
-                  <FeaturedMockup accent={item.imageAccent} />
-                  <div className="absolute right-6 top-6 rounded-full border border-deweb-cyan/40 bg-deweb-bg/95 px-4 py-2 text-center text-[11px] font-bold leading-tight text-deweb-cyan shadow-glow lg:right-10 lg:top-10">
-                    {item.highlight}
-                  </div>
-                </div>
-              </div>
-            </GlassCard>
-          ))}
-        </div>
-      </section>
-
-      {/* Service grid */}
-      <section className="container-narrow section-padding px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-10 text-center text-3xl font-bold text-white">{t("categoriesTitle")}</h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {data.grid.map((cat, i) => (
-            <Link key={cat.id} href={`/services/${cat.id}`} className="block h-full">
-              <GlassCard glow delay={i * 0.04} className="flex h-full flex-col p-6">
-                <span className="text-2xl">{cat.icon}</span>
-                <h3 className="mt-3 text-lg font-bold text-white">{cat.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-white/55">{cat.desc}</p>
-                <p className="mt-4 text-xs font-medium uppercase tracking-wider text-white/35">
-                  {t("techStack")}
-                </p>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {cat.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-white/60"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-5 grid grid-cols-2 gap-3 border-t border-white/[0.06] pt-4 text-xs">
-                  <div>
-                    <p className="text-white/35">{t("timeline")}</p>
-                    <p className="font-semibold text-white">{cat.timeline}</p>
-                  </div>
-                  <div>
-                    <p className="text-white/35">{t("priceRange")}</p>
-                    <p className="font-semibold text-deweb-cyan">{cat.price}</p>
-                  </div>
-                </div>
-                <span className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-deweb-cyan/40 bg-deweb-cyan/10 py-2.5 text-xs font-bold text-deweb-cyan transition-colors group-hover:bg-deweb-cyan/20">
-                  {t("learnMore")}
-                </span>
-              </GlassCard>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {/* Full-width service banners */}
+      <ServiceBanners />
 
       {/* Stats */}
       <section className="border-y border-white/[0.06] bg-white/[0.02] py-16">
