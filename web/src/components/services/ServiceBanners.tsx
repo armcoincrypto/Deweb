@@ -7,84 +7,137 @@ import { GlowButton } from "@/components/ui/GlowButton";
 import { ServiceBannerVisual } from "@/components/services/ServiceBannerVisual";
 import { serviceBanners, type ServiceBanner } from "@/lib/service-banners-data";
 
-function MetaItem({ label, value }: { label: string; value: string }) {
+function MetaBlock({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="min-w-0">
-      <p className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/40">
-        <span className="text-deweb-cyan/80">◆</span>
+      <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-deweb-cyan/70">
+        <span className="inline-block h-px w-4 bg-deweb-cyan/50" />
         {label}
       </p>
-      <p className="mt-1.5 text-sm font-medium leading-snug text-white/90">{value}</p>
+      <div className="mt-2">{children}</div>
     </div>
   );
 }
 
 function ServiceRow({ banner, index }: { banner: ServiceBanner; index: number }) {
   const t = useTranslations("services");
-  const isShopify = banner.id === "shopify";
+  const visualRight = index % 2 === 0;
+  const sectionNum = String(index + 1).padStart(2, "0");
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5 }}
-      className="relative w-full border-b border-white/[0.06]"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      className="relative w-full overflow-hidden border-b border-white/[0.07]"
       style={{
-        background: isShopify
-          ? "linear-gradient(90deg, #071008 0%, #0d1a10 50%, #071008 100%)"
-          : "linear-gradient(90deg, #070d14 0%, #0a121c 50%, #070d14 100%)",
+        background: banner.featured
+          ? "linear-gradient(105deg, #061008 0%, #0a1610 40%, #070d14 100%)"
+          : "linear-gradient(105deg, #060a10 0%, #0a121c 50%, #060a10 100%)",
       }}
     >
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse at 15% 50%, ${banner.accent ? `${banner.accent}14` : "rgba(0,242,255,0.05)"}, transparent 50%)`,
+          background: `radial-gradient(ellipse at ${visualRight ? "85%" : "15%"} 50%, ${banner.glow || "rgba(0,242,255,0.08)"}, transparent 55%)`,
         }}
       />
 
       <div
-        className={`relative mx-auto grid w-full max-w-[1600px] grid-cols-1 lg:grid-cols-[1fr_minmax(280px,38%)] ${
-          isShopify ? "min-h-[min(42vh,420px)]" : "min-h-[min(36vh,360px)]"
+        className={`relative mx-auto grid w-full max-w-[1680px] grid-cols-1 lg:min-h-[min(40vh,440px)] ${
+          visualRight
+            ? "lg:grid-cols-[1fr_46%]"
+            : "lg:grid-cols-[46%_1fr]"
         }`}
       >
-        {/* Text — left */}
-        <div className="flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
+        {/* Visual panel */}
+        <div
+          className={`relative min-h-[280px] lg:min-h-full ${
+            visualRight ? "lg:order-2" : "lg:order-1"
+          } ${visualRight ? "lg:border-l" : "lg:border-r"} border-white/[0.06]`}
+        >
+          <div className="absolute inset-0 p-5 sm:p-8 lg:p-10">
+            <ServiceBannerVisual type={banner.visual} accent={banner.accent} glow={banner.glow} />
+          </div>
+        </div>
+
+        {/* Content panel */}
+        <div
+          className={`flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-14 lg:py-14 ${
+            visualRight ? "lg:order-1" : "lg:order-2"
+          }`}
+        >
+          <div className="mb-6 flex items-center gap-4">
+            <span className="text-xs font-bold tracking-[0.3em] text-deweb-cyan/50">{sectionNum}</span>
+            <span className="h-px flex-1 max-w-[60px] bg-deweb-cyan/30" />
+            <div
+              className="flex h-14 w-14 items-center justify-center rounded-2xl border text-2xl shadow-glow-sm"
+              style={{
+                borderColor: banner.accent ? `${banner.accent}55` : "rgba(0,242,255,0.35)",
+                background: banner.accent ? `${banner.accent}18` : "rgba(0,242,255,0.1)",
+              }}
+            >
+              {banner.icon}
+            </div>
+          </div>
+
           <h2
-            className={`font-bold leading-tight text-white ${
-              isShopify ? "text-3xl sm:text-4xl lg:text-5xl" : "text-2xl sm:text-3xl lg:text-4xl"
+            className={`font-bold leading-[1.1] tracking-tight text-white ${
+              banner.featured ? "text-3xl sm:text-4xl lg:text-[2.75rem]" : "text-2xl sm:text-3xl lg:text-4xl"
             }`}
           >
             {banner.title}
           </h2>
 
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            <MetaItem label={t("deliverables")} value={banner.deliverables.join(" · ")} />
-            <MetaItem label={t("priceRange")} value={banner.pricing} />
-            <MetaItem label={t("timeline")} value={banner.timeline} />
-            <MetaItem label={t("benefits")} value={banner.benefits.join(" · ")} />
+          <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            <MetaBlock label={t("deliverables")}>
+              <ul className="space-y-1.5">
+                {banner.deliverables.map((d) => (
+                  <li key={d} className="flex items-center gap-2 text-sm text-white/85">
+                    <span className="text-deweb-cyan">✓</span>
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </MetaBlock>
+            <MetaBlock label={t("priceRange")}>
+              <p className="text-lg font-bold text-deweb-cyan sm:text-xl">{banner.pricing}</p>
+            </MetaBlock>
+            <MetaBlock label={t("timeline")}>
+              <p className="text-base font-semibold text-white">{banner.timeline}</p>
+            </MetaBlock>
+            <MetaBlock label={t("benefits")}>
+              <ul className="space-y-1.5">
+                {banner.benefits.map((b) => (
+                  <li key={b} className="flex items-start gap-2 text-sm text-white/75">
+                    <span className="mt-0.5 text-deweb-cyan/80">•</span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </MetaBlock>
           </div>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <GlowButton href="#consultation" variant="primary" className="!px-8 !py-3.5">
+            <GlowButton href="#consultation" variant="primary" className="!px-8 !py-3.5 !text-sm">
               {t("consultation")}
             </GlowButton>
-            <GlowButton href="/marketplace" variant="ghost" className="!px-8 !py-3.5">
+            <GlowButton href="/marketplace" variant="ghost" className="!px-8 !py-3.5 !text-sm">
               {t("requestBids")}
             </GlowButton>
             <Link
               href={`/services/${banner.slug}`}
-              className="text-sm font-semibold text-deweb-cyan hover:underline sm:ml-2"
+              className="text-sm font-semibold text-white/50 transition-colors hover:text-deweb-cyan sm:ml-1"
             >
               {t("learnMore")} →
             </Link>
-          </div>
-        </div>
-
-        {/* Visual — right */}
-        <div className="relative min-h-[220px] border-t border-white/[0.06] lg:min-h-0 lg:border-l lg:border-t-0">
-          <div className="absolute inset-0 p-4 sm:p-6 lg:p-8">
-            <ServiceBannerVisual type={banner.visual} accent={banner.accent} />
           </div>
         </div>
       </div>
@@ -92,17 +145,21 @@ function ServiceRow({ banner, index }: { banner: ServiceBanner; index: number })
   );
 }
 
-export function ServiceBanners() {
+export function ServiceBanners({ pageTitle }: { pageTitle?: string }) {
   const t = useTranslations("services");
 
   return (
-    <section className="relative left-1/2 mt-4 w-screen max-w-[100vw] -translate-x-1/2">
-      <div className="border-y border-white/[0.08] bg-deweb-bg/50">
-        <h2 className="px-6 py-10 text-center text-2xl font-bold text-white sm:text-3xl lg:py-12">
-          {t("categoriesTitle")}
-        </h2>
+    <section className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 pt-24 sm:pt-28">
+      <div className="border-y border-white/[0.08]">
+        <div className="border-b border-white/[0.06] bg-white/[0.02] px-6 py-10 text-center lg:py-14">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-deweb-cyan/60">
+            DEWEB Services
+          </p>
+          <h1 className="mt-2 text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+            {pageTitle ?? t("categoriesTitle")}
+          </h1>
+        </div>
 
-        {/* One full-width row per category — stacked vertically */}
         <div className="flex w-full flex-col">
           {serviceBanners.map((banner, i) => (
             <ServiceRow key={banner.id} banner={banner} index={i} />

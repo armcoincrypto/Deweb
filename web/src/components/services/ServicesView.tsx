@@ -11,43 +11,6 @@ import { dewebApi, type ServicesPageData } from "@/lib/api";
 import { servicesPageFallback } from "@/lib/services-data";
 import { serviceBanners } from "@/lib/service-banners-data";
 
-function OrbitHero({ icons }: { icons: string[] }) {
-  const count = icons.length;
-  const radius = 38;
-
-  return (
-    <div className="relative mx-auto mt-12 aspect-square w-56 sm:w-72">
-      <div className="absolute inset-0 rounded-full bg-deweb-cyan/10 blur-3xl" />
-      <div className="absolute inset-[12%] rounded-full border border-deweb-cyan/35 shadow-[0_0_60px_rgba(0,242,255,0.15)]" />
-      {icons.map((icon, i) => {
-        const angle = (i / count) * Math.PI * 2 - Math.PI / 2;
-        const x = 50 + radius * Math.cos(angle);
-        const y = 50 + radius * Math.sin(angle);
-        return (
-          <div
-            key={`${icon}-${i}`}
-            className="absolute"
-            style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
-          >
-            <motion.span
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-deweb-cyan/25 bg-deweb-bg/90 text-xl shadow-glow backdrop-blur-sm sm:h-12 sm:w-12 sm:text-2xl"
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 3 + i * 0.35, repeat: Infinity, ease: "easeInOut" }}
-            >
-              {icon}
-            </motion.span>
-          </div>
-        );
-      })}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="rounded-full border border-deweb-cyan/40 bg-deweb-bg/90 px-4 py-2 text-xs font-bold uppercase tracking-widest text-deweb-cyan backdrop-blur-sm">
-          DEWEB
-        </span>
-      </div>
-    </div>
-  );
-}
-
 export function ServicesView() {
   const t = useTranslations("services");
   const [data, setData] = useState<ServicesPageData>(servicesPageFallback);
@@ -60,58 +23,7 @@ export function ServicesView() {
 
   return (
     <div className="pb-20">
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-28 pb-8 sm:pt-32">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,242,255,0.08),transparent_60%)]" />
-        <div className="container-narrow relative px-4 text-center sm:px-6 lg:px-8">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mx-auto max-w-4xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.25rem]"
-          >
-            {data.hero.title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg"
-          >
-            {data.hero.subtitle}
-          </motion.p>
-
-          <OrbitHero icons={data.hero.orbitIcons} />
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
-          >
-            <GlowButton href="#consultation" variant="primary">
-              {t("consultation")}
-            </GlowButton>
-            <GlowButton href="/marketplace" variant="secondary">
-              {t("requestBids")}
-            </GlowButton>
-          </motion.div>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            {data.hero.trustBadges.map((badge) => (
-              <span
-                key={badge}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-semibold text-white/70"
-              >
-                <span className="text-deweb-cyan">✓</span>
-                {badge}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Full-width service banners */}
-      <ServiceBanners />
+      <ServiceBanners pageTitle={data.hero.title} />
 
       {/* Stats */}
       <section className="border-y border-white/[0.06] bg-white/[0.02] py-16">
