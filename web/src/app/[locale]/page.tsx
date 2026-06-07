@@ -1,4 +1,19 @@
+import { getTranslations } from "next-intl/server";
+import { buildPageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/Hero";
+
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta" });
+  return buildPageMetadata({
+    title: t("title"),
+    description: t("description"),
+    path: "/",
+    locale,
+  });
+}
 import { TrustedCompanies } from "@/components/home/TrustedCompanies";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { MarketplaceCategories } from "@/components/home/MarketplaceCategories";
