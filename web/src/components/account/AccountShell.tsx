@@ -36,17 +36,17 @@ export function AccountShell({
     { href: "/account", label: t("overview") },
     { href: "/account/profile", label: t("profile") },
     { href: "/account/listings", label: t("myListings") },
+    { href: "/account/submit-offer", label: "Submit Offer" },
     { href: "/account/messages", label: t("messages") },
-    { href: "/account/wallet", label: t("wallet") },
   ];
 
   const supplierLinks = [
     { href: "/account", label: t("overview") },
     { href: "/account/profile", label: t("profile") },
     { href: "/account/listings", label: t("myListings") },
+    { href: "/account/submit-offer", label: "Submit Offer" },
     { href: "/account/messages", label: t("messages") },
     { href: "/account/proposals", label: t("proposals") },
-    { href: "/account/wallet", label: t("wallet") },
   ];
 
   const links = role === "supplier" ? supplierLinks : customerLinks;

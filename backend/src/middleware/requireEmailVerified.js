@@ -6,7 +6,7 @@ export function requireEmailVerified(req, res, next) {
   if (!row?.email_verified) {
     return res.status(403).json({
       error: "EMAIL_NOT_VERIFIED",
-      message: "Verify your email before connecting a wallet or buying DEWEB."
+      message: "Please verify your email before using this feature."
     });
   }
   next();

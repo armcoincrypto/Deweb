@@ -285,6 +285,27 @@ db.exec(`
     created_at TEXT NOT NULL,
     FOREIGN KEY (chat_id) REFERENCES deal_chats(id)
   );
+
+  CREATE TABLE IF NOT EXISTS lead_submissions (
+    id TEXT PRIMARY KEY,
+    user_id TEXT,
+    submission_type TEXT NOT NULL DEFAULT 'contact',
+    status TEXT NOT NULL DEFAULT 'new',
+    admin_note TEXT,
+    name TEXT,
+    email TEXT NOT NULL,
+    phone TEXT,
+    title TEXT,
+    product_name TEXT,
+    category TEXT,
+    offered_price REAL,
+    asking_price REAL,
+    message TEXT NOT NULL,
+    meta TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  );
 `);
 
 const migrateColumns = [

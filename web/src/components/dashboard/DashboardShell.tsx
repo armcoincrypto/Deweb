@@ -33,7 +33,7 @@ export function DashboardShell({ role, children }: DashboardShellProps) {
     { href: "/dashboard/customer/projects", label: t("projects") },
     { href: "/dashboard/customer/offers", label: t("offers") },
     { href: "/dashboard/customer/messages", label: t("messages") },
-    { href: "/dashboard/customer/payments", label: t("payments") },
+    { href: "/contact", label: "Contact Us" },
   ];
 
   const supplierLinks = [
@@ -78,7 +78,7 @@ export function DashboardShell({ role, children }: DashboardShellProps) {
             href={`${legacyUrl}/account-dashboard.html`}
             className="whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold text-white/45 hover:text-deweb-cyan"
           >
-            {t("legacyAccount")} →
+            Legacy account →
           </a>
         </nav>
       </aside>

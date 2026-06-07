@@ -77,7 +77,9 @@
       list: () => api("/products"),
       mine: () => api("/products/mine"),
       save: (body) => api("/products", { method: "POST", body: JSON.stringify(body) }),
-      purchase: (id) => api(`/products/${id}/purchase`, { method: "POST", body: "{}" })
+    },
+    Leads: {
+      create: (body) => api("/leads", { method: "POST", body: JSON.stringify(body) })
     },
     Orders: {
       mine: () => api("/orders/mine"),
@@ -96,27 +98,24 @@
       send: (body) => api("/contact", { method: "POST", body: JSON.stringify(body) })
     },
     Checkout: {
-      pay: (body) => api("/checkout", { method: "POST", body: JSON.stringify(body) }),
-      validatePromo: (code) => api("/checkout/promo", { method: "POST", body: JSON.stringify({ code }) })
+      pay: () => Promise.reject(new Error("Online checkout is disabled. Contact us at /en/contact")),
+      validatePromo: () => Promise.reject(new Error("Promo checkout is disabled."))
     },
     Crypto: {
-      config: () => api("/crypto/config"),
-      swapLink: (mode, params = {}) => {
-        const q = new URLSearchParams({ mode, ...params });
-        return api(`/crypto/swap-link?${q}`);
-      }
+      config: () => Promise.resolve({ disabled: true }),
+      swapLink: () => Promise.reject(new Error("Crypto payments are disabled."))
     },
     Wallet: {
-      get: () => api("/wallet/me"),
-      update: (body) => api("/wallet/me", { method: "PATCH", body: JSON.stringify(body) }),
-      connect: (body) => api("/wallet/connect", { method: "POST", body: JSON.stringify(body) }),
-      linked: () => api("/wallet/linked"),
-      link: (body) => api("/wallet/linked", { method: "POST", body: JSON.stringify(body) }),
-      unlink: (provider) => api(`/wallet/linked/${encodeURIComponent(provider)}`, { method: "DELETE" }),
-      topupIntent: (body) => api("/wallet/topup/intent", { method: "POST", body: JSON.stringify(body) }),
-      topupConfirm: (body) => api("/wallet/topup/confirm", { method: "POST", body: JSON.stringify(body) }),
-      transfer: (body) => api("/wallet/transfer", { method: "POST", body: JSON.stringify(body) }),
-      transactions: () => api("/wallet/transactions")
+      get: () => Promise.resolve({ wallet: { deweb: 0 }, disabled: true }),
+      update: () => Promise.reject(new Error("Wallet is disabled.")),
+      connect: () => Promise.reject(new Error("Wallet is disabled.")),
+      linked: () => Promise.resolve({ linkedWallets: [] }),
+      link: () => Promise.reject(new Error("Wallet is disabled.")),
+      unlink: () => Promise.reject(new Error("Wallet is disabled.")),
+      topupIntent: () => Promise.reject(new Error("Wallet is disabled.")),
+      topupConfirm: () => Promise.reject(new Error("Wallet is disabled.")),
+      transfer: () => Promise.reject(new Error("Wallet is disabled.")),
+      transactions: () => Promise.resolve({ transactions: [] })
     },
     Activity: {
       mine: () => api("/activity/me")

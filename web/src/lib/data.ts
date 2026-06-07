@@ -36,7 +36,7 @@ export const howItWorks = [
     step: "03",
     title: "Choose & Launch",
     description:
-      "Pick the best fit, pay in DEWEB coins, and track milestones until delivery — with escrow protection.",
+      "Pick the best fit, contact us to finalize terms, and track milestones until delivery.",
     icon: "launch",
   },
 ];

@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SocialLinks } from "@/components/contact/SocialLinks";
-import { api } from "@/lib/api";
+import { dewebApi } from "@/lib/api";
 
 export function ContactView() {
   const t = useTranslations("contact");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [feedback, setFeedback] = useState("");
@@ -19,10 +20,7 @@ export function ContactView() {
     setStatus("loading");
     setFeedback("");
     try {
-      const res = await api<{ message?: string }>("/contact", {
-        method: "POST",
-        body: JSON.stringify({ name, email, message }),
-      });
+      const res = await dewebApi.contact.send({ name, email, phone, message });
       setStatus("success");
       setFeedback(res.message || t("success"));
       setName("");
@@ -53,6 +51,14 @@ export function ContactView() {
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white focus:border-deweb-cyan/50 focus:outline-none"
+            />
+          </label>
+          <label className="block text-xs font-bold uppercase text-white/40">
+            Phone / Telegram / WhatsApp
+            <input
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white focus:border-deweb-cyan/50 focus:outline-none"
             />
           </label>

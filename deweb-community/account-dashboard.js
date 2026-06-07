@@ -21,7 +21,7 @@ const DASH_I18N = {
   en: {
     nav: ["Home", "Services", "Packages", "Order", "Marketplace", "About", "Contact"],
     help: "Help", account: "Account", settings: "Account Settings",
-    sections: { profile: "My Profile", wallet: "Wallet", products: "My Products", orderHistory: "Order History", security: "Security", privacyPolicy: "Privacy & Policy" },
+    sections: { profile: "My Profile", products: "My Products", orderHistory: "Order History", security: "Security", privacyPolicy: "Privacy & Policy" },
     profile: {
       fullName: "Full Name", address: "Address", organization: "Organization", email: "Email", phone: "Primary Mobile Phone",
       kyc: "KYC Verification", tfa: "Two-Factor Authentication", currency: "Default Currency",
@@ -36,7 +36,7 @@ const DASH_I18N = {
   ru: {
     nav: ["Главная", "Услуги", "Пакеты", "Заказ", "Маркетплейс", "О нас", "Контакты"],
     help: "Помощь", account: "Аккаунт", settings: "Настройки аккаунта",
-    sections: { profile: "Мой профиль", wallet: "Кошелек", products: "Мои продукты", orderHistory: "История заказов", security: "Безопасность", privacyPolicy: "Конфиденциальность и политика" },
+    sections: { profile: "Мой профиль", products: "Мои продукты", orderHistory: "История заказов", security: "Безопасность", privacyPolicy: "Конфиденциальность и политика" },
     profile: {
       fullName: "Полное имя", address: "Адрес", organization: "Организация", email: "Email", phone: "Основной телефон",
       kyc: "KYC-верификация", tfa: "Двухфакторная аутентификация", currency: "Валюта по умолчанию",
@@ -51,7 +51,7 @@ const DASH_I18N = {
   hy: {
     nav: ["Գլխավոր", "Ծառայություններ", "Փաթեթներ", "Պատվեր", "Մարկետփլեյս", "Մեր մասին", "Կապ"],
     help: "Օգնություն", account: "Հաշիվ", settings: "Հաշվի կարգավորումներ",
-    sections: { profile: "Իմ պրոֆիլը", wallet: "Դրամապանակ", products: "Իմ ապրանքները", orderHistory: "Պատվերների պատմություն", security: "Անվտանգություն", privacyPolicy: "Գաղտնիություն և քաղաքականություն" },
+    sections: { profile: "Իմ պրոֆիլը", products: "Իմ ապրանքները", orderHistory: "Պատվերների պատմություն", security: "Անվտանգություն", privacyPolicy: "Գաղտնիություն և քաղաքականություն" },
     profile: {
       fullName: "Ամբողջական անուն", address: "Հասցե", organization: "Կազմակերպություն", email: "Email", phone: "Հիմնական հեռախոս",
       kyc: "KYC ստուգում", tfa: "Երկգործոն նույնականացում", currency: "Լռելյայն արժույթ",
@@ -65,7 +65,7 @@ const DASH_I18N = {
   }
 };
 let currentDashLang = localStorage.getItem(LS_LANG) || "en";
-const sectionTitleKeys = { profile: "profile", wallet: "wallet", products: "products", "order-history": "orderHistory", security: "security", "privacy-policy": "privacyPolicy" };
+const sectionTitleKeys = { profile: "profile", products: "products", "order-history": "orderHistory", security: "security", "privacy-policy": "privacyPolicy" };
 function dashDict() { return DASH_I18N[currentDashLang] || DASH_I18N.en; }
 function dt(path) {
   return path.split(".").reduce((obj, key) => obj?.[key], dashDict()) || path;
@@ -250,11 +250,10 @@ function formatPhone(str) {
 
 // ——— Section switching with browser history ———
 const sections = [
-  "profile", "wallet", "products", "order-history", "security", "privacy-policy"
+  "profile", "products", "order-history", "security", "privacy-policy"
 ];
 const sectionTitles = {
   profile: "My Profile",
-  wallet: "Wallet",
   products: "My Products",
   "order-history": "Order History",
   security: "Security",
@@ -316,15 +315,10 @@ async function renderSectionContent(id) {
   const container = document.getElementById("section-" + id);
   if (!container) return;
   if (id === "profile") return;
-  if (id === "wallet") {
-    await refreshWallet();
-    await loadCryptoConfig();
-  }
   if (id === "products") await refreshSellerProducts();
   if (id === "order-history") await refreshOrders();
   const title = sectionTitle(id);
   const renderers = {
-    wallet: renderWallet,
     products: renderProducts,
     "order-history": renderOrderHistory,
     security: renderSecurity,
@@ -723,7 +717,7 @@ function renderContactPrefs() {
           <label class="pref-toggle">
             <input type="checkbox" data-pref="smsRenewals" ${prefs.smsRenewals ? 'checked' : ''} />
             <span class="pref-toggle__slider"></span>
-            <span class="pref-toggle__label">Payment & renewal alerts</span>
+            <span class="pref-toggle__label">Project & renewal alerts</span>
           </label>
         </div>
       </div>
@@ -1070,90 +1064,6 @@ document.getElementById("editSellerToolsBtn")?.addEventListener("click", () => {
 document.addEventListener("click", (e) => {
   const target = e.target;
   if (!target) return;
-  if (target.id === "connectMetaMaskBtn") {
-    void (async () => {
-      try {
-        const w = await window.DEWEB_WALLET.connectMetaMask();
-        await window.DEWEB_API.Wallet.link(w);
-        await refreshWallet();
-        renderSectionContent("wallet");
-      } catch (err) {
-        alert(err.message);
-      }
-    })();
-    return;
-  }
-  if (target.id === "connectRoninBtn") {
-    void (async () => {
-      try {
-        const w = await window.DEWEB_WALLET.connectRonin();
-        await window.DEWEB_API.Wallet.link(w);
-        await refreshWallet();
-        renderSectionContent("wallet");
-      } catch (err) {
-        alert(err.message);
-      }
-    })();
-    return;
-  }
-  if (target.dataset.unlink) {
-    void (async () => {
-      if (!confirm(`Disconnect ${target.dataset.unlink}?`)) return;
-      try {
-        await window.DEWEB_API.Wallet.unlink(target.dataset.unlink);
-        await refreshWallet();
-        renderSectionContent("wallet");
-      } catch (err) {
-        alert(err.message);
-      }
-    })();
-    return;
-  }
-  if (target.id === "getDewebBtn") {
-    void (async () => {
-      const amount = Number(document.getElementById("dewebTopupAmount")?.value || 0);
-      const provider = document.getElementById("dewebTopupProvider")?.value || "";
-      if (amount <= 0) return alert("Enter how much DEWEB you want (minimum 1).");
-      if (!provider) return alert("Connect MetaMask or Ronin first.");
-      try {
-        const intent = await window.DEWEB_API.Wallet.topupIntent({ provider, dewebAmount: amount });
-        const ok = confirm(
-          `${intent.message}\n\nTreasury: ${intent.treasuryAddress}\n\nOpen ${provider} to confirm the transfer?`
-        );
-        if (!ok) return;
-        const txHash = await window.DEWEB_WALLET.sendTopUp(provider, {
-          fromAddress: intent.fromAddress,
-          tokenContract: intent.tokenContract,
-          txData: intent.txData
-        });
-        const result = await window.DEWEB_API.Wallet.topupConfirm({
-          txHash,
-          provider,
-          dewebAmount: amount,
-          fromAddress: intent.fromAddress
-        });
-        await refreshWallet();
-        renderSectionContent("wallet");
-        alert(`Success! ${result.credited} DEWEB added to your balance.`);
-      } catch (err) {
-        if (err?.code === 4001 || /user rejected|denied/i.test(String(err.message))) {
-          alert("Transaction cancelled in your wallet.");
-        } else {
-          alert(err.message || "Top-up failed.");
-        }
-      }
-    })();
-    return;
-  }
-  if (target.id === "buyOnSwapBtn") {
-    void openSwapSite("buy");
-    return;
-  }
-  if (target.id === "withdrawOnSwapBtn") {
-    const amount = document.getElementById("walletWithdrawAmount")?.value || "";
-    void openSwapSite("sell", amount);
-    return;
-  }
   if (target.dataset.sectionJump) {
     setActiveSection(target.dataset.sectionJump, true);
     return;

@@ -34,7 +34,7 @@ export function ProjectsView() {
       await dewebApi.orders.create({
         service: form.service,
         details: form.details,
-        budget: `${price} DEWEB`,
+        budget: `$${price}`,
         deadline: form.deadline,
         total: price,
         stage: "Inquiry",
@@ -140,7 +140,7 @@ export function ProjectsView() {
               }`}
             >
               <h3 className="font-bold text-white">{o.service || t("untitled")}</h3>
-              <p className="mt-1 text-sm text-deweb-cyan">{o.budget || `${o.total} DEWEB`}</p>
+              <p className="mt-1 text-sm text-deweb-cyan">{o.budget || (o.total ? `$${o.total}` : "Negotiable")}</p>
               <p className="mt-2 text-xs text-white/45">
                 {o.stage} · {o.status}
                 {o.assignedDevId ? ` · ${t("supplierSelected")}` : ""}
@@ -166,7 +166,7 @@ export function ProjectsView() {
                   >
                     <div className="flex justify-between">
                       <span className="font-semibold text-white">{b.sellerName}</span>
-                      <span className="font-bold text-deweb-cyan">{b.price} DEWEB</span>
+                      <span className="font-bold text-deweb-cyan">${b.price}</span>
                     </div>
                     {b.timeline && (
                       <p className="mt-1 text-xs text-white/45">{b.timeline}</p>

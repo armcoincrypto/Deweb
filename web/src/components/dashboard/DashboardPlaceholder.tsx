@@ -15,7 +15,7 @@ export function DashboardPlaceholder({ title }: { title: string }) {
         >
           {t("legacyAccount")}
         </a>{" "}
-        for wallet and profile today.
+        for profile and listings today.
       </p>
     </div>
   );

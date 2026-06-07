@@ -2,6 +2,7 @@ import { Router } from "express";
 import { db, uid, nowIso, toUserRow, logActivity } from "../db.js";
 import { requireAuth } from "../middleware/auth.js";
 import { optionalAuth } from "../middleware/optionalAuth.js";
+import { requireEmailVerified } from "../middleware/requireEmailVerified.js";
 
 const router = Router();
 
@@ -54,7 +55,7 @@ router.get("/mine", requireAuth, (req, res) => {
   res.json({ listings: rows.map(toListing) });
 });
 
-router.post("/", requireAuth, (req, res) => {
+router.post("/", requireAuth, requireEmailVerified, (req, res) => {
   const listingType =
     req.body.listingType === "worker_offer" ? "worker_offer" : "customer_request";
   const user = toUserRow(db.prepare("SELECT * FROM users WHERE id = ?").get(req.userId));
@@ -130,7 +131,7 @@ router.get("/:id/applications", requireAuth, (req, res) => {
   });
 });
 
-router.post("/:id/apply", requireAuth, (req, res) => {
+router.post("/:id/apply", requireAuth, requireEmailVerified, (req, res) => {
   const listing = db.prepare("SELECT * FROM marketplace_listings WHERE id = ?").get(req.params.id);
   if (!listing || listing.status !== "open") {
     return res.status(404).json({ error: "Listing not available." });

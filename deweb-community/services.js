@@ -136,20 +136,6 @@ document.getElementById("backToDeweb")?.addEventListener("click", (e) => {
   else window.location.href = "index.html";
 });
 
-// Cart state (persist in sessionStorage for same tab)
-let cart = [];
-const CART_KEY = "deweb_services_cart";
-function loadCart() {
-  try {
-    const s = sessionStorage.getItem(CART_KEY);
-    cart = s ? JSON.parse(s) : [];
-  } catch (_) { cart = []; }
-}
-function saveCart() {
-  sessionStorage.setItem(CART_KEY, JSON.stringify(cart));
-  renderCart();
-}
-
 // Product data: name, desc, fullDesc (long), price, features. Optional _ru, _hy for name/desc/fullDesc/features.
 const DATA = {
   web: {
@@ -278,14 +264,6 @@ function applyPageI18n() {
     if (submitBtn) submitBtn.textContent = t("sendInquiry");
   }
 
-  const promoLabel = document.getElementById("promoLabel");
-  if (promoLabel) promoLabel.textContent = t("promocode");
-  const promoCodeInput = document.getElementById("promoCode");
-  if (promoCodeInput) promoCodeInput.placeholder = t("promoPlaceholder");
-  const addToCartBtn = document.getElementById("addToCartBtn");
-  if (addToCartBtn) addToCartBtn.textContent = t("addToCart");
-  const payDirectBtn = document.getElementById("payDirectBtn");
-  if (payDirectBtn) payDirectBtn.textContent = t("payBtn");
   updateOfferAndBuy();
 }
 
@@ -295,17 +273,9 @@ function getCat() {
   return DATA[cat] ? cat : "web";
 }
 
-function renderCart() {
-  // Cart list and payment live on cart.html and payment.html; here we only persist to sessionStorage.
-}
-
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[m]));
 }
-
-// Promocode HAYUGEN → price $355 (for any selected product)
-const PROMO_CODE = "HAYUGEN";
-const PROMO_PRICE = "$355";
 
 // Selected product from card click: { cat, index }
 let selectedProduct = null;
@@ -316,30 +286,11 @@ function getSelectedProductData() {
   return cfg ? cfg.items[selectedProduct.index] : null;
 }
 
-function getSelectedPrice() {
-  const code = document.getElementById("promoCode")?.value?.trim().toUpperCase();
-  if (code === PROMO_CODE) {
-    sessionStorage.setItem("deweb_promo", PROMO_CODE);
-    return PROMO_PRICE;
-  }
-  sessionStorage.removeItem("deweb_promo");
-  const it = getSelectedProductData();
-  return it ? it.price : "—";
-}
-
 function updateOfferAndBuy() {
   const it = getSelectedProductData();
   const name = it ? getText(it.name) : "";
   const offerNameEl = document.getElementById("offerSelectedName");
-  const buyNameEl = document.getElementById("buySelectedName");
-  const buyPriceEl = document.getElementById("buySelectedPrice");
   if (offerNameEl) offerNameEl.textContent = name ? `${name} — describe what you need:` : "";
-  if (buyNameEl) buyNameEl.textContent = name || "Select a service above";
-  if (buyPriceEl) buyPriceEl.textContent = getSelectedPrice();
-}
-
-function showPaymentSection() {
-  document.getElementById("paymentSection")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function withFirstWord(text) {
@@ -425,61 +376,8 @@ document.getElementById("offerForm")?.addEventListener("submit", async (e) => {
   }
 });
 
-document.getElementById("promoCode")?.addEventListener("input", updateOfferAndBuy);
-document.getElementById("promoCode")?.addEventListener("change", updateOfferAndBuy);
-
-function sameDirUrl(file) {
-  const href = window.location.href;
-  const lastSlash = href.lastIndexOf("/");
-  const base = lastSlash >= 0 ? href.slice(0, lastSlash + 1) : "";
-  return base + file;
-}
-
-function goToCart() {
-  const url = sameDirUrl("cart.html");
-  if (window.top !== window.self) window.top.location.href = url;
-  else window.location.href = url;
-}
-
-function goToPayment() {
-  const url = sameDirUrl("payment.html");
-  if (window.top !== window.self) window.top.location.href = url;
-  else window.location.href = url;
-}
-
-document.getElementById("addToCartBtn")?.addEventListener("click", () => {
-  const it = getSelectedProductData();
-  if (!it) {
-    alert(t("selectServiceFirst"));
-    document.getElementById("offerBuySection")?.scrollIntoView({ behavior: "smooth" });
-    return;
-  }
-  const name = getText(it.name);
-  const price = getSelectedPrice();
-  cart.push({ name, price, qty: 1, cat: selectedProduct.cat, productIndex: selectedProduct.index });
-  saveCart();
-  goToCart();
-});
-
-document.getElementById("payDirectBtn")?.addEventListener("click", () => {
-  const it = getSelectedProductData();
-  if (it) {
-    cart.push({
-      name: getText(it.name),
-      price: getSelectedPrice(),
-      qty: 1,
-      cat: selectedProduct.cat,
-      productIndex: selectedProduct.index
-    });
-    saveCart();
-  }
-  goToPayment();
-});
-
 // Init
-loadCart();
 renderLangUI();
 applyPageI18n();
 renderPage();
-renderCart();
 updateOfferAndBuy();

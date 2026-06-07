@@ -8,8 +8,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 
 export default function AccountHomePage() {
   const t = useTranslations("account");
-  const { user, displayName } = useAuth();
-  const isSeller = user?.accountMode === "seller" || user?.account_mode === "seller";
+  const { displayName } = useAuth();
 
   return (
     <AccountRoleShell>
@@ -31,10 +30,16 @@ export default function AccountHomePage() {
             <p className="mt-2 text-sm text-white/50">{t("chatSubtitle")}</p>
           </GlassCard>
         </Link>
-        <Link href="/account/wallet">
-          <GlassCard className="p-6">
-            <h3 className="font-bold text-deweb-cyan">{t("wallet")}</h3>
-            <p className="mt-2 text-sm text-white/50">{t("walletHint")}</p>
+        <Link href="/account/submit-offer">
+          <GlassCard className="p-6 hover:border-deweb-cyan/30">
+            <h3 className="font-bold text-deweb-cyan">Submit Offer</h3>
+            <p className="mt-2 text-sm text-white/50">Offer a service or request what you need — we negotiate by contact.</p>
+          </GlassCard>
+        </Link>
+        <Link href="/contact">
+          <GlassCard className="p-6 hover:border-deweb-cyan/30">
+            <h3 className="font-bold text-deweb-cyan">Contact Us</h3>
+            <p className="mt-2 text-sm text-white/50">Questions about pricing or projects? Get in touch.</p>
           </GlassCard>
         </Link>
         <Link href="/account/profile">

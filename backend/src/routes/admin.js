@@ -2,10 +2,11 @@ import { Router } from "express";
 import { db, toUserRow, nowIso, uid, setPlatformStat, getPlatformStat } from "../db.js";
 import { requireAdmin } from "../middleware/requireAdmin.js";
 import { transferDeweb, creditWallet, debitWallet } from "./crypto.js";
-import { getAdminUserId, DEWEB_USD_RATE } from "../utils/admin.js";
+import { getAdminUserId } from "../utils/admin.js";
 import { sendAdminEmail } from "../services/mail.js";
 import { releaseEscrow, refundEscrow, toEscrowRow } from "../services/escrow.js";
 import { toOrder } from "../utils/helpers.js";
+import { toLead, STATUSES } from "./leads.js";
 
 const router = Router();
 router.use(requireAdmin);
@@ -26,42 +27,32 @@ function toProduct(row) {
   };
 }
 
-router.get("/stats", (req, res) => {
-  const adminId = getAdminUserId();
-  const adminWallet = db.prepare("SELECT deweb FROM wallets WHERE user_id = ?").get(adminId);
+router.get("/stats", (_req, res) => {
   const users = db.prepare("SELECT COUNT(*) AS c FROM users").get().c;
   const orders = db.prepare("SELECT COUNT(*) AS c FROM orders").get().c;
   const openSupport = db.prepare(`
     SELECT COUNT(*) AS c FROM support_threads WHERE status IN ('human_pending', 'human_active')
   `).get().c;
-  const pendingTopups = db.prepare(`
-    SELECT COUNT(*) AS c FROM crypto_topups WHERE status = 'pending'
+  const newLeads = db.prepare(`
+    SELECT COUNT(*) AS c FROM lead_submissions WHERE status = 'new'
   `).get().c;
-  const heldEscrow = db.prepare(`
-    SELECT COALESCE(SUM(amount), 0) AS s FROM escrow_holds WHERE status = 'held'
-  `).get().s;
-  const linkedWallets = db.prepare("SELECT COUNT(*) AS c FROM user_linked_wallets").get().c;
-  const volume = db.prepare(`
-    SELECT COALESCE(SUM(ABS(amount)), 0) AS s FROM wallet_transactions
-  `).get().s;
+  const totalLeads = db.prepare("SELECT COUNT(*) AS c FROM lead_submissions").get().c;
+  const products = db.prepare("SELECT COUNT(*) AS c FROM marketplace_products").get().c;
 
   const displayStats = {
     users: getPlatformStat("display_users", String(users)),
     orders: getPlatformStat("display_orders", String(orders)),
-    volume: getPlatformStat("display_volume", String(volume)),
+    volume: getPlatformStat("display_volume", String(totalLeads)),
     successRate: getPlatformStat("display_success_rate", "94")
   };
 
   res.json({
-    adminBalance: adminWallet?.deweb || 0,
-    dewebUsdRate: DEWEB_USD_RATE,
     users,
     orders,
     openSupport,
-    pendingTopups,
-    heldEscrow,
-    linkedWallets,
-    transactionVolume: volume,
+    newLeads,
+    totalLeads,
+    products,
     displayStats
   });
 });
@@ -499,6 +490,52 @@ router.get("/contact", (_req, res) => {
 router.get("/inquiries", (_req, res) => {
   const rows = db.prepare("SELECT * FROM service_inquiries ORDER BY created_at DESC LIMIT 100").all();
   res.json({ inquiries: rows });
+});
+
+router.get("/leads", (req, res) => {
+  const status = String(req.query.status || "").trim();
+  const type = String(req.query.type || "").trim();
+  let sql = "SELECT * FROM lead_submissions WHERE 1=1";
+  const params = [];
+  if (status) {
+    sql += " AND status = ?";
+    params.push(status);
+  }
+  if (type) {
+    sql += " AND submission_type = ?";
+    params.push(type);
+  }
+  sql += " ORDER BY created_at DESC LIMIT 300";
+  const rows = db.prepare(sql).all(...params);
+  res.json({ leads: rows.map(toLead) });
+});
+
+router.patch("/leads/:id", (req, res) => {
+  const row = db.prepare("SELECT * FROM lead_submissions WHERE id = ?").get(req.params.id);
+  if (!row) return res.status(404).json({ error: "Lead not found." });
+
+  const updates = [];
+  const values = [];
+
+  if (req.body.status !== undefined) {
+    const status = String(req.body.status).trim();
+    if (!STATUSES.has(status)) {
+      return res.status(400).json({ error: "Invalid status. Use: new, contacted, negotiating, closed." });
+    }
+    updates.push("status = ?");
+    values.push(status);
+  }
+  if (req.body.adminNote !== undefined) {
+    updates.push("admin_note = ?");
+    values.push(String(req.body.adminNote || "").slice(0, 4000));
+  }
+
+  if (!updates.length) return res.status(400).json({ error: "No fields to update." });
+  updates.push("updated_at = ?");
+  values.push(nowIso(), req.params.id);
+  db.prepare(`UPDATE lead_submissions SET ${updates.join(", ")} WHERE id = ?`).run(...values);
+
+  res.json({ lead: toLead(db.prepare("SELECT * FROM lead_submissions WHERE id = ?").get(req.params.id)) });
 });
 
 export default router;

@@ -5,8 +5,12 @@ import { signToken, requireAuth } from "../middleware/auth.js";
 import { isAdminEmail, getAdminEmail, isAdminAutoLoginEnabled } from "../utils/admin.js";
 import { runSeed } from "../seed.js";
 import { sendUserEmail } from "../services/mail.js";
+import { rateLimit, ipKey } from "../middleware/rateLimit.js";
+import { cleanEmail } from "../utils/sanitize.js";
 
 const router = Router();
+const verifyLimiter = rateLimit({ windowMs: 300000, max: 5, keyFn: (req) => `verify:${req.userId || ipKey(req)}` });
+const forgotLimiter = rateLimit({ windowMs: 300000, max: 5, keyFn: ipKey });
 
 function validatePassword(password) {
   if (password.length < 8) {
@@ -24,9 +28,31 @@ function validatePassword(password) {
   return null;
 }
 
-router.post("/register", (req, res) => {
+function webBase() {
+  return process.env.PUBLIC_WEB_URL || process.env.CORS_ORIGIN || "https://dewebam.com";
+}
+
+async function queueVerificationEmail(userId, email) {
+  db.prepare("UPDATE email_verification_tokens SET used = 1 WHERE user_id = ? AND used = 0").run(userId);
+  const token = uid() + uid();
+  const expiresAt = new Date(Date.now() + 86400000 * 2).toISOString();
+  db.prepare(`
+    INSERT INTO email_verification_tokens (id, user_id, token, expires_at, created_at)
+    VALUES (?, ?, ?, ?, ?)
+  `).run(uid(), userId, token, expiresAt, nowIso());
+
+  const link = `${webBase()}/en/account/verify-email?token=${token}`;
+  const mail = await sendUserEmail({
+    to: email,
+    subject: "[DEWEB] Verify your email address",
+    text: `Welcome to DeWeb!\n\nPlease verify your email to access all platform features:\n\n${link}\n\nThis link expires in 48 hours.\n\nIf you did not create an account, ignore this email.`
+  });
+  return { link, sent: mail.sent, reason: mail.reason };
+}
+
+router.post("/register", async (req, res) => {
   const username = String(req.body.username || "").trim();
-  const email = String(req.body.email || "").trim().toLowerCase();
+  const email = cleanEmail(req.body.email);
   const password = String(req.body.password || "");
   const newsletter = Boolean(req.body.newsletter);
 
@@ -56,39 +82,54 @@ router.post("/register", (req, res) => {
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(id, role, accountMode, username, username, email, passwordHash, newsletter ? 1 : 0, createdAt);
 
-  db.prepare(`
-    INSERT INTO wallets (user_id, created, connected, deweb, pending_withdraw)
-    VALUES (?, 0, 0, 0, 0)
-  `).run(id);
-
   logActivity(id, "signup");
-  queueVerificationEmail(id, email).catch(() => null);
 
+  let emailResult = { sent: false };
+  try {
+    emailResult = await queueVerificationEmail(id, email);
+  } catch (err) {
+    console.error("[auth] verification email failed:", err.message);
+  }
+
+  const smtpOk = Boolean(process.env.SMTP_USER && process.env.SMTP_PASS);
   res.status(201).json({
     success: true,
     requireLogin: true,
     email,
     username,
-    message: "Account created. Please sign in with your email and password."
+    emailSent: emailResult.sent,
+    message: emailResult.sent
+      ? "Account created. Check your email to verify your address, then sign in."
+      : smtpOk
+        ? "Account created. Sign in, then resend verification from your profile."
+        : "Account created. Sign in, then use the verification link from your profile.",
+    verifyUrl: !emailResult.sent ? emailResult.link : undefined
   });
 });
 
-router.post("/forgot-password", (req, res) => {
-  const email = String(req.body.email || "").trim().toLowerCase();
+router.post("/forgot-password", forgotLimiter, async (req, res) => {
+  const email = cleanEmail(req.body.email);
   if (!email) return res.status(400).json({ error: "Email is required." });
 
-  const row = db.prepare("SELECT id FROM users WHERE email = ?").get(email);
+  const row = db.prepare("SELECT id, email FROM users WHERE email = ?").get(email);
   if (row) {
     const token = uid() + uid();
     const expiresAt = new Date(Date.now() + 3600000).toISOString();
     db.prepare(
       "INSERT INTO password_reset_tokens (id, user_id, token, expires_at, created_at) VALUES (?, ?, ?, ?, ?)"
     ).run(uid(), row.id, token, expiresAt, nowIso());
-    const base = process.env.PUBLIC_WEB_URL || process.env.CORS_ORIGIN || "https://dewebam.com";
+    const resetUrl = `${webBase()}/en/account/reset-password?token=${token}`;
+    const mail = await sendUserEmail({
+      to: row.email,
+      subject: "[DEWEB] Reset your password",
+      text: `Reset your DeWeb password:\n\n${resetUrl}\n\nLink expires in 1 hour.`
+    });
     res.json({
       success: true,
-      message: "If this email is registered, reset instructions were sent.",
-      resetUrl: `${base}/en/account/reset-password?token=${token}`
+      message: mail.sent
+        ? "If this email is registered, reset instructions were sent."
+        : "If this email is registered, use the reset link below.",
+      resetUrl: mail.sent ? undefined : resetUrl
     });
     return;
   }
@@ -146,39 +187,19 @@ router.get("/me", requireAuth, (req, res) => {
   res.json({ user });
 });
 
-async function queueVerificationEmail(userId, email) {
-  db.prepare("UPDATE email_verification_tokens SET used = 1 WHERE user_id = ? AND used = 0").run(userId);
-  const token = uid() + uid();
-  const expiresAt = new Date(Date.now() + 86400000 * 2).toISOString();
-  db.prepare(`
-    INSERT INTO email_verification_tokens (id, user_id, token, expires_at, created_at)
-    VALUES (?, ?, ?, ?, ?)
-  `).run(uid(), userId, token, expiresAt, nowIso());
-
-  const base = process.env.PUBLIC_WEB_URL || process.env.CORS_ORIGIN || "https://dewebam.com";
-  const link = `${base}/en/account/verify-email?token=${token}`;
-  await sendUserEmail({
-    to: email,
-    subject: "[DEWEB] Verify your email",
-    text: `Verify your email to connect MetaMask/Ronin and get DEWEB coins:\n\n${link}\n\nLink expires in 48 hours.`
-  });
-  return link;
-}
-
-router.post("/send-verification", requireAuth, async (req, res) => {
+router.post("/send-verification", requireAuth, verifyLimiter, async (req, res) => {
   const row = db.prepare("SELECT id, email, email_verified FROM users WHERE id = ?").get(req.userId);
   if (!row) return res.status(404).json({ error: "User not found." });
   if (row.email_verified) {
     return res.json({ ok: true, message: "Email already verified." });
   }
-  const link = await queueVerificationEmail(row.id, row.email);
-  const smtpOk = Boolean(process.env.SMTP_USER && process.env.SMTP_PASS);
+  const result = await queueVerificationEmail(row.id, row.email);
   res.json({
     ok: true,
-    message: smtpOk
+    message: result.sent
       ? "Verification email sent. Check your inbox."
       : "SMTP not configured. Use the verification link below.",
-    verifyUrl: smtpOk ? undefined : link
+    verifyUrl: result.sent ? undefined : result.link
   });
 });
 
@@ -197,13 +218,9 @@ router.get("/verify-email", (req, res) => {
   db.prepare("UPDATE email_verification_tokens SET used = 1 WHERE id = ?").run(row.id);
   logActivity(row.user_id, "email_verified");
 
-  res.json({ ok: true, message: "Email verified. You can connect your wallet now." });
+  res.json({ ok: true, message: "Email verified successfully. You now have full access to the platform." });
 });
 
-/**
- * Sign in admin using ADMIN_GMAIL + ADMIN_PASSWORD from .env (no password sent from browser).
- * Enable with ADMIN_AUTO_LOGIN=true — disable on public production server.
- */
 router.post("/auto-admin", (req, res) => {
   if (!isAdminAutoLoginEnabled()) {
     return res.status(403).json({ error: "Admin auto-login is disabled. Set ADMIN_AUTO_LOGIN=true in .env" });
@@ -240,7 +257,7 @@ router.post("/auto-admin", (req, res) => {
   logActivity(row.id, "signin", { method: "auto-admin" });
   const token = signToken(row.id);
   const user = toUserRow(row);
-  res.json({ token, user, redirect: user.isAdmin ? "admin.html" : "account-dashboard.html" });
+  res.json({ token, user, redirect: user.isAdmin ? "/en/admin" : "/account" });
 });
 
 export default router;

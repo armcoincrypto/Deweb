@@ -33,7 +33,7 @@ function VerifyEmailInner() {
         setStatus("ok");
         setMessage(data.message || t("emailVerified"));
         await refresh();
-        setTimeout(() => router.replace("/account/wallet"), 2000);
+        setTimeout(() => router.replace("/account"), 2000);
       })
       .catch((e) => {
         setStatus("error");
@@ -46,8 +46,8 @@ function VerifyEmailInner() {
       {status === "loading" && <p className="text-white/50">{t("loading")}</p>}
       {status === "ok" && <p className="text-emerald-400">{message}</p>}
       {status === "error" && <p className="text-red-400">{message}</p>}
-      <Link href="/account/wallet" className="mt-8 inline-block font-bold text-deweb-cyan">
-        {t("wallet")} →
+      <Link href="/account" className="mt-8 inline-block font-bold text-deweb-cyan">
+        {t("overview")} →
       </Link>
     </div>
   );

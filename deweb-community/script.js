@@ -186,10 +186,10 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       order:{
         title:"Order from 0 → 100%",
-        subtitle:"Send your request. We reply with scope, price, timeline, and payment methods.",
+        subtitle:"Send your request. We reply with scope, price, and timeline.",
         s1:"Inquiry", s1d:"you send details",
         s2:"Quote", s2d:"scope + price",
-        s3:"Payment", s3d:"milestones",
+        s3:"Contact", s3d:"negotiate terms",
         s4:"Delivery", s4d:"testing + launch",
         howTitle:"How it works inside your Account",
         how1:"You see your order status: Inquiry → Quote → Paid → In Progress → Delivered → Done",
@@ -849,30 +849,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     grid.querySelectorAll("[data-hire]").forEach(btn => {
-      btn.addEventListener("click", async () => {
-        if (!window.DEWEB_API?.isLoggedIn()) {
-          alert("Sign in to buy with DEWEB coins.");
-          window.location.href = "account.html";
-          return;
-        }
+      btn.addEventListener("click", () => {
         const sellerId = btn.dataset.hire;
         const product = products.find(p => p.sellerId === sellerId);
-        if (!product) {
-          alert("No product listed. Contact seller from Order slide.");
-          goToSlide(3);
-          return;
-        }
-        if (!confirm(`Pay ${product.price} DEWEB for "${product.title}"?`)) return;
-        try {
-          await window.DEWEB_API.Products.purchase(product.id);
-          alert("Paid with DEWEB. Seller received coins.");
-          void loadMarketData().then(() => renderMarketplace());
-        } catch (err) {
-          if (err.message?.includes("Not enough")) {
-            if (confirm("Not enough DEWEB. Open wallet to top up?")) {
-              window.location.href = "account-dashboard.html#wallet";
-            }
-          } else alert(err.message || "Purchase failed.");
+        const price = product ? `$${product.price}` : "on request";
+        const title = product?.title || "this service";
+        if (confirm(`Contact us to discuss "${title}" (${price})?`)) {
+          window.location.href = "/en/contact";
         }
       });
     });

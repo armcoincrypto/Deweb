@@ -13,13 +13,12 @@ export function DashboardOverview({ role }: DashboardOverviewProps) {
   const customerStats = [
     { label: t("activeProjects"), value: "3", href: "/dashboard/customer/projects" },
     { label: t("pendingOffers"), value: "12", href: "/dashboard/customer/offers" },
-    { label: t("payments"), value: "4.2k DEWEB", href: "/dashboard/customer/payments" },
   ];
 
   const supplierStats = [
     { label: t("activeProposals"), value: "7", href: "/dashboard/supplier/proposals" },
     { label: t("orders"), value: "5", href: "/dashboard/supplier/orders" },
-    { label: t("revenue"), value: "18.5k DEWEB", href: "/dashboard/supplier/analytics" },
+    { label: t("revenue"), value: "By inquiry", href: "/account/proposals" },
   ];
 
   const stats = role === "supplier" ? supplierStats : customerStats;

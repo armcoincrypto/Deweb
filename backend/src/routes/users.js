@@ -13,7 +13,6 @@ const allowedFields = {
   currency: "currency",
   role: "role",
   accountMode: "account_mode",
-  emailVerified: "email_verified",
   phoneVerified: "phone_verified",
   kycStatus: "kyc_status",
   tfaEnabled: "tfa_enabled",
@@ -29,7 +28,7 @@ router.patch("/me", requireAuth, (req, res) => {
   for (const [key, column] of Object.entries(allowedFields)) {
     if (req.body[key] !== undefined) {
       let value = req.body[key];
-      if (key === "emailVerified" || key === "phoneVerified" || key === "tfaEnabled") {
+      if (key === "phoneVerified" || key === "tfaEnabled") {
         value = value ? 1 : 0;
       }
       if (key === "accountMode") {
