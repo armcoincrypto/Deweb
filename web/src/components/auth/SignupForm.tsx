@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import { dewebApi } from "@/lib/api";
 import { AuthField, PasswordField } from "./PasswordField";
 
@@ -12,12 +12,17 @@ export function SignupForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    if (!acceptedTerms) {
+      setError(t("termsRequired"));
+      return;
+    }
     setLoading(true);
     try {
       await dewebApi.auth.register({
@@ -58,6 +63,24 @@ export function SignupForm() {
           autoComplete="new-password"
         />
         <p className="text-xs text-white/35">{t("passwordRules")}</p>
+        <label className="flex cursor-pointer items-start gap-3 text-sm text-white/55">
+          <input
+            type="checkbox"
+            checked={acceptedTerms}
+            onChange={(e) => setAcceptedTerms(e.target.checked)}
+            className="mt-1 h-4 w-4 rounded border-white/20 bg-transparent accent-deweb-cyan"
+          />
+          <span>
+            {t("termsAgreePrefix")}{" "}
+            <Link href="/terms" className="text-deweb-cyan hover:underline">
+              {t("termsLink")}
+            </Link>{" "}
+            {t("termsAgreeAnd")}{" "}
+            <Link href="/privacy-policy" className="text-deweb-cyan hover:underline">
+              {t("privacyLink")}
+            </Link>
+          </span>
+        </label>
         {error && <p className="text-sm text-red-400">{error}</p>}
         <button
           type="submit"

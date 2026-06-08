@@ -273,7 +273,11 @@ export const dewebApi = {
       publish: (id: string) =>
         api<{ post: BlogPostDetail }>(`/admin/blog/${id}/publish`, { method: "POST" }),
       reject: (id: string) =>
-        api<{ post: BlogPostDetail }>(`/admin/blog/${id}/reject`, { method: "POST" }),
+        api<{
+          post: BlogPostDetail;
+          requeued?: BlogTopicQueueItem | null;
+          message?: string;
+        }>(`/admin/blog/${id}/reject`, { method: "POST" }),
       aiGenerate: (body: BlogAiGenerateInput) =>
         api<{ post: BlogPostDetail; generationId: string; message: string }>(
           "/admin/blog/ai-generate",
@@ -281,6 +285,25 @@ export const dewebApi = {
         ),
       aiGenerations: () =>
         api<{ generations: BlogAiGeneration[] }>("/admin/blog/ai-generations"),
+      topicQueue: {
+        list: () => api<{ items: BlogTopicQueueItem[] }>("/admin/blog/topic-queue"),
+        create: (body: BlogTopicQueueInput) =>
+          api<{ item: BlogTopicQueueItem }>("/admin/blog/topic-queue", {
+            method: "POST",
+            body: JSON.stringify(body),
+          }),
+        update: (id: string, body: Partial<BlogTopicQueueInput>) =>
+          api<{ item: BlogTopicQueueItem }>(`/admin/blog/topic-queue/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(body),
+          }),
+        delete: (id: string) =>
+          api<{ ok: boolean }>(`/admin/blog/topic-queue/${id}`, { method: "DELETE" }),
+        retry: (id: string) =>
+          api<{ item: BlogTopicQueueItem }>(`/admin/blog/topic-queue/${id}/retry`, {
+            method: "POST",
+          }),
+      },
     },
   },
   services: {
@@ -420,6 +443,31 @@ export type BlogAiGeneration = {
   wordCount: number;
   createdBy: string | null;
   createdAt: string;
+};
+
+export type BlogTopicQueueItem = {
+  id: string;
+  topic: string;
+  targetKeyword: string;
+  categoryId: string;
+  categoryName: string | null;
+  priority: number;
+  status: "queued" | "generating" | "done" | "failed";
+  scheduledFor: string;
+  generatedPostId: string | null;
+  generatedPostSlug: string | null;
+  generatedPostTitle: string | null;
+  lastError: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BlogTopicQueueInput = {
+  topic: string;
+  targetKeyword?: string;
+  categoryId: string;
+  priority?: number;
+  scheduledFor?: string;
 };
 
 export type AdminStats = {

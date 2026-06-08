@@ -266,7 +266,12 @@
     "error": "Error",
     "loginFailed": "Sign in failed",
     "signupFailed": "Sign up failed",
-    "invalidToken": "Invalid reset link"
+    "invalidToken": "Invalid reset link",
+    "termsAgreePrefix": "Acepto los",
+    "termsLink": "Términos de uso",
+    "termsAgreeAnd": "y la",
+    "privacyLink": "Política de privacidad",
+    "termsRequired": "Acepta los Términos de uso y la Política de privacidad para continuar."
   },
   "account": {
     "welcome": "Welcome",

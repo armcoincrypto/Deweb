@@ -40,7 +40,18 @@ export function AdminBlogPending() {
     try {
       if (action === "approve") await dewebApi.admin.blog.approve(target.id);
       if (action === "publish") await dewebApi.admin.blog.publish(target.id);
-      if (action === "reject") await dewebApi.admin.blog.reject(target.id);
+      if (action === "reject") {
+        const result = await dewebApi.admin.blog.reject(target.id);
+        if (result.requeued) {
+          setMsg(
+            `"${target.title}" rejected. New topic queued for improved AI regeneration (priority ${result.requeued.priority}).`
+          );
+          setAction(null);
+          setTarget(null);
+          await load();
+          return;
+        }
+      }
       if (action === "delete") await dewebApi.admin.blog.delete(target.id);
       setMsg(
         action === "publish"
@@ -73,7 +84,8 @@ export function AdminBlogPending() {
     },
     reject: {
       title: "Reject article?",
-      message: "The article will be marked rejected and hidden from the public blog.",
+      message:
+        "The article will be marked rejected. If it was AI-generated, a new topic will be queued with higher priority for an improved regeneration.",
       confirmLabel: "Reject",
       variant: "danger",
     },

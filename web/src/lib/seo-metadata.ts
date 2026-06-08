@@ -36,6 +36,21 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "Insights on competitive bidding, web development, AI automation, ecommerce trends and marketplace strategy.",
   },
+  "privacy-policy": {
+    title: "Privacy Policy | DEWEB",
+    description:
+      "How DEWEB collects, uses, stores, and protects your personal data on dewebam.com.",
+  },
+  "cookie-policy": {
+    title: "Cookie Policy | DEWEB",
+    description:
+      "Learn how DEWEB uses cookies and local storage for login, security, and site preferences.",
+  },
+  terms: {
+    title: "Terms of Use | DEWEB",
+    description:
+      "Terms and conditions for using the DEWEB IT marketplace, accounts, and project services.",
+  },
   login: {
     title: "Sign In | DEWEB Account",
     description: "Sign in to your DEWEB account to manage projects, listings and messages.",

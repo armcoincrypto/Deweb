@@ -16,6 +16,9 @@ export const PUBLIC_STATIC_PATHS = [
   "/services",
   "/marketplace",
   "/blog",
+  "/privacy-policy",
+  "/cookie-policy",
+  "/terms",
 ] as const;
 
 /** Dynamic public routes — auto-derived from data sources. */

@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const NAV = [
   { href: "/admin/blog", label: "Dashboard" },
   { href: "/admin/blog/pending", label: "Pending review" },
+  { href: "/admin/blog/topic-queue", label: "Topic queue" },
   { href: "/admin/blog/ai-generator", label: "AI generator" },
   { href: "/admin/blog/new", label: "New post" },
 ];

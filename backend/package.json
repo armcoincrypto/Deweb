@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "blog-cron": "node scripts/generateBlogCron.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

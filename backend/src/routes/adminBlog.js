@@ -18,6 +18,8 @@ import {
   sanitizeBlogText,
 } from "../utils/sanitize.js";
 import { generateBlogDraft, listAiGenerations } from "../services/blogAi.js";
+import { savePendingReviewPost, notifyAdminBlogDraft } from "../services/blogDraftPersist.js";
+import { requeueAfterReject } from "../services/blogTopicQueue.js";
 
 const router = Router();
 router.use(requireAdmin);
@@ -305,8 +307,28 @@ router.post("/:id/reject", (req, res) => {
   db.prepare(
     "UPDATE blog_posts SET status = 'rejected', updated_at = ? WHERE id = ?"
   ).run(t, req.params.id);
+
+  let requeued = null;
+  const hasAiOrigin =
+    existing.ai_meta ||
+    db.prepare("SELECT id FROM blog_ai_generations WHERE post_id = ?").get(req.params.id) ||
+    db.prepare("SELECT id FROM blog_topic_queue WHERE generated_post_id = ?").get(req.params.id);
+
+  if (hasAiOrigin) {
+    const queueResult = requeueAfterReject(req.params.id);
+    if (queueResult?.item) {
+      requeued = queueResult.item;
+    }
+  }
+
   const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(req.params.id);
-  res.json({ post: toBlogPost(row, getPostTags(req.params.id)) });
+  res.json({
+    post: toBlogPost(row, getPostTags(req.params.id)),
+    requeued,
+    message: requeued
+      ? "Article rejected. A new topic was queued for improved AI regeneration."
+      : "Article rejected.",
+  });
 });
 
 router.post("/ai-generate", aiRateLimit, async (req, res) => {
@@ -332,50 +354,18 @@ router.post("/ai-generate", aiRateLimit, async (req, res) => {
       createdBy: req.userId,
     });
 
-    const slugCheck = validateSlug(draft.slug);
-    if (slugCheck.error) {
-      draft.slug = slugify(`${topic}-${Date.now().toString(36)}`);
-    } else {
-      draft.slug = slugCheck.slug;
-    }
-
-    const id = uid();
-    const t = nowIso();
-
-    db.prepare(`
-      INSERT INTO blog_posts (
-        id, title, slug, excerpt, content, seo_title, meta_description,
-        featured_image, category_id, author_name, status, reading_time,
-        ai_meta, created_at, updated_at, published_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_review', ?, ?, ?, ?, NULL)
-    `).run(
-      id,
-      draft.title,
-      draft.slug,
-      draft.excerpt,
-      JSON.stringify(draft.content),
-      draft.seoTitle,
-      draft.metaDescription,
-      "",
+    const { postId } = savePendingReviewPost({
+      draft,
+      generationId,
       categoryId,
-      "DEWEB Editorial Team",
-      draft.readingTime,
-      JSON.stringify(draft.aiMeta),
-      t,
-      t
-    );
+      slugFallbackTopic: topic,
+    });
 
-    setPostTags(id, draft.tags);
+    await notifyAdminBlogDraft({ topic, targetKeyword: targetKeyword || topic });
 
-    db.prepare("UPDATE blog_ai_generations SET post_id = ?, category_id = ? WHERE id = ?").run(
-      id,
-      categoryId,
-      generationId
-    );
-
-    const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(id);
+    const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(postId);
     res.status(201).json({
-      post: toBlogPost(row, getPostTags(id)),
+      post: toBlogPost(row, getPostTags(postId)),
       generationId,
       message: "AI article saved as pending review. Admin must approve and publish.",
     });

@@ -62,6 +62,7 @@ export async function generateBlogDraft({
   tone,
   wordCount,
   createdBy,
+  regenerationHint = null,
 }) {
   const openaiKey = getOpenAiKey();
   if (!openaiKey) {
@@ -71,10 +72,14 @@ export async function generateBlogDraft({
   }
 
   const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
-  const userPrompt = `Topic: ${topic}
+  let userPrompt = `Topic: ${topic}
 Target keyword: ${targetKeyword || topic}
 Category: ${categoryName}
 Write a comprehensive SEO article.`;
+
+  if (regenerationHint) {
+    userPrompt += `\n\nIMPORTANT: ${regenerationHint}`;
+  }
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",

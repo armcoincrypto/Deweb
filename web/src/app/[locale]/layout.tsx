@@ -8,6 +8,7 @@ import { PlatformFooter } from "@/components/layout/PlatformFooter";
 import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
 import { AuthProvider } from "@/lib/auth-context";
 import { GlobalSchema } from "@/components/seo/GlobalSchema";
+import { CookieConsent } from "@/components/cookies/CookieConsent";
 import { siteMetadata, siteViewport } from "@/lib/site-metadata";
 import "../globals.css";
 
@@ -60,6 +61,7 @@ export default async function LocaleLayout({
               <div className="flex-1">{children}</div>
               <PlatformFooter />
             </div>
+            <CookieConsent />
           </AuthProvider>
         </NextIntlClientProvider>
       </body>

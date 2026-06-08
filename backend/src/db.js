@@ -363,6 +363,22 @@ db.exec(`
     created_at TEXT NOT NULL,
     FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE SET NULL
   );
+
+  CREATE TABLE IF NOT EXISTS blog_topic_queue (
+    id TEXT PRIMARY KEY,
+    topic TEXT NOT NULL,
+    target_keyword TEXT,
+    category_id TEXT NOT NULL,
+    priority INTEGER NOT NULL DEFAULT 0,
+    status TEXT NOT NULL DEFAULT 'queued',
+    scheduled_for TEXT NOT NULL,
+    generated_post_id TEXT,
+    last_error TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES blog_categories(id),
+    FOREIGN KEY (generated_post_id) REFERENCES blog_posts(id) ON DELETE SET NULL
+  );
 `);
 
 const migrateColumns = [
