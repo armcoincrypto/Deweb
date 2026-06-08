@@ -28,29 +28,46 @@ function seedAdmin() {
   const email = getAdminEmail() || "admin@deweb.local";
   const password = process.env.ADMIN_PASSWORD || "change-me-admin";
   const initialDeweb = Number(process.env.ADMIN_INITIAL_DEWEB || 1000000);
-
-  let row = db.prepare("SELECT id FROM users WHERE id = ?").get(ADMIN_USER_ID);
-  if (!row) {
-    row = db.prepare("SELECT id FROM users WHERE email = ?").get(email);
-  }
-
   const hash = bcrypt.hashSync(password, 10);
   const createdAt = nowIso();
 
-  if (!row) {
+  const userByEmail = db.prepare("SELECT id FROM users WHERE email = ?").get(email);
+  let row = db.prepare("SELECT id FROM users WHERE id = ?").get(ADMIN_USER_ID);
+  if (!row) row = userByEmail;
+
+  let adminId = ADMIN_USER_ID;
+
+  if (userByEmail && userByEmail.id !== ADMIN_USER_ID) {
+    adminId = userByEmail.id;
+    db.prepare(
+      "UPDATE users SET role = 'admin', email_verified = 1 WHERE id = ?"
+    ).run(adminId);
+    if (process.env.ADMIN_PASSWORD) {
+      db.prepare("UPDATE users SET password_hash = ? WHERE id = ?").run(hash, adminId);
+    }
+    if (row?.id === ADMIN_USER_ID) {
+      db.prepare("UPDATE users SET role = 'client' WHERE id = ?").run(ADMIN_USER_ID);
+    }
+  } else if (!row) {
     db.prepare(`
       INSERT INTO users (
         id, role, account_mode, name, username, email, password_hash, email_verified, created_at
       ) VALUES (?, 'admin', 'customer', 'DEWEB Admin', 'dewebadmin', ?, ?, 1, ?)
     `).run(ADMIN_USER_ID, email, hash, createdAt);
+    adminId = ADMIN_USER_ID;
   } else {
-    db.prepare("UPDATE users SET role = 'admin', email = ? WHERE id = ?").run(email, row.id);
+    adminId = row.id;
+    const conflict = db.prepare("SELECT id FROM users WHERE email = ? AND id != ?").get(email, adminId);
+    if (!conflict) {
+      db.prepare("UPDATE users SET role = 'admin', email = ? WHERE id = ?").run(email, adminId);
+    } else {
+      db.prepare("UPDATE users SET role = 'admin' WHERE id = ?").run(adminId);
+    }
     if (process.env.ADMIN_PASSWORD) {
-      db.prepare("UPDATE users SET password_hash = ? WHERE id = ?").run(hash, row.id);
+      db.prepare("UPDATE users SET password_hash = ? WHERE id = ?").run(hash, adminId);
     }
   }
 
-  const adminId = row?.id || ADMIN_USER_ID;
   const wallet = db.prepare("SELECT user_id FROM wallets WHERE user_id = ?").get(adminId);
   if (!wallet) {
     db.prepare(`
