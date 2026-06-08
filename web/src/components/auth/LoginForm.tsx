@@ -1,22 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter, Link } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { dewebApi, setToken } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
+import { AuthField } from "./PasswordField";
+import { PasswordField } from "./PasswordField";
 
 export function LoginForm() {
   const t = useTranslations("auth");
   const router = useRouter();
   const search = useSearchParams();
   const { refresh } = useAuth();
-  const [email, setEmail] = useState(search.get("email") || "");
+  const registered = search.get("registered") === "1";
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const registered = search.get("registered") === "1";
+
+  useEffect(() => {
+    const fromRegister = search.get("email");
+    setEmail(registered && fromRegister ? fromRegister : "");
+    setPassword("");
+  }, [registered, search]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -26,6 +34,10 @@ export function LoginForm() {
       const data = await dewebApi.auth.login({ email, password });
       setToken(data.token);
       await refresh();
+      if (data.user?.isAdmin) {
+        router.push("/admin");
+        return;
+      }
       const mode = data.user?.accountMode || data.user?.account_mode;
       router.push(mode === "seller" ? "/account/proposals" : "/account");
     } catch (err) {
@@ -46,14 +58,23 @@ export function LoginForm() {
         </p>
       )}
 
-      <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-        <AuthField label={t("email")} type="email" value={email} onChange={setEmail} required />
+      <form onSubmit={handleSubmit} className="mt-8 space-y-4" autoComplete="off">
+        <input type="text" name="prevent_autofill" className="hidden" tabIndex={-1} aria-hidden="true" />
         <AuthField
+          label={t("email")}
+          type="email"
+          value={email}
+          onChange={setEmail}
+          required
+          autoComplete="email"
+          placeholder="you@example.com"
+        />
+        <PasswordField
           label={t("password")}
-          type="password"
           value={password}
           onChange={setPassword}
           required
+          autoComplete="current-password"
         />
         <div className="text-right">
           <Link href="/account/forgot-password" className="text-xs font-bold text-deweb-cyan hover:underline">
@@ -70,32 +91,5 @@ export function LoginForm() {
         </button>
       </form>
     </>
-  );
-}
-
-export function AuthField({
-  label,
-  type = "text",
-  value,
-  onChange,
-  required,
-}: {
-  label: string;
-  type?: string;
-  value: string;
-  onChange: (v: string) => void;
-  required?: boolean;
-}) {
-  return (
-    <label className="block text-xs font-bold uppercase tracking-wider text-white/40">
-      {label}
-      <input
-        type={type}
-        required={required}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/25 focus:border-deweb-cyan/50 focus:outline-none focus:ring-1 focus:ring-deweb-cyan/30"
-      />
-    </label>
   );
 }

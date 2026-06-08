@@ -22,12 +22,18 @@ export function Hero() {
             {t("badge")}
           </span>
 
-          <h1 className="mt-8 flex flex-col items-center text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="mt-8 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+            {t("seoH1")}
+          </h1>
+          <p
+            className="mt-4 flex flex-col items-center text-2xl font-bold leading-[1.08] text-white/90 sm:text-3xl md:text-4xl"
+            aria-label={t("taglineAria")}
+          >
             <span>{t("title")}</span>
             <span className="mt-1 bg-gradient-to-r from-white via-deweb-cyan to-white bg-clip-text text-transparent">
               {t("titleAccent")}
             </span>
-          </h1>
+          </p>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/60 sm:text-xl">
             {t("subtitle")}

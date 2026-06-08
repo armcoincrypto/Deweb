@@ -1,20 +1,32 @@
-import { getTranslations } from "next-intl/server";
-import { buildPageMetadata } from "@/lib/seo";
 import { ContactView } from "@/components/contact/ContactView";
+import { PageSchemas } from "@/components/seo/PageSchemas";
+import { metadataFromEntry } from "@/lib/seo";
+import { getPageSeo } from "@/lib/seo-metadata";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "contact" });
-  return buildPageMetadata({
-    title: t("title"),
-    description: t("subtitle"),
-    path: "/contact",
-    locale,
-  });
+  return metadataFromEntry(getPageSeo("contact"), "/contact", locale);
 }
 
-export default function ContactPage() {
-  return <ContactView />;
+export default async function ContactPage({ params }: Props) {
+  const { locale } = await params;
+  const seo = getPageSeo("contact");
+
+  return (
+    <>
+      <PageSchemas
+        locale={locale}
+        path="/contact"
+        title={seo.title}
+        description={seo.description}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ]}
+      />
+      <ContactView />
+    </>
+  );
 }

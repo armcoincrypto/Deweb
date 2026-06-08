@@ -4,6 +4,26 @@ import { ADMIN_USER_ID, getAdminEmail, getAdminEmails } from "./utils/admin.js";
 
 const DEMO_PASSWORD = "demo1234";
 
+function syncAdminRoles() {
+  const allowed = new Set(getAdminEmails());
+  if (!allowed.size) return;
+
+  const admins = db.prepare("SELECT id, email FROM users WHERE role = 'admin'").all();
+  for (const u of admins) {
+    const email = String(u.email || "").toLowerCase();
+    if (!allowed.has(email)) {
+      db.prepare("UPDATE users SET role = 'client' WHERE id = ?").run(u.id);
+    }
+  }
+
+  for (const email of allowed) {
+    const row = db.prepare("SELECT id FROM users WHERE email = ?").get(email);
+    if (row) {
+      db.prepare("UPDATE users SET role = 'admin', email_verified = 1 WHERE id = ?").run(row.id);
+    }
+  }
+}
+
 function seedAdmin() {
   const email = getAdminEmail() || "admin@deweb.local";
   const password = process.env.ADMIN_PASSWORD || "change-me-admin";
@@ -45,12 +65,38 @@ function seedAdmin() {
   }
 
   if (process.env.ADMIN_GMAIL || process.env.ADMIN_EMAIL) {
-    const auto = process.env.ADMIN_AUTO_LOGIN === "true" ? "ON" : "off";
-    console.log(`[DEWEB] Admin account: ${email} | auto-login: ${auto} | open http://localhost:8001/account.html`);
+    console.log(`[DEWEB] Admin access: ${getAdminEmails().join(", ")}`);
+  }
+
+  syncAdminRoles();
+}
+
+const BLOG_CATEGORIES = [
+  { name: "Shopify Development", slug: "shopify-development", description: "Shopify apps, themes, and custom development guides." },
+  { name: "Shopify Store Design", slug: "shopify-store-design", description: "Store design, UX and conversion optimization for Shopify." },
+  { name: "AI Chatbot Development", slug: "ai-chatbot-development", description: "AI chatbots for support, sales and automation." },
+  { name: "AI Automation", slug: "ai-automation", description: "Business process automation with AI workflows." },
+  { name: "SaaS Development", slug: "saas-development", description: "Building and scaling SaaS products." },
+  { name: "Marketplace Development", slug: "marketplace-development", description: "Two-sided platforms and marketplace strategy." },
+  { name: "Web Development", slug: "web-development", description: "Custom web applications and modern stacks." },
+  { name: "Ecommerce", slug: "ecommerce", description: "Ecommerce platforms, growth and operations." },
+];
+
+function seedBlogCategories() {
+  const count = db.prepare("SELECT COUNT(*) AS c FROM blog_categories").get().c;
+  if (count > 0) return;
+  const insert = db.prepare(
+    "INSERT INTO blog_categories (id, name, slug, description, created_at) VALUES (?, ?, ?, ?, ?)"
+  );
+  const t = nowIso();
+  for (const cat of BLOG_CATEGORIES) {
+    insert.run(uid(), cat.name, cat.slug, cat.description, t);
   }
 }
 
 export function runSeed() {
+  seedBlogCategories();
+
   const guest = db.prepare("SELECT id FROM users WHERE id = ?").get(GUEST_USER_ID);
   if (!guest) {
     db.prepare(`

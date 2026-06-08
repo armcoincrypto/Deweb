@@ -1,40 +1,83 @@
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
-import { BlogPostView } from "@/components/blog/BlogPostView";
-import { getBlogPost, blogPosts } from "@/lib/blog-data";
-import { buildPageMetadata } from "@/lib/seo";
+import { BlogArticleView } from "@/components/blog/BlogArticleView";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getAuthor, BLOG_ARTICLE_SLUGS } from "@/lib/blog";
+import { getArticleMerged } from "@/lib/blog/server";
+import { metadataFromEntry, absoluteUrl } from "@/lib/seo";
+import { getBlogSeo } from "@/lib/seo-metadata";
+import {
+  articleSchema,
+  authorPersonSchema,
+  breadcrumbSchema,
+  faqPageSchema,
+  webPageSchema,
+} from "@/lib/schema";
+
+export const dynamicParams = true;
+export const revalidate = 60;
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
+  return BLOG_ARTICLE_SLUGS.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const post = getBlogPost(slug);
-  if (!post) return {};
+  const article = await getArticleMerged(slug);
+  if (!article) return {};
 
-  const t = await getTranslations({ locale, namespace: "blog" });
-  const titleKey = `posts.${slug}.title` as const;
-  const excerptKey = `posts.${slug}.excerpt` as const;
-  const title = t.has(titleKey) ? t(titleKey) : slug;
-  const description = t.has(excerptKey) ? t(excerptKey) : post.category;
-
-  return buildPageMetadata({
-    title,
-    description,
-    path: `/blog/${slug}`,
-    locale,
-    image: post.image,
-  });
+  const seo = article.seoTitle
+    ? {
+        title: article.seoTitle.includes("|") ? article.seoTitle : `${article.seoTitle} | DEWEB Blog`,
+        description: article.metaDescription || article.excerpt,
+      }
+    : getBlogSeo(slug, article.title, article.excerpt);
+  return metadataFromEntry(seo, `/blog/${slug}`, locale, { image: article.image });
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
-  const post = getBlogPost(slug);
-  if (!post) notFound();
-  return <BlogPostView post={post} />;
+  const { locale, slug } = await params;
+  const article = await getArticleMerged(slug);
+  if (!article) notFound();
+
+  const author = getAuthor(article.authorId);
+  const path = `/blog/${slug}`;
+  const url = absoluteUrl(locale, path);
+
+  const breadcrumbs = [
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: article.category, path: `/blog/category/${article.categorySlug}` },
+    { name: article.title, path },
+  ];
+
+  return (
+    <>
+      <JsonLd
+        data={[
+          webPageSchema({ name: article.title, description: article.excerpt, url }),
+          breadcrumbSchema(breadcrumbs, locale),
+          authorPersonSchema({
+            id: author.id,
+            name: author.name,
+            role: author.role,
+            url: `${absoluteUrl(locale, "/blog")}#author-${author.id}`,
+          }),
+          articleSchema({
+            headline: article.title,
+            description: article.excerpt,
+            url,
+            image: article.image,
+            datePublished: article.date,
+            authorId: author.id,
+          }),
+          faqPageSchema(article.faqs),
+        ]}
+      />
+      <BlogArticleView article={article} breadcrumbs={breadcrumbs} />
+    </>
+  );
 }

@@ -306,6 +306,63 @@ db.exec(`
     updated_at TEXT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
   );
+
+  CREATE TABLE IF NOT EXISTS blog_categories (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    slug TEXT NOT NULL UNIQUE,
+    description TEXT,
+    created_at TEXT NOT NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS blog_tags (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    slug TEXT NOT NULL UNIQUE,
+    created_at TEXT NOT NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS blog_posts (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    slug TEXT NOT NULL UNIQUE,
+    excerpt TEXT,
+    content TEXT NOT NULL,
+    seo_title TEXT,
+    meta_description TEXT,
+    featured_image TEXT,
+    category_id TEXT NOT NULL,
+    author_name TEXT NOT NULL DEFAULT 'DEWEB Editorial Team',
+    status TEXT NOT NULL DEFAULT 'draft',
+    reading_time TEXT,
+    ai_meta TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    published_at TEXT,
+    FOREIGN KEY (category_id) REFERENCES blog_categories(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS blog_post_tags (
+    post_id TEXT NOT NULL,
+    tag_id TEXT NOT NULL,
+    PRIMARY KEY (post_id, tag_id),
+    FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES blog_tags(id) ON DELETE CASCADE
+  );
+
+  CREATE TABLE IF NOT EXISTS blog_ai_generations (
+    id TEXT PRIMARY KEY,
+    post_id TEXT,
+    topic TEXT NOT NULL,
+    target_keyword TEXT,
+    category_id TEXT,
+    tone TEXT,
+    word_count INTEGER,
+    result_json TEXT,
+    created_by TEXT,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE SET NULL
+  );
 `);
 
 const migrateColumns = [

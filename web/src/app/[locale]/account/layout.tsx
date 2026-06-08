@@ -1,4 +1,5 @@
-import { buildPageMetadata } from "@/lib/seo";
+import { metadataFromEntry } from "@/lib/seo";
+import { getPageSeo } from "@/lib/seo-metadata";
 
 type Props = {
   children: React.ReactNode;
@@ -7,13 +8,7 @@ type Props = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: "Account",
-    description: "Manage your DEWEB account, listings, and messages.",
-    path: "/account",
-    locale,
-    noIndex: true,
-  });
+  return metadataFromEntry(getPageSeo("account"), "/account", locale, { noIndex: true });
 }
 
 export default function AccountLayout({ children }: Props) {

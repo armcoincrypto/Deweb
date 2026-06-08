@@ -6,17 +6,10 @@ export const siteViewport: Viewport = {
   colorScheme: "dark",
 };
 
-const defaultDescription =
-  "Browse IT services and marketplace listings, offer your price, and contact DEWEB to negotiate projects — transparent pricing, no online checkout.";
-
+/** Layout-level defaults only — each page sets its own title via generateMetadata. */
 export const siteMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: "DEWEB",
-  title: {
-    default: "DEWEB — IT Marketplace & Digital Services",
-    template: "%s | DEWEB",
-  },
-  description: defaultDescription,
   manifest: "/site.webmanifest",
   icons: {
     icon: [
@@ -35,35 +28,8 @@ export const siteMetadata: Metadata = {
     title: "DEWEB",
     statusBarStyle: "black-translucent",
   },
-  openGraph: {
-    type: "website",
-    siteName: "DEWEB",
-    url: SITE_URL,
-    title: "DEWEB — IT Marketplace & Digital Services",
-    description: defaultDescription,
-    locale: "en",
-    images: [
-      {
-        url: "/android-chrome-512x512.png",
-        width: 512,
-        height: 512,
-        alt: "DEWEB",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "DEWEB — IT Marketplace & Digital Services",
-    description: defaultDescription,
-    images: ["/android-chrome-512x512.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
-/** HTML head snippet for legacy static pages (deweb-community). */
 export const legacyFaviconHead = `
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

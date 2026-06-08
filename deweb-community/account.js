@@ -55,7 +55,7 @@ function setPanel(name) {
   const siUser = document.getElementById("siUsername");
   const suEmail = document.getElementById("suEmail");
   if (name === "signup" && suEmail && !suEmail.value) {
-    suEmail.placeholder = "dewebexample@gmail.com";
+    suEmail.placeholder = "you@example.com";
   }
   if (name === "signin" && siUser) {
     siUser.value = "";
@@ -146,24 +146,7 @@ document.getElementById("forgotPass")?.addEventListener("click", (e) => {
 });
 
 async function tryAdminAutoLogin() {
-  const API = window.DEWEB_API;
-  if (!API || isLoggedIn()) return false;
-  try {
-    const cfg = await API.Setup.config();
-    if (!cfg.adminAutoLogin) {
-      renderLangUI();
-      return false;
-    }
-
-    const data = await API.Auth.autoAdmin();
-    API.setToken(data.token);
-    window.location.href = data.redirect || (data.user?.isAdmin ? "admin.html" : "account-dashboard.html");
-    return true;
-  } catch (err) {
-    console.warn("[DEWEB] Admin auto-login:", err.message);
-    renderLangUI();
-    return false;
-  }
+  return false;
 }
 
 (async function boot() {
@@ -175,7 +158,7 @@ async function tryAdminAutoLogin() {
   }
   if (suEmail) {
     suEmail.value = "";
-    suEmail.placeholder = "dewebexample@gmail.com";
+    suEmail.placeholder = "you@example.com";
   }
 
   if (isLoggedIn()) {

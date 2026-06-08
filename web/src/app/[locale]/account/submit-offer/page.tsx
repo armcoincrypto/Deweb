@@ -50,7 +50,8 @@ export default function SubmitOfferPage() {
   if (user && !user.emailVerified) {
     return (
       <AccountShell role="customer">
-        <p className="text-amber-400">Please verify your email before submitting offers.</p>
+        <h1 className="text-2xl font-bold text-white">{t("submitOfferTitle")}</h1>
+        <p className="mt-4 text-amber-400">Please verify your email before submitting offers.</p>
         <Link href="/account/profile" className="mt-4 inline-block font-bold text-deweb-cyan">
           Go to Profile →
         </Link>
@@ -60,7 +61,7 @@ export default function SubmitOfferPage() {
 
   return (
     <AccountShell role="customer">
-      <h1 className="text-2xl font-bold text-white">Submit Your Offer / Request</h1>
+      <h1 className="text-2xl font-bold text-white">{t("submitOfferTitle")}</h1>
       <p className="mt-2 text-white/50">Tell us what you offer or what you need. We will contact you to negotiate.</p>
       <form onSubmit={submit} className="mt-8 max-w-xl space-y-4">
         {[

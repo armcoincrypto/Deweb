@@ -21,6 +21,8 @@
   },
   "home": {
     "badge": "IT marketplace · competitive bidding",
+    "seoH1": "Mercado IT, Desarrollo Shopify y Soluciones de IA",
+    "taglineAria": "Suppliers Compete. You Win.",
     "title": "Suppliers Compete.",
     "titleAccent": "You Win.",
     "subtitle": "Clients post IT projects and receive multiple competitive offers from verified suppliers. Compare pricing, timelines, and portfolios — then launch with confidence.",
@@ -235,7 +237,7 @@
     "loginTitle": "Welcome back",
     "loginSubtitle": "Sign in to your DEWEB account",
     "signupTitle": "Create account",
-    "signupSubtitle": "Join as a customer or supplier",
+    "signupSubtitle": "Create your DEWEB account in one step",
     "email": "Email",
     "password": "Password",
     "nickname": "Nickname",

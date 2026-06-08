@@ -206,6 +206,11 @@ export const dewebApi = {
         body: JSON.stringify(body),
       }),
   },
+  blog: {
+    list: () => api<{ posts: BlogPostListItem[] }>("/blog"),
+    get: (slug: string) => api<{ post: BlogPostDetail }>(`/blog/${encodeURIComponent(slug)}`),
+    categories: () => api<{ categories: BlogCategoryRecord[] }>("/blog/categories"),
+  },
   admin: {
     stats: () => api<AdminStats>("/admin/stats"),
     users: (q?: string) => api<{ users: AdminUser[] }>(`/admin/users${q ? `?q=${encodeURIComponent(q)}` : ""}`),
@@ -247,6 +252,36 @@ export const dewebApi = {
         method: "PATCH",
         body: JSON.stringify({ status }),
       }),
+    blog: {
+      list: () => api<{ stats: BlogStats; posts: BlogPostListItem[] }>("/admin/blog"),
+      pending: () => api<{ posts: BlogPostListItem[] }>("/admin/blog/pending"),
+      get: (id: string) => api<{ post: BlogPostDetail }>(`/admin/blog/${id}`),
+      categories: () => api<{ categories: BlogCategoryRecord[] }>("/admin/blog/categories"),
+      create: (body: BlogPostInput) =>
+        api<{ post: BlogPostDetail }>("/admin/blog", {
+          method: "POST",
+          body: JSON.stringify(body),
+        }),
+      update: (id: string, body: BlogPostInput) =>
+        api<{ post: BlogPostDetail }>(`/admin/blog/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(body),
+        }),
+      delete: (id: string) => api<{ ok: boolean }>(`/admin/blog/${id}`, { method: "DELETE" }),
+      approve: (id: string) =>
+        api<{ post: BlogPostDetail }>(`/admin/blog/${id}/approve`, { method: "POST" }),
+      publish: (id: string) =>
+        api<{ post: BlogPostDetail }>(`/admin/blog/${id}/publish`, { method: "POST" }),
+      reject: (id: string) =>
+        api<{ post: BlogPostDetail }>(`/admin/blog/${id}/reject`, { method: "POST" }),
+      aiGenerate: (body: BlogAiGenerateInput) =>
+        api<{ post: BlogPostDetail; generationId: string; message: string }>(
+          "/admin/blog/ai-generate",
+          { method: "POST", body: JSON.stringify(body) }
+        ),
+      aiGenerations: () =>
+        api<{ generations: BlogAiGeneration[] }>("/admin/blog/ai-generations"),
+    },
   },
   services: {
     page: () => api<ServicesPageData>("/services/page"),
@@ -281,6 +316,110 @@ export const dewebApi = {
         message: string;
       }>("/offers", { method: "POST", body: JSON.stringify(body) }),
   },
+};
+
+export type BlogCategoryRecord = {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+};
+
+export type BlogPostContent = {
+  intro: string[];
+  sections: { title: string; paragraphs: string[] }[];
+  faqs: { question: string; answer: string }[];
+  internalLinks: { href: string; label: string }[];
+  cta: {
+    title: string;
+    description: string;
+    primaryLabel: string;
+    primaryHref: string;
+    secondaryLabel?: string;
+    secondaryHref?: string;
+  } | null;
+};
+
+export type BlogAiMeta = {
+  featuredImagePrompt?: string;
+  linkedinDraft?: string;
+  twitterThread?: string[];
+  facebookDraft?: string;
+  targetKeyword?: string;
+  tone?: string;
+  wordCount?: number;
+  model?: string;
+};
+
+export type BlogStats = {
+  total: number;
+  draft: number;
+  pending_review: number;
+  approved: number;
+  published: number;
+  rejected: number;
+};
+
+export type BlogPostListItem = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  categoryName: string;
+  categorySlug: string;
+  authorName: string;
+  status: "draft" | "pending_review" | "approved" | "published" | "rejected";
+  readingTime: string;
+  featuredImage: string;
+  targetKeyword?: string;
+  wordCount?: number;
+  publishedAt: string | null;
+  updatedAt: string;
+  createdAt: string;
+};
+
+export type BlogPostDetail = BlogPostListItem & {
+  content: BlogPostContent;
+  seoTitle: string;
+  metaDescription: string;
+  categoryId: string;
+  tags: string[];
+  aiMeta: BlogAiMeta;
+};
+
+export type BlogPostInput = {
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: BlogPostContent;
+  seoTitle: string;
+  metaDescription: string;
+  featuredImage: string;
+  categoryId: string;
+  authorName: string;
+  status: "draft" | "pending_review" | "approved" | "published" | "rejected";
+  readingTime?: string;
+  tags: string[];
+  aiMeta?: BlogAiMeta;
+};
+
+export type BlogAiGenerateInput = {
+  categoryId: string;
+  targetKeyword: string;
+  topic: string;
+  tone: string;
+  wordCount: number;
+};
+
+export type BlogAiGeneration = {
+  id: string;
+  postId: string | null;
+  topic: string;
+  targetKeyword: string;
+  tone: string;
+  wordCount: number;
+  createdBy: string | null;
+  createdAt: string;
 };
 
 export type AdminStats = {

@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "./loadEnv.js";
 import express from "express";
 import cors from "cors";
 import "./db.js";
@@ -20,6 +20,9 @@ import setupRoutes from "./routes/setup.js";
 import listingRoutes from "./routes/listings.js";
 import dealChatRoutes from "./routes/dealChat.js";
 import leadRoutes from "./routes/leads.js";
+import blogRoutes from "./routes/blog.js";
+import adminBlogRoutes from "./routes/adminBlog.js";
+import testAiRoutes from "./routes/testAi.js";
 
 runSeed();
 
@@ -35,6 +38,8 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true, service: "deweb-backend", version: "3.0" });
 });
 
+app.use("/api/test-ai", testAiRoutes);
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
@@ -47,6 +52,8 @@ app.use("/api/activity", activityRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/offers", offerRoutes);
 app.use("/api/leads", leadRoutes);
+app.use("/api/blog", blogRoutes);
+app.use("/api/admin/blog", adminBlogRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/support", supportRoutes);
 app.use("/api/setup", setupRoutes);

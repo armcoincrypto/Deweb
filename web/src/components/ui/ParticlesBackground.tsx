@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useMemo } from "react";
 
 export function ParticlesBackground() {
+  const reduceMotion = useReducedMotion();
   const particles = useMemo(
     () =>
       Array.from({ length: 48 }, (_, i) => ({
@@ -27,7 +28,8 @@ export function ParticlesBackground() {
             "radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0, 242, 255, 0.1) 0%, transparent 40%)",
         }}
       />
-      {particles.map((p) => (
+      {!reduceMotion &&
+        particles.map((p) => (
         <motion.div
           key={p.id}
           className="absolute rounded-full bg-deweb-cyan/30"

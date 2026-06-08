@@ -1,4 +1,5 @@
-import { buildPageMetadata } from "@/lib/seo";
+import { metadataFromEntry } from "@/lib/seo";
+import { getPageSeo } from "@/lib/seo-metadata";
 
 type Props = {
   children: React.ReactNode;
@@ -7,13 +8,7 @@ type Props = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return buildPageMetadata({
-    title: "Admin",
-    description: "DEWEB administration panel.",
-    path: "/admin",
-    locale,
-    noIndex: true,
-  });
+  return metadataFromEntry(getPageSeo("admin"), "/admin", locale, { noIndex: true });
 }
 
 export default function AdminLayout({ children }: Props) {

@@ -1,20 +1,32 @@
-import { getTranslations } from "next-intl/server";
-import { buildPageMetadata } from "@/lib/seo";
 import { MarketplaceView } from "@/components/marketplace/MarketplaceView";
+import { PageSchemas } from "@/components/seo/PageSchemas";
+import { metadataFromEntry } from "@/lib/seo";
+import { getPageSeo } from "@/lib/seo-metadata";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "marketplace" });
-  return buildPageMetadata({
-    title: t("title"),
-    description: t("subtitle"),
-    path: "/marketplace",
-    locale,
-  });
+  return metadataFromEntry(getPageSeo("marketplace"), "/marketplace", locale);
 }
 
-export default function MarketplacePage() {
-  return <MarketplaceView />;
+export default async function MarketplacePage({ params }: Props) {
+  const { locale } = await params;
+  const seo = getPageSeo("marketplace");
+
+  return (
+    <>
+      <PageSchemas
+        locale={locale}
+        path="/marketplace"
+        title={seo.title}
+        description={seo.description}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Marketplace", path: "/marketplace" },
+        ]}
+      />
+      <MarketplaceView />
+    </>
+  );
 }

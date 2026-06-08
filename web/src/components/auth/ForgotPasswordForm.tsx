@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { dewebApi } from "@/lib/api";
-import { AuthField } from "./LoginForm";
+import { AuthField } from "./PasswordField";
 
 export function ForgotPasswordForm() {
   const t = useTranslations("auth");

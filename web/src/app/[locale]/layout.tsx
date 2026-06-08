@@ -7,6 +7,7 @@ import { PlatformNavbar } from "@/components/layout/PlatformNavbar";
 import { PlatformFooter } from "@/components/layout/PlatformFooter";
 import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
 import { AuthProvider } from "@/lib/auth-context";
+import { GlobalSchema } from "@/components/seo/GlobalSchema";
 import { siteMetadata, siteViewport } from "@/lib/site-metadata";
 import "../globals.css";
 
@@ -16,11 +17,15 @@ export const viewport = siteViewport;
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 export function generateStaticParams() {
@@ -46,6 +51,7 @@ export default async function LocaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen font-sans antialiased`}
         style={{ backgroundColor: "#05070a", color: "#ffffff" }}
       >
+        <GlobalSchema />
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
             <ParticlesBackground />

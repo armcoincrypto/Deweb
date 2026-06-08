@@ -57,7 +57,7 @@ export default function VerifyEmailPage() {
   const t = useTranslations("account");
   return (
     <Suspense fallback={<p className="py-32 text-center text-white/50">{t("loading")}</p>}>
-      <h1 className="sr-only">{t("verifyEmailTitle")}</h1>
+      <h1 className="text-2xl font-bold text-white">{t("verifyEmailTitle")}</h1>
       <VerifyEmailInner />
     </Suspense>
   );

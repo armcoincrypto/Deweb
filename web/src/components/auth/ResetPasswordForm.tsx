@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useRouter, Link } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { dewebApi } from "@/lib/api";
-import { AuthField } from "./LoginForm";
+import { PasswordField } from "./PasswordField";
 
 export function ResetPasswordForm() {
   const t = useTranslations("auth");
@@ -44,12 +44,12 @@ export function ResetPasswordForm() {
         <p className="mt-8 text-sm text-emerald-400">{t("resetSuccess")}</p>
       ) : (
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-          <AuthField
+          <PasswordField
             label={t("newPassword")}
-            type="password"
             value={password}
             onChange={setPassword}
             required
+            autoComplete="new-password"
           />
           <p className="text-xs text-white/35">{t("passwordRules")}</p>
           {error && <p className="text-sm text-red-400">{error}</p>}

@@ -10,7 +10,7 @@ export function PlatformFooter() {
 
   return (
     <footer className="border-t border-white/[0.06] bg-black/50 py-14">
-      <div className="container-narrow grid gap-10 px-4 sm:grid-cols-2 lg:grid-cols-4 sm:px-6 lg:px-8">
+      <div className="container-narrow grid gap-10 px-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 sm:px-6 lg:px-8">
         <div>
           <div className="flex items-center gap-2">
             <BrandLogo size={36} />
@@ -26,6 +26,19 @@ export function PlatformFooter() {
             <li><Link href="/services" className="hover:text-deweb-cyan">{t("services")}</Link></li>
             <li><Link href="/marketplace" className="hover:text-deweb-cyan">{t("marketplace")}</Link></li>
             <li><Link href="/blog" className="hover:text-deweb-cyan">{t("blog")}</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-wider text-white/40">Solutions</h4>
+          <ul className="mt-4 space-y-2 text-sm text-white/60">
+            <li><Link href="/services/shopify-development" className="hover:text-deweb-cyan">Shopify Development</Link></li>
+            <li><Link href="/services/shopify-store-design" className="hover:text-deweb-cyan">Shopify Store Design</Link></li>
+            <li><Link href="/services/shopify-custom-apps" className="hover:text-deweb-cyan">Shopify Custom Apps</Link></li>
+            <li><Link href="/services/ai-chatbot-development" className="hover:text-deweb-cyan">AI Chatbot Development</Link></li>
+            <li><Link href="/services/ai-business-automation" className="hover:text-deweb-cyan">AI Business Automation</Link></li>
+            <li><Link href="/services/web-application-development" className="hover:text-deweb-cyan">Web Application Development</Link></li>
+            <li><Link href="/services/marketplace-development" className="hover:text-deweb-cyan">Marketplace Development</Link></li>
+            <li><Link href="/services/saas-development" className="hover:text-deweb-cyan">SaaS Development</Link></li>
           </ul>
         </div>
         <div>

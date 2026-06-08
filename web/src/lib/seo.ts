@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { locales, type Locale } from "@/i18n/routing";
 import { serviceCategories } from "@/lib/services-data";
-import { blogPosts } from "@/lib/blog-data";
+import { BLOG_ARTICLE_SLUGS } from "@/lib/blog";
+import { blogCategories } from "@/lib/blog/categories";
+import { getServiceLandingPaths } from "@/lib/service-landing";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://dewebam.com";
@@ -19,14 +21,18 @@ export const PUBLIC_STATIC_PATHS = [
 /** Dynamic public routes — auto-derived from data sources. */
 export function getDynamicPublicPaths(): string[] {
   const servicePaths = serviceCategories.map((s) => `/services/${s.id}`);
-  const blogPaths = blogPosts.map((p) => `/blog/${p.slug}`);
-  return [...servicePaths, ...blogPaths];
+  const blogPaths = BLOG_ARTICLE_SLUGS.map((slug) => `/blog/${slug}`);
+  const blogCategoryPaths = blogCategories.map((c) => `/blog/category/${c.slug}`);
+  return [...servicePaths, ...blogPaths, ...blogCategoryPaths];
 }
 
 /** All indexable paths for sitemap generation. */
 export function getAllSitemapPaths(): string[] {
   const staticPaths = PUBLIC_STATIC_PATHS.filter((p) => p !== "/");
-  return ["/", ...staticPaths, ...getDynamicPublicPaths()];
+  const servicePaths = getDynamicPublicPaths();
+  const landingPaths = getServiceLandingPaths();
+  const allServicePaths = [...new Set([...servicePaths, ...landingPaths])];
+  return ["/", ...staticPaths, ...allServicePaths];
 }
 
 export function localePath(locale: string, path: string): string {
@@ -66,7 +72,7 @@ export function buildPageMetadata({
   const ogImage = image || `${SITE_URL}/android-chrome-512x512.png`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
       canonical: url,
@@ -102,4 +108,21 @@ export function buildPageMetadata({
 
 export function isValidLocale(locale: string): locale is Locale {
   return (locales as readonly string[]).includes(locale);
+}
+
+/** Convenience: build metadata from a PAGE_SEO / SERVICE_SEO / BLOG_SEO entry. */
+export function metadataFromEntry(
+  entry: { title: string; description: string },
+  path: string,
+  locale = "en",
+  opts?: { image?: string; noIndex?: boolean }
+) {
+  return buildPageMetadata({
+    title: entry.title,
+    description: entry.description,
+    path,
+    locale,
+    image: opts?.image,
+    noIndex: opts?.noIndex,
+  });
 }
