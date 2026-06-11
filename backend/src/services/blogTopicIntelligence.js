@@ -97,13 +97,21 @@ export async function generateFreshBlogTopics({ count = 8 } = {}) {
       messages: [
         {
           role: "system",
-          content: `You are DEWEB's SEO strategist. Generate fresh blog topics for Shopify development, AI automation, SaaS, ecommerce, marketplace development, web apps, AI chatbots, and business automation.
+          content: `You are DEWEB's SEO strategist in TREND INTELLIGENCE mode. Generate fresh blog topics for Shopify development, AI automation, SaaS, ecommerce, marketplace development, web apps, AI chatbots, and business automation.
 
-Focus on current business problems, high buyer intent, and topics that can bring leads to dewebam.com.
+Use your knowledge of current ecommerce, Shopify, SaaS, AI automation, and marketplace business trends (2025-2026). Focus on high buyer intent and lead generation for dewebam.com.
 
 Available categories: ${categories.map((c) => c.name).join(", ")}
 
-Return JSON: { "topics": [{ "topic", "target_keyword", "category", "search_intent", "buyer_stage": "awareness|consideration|decision", "priority": 1-10, "suggested_cta", "why_this_can_rank" }] }
+Return JSON: { "topics": [{
+  "topic", "target_keyword", "category",
+  "search_intent", "buyer_stage": "awareness|consideration|decision",
+  "priority": 1-10, "suggested_cta", "why_this_can_rank",
+  "trend_type": "evergreen|trending|buyer_intent|competitor_gap",
+  "urgency_score": 1-10,
+  "expected_lead_value": "low|medium|high",
+  "recommended_service": "shopify-development|ai-automation|saas-development|marketplace-development|web-development|contact"
+}] }
 
 Generate exactly ${Math.min(10, Math.max(5, count))} unique topics. Do not repeat these existing topics:
 ${existingTopics.slice(0, 25).join("\n") || "(none yet)"}`,
@@ -152,6 +160,10 @@ ${existingTopics.slice(0, 25).join("\n") || "(none yet)"}`,
       buyerStage: cleanText(idea.buyer_stage, 50),
       suggestedCta: cleanText(idea.suggested_cta, 300),
       whyThisCanRank: cleanText(idea.why_this_can_rank, 500),
+      trendType: cleanText(idea.trend_type, 40) || "evergreen",
+      urgencyScore: Math.min(10, Math.max(1, Number(idea.urgency_score) || 5)),
+      expectedLeadValue: cleanText(idea.expected_lead_value, 20) || "medium",
+      recommendedService: cleanText(idea.recommended_service, 60) || "",
     };
 
     const result = createTopicQueueItem({

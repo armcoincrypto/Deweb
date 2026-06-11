@@ -5,6 +5,7 @@
  */
 import "../src/loadEnv.js";
 import { db, nowIso } from "../src/db.js";
+import { ensureSocialDraftsForPost } from "../src/services/blogSocialDistribution.js";
 
 function main() {
   const now = nowIso();
@@ -43,6 +44,14 @@ function main() {
       console.log(
         `[blog-publish-cron] Published: "${post.title}" → /blog/${post.slug} (was scheduled for ${post.scheduled_publish_at})`
       );
+      try {
+        const social = ensureSocialDraftsForPost(post.id);
+        if (social.created > 0) {
+          console.log(`[blog-publish-cron] Social drafts created: ${social.created}`);
+        }
+      } catch (err) {
+        console.warn("[blog-publish-cron] Social draft error:", err.message);
+      }
     }
   }
 

@@ -10,6 +10,7 @@
     "blog-cron": "node scripts/generateBlogCron.js",
     "blog-topics": "node scripts/generateFreshBlogTopics.js",
     "blog-publish-cron": "node scripts/publishScheduledPosts.js",
+    "blog-social-cron": "node scripts/generateBlogSocialPosts.js",
     "test:blog-analytics": "node scripts/testBlogAnalytics.js"
   },
   "dependencies": {

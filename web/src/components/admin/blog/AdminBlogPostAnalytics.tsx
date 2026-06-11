@@ -6,6 +6,7 @@ import { dewebApi, type BlogPostAnalyticsDetail } from "@/lib/api";
 import { formatStatus, statusClass } from "@/lib/blog/admin-utils";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { AdminBlogShell } from "./AdminBlogShell";
+import { SearchConsolePanel } from "./SearchConsolePanel";
 
 type Props = {
   postId: string;
@@ -76,6 +77,10 @@ export function AdminBlogPostAnalytics({ postId }: Props) {
           <p className="text-sm text-white/45">Conversion rate</p>
           <p className="mt-2 text-3xl font-bold text-white">{data?.conversionRate ?? 0}%</p>
         </GlassCard>
+      </div>
+
+      <div className="mt-10">
+        <SearchConsolePanel data={data?.searchConsole} compact />
       </div>
 
       <GlassCard className="mt-10 p-5">

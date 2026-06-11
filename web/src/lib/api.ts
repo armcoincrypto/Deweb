@@ -321,6 +321,40 @@ export const dewebApi = {
         overview: () => api<BlogAnalyticsOverview>("/admin/blog/analytics"),
         post: (id: string) => api<BlogPostAnalyticsDetail>(`/admin/blog/analytics/${id}`),
       },
+      social: {
+        list: (params?: { platform?: string; status?: string; postId?: string }) => {
+          const q = new URLSearchParams();
+          if (params?.platform) q.set("platform", params.platform);
+          if (params?.status) q.set("status", params.status);
+          if (params?.postId) q.set("postId", params.postId);
+          const qs = q.toString();
+          return api<{ posts: BlogSocialPost[] }>(`/admin/blog/social${qs ? `?${qs}` : ""}`);
+        },
+        generate: (postId: string) =>
+          api<{ created: number; skipped: number; posts: BlogSocialPost[] }>(
+            `/admin/blog/social/generate/${postId}`,
+            { method: "POST" }
+          ),
+        update: (id: string, body: { content?: string; status?: BlogSocialStatus }) =>
+          api<{ post: BlogSocialPost }>(`/admin/blog/social/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify(body),
+          }),
+      },
+      translations: {
+        list: (postId: string) =>
+          api<{ translations: BlogPostTranslation[] }>(`/admin/blog/${postId}/translations`),
+        generate: (postId: string) =>
+          api<{ created: BlogPostTranslation[]; skipped: string[]; postId: string }>(
+            `/admin/blog/${postId}/translations/generate`,
+            { method: "POST" }
+          ),
+        updateStatus: (translationId: string, status: BlogTranslationStatus) =>
+          api<{ translation: BlogPostTranslation }>(`/admin/blog/translations/${translationId}`, {
+            method: "PATCH",
+            body: JSON.stringify({ status }),
+          }),
+      },
       topicQueue: {
         list: () => api<{ items: BlogTopicQueueItem[] }>("/admin/blog/topic-queue"),
         create: (body: BlogTopicQueueInput) =>
@@ -522,8 +556,72 @@ export type BlogTopicQueueItem = {
   buyerStage: string | null;
   suggestedCta: string | null;
   whyThisCanRank: string | null;
+  trendType: string | null;
+  urgencyScore: number | null;
+  expectedLeadValue: string | null;
+  recommendedService: string | null;
   createdAt: string;
   updatedAt: string;
+};
+
+export type BlogSocialStatus = "draft" | "approved" | "posted" | "rejected";
+
+export type BlogSocialPost = {
+  id: string;
+  blogPostId: string;
+  platform: "linkedin" | "facebook" | "x" | "instagram";
+  content: string;
+  status: BlogSocialStatus;
+  scheduledAt: string | null;
+  postedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  postTitle: string | null;
+  postSlug: string | null;
+};
+
+export type BlogTranslationStatus =
+  | "draft"
+  | "pending_review"
+  | "approved"
+  | "published"
+  | "rejected";
+
+export type BlogPostTranslation = {
+  id: string;
+  sourcePostId: string;
+  locale: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: BlogPostContent;
+  seoTitle: string;
+  seoDescription: string;
+  status: BlogTranslationStatus;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SearchConsoleStatus = {
+  connected: boolean;
+  siteUrl: string;
+  message: string;
+};
+
+export type SearchConsoleData = {
+  status: SearchConsoleStatus;
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  avgPosition: number;
+  topQueries: {
+    query: string;
+    clicks: number;
+    impressions: number;
+    ctr: number;
+    position: number;
+  }[];
+  daily: { date: string; clicks: number; impressions: number }[];
 };
 
 export type BlogTopicQueueInput = {
@@ -574,6 +672,7 @@ export type BlogAnalyticsOverview = {
     views: number;
     leads: number;
   }[];
+  searchConsole?: SearchConsoleData;
 };
 
 export type BlogPostAnalyticsDetail = {
@@ -615,6 +714,7 @@ export type BlogPostAnalyticsDetail = {
     campaign: string | null;
     leads: number;
   }[];
+  searchConsole?: SearchConsoleData & { slug?: string };
 };
 
 export type AdminStats = {

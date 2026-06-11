@@ -26,6 +26,7 @@ import blogRoutes from "./routes/blog.js";
 import adminBlogRoutes from "./routes/adminBlog.js";
 import adminBlogAnalyticsRoutes from "./routes/adminBlogAnalytics.js";
 import adminBlogTopicQueueRoutes from "./routes/adminBlogTopicQueue.js";
+import adminBlogSocialRoutes from "./routes/adminBlogSocial.js";
 import testAiRoutes from "./routes/testAi.js";
 
 runSeed();
@@ -62,6 +63,7 @@ app.use("/api/offers", offerRoutes);
 app.use("/api/leads", leadRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/admin/blog/topic-queue", adminBlogTopicQueueRoutes);
+app.use("/api/admin/blog/social", adminBlogSocialRoutes);
 app.use("/api/admin/blog/analytics", adminBlogAnalyticsRoutes);
 app.use("/api/admin/blog", adminBlogRoutes);
 app.use("/api/admin", adminRoutes);

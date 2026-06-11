@@ -1,6 +1,10 @@
 import crypto from "crypto";
 import { db, uid, nowIso } from "../db.js";
 import { cleanText } from "../utils/sanitize.js";
+import {
+  getSearchConsoleOverview,
+  getSearchConsoleForSlug,
+} from "./searchConsole.js";
 
 const VIEW_DEDUPE_MS = 30 * 60 * 1000;
 
@@ -249,6 +253,8 @@ export function getAnalyticsOverview() {
       leads: p.leads,
     }));
 
+  const searchConsole = getSearchConsoleOverview();
+
   return {
     summary: {
       totalViews,
@@ -259,6 +265,7 @@ export function getAnalyticsOverview() {
     posts: postRows,
     topReferrers,
     topKeywords,
+    searchConsole,
   };
 }
 
@@ -372,5 +379,6 @@ export function getPostAnalytics(postId) {
     leads,
     referrers,
     utmCampaigns,
+    searchConsole: getSearchConsoleForSlug(slug),
   };
 }

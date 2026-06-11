@@ -1,6 +1,8 @@
 import { generateBlogDraft, improveBlogDraft } from "./blogAi.js";
 import { checkBlogQuality, BLOG_QUALITY_PASS_SCORE } from "./blogQualityCheck.js";
 import { generateBlogFeaturedImage } from "./blogImageAi.js";
+import { enrichDraftInternalLinks } from "./blogInternalLinks.js";
+import { db } from "../db.js";
 
 /**
  * Full AI blog pipeline: generate → quality check → improve if needed → featured image.
@@ -83,6 +85,15 @@ export async function runBlogGenerationPipeline({
     draft.featuredImage = featuredImage;
     draft.aiMeta.featuredImageUrl = featuredImage;
   }
+
+  const categoryRow = categoryId
+    ? db.prepare("SELECT slug, name FROM blog_categories WHERE id = ?").get(categoryId)
+    : null;
+
+  enrichDraftInternalLinks(draft, {
+    categorySlug: categoryRow?.slug || "",
+    categoryName: categoryName || categoryRow?.name || "",
+  });
 
   return { generationId, draft, quality };
 }

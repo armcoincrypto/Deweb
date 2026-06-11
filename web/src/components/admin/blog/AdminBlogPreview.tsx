@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
-import { dewebApi, type BlogPostDetail } from "@/lib/api";
+import { dewebApi, type BlogPostDetail, type BlogPostTranslation } from "@/lib/api";
+import { cn } from "@/lib/utils";
 import { formatStatus, postToArticle, statusClass } from "@/lib/blog/admin-utils";
 import { BlogImage } from "@/components/blog/BlogImage";
 import { usesDefaultBlogCover } from "@/lib/blog/images";
@@ -14,16 +15,47 @@ type AdminBlogPreviewProps = {
   postId: string;
 };
 
+type PreviewTab = "preview" | "translations";
+
 export function AdminBlogPreview({ postId }: AdminBlogPreviewProps) {
   const [post, setPost] = useState<BlogPostDetail | null>(null);
+  const [translations, setTranslations] = useState<BlogPostTranslation[]>([]);
+  const [tab, setTab] = useState<PreviewTab>("preview");
   const [error, setError] = useState("");
+  const [translationMsg, setTranslationMsg] = useState("");
+  const [generating, setGenerating] = useState(false);
+
+  const loadTranslations = () =>
+    dewebApi.admin.blog.translations.list(postId).then((r) => setTranslations(r.translations));
 
   useEffect(() => {
     dewebApi.admin.blog
       .get(postId)
       .then(({ post: p }) => setPost(p))
       .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"));
+    loadTranslations().catch(() => setTranslations([]));
   }, [postId]);
+
+  async function handleGenerateTranslations() {
+    setGenerating(true);
+    setTranslationMsg("");
+    try {
+      const res = await dewebApi.admin.blog.translations.generate(postId);
+      setTranslationMsg(
+        `Generated ${res.created.length} translation(s). Skipped: ${res.skipped.join(", ") || "none"}.`
+      );
+      await loadTranslations();
+    } catch (e) {
+      setTranslationMsg(e instanceof Error ? e.message : "Generation failed.");
+    } finally {
+      setGenerating(false);
+    }
+  }
+
+  async function updateTranslationStatus(id: string, status: BlogPostTranslation["status"]) {
+    await dewebApi.admin.blog.translations.updateStatus(id, status);
+    await loadTranslations();
+  }
 
   if (error) {
     return (
@@ -110,6 +142,101 @@ export function AdminBlogPreview({ postId }: AdminBlogPreviewProps) {
         </p>
       )}
 
+      <div className="mb-6 flex flex-wrap gap-2">
+        {(["preview", "translations"] as PreviewTab[]).map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setTab(t)}
+            className={cn(
+              "rounded-full border px-4 py-2 text-sm font-medium capitalize",
+              tab === t
+                ? "border-deweb-cyan/50 bg-deweb-cyan/15 text-deweb-cyan"
+                : "border-white/10 text-white/60 hover:border-white/20"
+            )}
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+
+      {tab === "translations" && (
+        <GlassCard className="mb-6 p-5">
+          <h3 className="text-lg font-semibold text-white">Translations (RU · AM · ES)</h3>
+          <p className="mt-1 text-sm text-white/45">
+            Generate translations after the English article is published. Translations are saved as
+            pending review — never auto-published.
+          </p>
+          {post.status !== "published" && (
+            <p className="mt-3 text-sm text-amber-200">
+              Publish the English article first to generate translations.
+            </p>
+          )}
+          {post.status === "published" && (
+            <button
+              type="button"
+              disabled={generating}
+              onClick={handleGenerateTranslations}
+              className="mt-4 rounded-full bg-deweb-cyan px-5 py-2.5 text-sm font-bold text-deweb-bg disabled:opacity-60"
+            >
+              {generating ? "Generating…" : "Generate translations"}
+            </button>
+          )}
+          {translationMsg && <p className="mt-3 text-sm text-white/60">{translationMsg}</p>}
+          <div className="mt-6 space-y-4">
+            {translations.length === 0 && (
+              <p className="text-sm text-white/45">No translations yet.</p>
+            )}
+            {translations.map((tr) => (
+              <div
+                key={tr.id}
+                className="rounded-xl border border-white/10 bg-white/[0.02] p-4"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="font-semibold text-white uppercase">{tr.locale}</p>
+                    <p className="text-sm text-white/60">{tr.title}</p>
+                    <p className="text-xs text-white/40">/blog/{tr.slug} · {tr.status}</p>
+                  </div>
+                  <div className="flex gap-2">
+                    {tr.status === "pending_review" && (
+                      <button
+                        type="button"
+                        onClick={() => updateTranslationStatus(tr.id, "approved")}
+                        className="rounded-full bg-deweb-cyan px-3 py-1 text-xs font-bold text-deweb-bg"
+                      >
+                        Approve
+                      </button>
+                    )}
+                    {tr.status === "approved" && (
+                      <button
+                        type="button"
+                        onClick={() => updateTranslationStatus(tr.id, "published")}
+                        className="rounded-full border border-green-500/40 px-3 py-1 text-xs text-green-300"
+                      >
+                        Publish manually
+                      </button>
+                    )}
+                    {tr.status !== "rejected" && (
+                      <button
+                        type="button"
+                        onClick={() => updateTranslationStatus(tr.id, "rejected")}
+                        className="rounded-full border border-red-500/30 px-3 py-1 text-xs text-red-300"
+                      >
+                        Reject
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <p className="mt-3 line-clamp-3 text-sm text-white/55">{tr.excerpt}</p>
+              </div>
+            ))}
+          </div>
+        </GlassCard>
+      )}
+
+      {tab === "preview" && (
+        <>
       <div className="mb-6 grid gap-4 lg:grid-cols-2">
         <GlassCard className="p-5">
           <h3 className="text-sm font-bold uppercase tracking-wider text-white/40">SEO quality</h3>
@@ -162,6 +289,28 @@ export function AdminBlogPreview({ postId }: AdminBlogPreviewProps) {
         </GlassCard>
       </div>
 
+      {(post.content?.internalLinks?.length > 0 ||
+        (post.aiMeta as { internalLinks?: { href: string; label: string }[] })?.internalLinks
+          ?.length) && (
+        <GlassCard className="mb-6 p-5">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-white/40">
+            Internal links (SEO)
+          </h3>
+          <ul className="mt-3 space-y-2 text-sm text-white/65">
+            {(
+              post.content?.internalLinks ||
+              (post.aiMeta as { internalLinks?: { href: string; label: string }[] }).internalLinks ||
+              []
+            ).map((link) => (
+              <li key={link.href}>
+                <span className="text-deweb-cyan">{link.label}</span>
+                <span className="text-white/40"> → {link.href}</span>
+              </li>
+            ))}
+          </ul>
+        </GlassCard>
+      )}
+
       {(post.aiMeta?.linkedinPost ||
         post.aiMeta?.facebookPost ||
         post.aiMeta?.xThread?.length ||
@@ -207,6 +356,8 @@ export function AdminBlogPreview({ postId }: AdminBlogPreviewProps) {
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-deweb-bg">
         <BlogArticleView article={article} breadcrumbs={breadcrumbs} />
       </div>
+        </>
+      )}
     </AdminBlogShell>
   );
 }

@@ -22,6 +22,8 @@ Publish cron at 18:00 → live on /blog
 
 After publish, traffic and leads are tracked per article — see [BLOG_ANALYTICS.md](./BLOG_ANALYTICS.md).
 
+Marketing automation (social drafts, GSC, internal links, trends, translations): [BLOG_MARKETING_AUTOMATION.md](./BLOG_MARKETING_AUTOMATION.md).
+
 ## Status flow
 
 ```

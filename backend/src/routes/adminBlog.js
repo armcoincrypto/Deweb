@@ -26,6 +26,20 @@ import {
   getScheduleConfig,
   parseScheduledPublishAt,
 } from "../utils/blogSchedule.js";
+import { ensureSocialDraftsForPost } from "../services/blogSocialDistribution.js";
+import {
+  generateTranslationsForPost,
+  listTranslations,
+  updateTranslationStatus,
+} from "../services/blogTranslationAi.js";
+
+function onBlogPostPublished(postId) {
+  try {
+    ensureSocialDraftsForPost(postId);
+  } catch (err) {
+    console.warn("[adminBlog] Social draft error:", err.message);
+  }
+}
 
 const router = Router();
 router.use(requireAdmin);
@@ -205,6 +219,31 @@ router.get("/", (_req, res) => {
   });
 });
 
+router.get("/:id/translations", (req, res) => {
+  const existing = db.prepare("SELECT id, status FROM blog_posts WHERE id = ?").get(req.params.id);
+  if (!existing) return res.status(404).json({ error: "Post not found." });
+  res.json({ translations: listTranslations(req.params.id) });
+});
+
+router.post("/:id/translations/generate", async (req, res) => {
+  try {
+    const result = await generateTranslationsForPost(req.params.id);
+    if (result.error) return res.status(400).json({ error: result.error });
+    res.json(result);
+  } catch (err) {
+    console.error("[adminBlog] translation generate", err);
+    res.status(500).json({ error: err.message || "Translation generation failed." });
+  }
+});
+
+router.patch("/translations/:translationId", (req, res) => {
+  const status = cleanText(req.body.status, 30);
+  if (!status) return res.status(400).json({ error: "status is required." });
+  const updated = updateTranslationStatus(req.params.translationId, status);
+  if (!updated) return res.status(404).json({ error: "Translation not found." });
+  res.json({ translation: updated });
+});
+
 router.get("/:id", (req, res) => {
   if (req.params.id === "pending") return res.status(404).json({ error: "Post not found." });
   const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(req.params.id);
@@ -327,6 +366,7 @@ router.post("/:id/approve", (req, res) => {
       WHERE id = ?
     `).run(t, t, approvedBy, t, req.params.id);
 
+    onBlogPostPublished(req.params.id);
     const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(req.params.id);
     return res.json({
       post: toBlogPost(row, getPostTags(req.params.id)),
@@ -379,6 +419,7 @@ router.post("/:id/publish", (req, res) => {
       updated_at = ?
     WHERE id = ?
   `).run(t, t, req.params.id);
+  onBlogPostPublished(req.params.id);
   const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(req.params.id);
   res.json({ post: toBlogPost(row, getPostTags(req.params.id)) });
 });

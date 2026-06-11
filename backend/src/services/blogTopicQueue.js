@@ -30,6 +30,10 @@ export function toTopicQueueItem(row) {
     buyerStage: topicMeta.buyerStage || null,
     suggestedCta: topicMeta.suggestedCta || null,
     whyThisCanRank: topicMeta.whyThisCanRank || null,
+    trendType: topicMeta.trendType || null,
+    urgencyScore: topicMeta.urgencyScore ?? null,
+    expectedLeadValue: topicMeta.expectedLeadValue || null,
+    recommendedService: topicMeta.recommendedService || null,
   };
 }
 

@@ -430,6 +430,59 @@ db.exec(`
 
   CREATE INDEX IF NOT EXISTS idx_blog_lead_attribution_slug ON blog_lead_attribution(slug);
   CREATE INDEX IF NOT EXISTS idx_blog_lead_attribution_post ON blog_lead_attribution(post_id);
+
+  CREATE TABLE IF NOT EXISTS blog_social_posts (
+    id TEXT PRIMARY KEY,
+    blog_post_id TEXT NOT NULL,
+    platform TEXT NOT NULL,
+    content TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'draft',
+    scheduled_at TEXT,
+    posted_at TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    FOREIGN KEY (blog_post_id) REFERENCES blog_posts(id) ON DELETE CASCADE,
+    UNIQUE (blog_post_id, platform)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_blog_social_posts_post ON blog_social_posts(blog_post_id);
+  CREATE INDEX IF NOT EXISTS idx_blog_social_posts_status ON blog_social_posts(status);
+
+  CREATE TABLE IF NOT EXISTS blog_search_console_daily (
+    id TEXT PRIMARY KEY,
+    slug TEXT NOT NULL,
+    date TEXT NOT NULL,
+    clicks INTEGER NOT NULL DEFAULT 0,
+    impressions INTEGER NOT NULL DEFAULT 0,
+    ctr REAL NOT NULL DEFAULT 0,
+    position REAL NOT NULL DEFAULT 0,
+    query TEXT,
+    page TEXT,
+    created_at TEXT NOT NULL
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_blog_gsc_slug ON blog_search_console_daily(slug);
+  CREATE INDEX IF NOT EXISTS idx_blog_gsc_date ON blog_search_console_daily(date);
+
+  CREATE TABLE IF NOT EXISTS blog_post_translations (
+    id TEXT PRIMARY KEY,
+    source_post_id TEXT NOT NULL,
+    locale TEXT NOT NULL,
+    title TEXT NOT NULL,
+    slug TEXT NOT NULL,
+    excerpt TEXT,
+    content_json TEXT NOT NULL,
+    seo_title TEXT,
+    seo_description TEXT,
+    status TEXT NOT NULL DEFAULT 'draft',
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    FOREIGN KEY (source_post_id) REFERENCES blog_posts(id) ON DELETE CASCADE,
+    UNIQUE (source_post_id, locale)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_blog_translations_post ON blog_post_translations(source_post_id);
+  CREATE INDEX IF NOT EXISTS idx_blog_translations_locale ON blog_post_translations(locale);
 `);
 
 const blogQueueColumns = [["blog_topic_queue", "topic_meta", "TEXT"]];

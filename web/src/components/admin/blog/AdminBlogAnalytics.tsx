@@ -6,6 +6,7 @@ import { dewebApi, type BlogAnalyticsOverview } from "@/lib/api";
 import { formatStatus, statusClass } from "@/lib/blog/admin-utils";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { AdminBlogShell } from "./AdminBlogShell";
+import { SearchConsolePanel } from "./SearchConsolePanel";
 
 export function AdminBlogAnalytics() {
   const [data, setData] = useState<BlogAnalyticsOverview | null>(null);
@@ -57,6 +58,10 @@ export function AdminBlogAnalytics() {
             {summary?.articlesPublishedThisMonth ?? "—"}
           </p>
         </GlassCard>
+      </div>
+
+      <div className="mt-10">
+        <SearchConsolePanel data={data?.searchConsole} />
       </div>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
