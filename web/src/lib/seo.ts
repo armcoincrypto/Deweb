@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { locales, type Locale } from "@/i18n/routing";
+import { siteIcons } from "@/lib/site-icons";
 import { serviceCategories } from "@/lib/services-data";
 import { BLOG_ARTICLE_SLUGS } from "@/lib/blog";
 import { blogCategories } from "@/lib/blog/categories";
@@ -77,6 +78,7 @@ export function buildPageMetadata({
   return {
     title: { absolute: title },
     description,
+    icons: siteIcons,
     alternates: {
       canonical: url,
       languages: buildLanguageAlternates(path),

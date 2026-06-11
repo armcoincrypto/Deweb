@@ -8,6 +8,7 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "blog-cron": "node scripts/generateBlogCron.js",
+    "blog-regenerate-cron": "node scripts/regenerateRejectedPosts.js",
     "blog-topics": "node scripts/generateFreshBlogTopics.js",
     "blog-publish-cron": "node scripts/publishScheduledPosts.js",
     "blog-social-cron": "node scripts/generateBlogSocialPosts.js",

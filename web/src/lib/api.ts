@@ -308,6 +308,7 @@ export const dewebApi = {
         api<{
           post: BlogPostDetail;
           requeued?: BlogTopicQueueItem | null;
+          requeueError?: string | null;
           message?: string;
         }>(`/admin/blog/${id}/reject`, { method: "POST" }),
       aiGenerate: (body: BlogAiGenerateInput) =>
@@ -445,6 +446,8 @@ export type BlogQualityScore = {
 export type BlogAiMeta = {
   featuredImagePrompt?: string;
   featuredImageUrl?: string;
+  imageQualityScore?: number;
+  imageAttempts?: number;
   linkedinPost?: string;
   facebookPost?: string;
   xThread?: string[];
@@ -455,6 +458,11 @@ export type BlogAiMeta = {
   targetKeyword?: string;
   buyerStage?: string;
   searchIntent?: string;
+  trendType?: string;
+  regenerationCount?: number;
+  rejectedFromPostId?: string;
+  rejectedFromPostTitle?: string;
+  originalRejectedPostId?: string;
   tone?: string;
   wordCount?: number;
   model?: string;
@@ -484,8 +492,13 @@ export type BlogPostListItem = {
   featuredImage: string;
   targetKeyword?: string;
   buyerStage?: string;
+  trendType?: string;
   qualityScore?: number | null;
   qualityPassed?: boolean | null;
+  imageQualityScore?: number | null;
+  regenerationCount?: number | null;
+  rejectedFromPostId?: string | null;
+  rejectedFromPostTitle?: string | null;
   scheduledPublishAt?: string | null;
   approvedAt?: string | null;
   publishMode?: string | null;

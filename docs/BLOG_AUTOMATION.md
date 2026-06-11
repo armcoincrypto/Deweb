@@ -47,6 +47,7 @@ rejected (never publishes)
 |-----|--------------|---------|
 | Generate AI draft | **10:00** daily | `npm run blog-cron` |
 | Publish approved posts | **18:00** daily | `npm run blog-publish-cron` |
+| Regenerate rejected drafts | **Every 30 min** | `npm run blog-regenerate-cron` |
 
 ### Approval behavior
 
@@ -73,6 +74,9 @@ Manual **Publish now** button still works for any non-published post.
 
 # Publish scheduled approved posts daily at 18:00
 0 18 * * * cd /var/www/deweb/backend && /usr/bin/npm run blog-publish-cron >> /var/log/deweb-blog-publish-cron.log 2>&1
+
+# Regenerate rejected AI articles every 30 minutes
+*/30 * * * * cd /var/www/deweb/backend && /usr/bin/npm run blog-regenerate-cron >> /var/log/deweb-blog-regenerate.log 2>&1
 ```
 
 ### Change schedule times
@@ -167,22 +171,54 @@ When an admin **rejects** an AI-generated post at `/en/admin/blog/pending`:
 
 1. Post status → `rejected`
 2. System finds original topic/keyword from `blog_topic_queue` or `blog_ai_generations`
-3. Creates a **new** queue item:
+3. Creates a **new** queue item (if under max 3 regeneration attempts per chain):
    - Same topic + keyword
    - `status = queued`
-   - `priority = previous + 10`
+   - `priority = max(previous + 10, 90)`
+   - `scheduled_for = now` (immediate eligibility)
    - `last_error = REGENERATE_AFTER_REJECT` (internal marker)
-4. Next cron run sends a special prompt to OpenAI:
+   - `topic_meta.fromRejection = true` with `regenerationCount`, `rejectedPostId`
+4. **`blog-regenerate-cron`** (every 30 min) processes rejection queue items only
+5. OpenAI receives a stronger regeneration prompt:
 
-   > The previous article was rejected by admin. Generate a completely new, stronger, more specific, more useful SEO article. Do not repeat the same structure or wording.
+   > The previous article was rejected by a human editor. Generate a significantly stronger article with different structure, deeper business insights, better SEO, stronger examples, more actionable advice, and improved conversion potential. Do not repeat wording or article structure.
 
-5. New draft appears in pending review — admin must approve/publish manually.
+6. New draft appears in pending review — admin must approve/publish manually.
+
+### Regenerate cron manual run
+
+```bash
+cd backend
+npm run blog-regenerate-cron
+```
+
+## Category image engine
+
+Featured images use **category-specific marketing prompts** (`blogImagePrompts.js`), not one generic prompt:
+
+| Category slug | Style |
+|---------------|-------|
+| `shopify-development` | Shopify Plus agency hero |
+| `ai-automation`, `ai-chatbot-development` | Enterprise AI automation |
+| `marketplace-development` | Multi-vendor marketplace |
+| `saas-development` | SaaS growth dashboard |
+| `web-development` | Agency web development |
+| `ecommerce`, `shopify-store-design` | Ecommerce / store design |
+
+### Image quality rules
+
+- Minimum size: **1536×1024** (`gpt-image-1`)
+- Up to **3 generation attempts** if quality score &lt; 70; keeps best version
+- `ai_meta.imageQualityScore` and `ai_meta.imageAttempts` stored on each draft
+- Admin pending list shows SEO score + image quality score + buyer stage + trend type
 
 ## Safety rules
 
 - **No auto-publish from AI** — generation always creates `pending_review`
 - **Publish cron only publishes `scheduled` posts** that admin approved
 - **Rejected posts never publish**
+- **Max 3 regeneration attempts** per article chain after rejection
+- **Regeneration only after admin rejection** — not on approve or publish
 - Manual AI generator (`/admin/blog/ai-generator`) unchanged; also sends admin email
 - Manual generator rate limit: 5/hour per admin (cron bypasses HTTP rate limit)
 - Static blog slugs in `RESERVED_BLOG_SLUGS` are never overwritten
@@ -248,7 +284,8 @@ npm run blog-cron
 | Fresh topic ideas | `npm run blog-topics` |
 | Article generation | `npm run blog-cron` |
 | Quality scoring | Auto — `ai_meta.qualityScore` (improves once if &lt; 75) |
-| Featured images | Auto — `OPENAI_IMAGE_MODEL=gpt-image-1` |
+| Featured images | Category prompts + quality retry — `OPENAI_IMAGE_MODEL=gpt-image-1` |
+| Reject regeneration | `npm run blog-regenerate-cron` (every 30 min on server) |
 | Social drafts | Stored in `ai_meta` — LinkedIn, Facebook, X, Instagram |
 
 ### Environment

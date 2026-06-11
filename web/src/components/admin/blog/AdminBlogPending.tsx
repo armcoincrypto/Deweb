@@ -74,9 +74,16 @@ export function AdminBlogPending() {
       if (action === "publish") await dewebApi.admin.blog.publish(target.id);
       if (action === "reject") {
         const result = await dewebApi.admin.blog.reject(target.id);
+        if (result.requeueError) {
+          setMsg(`"${target.title}" rejected. ${result.requeueError}`);
+          setAction(null);
+          setTarget(null);
+          await load();
+          return;
+        }
         if (result.requeued) {
           setMsg(
-            `"${target.title}" rejected. New topic queued for improved AI regeneration (priority ${result.requeued.priority}).`
+            `"${target.title}" rejected. Improved regeneration queued (priority ${result.requeued.priority}, within ~30 min).`
           );
           setAction(null);
           setTarget(null);
@@ -164,6 +171,9 @@ export function AdminBlogPending() {
               <th className="px-4 py-3 font-medium">Image</th>
               <th className="px-4 py-3 font-medium">Keyword</th>
               <th className="px-4 py-3 font-medium">SEO</th>
+              <th className="px-4 py-3 font-medium">Img score</th>
+              <th className="px-4 py-3 font-medium">Buyer</th>
+              <th className="px-4 py-3 font-medium">Trend</th>
               <th className="px-4 py-3 font-medium">Publish at</th>
               <th className="px-4 py-3 font-medium">Status</th>
               <th className="px-4 py-3 font-medium">Actions</th>
@@ -172,7 +182,7 @@ export function AdminBlogPending() {
           <tbody>
             {posts.length === 0 ? (
               <tr>
-                <td colSpan={7} className="px-4 py-10 text-center text-white/50">
+                <td colSpan={10} className="px-4 py-10 text-center text-white/50">
                   No pending articles.{" "}
                   <Link href="/admin/blog/topic-queue" className="text-deweb-cyan hover:underline">
                     Topic queue
@@ -219,6 +229,27 @@ export function AdminBlogPending() {
                     ) : (
                       "—"
                     )}
+                  </td>
+                  <td className="px-4 py-4">
+                    {post.imageQualityScore != null ? (
+                      <span
+                        className={`rounded-full px-2 py-1 text-xs font-bold ${
+                          post.imageQualityScore >= 70
+                            ? "bg-emerald-500/20 text-emerald-300"
+                            : "bg-amber-500/20 text-amber-300"
+                        }`}
+                      >
+                        {post.imageQualityScore}
+                      </span>
+                    ) : (
+                      <span className="text-xs text-white/35">—</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-4 text-xs capitalize text-white/55">
+                    {post.buyerStage?.replace(/_/g, " ") || "—"}
+                  </td>
+                  <td className="px-4 py-4 text-xs capitalize text-white/55">
+                    {post.trendType?.replace(/_/g, " ") || "—"}
                   </td>
                   <td className="px-4 py-4 text-xs text-white/50">
                     {post.status === "scheduled"

@@ -446,10 +446,13 @@ router.post("/:id/reject", (req, res) => {
     db.prepare("SELECT id FROM blog_ai_generations WHERE post_id = ?").get(req.params.id) ||
     db.prepare("SELECT id FROM blog_topic_queue WHERE generated_post_id = ?").get(req.params.id);
 
+  let requeueError = null;
   if (hasAiOrigin) {
     const queueResult = requeueAfterReject(req.params.id);
     if (queueResult?.item) {
       requeued = queueResult.item;
+    } else if (queueResult?.error) {
+      requeueError = queueResult.error;
     }
   }
 
@@ -457,9 +460,12 @@ router.post("/:id/reject", (req, res) => {
   res.json({
     post: toBlogPost(row, getPostTags(req.params.id)),
     requeued,
+    requeueError,
     message: requeued
-      ? "Article rejected. A new topic was queued for improved AI regeneration."
-      : "Article rejected.",
+      ? "Article rejected. A new topic was queued for improved AI regeneration (within 30 minutes)."
+      : requeueError
+        ? `Article rejected. ${requeueError}`
+        : "Article rejected.",
   });
 });
 

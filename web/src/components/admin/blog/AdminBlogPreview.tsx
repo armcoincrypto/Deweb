@@ -119,6 +119,30 @@ export function AdminBlogPreview({ postId }: AdminBlogPreviewProps) {
               Live since: {new Date(post.publishedAt).toLocaleString()}
             </span>
           )}
+          {post.aiMeta?.imageQualityScore != null && (
+            <span
+              className={`rounded-full px-2 py-0.5 text-xs font-bold ${
+                post.aiMeta.imageQualityScore >= 70
+                  ? "bg-emerald-500/20 text-emerald-300"
+                  : "bg-amber-500/20 text-amber-300"
+              }`}
+            >
+              Image score: {post.aiMeta.imageQualityScore}
+            </span>
+          )}
+          {post.aiMeta?.regenerationCount != null && post.aiMeta.regenerationCount > 0 && (
+            <span className="text-xs text-violet-300">
+              Regeneration #{post.aiMeta.regenerationCount}
+            </span>
+          )}
+          {post.aiMeta?.rejectedFromPostId && (
+            <Link
+              href={`/admin/blog/preview/${post.aiMeta.rejectedFromPostId}`}
+              className="text-xs text-amber-300 hover:underline"
+            >
+              Replaces rejected: {post.aiMeta.rejectedFromPostTitle || post.aiMeta.rejectedFromPostId.slice(0, 8)}
+            </Link>
+          )}
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
