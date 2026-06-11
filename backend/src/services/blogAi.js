@@ -17,113 +17,76 @@ function getOpenAiKey() {
 }
 
 function buildSystemPrompt({ tone, wordCount, categoryName }) {
-  return `You are an expert SEO content writer for DEWEB (dewebam.com), an IT marketplace for Shopify, AI, SaaS, web and marketplace development.
+  return `You are DEWEB's senior SEO content strategist and business copywriter for dewebam.com — an IT marketplace for Shopify development, AI automation, SaaS, marketplace platforms, web apps, and ecommerce growth.
 
-Write useful, original, non-spam content. No fake claims, no keyword stuffing, no copied content.
-Tone: ${tone || "professional and helpful"}.
-Target length: approximately ${wordCount || 1800} words in intro + sections combined.
-Category: ${categoryName || "Technology"}.
+Write for CEOs and business owners — not developers. Focus on:
+- ROI, cost savings, automation, scaling, conversion, lead generation, ecommerce growth
+- Real business pain points and practical solutions
+- How DEWEB helps (marketplace + verified developers)
 
-Return ONLY valid JSON with this exact structure:
+Tone: ${tone || "authoritative, practical, CEO-focused"}.
+Target length: ${wordCount || 2000}+ words across intro + sections.
+
+Return ONLY valid JSON:
 {
-  "seoTitle": "string max 60 chars",
-  "metaDescription": "string max 155 chars",
+  "seoTitle": "string max 60 chars — strong SEO title with keyword",
+  "metaTitle": "string max 60 chars",
+  "metaDescription": "string 120-160 chars",
   "slug": "kebab-case-url-slug",
   "excerpt": "string max 160 chars",
   "tags": ["tag1", "tag2", "tag3", "tag4"],
-  "featuredImagePrompt": "describe an image for this article",
-  "intro": ["paragraph1", "paragraph2", "paragraph3"],
-  "sections": [{"title": "H2 title", "paragraphs": ["p1", "p2"]}],
+  "featuredImagePrompt": "describe a professional blog hero image, no text in image",
+  "intro": ["paragraph1: business pain point hook", "paragraph2: stakes for the business"],
+  "sections": [
+    {"title": "The Business Problem", "paragraphs": ["..."]},
+    {"title": "Why This Problem Costs You Money", "paragraphs": ["..."]},
+    {"title": "The Practical Solution", "paragraphs": ["..."]},
+    {"title": "How DEWEB Solves This", "paragraphs": ["..."]},
+    {"title": "Step-by-Step Implementation", "paragraphs": ["..."]},
+    {"title": "Cost, Timeline and Business Value", "paragraphs": ["..."]},
+    {"title": "Additional depth section", "paragraphs": ["..."]},
+    {"title": "Scaling and Automation Opportunities", "paragraphs": ["..."]}
+  ],
   "faqs": [{"question": "...", "answer": "..."}],
   "internalLinks": [{"href": "/services/...", "label": "..."}],
   "cta": {
     "title": "string",
-    "description": "string mentioning Shopify, AI, SaaS or Marketplace development and contacting DEWEB",
+    "description": "string with ROI/lead-gen angle and DEWEB",
     "primaryLabel": "Get a Free Consultation",
     "primaryHref": "/contact"
   },
-  "linkedinDraft": "LinkedIn post text",
-  "twitterThread": ["tweet1", "tweet2", "tweet3"],
-  "facebookDraft": "Facebook post text"
+  "linkedinPost": "LinkedIn post promoting article + DEWEB service",
+  "facebookPost": "Facebook post",
+  "xThread": ["tweet1", "tweet2", "tweet3"],
+  "instagramCaption": "Instagram caption with hashtags",
+  "buyerStage": "awareness|consideration|decision",
+  "searchIntent": "informational|commercial|transactional"
 }
 
-Requirements:
-- At least 10 sections with 2 paragraphs each
-- At least 6 FAQ items
-- Include 2-3 internal links to DEWEB service pages from: ${SERVICE_LINKS.map((l) => l.href).join(", ")}
-- CTA must feel natural, not spammy
-- Use natural SEO writing for the target keyword`;
+REQUIRED ARTICLE STRUCTURE (map to sections):
+1. Strong SEO title (seoTitle)
+2. Meta title (metaTitle)
+3. Meta description
+4. Intro with business pain point
+5. Problem explanation
+6. Practical solution
+7. How DEWEB can solve it
+8. Step-by-step implementation
+9. Cost / timeline / business value
+10. FAQ (min 6 items)
+11. Internal links (min 2 from: ${SERVICE_LINKS.map((l) => l.href).join(", ")})
+12. Strong CTA
+
+Rules:
+- Min 8 sections, 2 paragraphs each
+- Min 6 FAQs
+- No generic AI filler — specific, actionable, SEO-optimized
+- Natural keyword usage, no stuffing
+- CEO language: revenue, margin, efficiency, competitive advantage`;
 }
 
-export async function generateBlogDraft({
-  topic,
-  targetKeyword,
-  categoryName,
-  tone,
-  wordCount,
-  createdBy,
-  regenerationHint = null,
-}) {
-  const openaiKey = getOpenAiKey();
-  if (!openaiKey) {
-    const err = new Error("OPENAI_API_KEY is not configured. Add it to backend .env");
-    err.status = 503;
-    throw err;
-  }
-
-  const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
-  let userPrompt = `Topic: ${topic}
-Target keyword: ${targetKeyword || topic}
-Category: ${categoryName}
-Write a comprehensive SEO article.`;
-
-  if (regenerationHint) {
-    userPrompt += `\n\nIMPORTANT: ${regenerationHint}`;
-  }
-
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${openaiKey}`,
-    },
-    body: JSON.stringify({
-      model,
-      temperature: 0.7,
-      response_format: { type: "json_object" },
-      messages: [
-        { role: "system", content: buildSystemPrompt({ tone, wordCount, categoryName }) },
-        { role: "user", content: userPrompt },
-      ],
-      max_tokens: 8000,
-    }),
-  });
-
-  if (!res.ok) {
-    const errBody = await res.text().catch(() => "");
-    const err = new Error(`OpenAI API error (${res.status}): ${errBody.slice(0, 200)}`);
-    err.status = 502;
-    throw err;
-  }
-
-  const completion = await res.json();
-  const raw = completion.choices?.[0]?.message?.content?.trim();
-  if (!raw) {
-    const err = new Error("AI returned empty response.");
-    err.status = 502;
-    throw err;
-  }
-
-  let parsed;
-  try {
-    parsed = JSON.parse(raw);
-  } catch {
-    const err = new Error("AI returned invalid JSON.");
-    err.status = 502;
-    throw err;
-  }
-
-  const slug = slugify(parsed.slug || topic);
+function parseAiResponse(parsed, { targetKeyword, tone, wordCount, model, buyerStage, searchIntent }) {
+  const slug = slugify(parsed.slug || parsed.seoTitle || "article");
   const content = {
     intro: Array.isArray(parsed.intro) ? parsed.intro.map((p) => cleanText(p, 8000)) : [],
     sections: Array.isArray(parsed.sections)
@@ -144,26 +107,149 @@ Write a comprehensive SEO article.`;
           label: cleanText(l.label, 200),
         }))
       : SERVICE_LINKS.slice(0, 3),
-    cta: parsed.cta || {
-      title: "Need Shopify, AI, SaaS or Marketplace development?",
-      description: "Contact DEWEB to discuss your project with verified developers.",
-      primaryLabel: "Get a Free Consultation",
-      primaryHref: "/contact",
-    },
+    cta: parsed.cta
+      ? {
+          title: cleanText(parsed.cta.title, 200),
+          description: cleanText(parsed.cta.description, 1000),
+          primaryLabel: cleanText(parsed.cta.primaryLabel, 80) || "Get a Free Consultation",
+          primaryHref: cleanText(parsed.cta.primaryHref, 200) || "/contact",
+        }
+      : {
+          title: "Ready to grow with DEWEB?",
+          description: "Connect with verified developers for Shopify, AI, SaaS and marketplace projects.",
+          primaryLabel: "Get a Free Consultation",
+          primaryHref: "/contact",
+        },
   };
+
+  const xThread = Array.isArray(parsed.xThread)
+    ? parsed.xThread
+    : Array.isArray(parsed.twitterThread)
+      ? parsed.twitterThread
+      : [];
 
   const aiMeta = {
     featuredImagePrompt: cleanText(parsed.featuredImagePrompt, 500),
-    linkedinDraft: cleanText(parsed.linkedinDraft, 3000),
-    twitterThread: Array.isArray(parsed.twitterThread)
-      ? parsed.twitterThread.map((t) => cleanText(t, 500))
-      : [],
-    facebookDraft: cleanText(parsed.facebookDraft, 2000),
+    linkedinPost: cleanText(parsed.linkedinPost || parsed.linkedinDraft, 3000),
+    facebookPost: cleanText(parsed.facebookPost || parsed.facebookDraft, 2000),
+    xThread: xThread.map((t) => cleanText(t, 500)).filter(Boolean),
+    instagramCaption: cleanText(parsed.instagramCaption, 2200),
+    linkedinDraft: cleanText(parsed.linkedinPost || parsed.linkedinDraft, 3000),
+    facebookDraft: cleanText(parsed.facebookPost || parsed.facebookDraft, 2000),
+    twitterThread: xThread.map((t) => cleanText(t, 500)).filter(Boolean),
     targetKeyword: cleanText(targetKeyword, 200),
     tone: cleanText(tone, 100),
     wordCount,
     model,
+    buyerStage: cleanText(parsed.buyerStage || buyerStage, 50),
+    searchIntent: cleanText(parsed.searchIntent || searchIntent, 50),
   };
+
+  const title = cleanText(
+    (parsed.metaTitle || parsed.seoTitle || "").replace(/\s*\|.*$/, "") || parsed.seoTitle,
+    300
+  );
+
+  return {
+    title,
+    seoTitle: cleanText(parsed.seoTitle || parsed.metaTitle || title, 120),
+    metaDescription: cleanText(parsed.metaDescription, 320),
+    slug,
+    excerpt: cleanText(parsed.excerpt, 500),
+    tags: Array.isArray(parsed.tags) ? parsed.tags.map((t) => cleanText(t, 80)).slice(0, 8) : [],
+    content,
+    readingTime: estimateReadingTime(content),
+    aiMeta,
+    status: "draft",
+  };
+}
+
+async function callOpenAiJson({ systemPrompt, userPrompt, maxTokens = 10000 }) {
+  const openaiKey = getOpenAiKey();
+  if (!openaiKey) {
+    const err = new Error("OPENAI_API_KEY is not configured. Add it to backend .env");
+    err.status = 503;
+    throw err;
+  }
+
+  const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${openaiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.7,
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
+      ],
+      max_tokens: maxTokens,
+    }),
+  });
+
+  if (!res.ok) {
+    const errBody = await res.text().catch(() => "");
+    const err = new Error(`OpenAI API error (${res.status}): ${errBody.slice(0, 200)}`);
+    err.status = 502;
+    throw err;
+  }
+
+  const completion = await res.json();
+  const raw = completion.choices?.[0]?.message?.content?.trim();
+  if (!raw) {
+    const err = new Error("AI returned empty response.");
+    err.status = 502;
+    throw err;
+  }
+
+  try {
+    return { parsed: JSON.parse(raw), model };
+  } catch {
+    const err = new Error("AI returned invalid JSON.");
+    err.status = 502;
+    throw err;
+  }
+}
+
+export async function generateBlogDraft({
+  topic,
+  targetKeyword,
+  categoryName,
+  tone,
+  wordCount,
+  createdBy,
+  regenerationHint = null,
+  buyerStage = null,
+  searchIntent = null,
+}) {
+  let userPrompt = `Topic: ${topic}
+Target keyword: ${targetKeyword || topic}
+Category: ${categoryName}
+Buyer stage: ${buyerStage || "consideration"}
+Search intent: ${searchIntent || "commercial"}
+Write a CEO-focused SEO article that drives leads for DEWEB services.`;
+
+  if (regenerationHint) {
+    userPrompt += `\n\nIMPORTANT: ${regenerationHint}`;
+  }
+
+  const { parsed, model } = await callOpenAiJson({
+    systemPrompt: buildSystemPrompt({ tone, wordCount, categoryName }),
+    userPrompt,
+  });
+
+  const draft = parseAiResponse(parsed, {
+    targetKeyword,
+    tone,
+    wordCount: wordCount || 2000,
+    model,
+    buyerStage,
+    searchIntent,
+  });
 
   const generationId = uid();
   const t = nowIso();
@@ -175,27 +261,71 @@ Write a comprehensive SEO article.`;
     cleanText(topic, 500),
     cleanText(targetKeyword, 200),
     cleanText(tone, 100),
-    wordCount || 1800,
-    JSON.stringify({ parsed, aiMeta }),
+    wordCount || 2000,
+    JSON.stringify({ parsed, aiMeta: draft.aiMeta }),
     createdBy || null,
     t
   );
 
-  return {
-    generationId,
-    draft: {
-      title: cleanText(parsed.seoTitle?.replace(/\s*\|.*$/, "") || topic, 300),
-      seoTitle: cleanText(parsed.seoTitle, 120),
-      metaDescription: cleanText(parsed.metaDescription, 320),
-      slug,
-      excerpt: cleanText(parsed.excerpt, 500),
-      tags: Array.isArray(parsed.tags) ? parsed.tags.map((t) => cleanText(t, 80)).slice(0, 8) : [],
-      content,
-      readingTime: estimateReadingTime(content),
-      aiMeta,
-      status: "draft",
-    },
-  };
+  return { generationId, draft };
+}
+
+export async function improveBlogDraft({
+  draft,
+  issues = [],
+  suggestions = [],
+  targetKeyword,
+  categoryName,
+}) {
+  const improvePrompt = `You are improving a DEWEB blog article that scored below quality threshold.
+
+Target keyword: ${targetKeyword}
+Category: ${categoryName}
+
+ISSUES:
+${issues.map((i) => `- ${i}`).join("\n")}
+
+SUGGESTIONS:
+${suggestions.map((s) => `- ${s}`).join("\n")}
+
+CURRENT ARTICLE JSON:
+${JSON.stringify({
+  seoTitle: draft.seoTitle,
+  metaDescription: draft.metaDescription,
+  slug: draft.slug,
+  excerpt: draft.excerpt,
+  intro: draft.content?.intro,
+  sections: draft.content?.sections,
+  faqs: draft.content?.faqs,
+  internalLinks: draft.content?.internalLinks,
+  cta: draft.content?.cta,
+  linkedinPost: draft.aiMeta?.linkedinPost,
+  facebookPost: draft.aiMeta?.facebookPost,
+  xThread: draft.aiMeta?.xThread,
+  instagramCaption: draft.aiMeta?.instagramCaption,
+})}
+
+Rewrite and return the FULL improved article as JSON using the same schema as the original generation system prompt. Fix all issues. Keep CEO/ROI focus. Min 2000 words, 8 sections, 6 FAQs.`;
+
+  const { parsed, model } = await callOpenAiJson({
+    systemPrompt: buildSystemPrompt({ tone: draft.aiMeta?.tone, wordCount: 2200, categoryName }),
+    userPrompt: improvePrompt,
+    maxTokens: 12000,
+  });
+
+  const improved = parseAiResponse(parsed, {
+    targetKeyword: targetKeyword || draft.aiMeta?.targetKeyword,
+    tone: draft.aiMeta?.tone,
+    wordCount: draft.aiMeta?.wordCount || 2200,
+    model,
+    buyerStage: draft.aiMeta?.buyerStage,
+    searchIntent: draft.aiMeta?.searchIntent,
+  });
+
+  improved.aiMeta = { ...improved.aiMeta, ...draft.aiMeta, model, improvedAt: nowIso() };
+  improved.tags = improved.tags.length ? improved.tags : draft.tags;
+
+  return { draft: improved };
 }
 
 export function listAiGenerations(limit = 20) {

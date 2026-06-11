@@ -231,6 +231,8 @@ export function AdminBlogTopicQueue() {
             <tr>
               <th className="px-4 py-3">Topic</th>
               <th className="px-4 py-3">Keyword</th>
+              <th className="px-4 py-3">Stage</th>
+              <th className="px-4 py-3">Intent</th>
               <th className="px-4 py-3">Category</th>
               <th className="px-4 py-3">Priority</th>
               <th className="px-4 py-3">Status</th>
@@ -242,7 +244,7 @@ export function AdminBlogTopicQueue() {
           <tbody>
             {items.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-4 py-8 text-center text-white/40">
+                <td colSpan={10} className="px-4 py-8 text-center text-white/40">
                   No topics in queue. Add one above or run the cron after seeding topics.
                 </td>
               </tr>
@@ -251,6 +253,8 @@ export function AdminBlogTopicQueue() {
               <tr key={item.id} className="border-b border-white/5 text-white/70">
                 <td className="px-4 py-3 font-medium text-white">{item.topic}</td>
                 <td className="px-4 py-3">{item.targetKeyword}</td>
+                <td className="px-4 py-3 text-xs capitalize text-white/50">{item.buyerStage || "—"}</td>
+                <td className="px-4 py-3 text-xs text-white/50">{item.searchIntent || "—"}</td>
                 <td className="px-4 py-3">{item.categoryName}</td>
                 <td className="px-4 py-3">{item.priority}</td>
                 <td className="px-4 py-3">

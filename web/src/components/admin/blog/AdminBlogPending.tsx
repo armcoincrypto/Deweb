@@ -4,11 +4,13 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
 import { dewebApi, type BlogPostListItem } from "@/lib/api";
 import { formatStatus, statusClass } from "@/lib/blog/admin-utils";
+import { resolveBlogImageUrl } from "@/lib/blog/image-url";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { AdminBlogShell } from "./AdminBlogShell";
 import { ConfirmModal } from "./ConfirmModal";
+import { ApproveScheduleModal } from "./ApproveScheduleModal";
 
-type PendingAction = "approve" | "publish" | "reject" | "delete" | null;
+type PendingAction = "publish" | "reject" | "delete" | null;
 
 export function AdminBlogPending() {
   const [posts, setPosts] = useState<BlogPostListItem[]>([]);
@@ -17,6 +19,7 @@ export function AdminBlogPending() {
   const [loading, setLoading] = useState(false);
   const [action, setAction] = useState<PendingAction>(null);
   const [target, setTarget] = useState<BlogPostListItem | null>(null);
+  const [approveTarget, setApproveTarget] = useState<BlogPostListItem | null>(null);
 
   const load = useCallback(async () => {
     setError("");
@@ -33,12 +36,30 @@ export function AdminBlogPending() {
     setAction(type);
   }
 
+  async function handleApprove(opts: {
+    publishMode: "scheduled" | "immediate";
+    scheduledPublishAt?: string;
+  }) {
+    if (!approveTarget) return;
+    setLoading(true);
+    setError("");
+    try {
+      const result = await dewebApi.admin.blog.approve(approveTarget.id, opts);
+      setMsg(result.message || `Approved "${approveTarget.title}"`);
+      setApproveTarget(null);
+      await load();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Approve failed");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function runAction() {
     if (!target || !action) return;
     setLoading(true);
     setError("");
     try {
-      if (action === "approve") await dewebApi.admin.blog.approve(target.id);
       if (action === "publish") await dewebApi.admin.blog.publish(target.id);
       if (action === "reject") {
         const result = await dewebApi.admin.blog.reject(target.id);
@@ -72,15 +93,10 @@ export function AdminBlogPending() {
     NonNullable<PendingAction>,
     { title: string; message: string; confirmLabel: string; variant?: "danger" | "primary" }
   > = {
-    approve: {
-      title: "Approve article?",
-      message: "This marks the article as approved. It will not be public until you publish.",
-      confirmLabel: "Approve",
-    },
     publish: {
-      title: "Publish article?",
-      message: "This will make the article visible on /blog and include it in the sitemap.",
-      confirmLabel: "Publish",
+      title: "Publish article now?",
+      message: "This will make the article visible on /blog immediately, bypassing any schedule.",
+      confirmLabel: "Publish now",
     },
     reject: {
       title: "Reject article?",
@@ -99,10 +115,19 @@ export function AdminBlogPending() {
 
   const modal = action ? modalCopy[action] : null;
 
+  function formatSchedule(iso: string | null | undefined) {
+    if (!iso) return "—";
+    return new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Yerevan",
+      dateStyle: "short",
+      timeStyle: "short",
+    }).format(new Date(iso));
+  }
+
   return (
     <AdminBlogShell
       title="Pending articles"
-      subtitle="AI-generated and draft articles awaiting review, approval, or publishing."
+      subtitle="Review AI drafts, approve with scheduling, or publish manually. Default publish slot: 18:00 Asia/Yerevan."
     >
       {error && <p className="mb-4 text-red-400">{error}</p>}
       {msg && <p className="mb-4 text-deweb-cyan">{msg}</p>}
@@ -112,11 +137,11 @@ export function AdminBlogPending() {
           <thead className="border-b border-white/10 text-white/45">
             <tr>
               <th className="px-4 py-3 font-medium">Title</th>
-              <th className="px-4 py-3 font-medium">Category</th>
+              <th className="px-4 py-3 font-medium">Image</th>
               <th className="px-4 py-3 font-medium">Keyword</th>
-              <th className="px-4 py-3 font-medium">Created</th>
+              <th className="px-4 py-3 font-medium">SEO</th>
+              <th className="px-4 py-3 font-medium">Publish at</th>
               <th className="px-4 py-3 font-medium">Status</th>
-              <th className="px-4 py-3 font-medium">Words</th>
               <th className="px-4 py-3 font-medium">Actions</th>
             </tr>
           </thead>
@@ -125,8 +150,8 @@ export function AdminBlogPending() {
               <tr>
                 <td colSpan={7} className="px-4 py-10 text-center text-white/50">
                   No pending articles.{" "}
-                  <Link href="/admin/blog/ai-generator" className="text-deweb-cyan hover:underline">
-                    Generate with AI
+                  <Link href="/admin/blog/topic-queue" className="text-deweb-cyan hover:underline">
+                    Topic queue
                   </Link>
                 </td>
               </tr>
@@ -137,10 +162,37 @@ export function AdminBlogPending() {
                     <p className="font-medium text-white">{post.title}</p>
                     <p className="mt-1 text-xs text-white/40">/blog/{post.slug}</p>
                   </td>
-                  <td className="px-4 py-4 text-white/60">{post.categoryName}</td>
+                  <td className="px-4 py-4">
+                    {post.featuredImage ? (
+                      <img
+                        src={resolveBlogImageUrl(post.featuredImage)}
+                        alt=""
+                        className="h-12 w-20 rounded-lg border border-white/10 object-cover"
+                      />
+                    ) : (
+                      <span className="text-xs text-white/35">—</span>
+                    )}
+                  </td>
                   <td className="px-4 py-4 text-white/60">{post.targetKeyword || "—"}</td>
-                  <td className="px-4 py-4 text-white/45">
-                    {new Date(post.createdAt).toLocaleDateString()}
+                  <td className="px-4 py-4">
+                    {post.qualityScore != null ? (
+                      <span
+                        className={`rounded-full px-2 py-1 text-xs font-bold ${
+                          post.qualityScore >= 75
+                            ? "bg-emerald-500/20 text-emerald-300"
+                            : "bg-amber-500/20 text-amber-300"
+                        }`}
+                      >
+                        {post.qualityScore}
+                      </span>
+                    ) : (
+                      "—"
+                    )}
+                  </td>
+                  <td className="px-4 py-4 text-xs text-white/50">
+                    {post.status === "scheduled"
+                      ? formatSchedule(post.scheduledPublishAt)
+                      : "—"}
                   </td>
                   <td className="px-4 py-4">
                     <span
@@ -149,9 +201,8 @@ export function AdminBlogPending() {
                       {formatStatus(post.status)}
                     </span>
                   </td>
-                  <td className="px-4 py-4 text-white/60">{post.wordCount ?? "—"}</td>
                   <td className="px-4 py-4">
-                    <div className="flex min-w-[280px] flex-wrap gap-2">
+                    <div className="flex min-w-[260px] flex-wrap gap-2">
                       <Link
                         href={`/admin/blog/preview/${post.id}`}
                         className="rounded border border-white/10 px-2 py-1 text-xs text-deweb-cyan hover:border-deweb-cyan/40"
@@ -164,29 +215,33 @@ export function AdminBlogPending() {
                       >
                         Edit
                       </Link>
-                      {post.status !== "approved" && (
+                      {post.status === "pending_review" && (
                         <button
                           type="button"
-                          onClick={() => openAction("approve", post)}
+                          onClick={() => setApproveTarget(post)}
                           className="rounded border border-blue-500/30 px-2 py-1 text-xs text-blue-300 hover:bg-blue-500/10"
                         >
                           Approve
                         </button>
                       )}
-                      <button
-                        type="button"
-                        onClick={() => openAction("publish", post)}
-                        className="rounded border border-green-500/30 px-2 py-1 text-xs text-green-400 hover:bg-green-500/10"
-                      >
-                        Publish
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => openAction("reject", post)}
-                        className="rounded border border-amber-500/30 px-2 py-1 text-xs text-amber-300 hover:bg-amber-500/10"
-                      >
-                        Reject
-                      </button>
+                      {post.status !== "published" && (
+                        <button
+                          type="button"
+                          onClick={() => openAction("publish", post)}
+                          className="rounded border border-green-500/30 px-2 py-1 text-xs text-green-400 hover:bg-green-500/10"
+                        >
+                          Publish now
+                        </button>
+                      )}
+                      {post.status !== "published" && post.status !== "rejected" && (
+                        <button
+                          type="button"
+                          onClick={() => openAction("reject", post)}
+                          className="rounded border border-amber-500/30 px-2 py-1 text-xs text-amber-300 hover:bg-amber-500/10"
+                        >
+                          Reject
+                        </button>
+                      )}
                       <button
                         type="button"
                         onClick={() => openAction("delete", post)}
@@ -202,6 +257,14 @@ export function AdminBlogPending() {
           </tbody>
         </table>
       </GlassCard>
+
+      <ApproveScheduleModal
+        open={!!approveTarget}
+        post={approveTarget}
+        loading={loading}
+        onConfirm={handleApprove}
+        onCancel={() => !loading && setApproveTarget(null)}
+      />
 
       <ConfirmModal
         open={!!action && !!target}

@@ -5,6 +5,7 @@ export type BlogPostStatus =
   | "draft"
   | "pending_review"
   | "approved"
+  | "scheduled"
   | "published"
   | "rejected";
 
@@ -12,6 +13,7 @@ export const STATUS_LABELS: Record<BlogPostStatus, string> = {
   draft: "Draft",
   pending_review: "Pending review",
   approved: "Approved",
+  scheduled: "Scheduled",
   published: "Published",
   rejected: "Rejected",
 };
@@ -20,6 +22,7 @@ export const STATUS_STYLES: Record<BlogPostStatus, string> = {
   draft: "bg-white/10 text-white/70",
   pending_review: "bg-amber-500/20 text-amber-300",
   approved: "bg-blue-500/20 text-blue-300",
+  scheduled: "bg-violet-500/20 text-violet-300",
   published: "bg-green-500/20 text-green-400",
   rejected: "bg-red-500/20 text-red-400",
 };
@@ -62,5 +65,5 @@ export function statusClass(status: string) {
 }
 
 export function isPendingLike(post: BlogPostListItem) {
-  return ["pending_review", "draft", "approved"].includes(post.status);
+  return ["pending_review", "draft", "approved", "scheduled"].includes(post.status);
 }

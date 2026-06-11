@@ -45,6 +45,7 @@ export function savePendingReviewPost({
   generationId,
   categoryId,
   slugFallbackTopic,
+  featuredImage,
 }) {
   let slug = slugify(draft.slug || slugFallbackTopic || draft.title);
   const slugRow = db.prepare("SELECT id FROM blog_posts WHERE slug = ?").get(slug);
@@ -69,7 +70,7 @@ export function savePendingReviewPost({
     JSON.stringify(draft.content),
     draft.seoTitle,
     draft.metaDescription,
-    "",
+    featuredImage || draft.featuredImage || "",
     categoryId,
     "DEWEB Editorial Team",
     draft.readingTime,

@@ -17,9 +17,15 @@ import {
   sanitizeBlogContent,
   sanitizeBlogText,
 } from "../utils/sanitize.js";
-import { generateBlogDraft, listAiGenerations } from "../services/blogAi.js";
+import { listAiGenerations } from "../services/blogAi.js";
+import { runBlogGenerationPipeline } from "../services/blogGenerationPipeline.js";
 import { savePendingReviewPost, notifyAdminBlogDraft } from "../services/blogDraftPersist.js";
 import { requeueAfterReject } from "../services/blogTopicQueue.js";
+import {
+  getNextPublishSlot,
+  getScheduleConfig,
+  parseScheduledPublishAt,
+} from "../utils/blogSchedule.js";
 
 const router = Router();
 router.use(requireAdmin);
@@ -91,17 +97,32 @@ function validateSlug(slug, excludeId = null) {
 
 function sanitizeAiMeta(raw = {}, existing = {}) {
   const merged = { ...existing, ...(raw && typeof raw === "object" ? raw : {}) };
+  const xThread = Array.isArray(merged.xThread)
+    ? merged.xThread
+    : Array.isArray(merged.twitterThread)
+      ? merged.twitterThread
+      : [];
+
   return {
     featuredImagePrompt: sanitizeBlogText(merged.featuredImagePrompt, 500),
-    linkedinDraft: sanitizeBlogText(merged.linkedinDraft, 3000),
-    twitterThread: Array.isArray(merged.twitterThread)
-      ? merged.twitterThread.map((t) => sanitizeBlogText(t, 500)).filter(Boolean)
-      : [],
-    facebookDraft: sanitizeBlogText(merged.facebookDraft, 2000),
+    featuredImageUrl: sanitizeBlogText(merged.featuredImageUrl, 500),
+    linkedinPost: sanitizeBlogText(merged.linkedinPost || merged.linkedinDraft, 3000),
+    facebookPost: sanitizeBlogText(merged.facebookPost || merged.facebookDraft, 2000),
+    xThread: xThread.map((t) => sanitizeBlogText(t, 500)).filter(Boolean),
+    instagramCaption: sanitizeBlogText(merged.instagramCaption, 2200),
+    linkedinDraft: sanitizeBlogText(merged.linkedinPost || merged.linkedinDraft, 3000),
+    twitterThread: xThread.map((t) => sanitizeBlogText(t, 500)).filter(Boolean),
+    facebookDraft: sanitizeBlogText(merged.facebookPost || merged.facebookDraft, 2000),
     targetKeyword: sanitizeBlogText(merged.targetKeyword, 200),
+    buyerStage: sanitizeBlogText(merged.buyerStage, 50),
+    searchIntent: sanitizeBlogText(merged.searchIntent, 80),
     tone: sanitizeBlogText(merged.tone, 100),
     wordCount: Number(merged.wordCount) || undefined,
     model: sanitizeBlogText(merged.model, 80),
+    qualityScore:
+      merged.qualityScore && typeof merged.qualityScore === "object"
+        ? merged.qualityScore
+        : existing.qualityScore,
   };
 }
 
@@ -154,11 +175,23 @@ router.get("/ai-generations", (_req, res) => {
   res.json({ generations: listAiGenerations(30) });
 });
 
+router.get("/schedule-config", (_req, res) => {
+  res.json(getScheduleConfig());
+});
+
 router.get("/pending", (_req, res) => {
   const rows = db
     .prepare(
-      `${POST_SELECT} WHERE p.status IN ('pending_review', 'draft', 'approved')
-       ORDER BY p.created_at DESC`
+      `${POST_SELECT} WHERE p.status IN ('pending_review', 'draft', 'approved', 'scheduled')
+       ORDER BY
+         CASE p.status
+           WHEN 'pending_review' THEN 0
+           WHEN 'scheduled' THEN 1
+           WHEN 'approved' THEN 2
+           ELSE 3
+         END,
+         p.scheduled_publish_at ASC,
+         p.created_at DESC`
     )
     .all();
   res.json({ posts: rows.map(toBlogPostListItem) });
@@ -278,21 +311,74 @@ router.post("/:id/approve", (req, res) => {
   if (existing.status === "published") {
     return res.status(400).json({ error: "Already published." });
   }
+  if (existing.status === "rejected") {
+    return res.status(400).json({ error: "Cannot approve a rejected article." });
+  }
+
+  const publishMode = cleanText(req.body.publishMode || "scheduled", 30);
   const t = nowIso();
-  db.prepare(
-    "UPDATE blog_posts SET status = 'approved', updated_at = ? WHERE id = ?"
-  ).run(t, req.params.id);
+  const approvedBy = req.userId || null;
+
+  if (publishMode === "immediate") {
+    db.prepare(`
+      UPDATE blog_posts SET
+        status = 'published', published_at = ?, approved_at = ?, approved_by = ?,
+        publish_mode = 'immediate', scheduled_publish_at = NULL, updated_at = ?
+      WHERE id = ?
+    `).run(t, t, approvedBy, t, req.params.id);
+
+    const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(req.params.id);
+    return res.json({
+      post: toBlogPost(row, getPostTags(req.params.id)),
+      message: "Article approved and published immediately.",
+    });
+  }
+
+  let scheduledAt = parseScheduledPublishAt(req.body.scheduledPublishAt);
+  let mode = "scheduled";
+
+  if (req.body.scheduledPublishAt && !scheduledAt) {
+    return res.status(400).json({ error: "scheduledPublishAt must be a future date/time." });
+  }
+
+  if (!scheduledAt) {
+    scheduledAt = getNextPublishSlot();
+    mode = "scheduled";
+  } else {
+    mode = "custom";
+  }
+
+  db.prepare(`
+    UPDATE blog_posts SET
+      status = 'scheduled', approved_at = ?, approved_by = ?,
+      scheduled_publish_at = ?, publish_mode = ?, updated_at = ?
+    WHERE id = ?
+  `).run(t, approvedBy, scheduledAt, mode, t, req.params.id);
+
   const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(req.params.id);
-  res.json({ post: toBlogPost(row, getPostTags(req.params.id)) });
+  res.json({
+    post: toBlogPost(row, getPostTags(req.params.id)),
+    message: `Article approved and scheduled for ${scheduledAt}.`,
+    scheduledPublishAt: scheduledAt,
+  });
 });
 
 router.post("/:id/publish", (req, res) => {
   const existing = db.prepare("SELECT * FROM blog_posts WHERE id = ?").get(req.params.id);
   if (!existing) return res.status(404).json({ error: "Post not found." });
+  if (existing.status === "rejected") {
+    return res.status(400).json({ error: "Cannot publish a rejected article." });
+  }
   const t = nowIso();
-  db.prepare(
-    "UPDATE blog_posts SET status = 'published', published_at = COALESCE(published_at, ?), updated_at = ? WHERE id = ?"
-  ).run(t, t, req.params.id);
+  db.prepare(`
+    UPDATE blog_posts SET
+      status = 'published',
+      published_at = COALESCE(published_at, ?),
+      publish_mode = COALESCE(publish_mode, 'immediate'),
+      scheduled_publish_at = NULL,
+      updated_at = ?
+    WHERE id = ?
+  `).run(t, t, req.params.id);
   const row = db.prepare(`${POST_SELECT} WHERE p.id = ?`).get(req.params.id);
   res.json({ post: toBlogPost(row, getPostTags(req.params.id)) });
 });
@@ -301,7 +387,12 @@ router.post("/:id/reject", (req, res) => {
   const existing = db.prepare("SELECT * FROM blog_posts WHERE id = ?").get(req.params.id);
   if (!existing) return res.status(404).json({ error: "Post not found." });
   if (existing.status === "published") {
-    return res.status(400).json({ error: "Cannot reject a published article. Unpublish first." });
+    return res.status(400).json({ error: "Cannot reject a published article." });
+  }
+  if (existing.status === "scheduled") {
+    db.prepare(
+      "UPDATE blog_posts SET scheduled_publish_at = NULL, publish_mode = NULL WHERE id = ?"
+    ).run(req.params.id);
   }
   const t = nowIso();
   db.prepare(
@@ -345,10 +436,11 @@ router.post("/ai-generate", aiRateLimit, async (req, res) => {
   if (!category) return res.status(400).json({ error: "Invalid category." });
 
   try {
-    const { generationId, draft } = await generateBlogDraft({
+    const { generationId, draft } = await runBlogGenerationPipeline({
       topic,
       targetKeyword,
       categoryName: category.name,
+      categoryId,
       tone,
       wordCount,
       createdBy: req.userId,
@@ -359,6 +451,7 @@ router.post("/ai-generate", aiRateLimit, async (req, res) => {
       generationId,
       categoryId,
       slugFallbackTopic: topic,
+      featuredImage: draft.featuredImage,
     });
 
     await notifyAdminBlogDraft({ topic, targetKeyword: targetKeyword || topic });

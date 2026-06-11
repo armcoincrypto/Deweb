@@ -10,9 +10,9 @@ import { AdminBlogShell } from "./AdminBlogShell";
 const STAT_CARDS: { key: keyof BlogStats; label: string; href?: string }[] = [
   { key: "total", label: "Total articles" },
   { key: "pending_review", label: "Pending review", href: "/admin/blog/pending" },
+  { key: "scheduled", label: "Scheduled", href: "/admin/blog/pending" },
   { key: "published", label: "Published" },
   { key: "rejected", label: "Rejected" },
-  { key: "draft", label: "Drafts" },
 ];
 
 export function AdminBlogDashboard() {

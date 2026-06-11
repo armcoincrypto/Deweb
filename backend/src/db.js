@@ -381,6 +381,29 @@ db.exec(`
   );
 `);
 
+const blogQueueColumns = [["blog_topic_queue", "topic_meta", "TEXT"]];
+for (const [table, col, type] of blogQueueColumns) {
+  try {
+    db.prepare(`SELECT ${col} FROM ${table} LIMIT 1`).get();
+  } catch {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${col} ${type}`);
+  }
+}
+
+const blogPostColumns = [
+  ["blog_posts", "scheduled_publish_at", "TEXT"],
+  ["blog_posts", "approved_at", "TEXT"],
+  ["blog_posts", "approved_by", "TEXT"],
+  ["blog_posts", "publish_mode", "TEXT"],
+];
+for (const [table, col, type] of blogPostColumns) {
+  try {
+    db.prepare(`SELECT ${col} FROM ${table} LIMIT 1`).get();
+  } catch {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${col} ${type}`);
+  }
+}
+
 const migrateColumns = [
   ["orders", "escrow_amount", "REAL"],
   ["orders", "escrow_status", "TEXT"],

@@ -14,7 +14,84 @@ OpenAI via blogAi.js
 Save as pending_review + admin email
        ↓
 Admin approves/rejects at /en/admin/blog/pending
+       ↓
+Approve → scheduled (default 18:00 Asia/Yerevan) or publish immediately
+       ↓
+Publish cron at 18:00 → live on /blog
 ```
+
+## Status flow
+
+```
+draft → pending_review → scheduled → published
+                      ↘ immediate publish on approve
+rejected (never publishes)
+```
+
+| Status | Meaning |
+|--------|---------|
+| `pending_review` | AI draft awaiting admin review |
+| `scheduled` | Admin approved; waits for `scheduled_publish_at` |
+| `published` | Live on /blog |
+| `rejected` | Rejected; may re-queue for regeneration |
+
+## Scheduled generation & publishing
+
+**Default timezone:** `Asia/Yerevan` (`BLOG_TIMEZONE`)
+
+| Job | Default time | Command |
+|-----|--------------|---------|
+| Generate AI draft | **10:00** daily | `npm run blog-cron` |
+| Publish approved posts | **18:00** daily | `npm run blog-publish-cron` |
+
+### Approval behavior
+
+When admin clicks **Approve** (default):
+
+- `status` → `scheduled`
+- `approved_at` → now
+- `scheduled_publish_at` → next **18:00** Armenia time (today if before 18:00, else tomorrow)
+- **Does not publish immediately**
+
+Options in approve modal:
+
+1. **Default** — next 18:00 Asia/Yerevan (recommended)
+2. **Custom** — pick date/time
+3. **Publish immediately** — skips schedule, goes live now
+
+Manual **Publish now** button still works for any non-published post.
+
+### Production crontab (Armenia local server time)
+
+```cron
+# Generate one AI draft daily at 10:00
+0 10 * * * cd /var/www/deweb/backend && /usr/bin/npm run blog-cron >> /var/log/deweb-blog-cron.log 2>&1
+
+# Publish scheduled approved posts daily at 18:00
+0 18 * * * cd /var/www/deweb/backend && /usr/bin/npm run blog-publish-cron >> /var/log/deweb-blog-publish-cron.log 2>&1
+```
+
+### Change schedule times
+
+Set in `backend/.env`:
+
+```env
+BLOG_TIMEZONE=Asia/Yerevan
+BLOG_GENERATE_HOUR=10
+BLOG_PUBLISH_HOUR=18
+BLOG_PUBLISH_MINUTE=0
+```
+
+Update server crontab hours to match. The approve modal default slot uses `BLOG_PUBLISH_HOUR`.
+
+### Publish cron manual run
+
+```bash
+cd backend
+npm run blog-publish-cron
+```
+
+Publishes posts where `status = scheduled` AND `scheduled_publish_at <= now` AND `published_at IS NULL`.
 
 ## Topic queue
 
@@ -76,50 +153,9 @@ node scripts/generateBlogCron.js
 
 Exit code `0` if nothing due or success; `1` on generation failure.
 
-## Production cron (systemd timer)
+## Production cron (systemd timers)
 
-Create `/etc/systemd/system/deweb-blog-cron.service`:
-
-```ini
-[Unit]
-Description=DEWEB blog AI draft generator
-After=network.target
-
-[Service]
-Type=oneshot
-User=www-data
-WorkingDirectory=/var/www/deweb/backend
-Environment=NODE_ENV=production
-ExecStart=/usr/bin/node scripts/generateBlogCron.js
-```
-
-Create `/etc/systemd/system/deweb-blog-cron.timer`:
-
-```ini
-[Unit]
-Description=Run DEWEB blog cron twice daily
-
-[Timer]
-OnCalendar=*-*-* 06,18:00:00
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-```
-
-Enable:
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable --now deweb-blog-cron.timer
-sudo systemctl list-timers | grep deweb-blog
-```
-
-## Alternative: crontab
-
-```cron
-0 6,18 * * * cd /var/www/deweb/backend && /usr/bin/node scripts/generateBlogCron.js >> /var/log/deweb-blog-cron.log 2>&1
-```
+See **Scheduled generation & publishing** above for recommended 10:00 generate + 18:00 publish times.
 
 ## Reject → regenerate flow
 
@@ -140,7 +176,9 @@ When an admin **rejects** an AI-generated post at `/en/admin/blog/pending`:
 
 ## Safety rules
 
-- **No auto-publish** — all AI output is `pending_review`
+- **No auto-publish from AI** — generation always creates `pending_review`
+- **Publish cron only publishes `scheduled` posts** that admin approved
+- **Rejected posts never publish**
 - Manual AI generator (`/admin/blog/ai-generator`) unchanged; also sends admin email
 - Manual generator rate limit: 5/hour per admin (cron bypasses HTTP rate limit)
 - Static blog slugs in `RESERVED_BLOG_SLUGS` are never overwritten
@@ -169,12 +207,33 @@ SITE_URL=https://dewebam.com
 # 1. Start backend
 cd backend && npm run dev
 
-# 2. Add a topic (admin UI or API)
-# Visit http://localhost:8001/en/admin/blog/topic-queue
+# 2. Generate fresh SEO topics (5–10 ideas → topic queue)
+npm run blog-topics
 
-# 3. Run cron
+# 3. Or add a topic manually in admin UI
+# http://localhost:8001/en/admin/blog/topic-queue
+
+# 4. Run cron (one article per run)
 npm run blog-cron
 
-# 4. Review draft
+# 5. Review draft
 # http://localhost:8001/en/admin/blog/pending
+```
+
+## Smart SEO Growth Engine (Phase 3–7)
+
+| Feature | Command / location |
+|---------|-------------------|
+| Fresh topic ideas | `npm run blog-topics` |
+| Article generation | `npm run blog-cron` |
+| Quality scoring | Auto — `ai_meta.qualityScore` (improves once if &lt; 75) |
+| Featured images | Auto — `OPENAI_IMAGE_MODEL=gpt-image-1` |
+| Social drafts | Stored in `ai_meta` — LinkedIn, Facebook, X, Instagram |
+
+### Environment
+
+```env
+OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-4o-mini
+OPENAI_IMAGE_MODEL=gpt-image-1
 ```

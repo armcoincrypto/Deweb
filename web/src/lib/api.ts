@@ -255,6 +255,14 @@ export const dewebApi = {
     blog: {
       list: () => api<{ stats: BlogStats; posts: BlogPostListItem[] }>("/admin/blog"),
       pending: () => api<{ posts: BlogPostListItem[] }>("/admin/blog/pending"),
+      scheduleConfig: () =>
+        api<{
+          timezone: string;
+          publishHour: number;
+          publishMinute: number;
+          generateHour: number;
+          nextPublishSlot: string;
+        }>("/admin/blog/schedule-config"),
       get: (id: string) => api<{ post: BlogPostDetail }>(`/admin/blog/${id}`),
       categories: () => api<{ categories: BlogCategoryRecord[] }>("/admin/blog/categories"),
       create: (body: BlogPostInput) =>
@@ -268,8 +276,18 @@ export const dewebApi = {
           body: JSON.stringify(body),
         }),
       delete: (id: string) => api<{ ok: boolean }>(`/admin/blog/${id}`, { method: "DELETE" }),
-      approve: (id: string) =>
-        api<{ post: BlogPostDetail }>(`/admin/blog/${id}/approve`, { method: "POST" }),
+      approve: (
+        id: string,
+        body?: { publishMode?: "scheduled" | "immediate"; scheduledPublishAt?: string }
+      ) =>
+        api<{
+          post: BlogPostDetail;
+          message?: string;
+          scheduledPublishAt?: string;
+        }>(`/admin/blog/${id}/approve`, {
+          method: "POST",
+          body: JSON.stringify(body || { publishMode: "scheduled" }),
+        }),
       publish: (id: string) =>
         api<{ post: BlogPostDetail }>(`/admin/blog/${id}/publish`, { method: "POST" }),
       reject: (id: string) =>
@@ -363,15 +381,32 @@ export type BlogPostContent = {
   } | null;
 };
 
+export type BlogQualityScore = {
+  score: number;
+  passed: boolean;
+  issues: string[];
+  suggestions: string[];
+  wordCount?: number;
+  improved?: boolean;
+};
+
 export type BlogAiMeta = {
   featuredImagePrompt?: string;
+  featuredImageUrl?: string;
+  linkedinPost?: string;
+  facebookPost?: string;
+  xThread?: string[];
+  instagramCaption?: string;
   linkedinDraft?: string;
   twitterThread?: string[];
   facebookDraft?: string;
   targetKeyword?: string;
+  buyerStage?: string;
+  searchIntent?: string;
   tone?: string;
   wordCount?: number;
   model?: string;
+  qualityScore?: BlogQualityScore;
 };
 
 export type BlogStats = {
@@ -379,6 +414,7 @@ export type BlogStats = {
   draft: number;
   pending_review: number;
   approved: number;
+  scheduled: number;
   published: number;
   rejected: number;
 };
@@ -391,10 +427,16 @@ export type BlogPostListItem = {
   categoryName: string;
   categorySlug: string;
   authorName: string;
-  status: "draft" | "pending_review" | "approved" | "published" | "rejected";
+  status: "draft" | "pending_review" | "approved" | "scheduled" | "published" | "rejected";
   readingTime: string;
   featuredImage: string;
   targetKeyword?: string;
+  buyerStage?: string;
+  qualityScore?: number | null;
+  qualityPassed?: boolean | null;
+  scheduledPublishAt?: string | null;
+  approvedAt?: string | null;
+  publishMode?: string | null;
   wordCount?: number;
   publishedAt: string | null;
   updatedAt: string;
@@ -420,7 +462,7 @@ export type BlogPostInput = {
   featuredImage: string;
   categoryId: string;
   authorName: string;
-  status: "draft" | "pending_review" | "approved" | "published" | "rejected";
+  status: "draft" | "pending_review" | "approved" | "scheduled" | "published" | "rejected";
   readingTime?: string;
   tags: string[];
   aiMeta?: BlogAiMeta;
@@ -458,6 +500,10 @@ export type BlogTopicQueueItem = {
   generatedPostSlug: string | null;
   generatedPostTitle: string | null;
   lastError: string | null;
+  searchIntent: string | null;
+  buyerStage: string | null;
+  suggestedCta: string | null;
+  whyThisCanRank: string | null;
   createdAt: string;
   updatedAt: string;
 };

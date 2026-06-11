@@ -1,6 +1,8 @@
 import "./loadEnv.js";
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import "./db.js";
 import { runSeed } from "./seed.js";
 import authRoutes from "./routes/auth.js";
@@ -27,6 +29,9 @@ import testAiRoutes from "./routes/testAi.js";
 
 runSeed();
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const uploadsDir = path.resolve(__dirname, "../uploads");
+
 const app = express();
 const port = Number(process.env.PORT || 3000);
 const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:8001";
@@ -34,6 +39,7 @@ const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:8001";
 app.set("trust proxy", 1);
 app.use(cors({ origin: corsOrigin, credentials: true }));
 app.use(express.json({ limit: "1mb" }));
+app.use("/api/uploads", express.static(uploadsDir));
 
 app.get("/api/health", (_req, res) => {
   res.json({ ok: true, service: "deweb-backend", version: "3.0" });

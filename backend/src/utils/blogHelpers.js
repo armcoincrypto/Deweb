@@ -28,6 +28,7 @@ export const BLOG_STATUSES = [
   "draft",
   "pending_review",
   "approved",
+  "scheduled",
   "published",
   "rejected",
 ];
@@ -130,6 +131,10 @@ export function toBlogPost(row, tags = []) {
     readingTime: row.reading_time || "5 min",
     tags,
     aiMeta,
+    scheduledPublishAt: row.scheduled_publish_at || null,
+    approvedAt: row.approved_at || null,
+    approvedBy: row.approved_by || null,
+    publishMode: row.publish_mode || null,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     publishedAt: row.published_at || null,
@@ -139,6 +144,10 @@ export function toBlogPost(row, tags = []) {
 export function toBlogPostListItem(row) {
   const aiMeta = parseJson(row.ai_meta, {});
   const wordCount = wordCountFromContent(row.content);
+  const qualityScore =
+    aiMeta.qualityScore && typeof aiMeta.qualityScore === "object"
+      ? aiMeta.qualityScore.score
+      : null;
   return {
     id: row.id,
     title: row.title,
@@ -149,8 +158,14 @@ export function toBlogPostListItem(row) {
     authorName: row.author_name || "",
     status: row.status,
     readingTime: row.reading_time || "",
-    featuredImage: row.featured_image || "",
+    featuredImage: row.featured_image || aiMeta.featuredImageUrl || "",
     targetKeyword: aiMeta.targetKeyword || "",
+    buyerStage: aiMeta.buyerStage || "",
+    qualityScore,
+    qualityPassed: aiMeta.qualityScore?.passed ?? null,
+    scheduledPublishAt: row.scheduled_publish_at || null,
+    approvedAt: row.approved_at || null,
+    publishMode: row.publish_mode || null,
     wordCount,
     publishedAt: row.published_at,
     updatedAt: row.updated_at,
@@ -167,6 +182,7 @@ export function getBlogStats() {
     draft: 0,
     pending_review: 0,
     approved: 0,
+    scheduled: 0,
     published: 0,
     rejected: 0,
   };

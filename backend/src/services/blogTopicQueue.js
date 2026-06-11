@@ -1,5 +1,5 @@
-import { db, uid, nowIso } from "../db.js";
-import { generateBlogDraft } from "./blogAi.js";
+import { db, uid, nowIso, parseJson } from "../db.js";
+import { runBlogGenerationPipeline } from "./blogGenerationPipeline.js";
 import { savePendingReviewPost, notifyAdminBlogDraft } from "./blogDraftPersist.js";
 import { cleanText } from "../utils/sanitize.js";
 
@@ -10,6 +10,7 @@ export const REGENERATION_HINT =
 
 export function toTopicQueueItem(row) {
   if (!row) return null;
+  const topicMeta = parseJson(row.topic_meta, {});
   return {
     id: row.id,
     topic: row.topic,
@@ -25,6 +26,10 @@ export function toTopicQueueItem(row) {
     categoryName: row.category_name || null,
     generatedPostSlug: row.generated_post_slug || null,
     generatedPostTitle: row.generated_post_title || null,
+    searchIntent: topicMeta.searchIntent || null,
+    buyerStage: topicMeta.buyerStage || null,
+    suggestedCta: topicMeta.suggestedCta || null,
+    whyThisCanRank: topicMeta.whyThisCanRank || null,
   };
 }
 
@@ -70,6 +75,7 @@ export function createTopicQueueItem({
   priority = 0,
   scheduledFor,
   lastError = null,
+  topicMeta = null,
 }) {
   const t = cleanText(topic, 500);
   if (!t) return { error: "Topic is required." };
@@ -81,11 +87,13 @@ export function createTopicQueueItem({
   const sched = scheduledFor || now;
   const id = uid();
 
+  const metaJson = topicMeta ? JSON.stringify(topicMeta) : null;
+
   db.prepare(`
     INSERT INTO blog_topic_queue (
       id, topic, target_keyword, category_id, priority, status,
-      scheduled_for, generated_post_id, last_error, created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, 'queued', ?, NULL, ?, ?, ?)
+      scheduled_for, generated_post_id, last_error, topic_meta, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, 'queued', ?, NULL, ?, ?, ?, ?)
   `).run(
     id,
     t,
@@ -94,6 +102,7 @@ export function createTopicQueueItem({
     Number(priority) || 0,
     sched,
     lastError,
+    metaJson,
     now,
     now
   );
@@ -206,15 +215,20 @@ export async function processNextQueuedTopic({ createdBy = null } = {}) {
     return { processed: false, queueId: item.id, error: "Invalid category." };
   }
 
+  const itemMeta = parseJson(item.topic_meta, {});
+
   try {
-    const { generationId, draft } = await generateBlogDraft({
+    const { generationId, draft } = await runBlogGenerationPipeline({
       topic: item.topic,
       targetKeyword: item.target_keyword || item.topic,
       categoryName: category.name,
+      categoryId: item.category_id,
       tone: "professional",
-      wordCount: 1800,
+      wordCount: 2000,
       createdBy,
       regenerationHint: isRegeneration ? REGENERATION_HINT : null,
+      buyerStage: itemMeta.buyerStage,
+      searchIntent: itemMeta.searchIntent,
     });
 
     const { postId } = savePendingReviewPost({
@@ -222,6 +236,7 @@ export async function processNextQueuedTopic({ createdBy = null } = {}) {
       generationId,
       categoryId: item.category_id,
       slugFallbackTopic: item.topic,
+      featuredImage: draft.featuredImage,
     });
 
     db.prepare(
@@ -279,6 +294,13 @@ export function requeueAfterReject(postId) {
   const categoryId = queueRow?.category_id || genRow?.category_id || post.category_id;
   const priority = (queueRow?.priority ?? 0) + 10;
 
+  const topicMeta = queueRow?.topic_meta
+    ? parseJson(queueRow.topic_meta, {})
+    : {
+        buyerStage: aiMeta.buyerStage,
+        searchIntent: aiMeta.searchIntent,
+      };
+
   return createTopicQueueItem({
     topic,
     targetKeyword,
@@ -286,5 +308,6 @@ export function requeueAfterReject(postId) {
     priority,
     scheduledFor: nowIso(),
     lastError: REGENERATE_MARKER,
+    topicMeta,
   });
 }

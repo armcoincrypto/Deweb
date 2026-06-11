@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "blog-cron": "node scripts/generateBlogCron.js"
+    "blog-cron": "node scripts/generateBlogCron.js",
+    "blog-topics": "node scripts/generateFreshBlogTopics.js",
+    "blog-publish-cron": "node scripts/publishScheduledPosts.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
