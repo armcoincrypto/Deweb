@@ -12,6 +12,7 @@ export type BlogCategory = {
 };
 
 export type BlogArticle = {
+  postId?: string;
   slug: string;
   title: string;
   excerpt: string;

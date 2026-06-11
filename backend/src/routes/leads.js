@@ -5,6 +5,7 @@ import { requireAuth } from "../middleware/auth.js";
 import { rateLimit, ipKey } from "../middleware/rateLimit.js";
 import { cleanText, cleanEmail, cleanPhone, isValidEmail, parsePrice } from "../utils/sanitize.js";
 import { sendAdminEmail, sendUserEmail } from "../services/mail.js";
+import { saveBlogLeadAttribution } from "../services/blogLeadAttribution.js";
 
 const router = Router();
 
@@ -138,6 +139,8 @@ router.post("/", submitLimiter, optionalAuth, async (req, res) => {
     t,
     t
   );
+
+  saveBlogLeadAttribution(id, req.body);
 
   const row = db.prepare("SELECT * FROM lead_submissions WHERE id = ?").get(id);
   notifyLead(row, type).catch((err) => console.error("[leads] notify", err.message));

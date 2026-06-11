@@ -5,8 +5,11 @@ import {
   toBlogPost,
   toBlogPostListItem,
 } from "../utils/blogHelpers.js";
+import blogTrackingRoutes from "./blogTracking.js";
 
 const router = Router();
+
+router.use(blogTrackingRoutes);
 
 const POST_SELECT = `
   SELECT p.*, c.name AS category_name, c.slug AS category_slug

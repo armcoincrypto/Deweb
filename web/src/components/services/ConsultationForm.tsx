@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { dewebApi } from "@/lib/api";
+import { getBlogAttribution } from "@/lib/blog/tracking";
 import { useAuth } from "@/lib/auth-context";
 import { cn } from "@/lib/utils";
 
@@ -53,7 +54,15 @@ export function ConsultationForm({ categories = [], className }: ConsultationFor
     setLoading(true);
     setError("");
     try {
-      await dewebApi.offers.create({ name, email, message, budget, deadline, category });
+      await dewebApi.offers.create({
+        name,
+        email,
+        message,
+        budget,
+        deadline,
+        category,
+        ...getBlogAttribution(),
+      });
       setSuccess(true);
       setMessage("");
       setBudget("");

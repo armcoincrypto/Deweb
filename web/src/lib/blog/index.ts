@@ -1,4 +1,5 @@
 import type { BlogArticle } from "./types";
+import { normalizeArticleImage } from "./images";
 import { BLOG_ARTICLE_SLUGS, type BlogArticleSlug } from "./article-slugs";
 import { shopifyDevelopmentCost2026 } from "./articles/shopify-development-cost-2026";
 import { shopifyVsWoocommerce } from "./articles/shopify-vs-woocommerce";
@@ -50,14 +51,19 @@ export { blogCategories, getCategory } from "./categories";
 export { blogAuthors, getAuthor } from "./authors";
 export { articleWordCount } from "./types";
 
+function withNormalizedCover(article: BlogArticle): BlogArticle {
+  return { ...article, image: normalizeArticleImage(article) };
+}
+
 export function getAllArticles(): BlogArticle[] {
-  return BLOG_ARTICLE_SLUGS.map((slug) => articlesMap[slug]).sort(
+  return BLOG_ARTICLE_SLUGS.map((slug) => withNormalizedCover(articlesMap[slug])).sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 }
 
 export function getArticle(slug: string): BlogArticle | undefined {
-  return articlesMap[slug as BlogArticleSlug];
+  const article = articlesMap[slug as BlogArticleSlug];
+  return article ? withNormalizedCover(article) : undefined;
 }
 
 export function getArticlesByCategory(categorySlug: string): BlogArticle[] {

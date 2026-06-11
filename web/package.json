@@ -8,7 +8,8 @@
     "start": "next start -p 3001",
     "lint": "next lint",
     "favicons": "node scripts/generate-favicons.mjs",
-    "seo:audit": "node scripts/seo-audit.mjs"
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "blog:covers": "node scripts/generate-blog-covers.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.0",

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { AccountShell } from "@/components/account/AccountShell";
 import { useAuth } from "@/lib/auth-context";
 import { dewebApi } from "@/lib/api";
+import { getBlogAttribution } from "@/lib/blog/tracking";
 import { Link } from "@/i18n/routing";
 
 export default function SubmitOfferPage() {
@@ -37,6 +38,7 @@ export default function SubmitOfferPage() {
         phone: form.phone,
         email: user.email,
         name: user.name || user.username || "",
+        ...getBlogAttribution(),
       });
       setMsg(res.message);
       setForm({ title: "", category: "", askingPrice: "", description: "", phone: "" });

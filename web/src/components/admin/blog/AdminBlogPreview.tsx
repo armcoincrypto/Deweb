@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
 import { dewebApi, type BlogPostDetail } from "@/lib/api";
 import { formatStatus, postToArticle, statusClass } from "@/lib/blog/admin-utils";
-import { resolveBlogImageUrl } from "@/lib/blog/image-url";
+import { BlogImage } from "@/components/blog/BlogImage";
+import { usesDefaultBlogCover } from "@/lib/blog/images";
 import { BlogArticleView } from "@/components/blog/BlogArticleView";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { AdminBlogShell } from "./AdminBlogShell";
@@ -142,14 +143,21 @@ export function AdminBlogPreview({ postId }: AdminBlogPreviewProps) {
 
         <GlassCard className="p-5">
           <h3 className="text-sm font-bold uppercase tracking-wider text-white/40">Featured image</h3>
-          {post.featuredImage || post.aiMeta?.featuredImageUrl ? (
-            <img
-              src={resolveBlogImageUrl(post.featuredImage || post.aiMeta?.featuredImageUrl)}
+          <div className="relative mt-3 aspect-[16/10] overflow-hidden rounded-xl border border-white/10">
+            <BlogImage
+              src={post.featuredImage || post.aiMeta?.featuredImageUrl}
               alt=""
-              className="mt-3 max-h-40 w-full rounded-xl border border-white/10 object-cover"
+              categorySlug={post.categorySlug}
+              fill
+              showFallbackLabel
+              sizes="400px"
             />
-          ) : (
-            <p className="mt-3 text-sm text-white/45">No image generated.</p>
+          </div>
+          {usesDefaultBlogCover({
+            src: post.featuredImage || post.aiMeta?.featuredImageUrl,
+            categorySlug: post.categorySlug,
+          }) && (
+            <p className="mt-2 text-xs text-white/45">Default image used</p>
           )}
         </GlassCard>
       </div>

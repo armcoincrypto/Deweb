@@ -24,6 +24,7 @@ import dealChatRoutes from "./routes/dealChat.js";
 import leadRoutes from "./routes/leads.js";
 import blogRoutes from "./routes/blog.js";
 import adminBlogRoutes from "./routes/adminBlog.js";
+import adminBlogAnalyticsRoutes from "./routes/adminBlogAnalytics.js";
 import adminBlogTopicQueueRoutes from "./routes/adminBlogTopicQueue.js";
 import testAiRoutes from "./routes/testAi.js";
 
@@ -61,6 +62,7 @@ app.use("/api/offers", offerRoutes);
 app.use("/api/leads", leadRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/admin/blog/topic-queue", adminBlogTopicQueueRoutes);
+app.use("/api/admin/blog/analytics", adminBlogAnalyticsRoutes);
 app.use("/api/admin/blog", adminBlogRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/support", supportRoutes);

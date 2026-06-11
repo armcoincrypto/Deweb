@@ -1,5 +1,6 @@
 import type { BlogPostDetail, BlogPostListItem } from "@/lib/api";
 import type { BlogArticle } from "@/lib/blog/types";
+import { normalizeArticleImage } from "@/lib/blog/images";
 
 export type BlogPostStatus =
   | "draft"
@@ -39,7 +40,10 @@ export function postToArticle(post: BlogPostDetail): BlogArticle {
     categorySlug: post.categorySlug,
     date: post.publishedAt || post.updatedAt || post.createdAt,
     readTime: post.readingTime || "5 min",
-    image: post.featuredImage || "/images/blog-hero.jpg",
+    image: normalizeArticleImage({
+      image: post.featuredImage,
+      categorySlug: post.categorySlug,
+    }),
     authorId: "deweb-editorial",
     tags: post.tags,
     intro: content.intro || [],

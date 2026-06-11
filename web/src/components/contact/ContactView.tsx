@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SocialLinks } from "@/components/contact/SocialLinks";
 import { dewebApi } from "@/lib/api";
+import { getBlogAttribution } from "@/lib/blog/tracking";
 
 export function ContactView() {
   const t = useTranslations("contact");
@@ -20,7 +21,13 @@ export function ContactView() {
     setStatus("loading");
     setFeedback("");
     try {
-      const res = await dewebApi.contact.send({ name, email, phone, message });
+      const res = await dewebApi.contact.send({
+        name,
+        email,
+        phone,
+        message,
+        ...getBlogAttribution(),
+      });
       setStatus("success");
       setFeedback(res.message || t("success"));
       setName("");

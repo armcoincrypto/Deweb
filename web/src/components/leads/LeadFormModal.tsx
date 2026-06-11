@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { dewebApi, type LeadSubmissionType } from "@/lib/api";
+import { getBlogAttribution } from "@/lib/blog/tracking";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -51,6 +52,7 @@ export function LeadFormModal({ open, onClose, type, productName, askingPrice, t
         category: form.category,
         offeredPrice: form.offeredPrice ? Number(form.offeredPrice) : undefined,
         askingPrice: askingPrice,
+        ...getBlogAttribution(),
       });
       setStatus("success");
       setFeedback(res.message);

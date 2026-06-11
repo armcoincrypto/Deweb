@@ -1,5 +1,6 @@
 import type { BlogArticle } from "./types";
 import { getArticle as getStaticArticle } from "./index";
+import { normalizeArticleImage } from "./images";
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -68,8 +69,6 @@ const DEFAULT_CTA: BlogArticle["cta"] = {
   primaryHref: "/contact",
 };
 
-const DEFAULT_IMAGE = "/images/blog-hero.jpg";
-
 export function cmsPostToArticle(post: CmsBlogPost): BlogArticle {
   const content = post.content || {
     intro: [],
@@ -79,6 +78,7 @@ export function cmsPostToArticle(post: CmsBlogPost): BlogArticle {
     cta: null,
   };
   return {
+    postId: post.id,
     slug: post.slug,
     title: post.title,
     excerpt: post.excerpt,
@@ -88,7 +88,10 @@ export function cmsPostToArticle(post: CmsBlogPost): BlogArticle {
     categorySlug: post.categorySlug,
     date: post.publishedAt || post.updatedAt,
     readTime: post.readingTime || "5 min",
-    image: post.featuredImage || DEFAULT_IMAGE,
+    image: normalizeArticleImage({
+      image: post.featuredImage,
+      categorySlug: post.categorySlug,
+    }),
     authorId: "deweb-editorial",
     tags: post.tags || [],
     intro: content.intro || [],

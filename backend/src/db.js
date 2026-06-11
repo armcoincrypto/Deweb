@@ -379,6 +379,57 @@ db.exec(`
     FOREIGN KEY (category_id) REFERENCES blog_categories(id),
     FOREIGN KEY (generated_post_id) REFERENCES blog_posts(id) ON DELETE SET NULL
   );
+
+  CREATE TABLE IF NOT EXISTS blog_post_views (
+    id TEXT PRIMARY KEY,
+    post_id TEXT,
+    slug TEXT NOT NULL,
+    visitor_id TEXT NOT NULL,
+    ip_hash TEXT,
+    user_agent TEXT,
+    referrer TEXT,
+    path TEXT,
+    locale TEXT,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE SET NULL
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_blog_post_views_slug ON blog_post_views(slug);
+  CREATE INDEX IF NOT EXISTS idx_blog_post_views_visitor ON blog_post_views(visitor_id, slug, created_at);
+  CREATE INDEX IF NOT EXISTS idx_blog_post_views_created ON blog_post_views(created_at);
+
+  CREATE TABLE IF NOT EXISTS blog_post_events (
+    id TEXT PRIMARY KEY,
+    post_id TEXT,
+    slug TEXT NOT NULL,
+    visitor_id TEXT NOT NULL,
+    event_type TEXT NOT NULL,
+    event_data TEXT,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE SET NULL
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_blog_post_events_slug ON blog_post_events(slug);
+  CREATE INDEX IF NOT EXISTS idx_blog_post_events_type ON blog_post_events(event_type);
+  CREATE INDEX IF NOT EXISTS idx_blog_post_events_created ON blog_post_events(created_at);
+
+  CREATE TABLE IF NOT EXISTS blog_lead_attribution (
+    id TEXT PRIMARY KEY,
+    lead_id TEXT NOT NULL,
+    post_id TEXT,
+    slug TEXT NOT NULL,
+    visitor_id TEXT,
+    source TEXT,
+    medium TEXT,
+    campaign TEXT,
+    referrer TEXT,
+    landing_page TEXT,
+    created_at TEXT NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE SET NULL
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_blog_lead_attribution_slug ON blog_lead_attribution(slug);
+  CREATE INDEX IF NOT EXISTS idx_blog_lead_attribution_post ON blog_lead_attribution(post_id);
 `);
 
 const blogQueueColumns = [["blog_topic_queue", "topic_meta", "TEXT"]];

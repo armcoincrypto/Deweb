@@ -200,7 +200,21 @@ export const dewebApi = {
     mine: () => api<{ leads: Lead[] }>("/leads/mine"),
   },
   contact: {
-    send: (body: { name?: string; email: string; phone?: string; message: string }) =>
+    send: (
+      body: {
+        name?: string;
+        email: string;
+        phone?: string;
+        message: string;
+        visitorId?: string;
+        lastBlogSlug?: string;
+        utmSource?: string;
+        utmMedium?: string;
+        utmCampaign?: string;
+        referrer?: string;
+        landingPage?: string;
+      }
+    ) =>
       api<{ ok: boolean; message: string }>("/contact", {
         method: "POST",
         body: JSON.stringify(body),
@@ -303,6 +317,10 @@ export const dewebApi = {
         ),
       aiGenerations: () =>
         api<{ generations: BlogAiGeneration[] }>("/admin/blog/ai-generations"),
+      analytics: {
+        overview: () => api<BlogAnalyticsOverview>("/admin/blog/analytics"),
+        post: (id: string) => api<BlogPostAnalyticsDetail>(`/admin/blog/analytics/${id}`),
+      },
       topicQueue: {
         list: () => api<{ items: BlogTopicQueueItem[] }>("/admin/blog/topic-queue"),
         create: (body: BlogTopicQueueInput) =>
@@ -514,6 +532,89 @@ export type BlogTopicQueueInput = {
   categoryId: string;
   priority?: number;
   scheduledFor?: string;
+};
+
+export type BlogAnalyticsSummary = {
+  totalViews: number;
+  totalLeads: number;
+  articlesPublishedThisMonth: number;
+  bestConvertingArticle: {
+    id: string;
+    title: string;
+    slug: string;
+    conversionRate: number;
+    views: number;
+    leads: number;
+  } | null;
+};
+
+export type BlogAnalyticsPostRow = {
+  id: string;
+  title: string;
+  slug: string;
+  status: string;
+  publishedAt: string | null;
+  views: number;
+  ctaClicks: number;
+  leads: number;
+  conversionRate: number;
+  targetKeyword: string;
+  buyerStage: string;
+  qualityScore: number | null;
+};
+
+export type BlogAnalyticsOverview = {
+  summary: BlogAnalyticsSummary;
+  posts: BlogAnalyticsPostRow[];
+  topReferrers: { referrer: string; views: number }[];
+  topKeywords: {
+    keyword: string;
+    slug: string;
+    title: string;
+    views: number;
+    leads: number;
+  }[];
+};
+
+export type BlogPostAnalyticsDetail = {
+  post: {
+    id: string;
+    title: string;
+    slug: string;
+    status: string;
+    publishedAt: string | null;
+    targetKeyword: string;
+    buyerStage: string;
+    qualityScore: number | null;
+    qualityPassed: boolean | null;
+  };
+  totalViews: number;
+  ctaClicks: number;
+  conversionRate: number;
+  viewsOverTime: { day: string; views: number }[];
+  eventCounts: { event_type: string; count: number }[];
+  leads: {
+    id: string;
+    leadId: string;
+    visitorId: string | null;
+    source: string | null;
+    medium: string | null;
+    campaign: string | null;
+    referrer: string | null;
+    landingPage: string | null;
+    createdAt: string;
+    name: string | null;
+    email: string | null;
+    submissionType: string | null;
+    leadStatus: string | null;
+  }[];
+  referrers: { referrer: string; views: number }[];
+  utmCampaigns: {
+    source: string | null;
+    medium: string | null;
+    campaign: string | null;
+    leads: number;
+  }[];
 };
 
 export type AdminStats = {

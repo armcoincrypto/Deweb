@@ -1,4 +1,5 @@
 import type { BlogArticle } from "./types";
+import { normalizeArticleImage } from "./images";
 import { getAllArticles as getStaticArticles, getArticle as getStaticArticle } from "./index";
 import {
   cmsPostToArticle,
@@ -16,7 +17,10 @@ function cmsListToArticle(item: CmsBlogListItem): BlogArticle {
     categorySlug: item.categorySlug,
     date: item.publishedAt || item.updatedAt,
     readTime: item.readingTime || "5 min",
-    image: item.featuredImage || "/images/blog-hero.jpg",
+    image: normalizeArticleImage({
+      image: item.featuredImage,
+      categorySlug: item.categorySlug,
+    }),
     authorId: "deweb-editorial",
     tags: [],
     intro: [item.excerpt],

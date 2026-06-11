@@ -4,7 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
 import { dewebApi, type BlogPostListItem } from "@/lib/api";
 import { formatStatus, statusClass } from "@/lib/blog/admin-utils";
-import { resolveBlogImageUrl } from "@/lib/blog/image-url";
+import { BlogImage } from "@/components/blog/BlogImage";
+import { usesDefaultBlogCover } from "@/lib/blog/images";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { AdminBlogShell } from "./AdminBlogShell";
 import { ConfirmModal } from "./ConfirmModal";
@@ -163,14 +164,21 @@ export function AdminBlogPending() {
                     <p className="mt-1 text-xs text-white/40">/blog/{post.slug}</p>
                   </td>
                   <td className="px-4 py-4">
-                    {post.featuredImage ? (
-                      <img
-                        src={resolveBlogImageUrl(post.featuredImage)}
+                    <div className="relative h-12 w-20 overflow-hidden rounded-lg border border-white/10">
+                      <BlogImage
+                        src={post.featuredImage}
                         alt=""
-                        className="h-12 w-20 rounded-lg border border-white/10 object-cover"
+                        categorySlug={post.categorySlug}
+                        width={80}
+                        height={48}
+                        className="h-12 w-20"
                       />
-                    ) : (
-                      <span className="text-xs text-white/35">—</span>
+                    </div>
+                    {usesDefaultBlogCover({
+                      src: post.featuredImage,
+                      categorySlug: post.categorySlug,
+                    }) && (
+                      <p className="mt-1 text-[10px] text-white/35">Default image used</p>
                     )}
                   </td>
                   <td className="px-4 py-4 text-white/60">{post.targetKeyword || "—"}</td>

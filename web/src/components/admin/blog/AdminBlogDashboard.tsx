@@ -2,7 +2,12 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
-import { dewebApi, type BlogPostListItem, type BlogStats } from "@/lib/api";
+import {
+  dewebApi,
+  type BlogAnalyticsSummary,
+  type BlogPostListItem,
+  type BlogStats,
+} from "@/lib/api";
 import { formatStatus, statusClass } from "@/lib/blog/admin-utils";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { AdminBlogShell } from "./AdminBlogShell";
@@ -17,14 +22,19 @@ const STAT_CARDS: { key: keyof BlogStats; label: string; href?: string }[] = [
 
 export function AdminBlogDashboard() {
   const [stats, setStats] = useState<BlogStats | null>(null);
+  const [analytics, setAnalytics] = useState<BlogAnalyticsSummary | null>(null);
   const [posts, setPosts] = useState<BlogPostListItem[]>([]);
   const [error, setError] = useState("");
 
   const load = useCallback(async () => {
     setError("");
-    const data = await dewebApi.admin.blog.list();
+    const [data, analyticsData] = await Promise.all([
+      dewebApi.admin.blog.list(),
+      dewebApi.admin.blog.analytics.overview().catch(() => null),
+    ]);
     setStats(data.stats);
     setPosts(data.posts.slice(0, 10));
+    setAnalytics(analyticsData?.summary ?? null);
   }, []);
 
   useEffect(() => {
@@ -57,6 +67,40 @@ export function AdminBlogDashboard() {
         })}
       </div>
 
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Link href="/admin/blog/analytics" className="block transition hover:opacity-90">
+          <GlassCard className="p-5">
+            <p className="text-sm text-white/45">Total blog views</p>
+            <p className="mt-2 text-3xl font-bold text-white">{analytics?.totalViews ?? "—"}</p>
+          </GlassCard>
+        </Link>
+        <Link href="/admin/blog/analytics" className="block transition hover:opacity-90">
+          <GlassCard className="p-5">
+            <p className="text-sm text-white/45">Total blog leads</p>
+            <p className="mt-2 text-3xl font-bold text-white">{analytics?.totalLeads ?? "—"}</p>
+          </GlassCard>
+        </Link>
+        <Link href="/admin/blog/analytics" className="block transition hover:opacity-90">
+          <GlassCard className="p-5">
+            <p className="text-sm text-white/45">Best converting article</p>
+            <p className="mt-2 text-lg font-bold text-white">
+              {analytics?.bestConvertingArticle?.title ?? "—"}
+            </p>
+            {analytics?.bestConvertingArticle && (
+              <p className="mt-1 text-sm text-deweb-cyan">
+                {analytics.bestConvertingArticle.conversionRate}%
+              </p>
+            )}
+          </GlassCard>
+        </Link>
+        <GlassCard className="p-5">
+          <p className="text-sm text-white/45">Published this month</p>
+          <p className="mt-2 text-3xl font-bold text-white">
+            {analytics?.articlesPublishedThisMonth ?? "—"}
+          </p>
+        </GlassCard>
+      </div>
+
       <div className="mt-10 flex flex-wrap gap-3">
         <Link
           href="/admin/blog/pending"
@@ -81,6 +125,12 @@ export function AdminBlogDashboard() {
           className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white/70 hover:border-deweb-cyan/40"
         >
           New manual post
+        </Link>
+        <Link
+          href="/admin/blog/analytics"
+          className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white/70 hover:border-deweb-cyan/40"
+        >
+          Analytics
         </Link>
       </div>
 

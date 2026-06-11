@@ -45,7 +45,7 @@ export function GlowButton({
 
   if (href) {
     return (
-      <Link href={href} className="inline-block">
+      <Link href={href} className="inline-block" onClick={onClick}>
         {inner}
       </Link>
     );

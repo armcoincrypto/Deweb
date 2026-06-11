@@ -1,24 +1,67 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/routing";
+import { BlogImage } from "@/components/blog/BlogImage";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import type { BlogArticle } from "@/lib/blog/types";
 import type { BreadcrumbItem } from "@/lib/schema";
 import { getAuthor } from "@/lib/blog/authors";
 import { getRelatedArticles } from "@/lib/blog";
+import { trackBlogEvent, trackBlogView } from "@/lib/blog/tracking";
 
 type BlogArticleViewProps = {
   article: BlogArticle;
   breadcrumbs: BreadcrumbItem[];
+  locale?: string;
 };
 
-export function BlogArticleView({ article, breadcrumbs }: BlogArticleViewProps) {
+function isContactHref(href: string) {
+  return href.includes("/contact");
+}
+
+export function BlogArticleView({ article, breadcrumbs, locale }: BlogArticleViewProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const scrollTracked = useRef({ half: false, full: false });
   const author = getAuthor(article.authorId);
   const related = getRelatedArticles(article);
+
+  useEffect(() => {
+    trackBlogView(article.slug, locale);
+  }, [article.slug, locale]);
+
+  useEffect(() => {
+    function onScroll() {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      if (max <= 0) return;
+      const ratio = window.scrollY / max;
+      if (!scrollTracked.current.half && ratio >= 0.5) {
+        scrollTracked.current.half = true;
+        trackBlogEvent(article.slug, "scroll_50");
+      }
+      if (!scrollTracked.current.full && ratio >= 0.9) {
+        scrollTracked.current.full = true;
+        trackBlogEvent(article.slug, "scroll_90");
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [article.slug]);
+
+  function handleCtaClick(href: string, label: string) {
+    if (isContactHref(href)) {
+      trackBlogEvent(article.slug, "contact_click", { href, label });
+    } else {
+      trackBlogEvent(article.slug, "cta_click", { href, label });
+    }
+  }
+
+  function handleServiceLinkClick(href: string, label: string) {
+    trackBlogEvent(article.slug, "service_link_click", { href, label });
+  }
 
   return (
     <>
@@ -71,11 +114,11 @@ export function BlogArticleView({ article, breadcrumbs }: BlogArticleViewProps) 
 
         <div className="container-narrow px-4 sm:px-6 lg:px-8">
           <div className="relative aspect-[21/9] overflow-hidden rounded-2xl border border-white/10">
-            <Image
+            <BlogImage
               src={article.image}
               alt={article.title}
+              categorySlug={article.categorySlug}
               fill
-              className="object-cover"
               priority
               sizes="(max-width: 1200px) 100vw, 1200px"
             />
@@ -128,7 +171,11 @@ export function BlogArticleView({ article, breadcrumbs }: BlogArticleViewProps) 
               <ul className="mt-4 space-y-2">
                 {article.internalLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-white/70 hover:text-deweb-cyan hover:underline">
+                    <Link
+                      href={link.href}
+                      className="text-white/70 hover:text-deweb-cyan hover:underline"
+                      onClick={() => handleServiceLinkClick(link.href, link.label)}
+                    >
                       {link.label} →
                     </Link>
                   </li>
@@ -169,11 +216,23 @@ export function BlogArticleView({ article, breadcrumbs }: BlogArticleViewProps) 
             <h2 className="text-2xl font-bold text-white">{article.cta.title}</h2>
             <p className="mx-auto mt-3 max-w-xl text-white/60">{article.cta.description}</p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <GlowButton href={article.cta.primaryHref} variant="primary">
+              <GlowButton
+                href={article.cta.primaryHref}
+                variant="primary"
+                onClick={() =>
+                  handleCtaClick(article.cta.primaryHref, article.cta.primaryLabel)
+                }
+              >
                 {article.cta.primaryLabel}
               </GlowButton>
               {article.cta.secondaryHref && article.cta.secondaryLabel && (
-                <GlowButton href={article.cta.secondaryHref} variant="ghost">
+                <GlowButton
+                  href={article.cta.secondaryHref}
+                  variant="ghost"
+                  onClick={() =>
+                    handleCtaClick(article.cta.secondaryHref!, article.cta.secondaryLabel!)
+                  }
+                >
                   {article.cta.secondaryLabel}
                 </GlowButton>
               )}

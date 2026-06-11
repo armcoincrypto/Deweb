@@ -5,6 +5,7 @@ import { rateLimit, ipKey } from "../middleware/rateLimit.js";
 import { enrichOffer } from "../lib/servicesIntelligence.js";
 import { sendAdminEmail, sendUserEmail } from "../services/mail.js";
 import { cleanPhone } from "../utils/sanitize.js";
+import { saveBlogLeadAttribution } from "../services/blogLeadAttribution.js";
 
 const router = Router();
 const limiter = rateLimit({ windowMs: 300000, max: 8, keyFn: ipKey });
@@ -48,13 +49,14 @@ router.post("/", limiter, optionalAuth, async (req, res) => {
     createdAt
   );
 
+  const leadId = uid();
   db.prepare(`
     INSERT INTO lead_submissions (
       id, user_id, submission_type, status, name, email, phone, title, category,
       offered_price, message, meta, created_at, updated_at
     ) VALUES (?, ?, 'price_offer', 'new', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
-    uid(),
+    leadId,
     req.userId || null,
     name || null,
     email,
@@ -67,6 +69,8 @@ router.post("/", limiter, optionalAuth, async (req, res) => {
     createdAt,
     createdAt
   );
+
+  saveBlogLeadAttribution(leadId, req.body);
 
   sendAdminEmail({
     subject: `[DEWEB] Price offer — ${name || email}`,

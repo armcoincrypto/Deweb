@@ -4,6 +4,7 @@ import { optionalAuth } from "../middleware/optionalAuth.js";
 import { rateLimit, ipKey } from "../middleware/rateLimit.js";
 import { cleanText, cleanEmail, cleanPhone, isValidEmail } from "../utils/sanitize.js";
 import { sendAdminEmail, sendUserEmail } from "../services/mail.js";
+import { saveBlogLeadAttribution } from "../services/blogLeadAttribution.js";
 
 const router = Router();
 const limiter = rateLimit({ windowMs: 300000, max: 8, keyFn: ipKey });
@@ -29,12 +30,13 @@ router.post("/", limiter, optionalAuth, async (req, res) => {
     VALUES (?, ?, ?, ?, ?)
   `).run(id, email, message, name || null, createdAt);
 
+  const leadId = uid();
   db.prepare(`
     INSERT INTO lead_submissions (
       id, user_id, submission_type, status, name, email, phone, message, meta, created_at, updated_at
     ) VALUES (?, ?, 'contact', 'new', ?, ?, ?, ?, ?, ?, ?)
   `).run(
-    uid(),
+    leadId,
     req.userId || null,
     name || null,
     email,
@@ -44,6 +46,8 @@ router.post("/", limiter, optionalAuth, async (req, res) => {
     createdAt,
     createdAt
   );
+
+  saveBlogLeadAttribution(leadId, req.body);
 
   sendAdminEmail({
     subject: `[DEWEB] Contact — ${name || email}`,

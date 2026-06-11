@@ -12,6 +12,9 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "api.dicebear.com" },
+      { protocol: "https", hostname: "dewebam.com", pathname: "/api/uploads/**" },
+      { protocol: "http", hostname: "localhost", pathname: "/api/uploads/**" },
+      { protocol: "http", hostname: "127.0.0.1", pathname: "/api/uploads/**" },
     ],
   },
 };

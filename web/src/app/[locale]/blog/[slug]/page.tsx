@@ -77,7 +77,7 @@ export default async function BlogPostPage({ params }: Props) {
           faqPageSchema(article.faqs),
         ]}
       />
-      <BlogArticleView article={article} breadcrumbs={breadcrumbs} />
+      <BlogArticleView article={article} breadcrumbs={breadcrumbs} locale={locale} />
     </>
   );
 }

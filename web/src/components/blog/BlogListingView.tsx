@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import { Link } from "@/i18n/routing";
+import { BlogImage } from "@/components/blog/BlogImage";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { getAllArticles, searchArticles } from "@/lib/blog";
@@ -121,12 +121,12 @@ export function BlogListingView({
               <article key={post.slug} className="glass-panel-glow group overflow-hidden">
                 <Link href={`/blog/${post.slug}`} className="block">
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
+                    <BlogImage
                       src={post.image}
                       alt={post.title}
+                      categorySlug={post.categorySlug}
                       fill
-                      loading="lazy"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <span className="absolute left-4 top-4 rounded-full border border-deweb-cyan/30 bg-deweb-bg/80 px-3 py-1 text-xs font-bold text-deweb-cyan backdrop-blur-sm">

@@ -20,6 +20,8 @@ Approve → scheduled (default 18:00 Asia/Yerevan) or publish immediately
 Publish cron at 18:00 → live on /blog
 ```
 
+After publish, traffic and leads are tracked per article — see [BLOG_ANALYTICS.md](./BLOG_ANALYTICS.md).
+
 ## Status flow
 
 ```
