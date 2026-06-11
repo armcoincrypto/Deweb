@@ -24,8 +24,55 @@ function buildImagePrompt({ featuredImagePrompt, title, topic, categoryName }) {
   );
 }
 
+function isGptImageModel(model) {
+  return model.startsWith("gpt-image");
+}
+
+function isDallE3(model) {
+  return model.includes("dall-e-3");
+}
+
+/** Build request body with only parameters supported by each image model. */
+function buildImageRequestBody(model, prompt) {
+  const text = prompt.slice(0, 4000);
+  if (isGptImageModel(model)) {
+    return {
+      model,
+      prompt: text,
+      n: 1,
+      size: "1536x1024",
+    };
+  }
+  if (isDallE3(model)) {
+    return {
+      model,
+      prompt: text,
+      n: 1,
+      size: "1792x1024",
+      quality: "standard",
+    };
+  }
+  return {
+    model,
+    prompt: text.slice(0, 1000),
+    n: 1,
+    size: "1024x1024",
+  };
+}
+
+function fallbackModels(primaryModel) {
+  const chain = [];
+  if (!isDallE3(primaryModel) && !isGptImageModel(primaryModel)) {
+    chain.push("dall-e-3");
+  } else if (isGptImageModel(primaryModel)) {
+    chain.push("dall-e-3");
+  }
+  return chain;
+}
+
 /**
  * Generate featured image via OpenAI. Returns public URL path or null on failure.
+ * Never throws — article creation must continue without an image.
  */
 export async function generateBlogFeaturedImage({
   featuredImagePrompt,
@@ -44,16 +91,7 @@ export async function generateBlogFeaturedImage({
   const prompt = buildImagePrompt({ featuredImagePrompt, title, topic, categoryName });
 
   async function requestImage(model) {
-    const body = {
-      model,
-      prompt: prompt.slice(0, 1000),
-      n: 1,
-      size: model.includes("dall-e-3") ? "1792x1024" : "1024x1024",
-    };
-    if (model.includes("dall-e")) {
-      body.quality = "standard";
-      body.response_format = "b64_json";
-    }
+    const body = buildImageRequestBody(model, prompt);
     return fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",
       headers: {
@@ -65,15 +103,23 @@ export async function generateBlogFeaturedImage({
   }
 
   try {
-    let res = await requestImage(primaryModel);
-    if (!res.ok && primaryModel !== "dall-e-3") {
-      console.warn("[blog-image] Primary model failed, trying dall-e-3");
-      res = await requestImage("dall-e-3");
+    const modelsToTry = [primaryModel, ...fallbackModels(primaryModel)];
+    let res = null;
+    let usedModel = primaryModel;
+
+    for (const model of modelsToTry) {
+      usedModel = model;
+      res = await requestImage(model);
+      if (res.ok) break;
+      const errBody = await res.text().catch(() => "");
+      console.warn(`[blog-image] ${model} failed (${res.status}):`, errBody.slice(0, 200));
+      if (model !== modelsToTry[modelsToTry.length - 1]) {
+        console.warn(`[blog-image] Trying fallback model…`);
+      }
     }
 
-    if (!res.ok) {
-      const errBody = await res.text().catch(() => "");
-      console.warn("[blog-image] API error:", res.status, errBody.slice(0, 200));
+    if (!res?.ok) {
+      console.warn("[blog-image] All image models failed — continuing without featured image.");
       return null;
     }
 
@@ -90,7 +136,10 @@ export async function generateBlogFeaturedImage({
       fs.writeFileSync(filePath, Buffer.from(b64, "base64"));
     } else if (imageUrl) {
       const imgRes = await fetch(imageUrl);
-      if (!imgRes.ok) return null;
+      if (!imgRes.ok) {
+        console.warn("[blog-image] Failed to download image URL.");
+        return null;
+      }
       const buf = Buffer.from(await imgRes.arrayBuffer());
       fs.writeFileSync(filePath, buf);
     } else {
@@ -98,6 +147,7 @@ export async function generateBlogFeaturedImage({
       return null;
     }
 
+    console.log(`[blog-image] Saved featured image (${usedModel}): /api/uploads/blog/${filename}`);
     return `/api/uploads/blog/${filename}`;
   } catch (err) {
     console.warn("[blog-image] Generation failed:", err.message);

@@ -32,6 +32,16 @@ export function AdminBlogPending() {
     load().catch((e) => setError(e instanceof Error ? e.message : "Failed to load"));
   }, [load]);
 
+  useEffect(() => {
+    function onVisible() {
+      if (document.visibilityState === "visible") {
+        load().catch(() => null);
+      }
+    }
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, [load]);
+
   function openAction(type: PendingAction, post: BlogPostListItem) {
     setTarget(post);
     setAction(type);
@@ -130,6 +140,19 @@ export function AdminBlogPending() {
       title="Pending articles"
       subtitle="Review AI drafts, approve with scheduling, or publish manually. Default publish slot: 18:00 Asia/Yerevan."
     >
+      <div className="mb-6 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={() => load().catch((e) => setError(e instanceof Error ? e.message : "Failed to load"))}
+          className="rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/70 hover:border-deweb-cyan/40"
+        >
+          Refresh list
+        </button>
+        <span className="text-xs text-white/40">
+          {posts.length} article{posts.length !== 1 ? "s" : ""} in queue
+        </span>
+      </div>
+
       {error && <p className="mb-4 text-red-400">{error}</p>}
       {msg && <p className="mb-4 text-deweb-cyan">{msg}</p>}
 

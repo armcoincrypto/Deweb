@@ -97,7 +97,7 @@ export async function notifyAdminBlogDraft({ topic, targetKeyword }) {
   const siteUrl = process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://dewebam.com";
   const reviewUrl = `${siteUrl}/en/admin/blog/pending`;
 
-  return sendAdminEmail({
+  const result = await sendAdminEmail({
     subject: "[DEWEB] New AI blog draft ready for review",
     text:
       `A new blog draft was generated and is waiting for approval.\n\n` +
@@ -110,4 +110,11 @@ export async function notifyAdminBlogDraft({ topic, targetKeyword }) {
       `<strong>Keyword:</strong> ${targetKeyword || topic}</p>` +
       `<p><a href="${reviewUrl}">Review pending articles</a></p>`,
   });
+  if (!result.sent) {
+    console.warn(
+      "[blog-draft] Admin notify email not sent — draft was still saved.",
+      result.reason || ""
+    );
+  }
+  return result;
 }

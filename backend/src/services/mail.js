@@ -27,8 +27,23 @@ export async function sendMail({ to, subject, text, html, attachments }) {
     });
     return { sent: true };
   } catch (err) {
-    console.error("[mail]", err.message);
-    return { sent: false, reason: err.message };
+    const msg = err.message || String(err);
+    if (
+      msg.includes("535") ||
+      msg.includes("BadCredentials") ||
+      err.code === "EAUTH"
+    ) {
+      console.error(
+        "[mail] SMTP authentication failed (535 BadCredentials): invalid SMTP_USER or SMTP_PASS. " +
+          "For Gmail, use an App Password (not your regular password). " +
+          "Draft/article creation is unaffected — only the notification email failed."
+      );
+    } else if (!user || !pass) {
+      console.warn("[mail] SMTP not configured — email not sent.");
+    } else {
+      console.error("[mail] Send failed:", msg);
+    }
+    return { sent: false, reason: msg };
   }
 }
 

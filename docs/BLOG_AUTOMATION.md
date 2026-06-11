@@ -203,7 +203,24 @@ Optional:
 
 ```env
 SITE_URL=https://dewebam.com
+OPENAI_IMAGE_MODEL=gpt-image-1
 ```
+
+### SMTP troubleshooting
+
+If `blog-cron` logs **`SMTP authentication failed (535 BadCredentials)`**:
+
+- `SMTP_USER` / `SMTP_PASS` are wrong, or Gmail is blocking login
+- For Gmail, create an [App Password](https://myaccount.google.com/apppasswords) and set `SMTP_PASS` to that value (not your normal Gmail password)
+- Enable 2FA on the Google account before App Passwords work
+- The draft is **still saved** as `pending_review` — only the admin notification email fails
+
+### Local cron vs production admin
+
+`npm run blog-cron` writes to the **local** SQLite database (`backend/data/deweb.sqlite`).  
+Drafts appear at `http://localhost:8001/en/admin/blog/pending` when running the local web app.
+
+Production drafts (`https://dewebam.com/en/admin/blog/pending`) only show posts created on the **production server** (production cron or admin on dewebam.com).
 
 ## Quick start (local)
 
