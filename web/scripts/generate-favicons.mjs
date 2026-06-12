@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generate favicon set from public/brand-logo.png
+ * Generate DEWEB "D" logo favicon set from public/brand-logo.png
  * Run: npm run favicons
  */
 import fs from "fs";
@@ -23,7 +23,13 @@ if (!fs.existsSync(src)) {
 const BG = { r: 5, g: 8, b: 22, alpha: 1 };
 
 function resizeLogo(size) {
-  return sharp(src).resize(size, size, { fit: "contain", background: BG }).png();
+  const pad = Math.max(1, Math.round(size * 0.06));
+  const inner = size - pad * 2;
+  return sharp(src)
+    .resize(inner, inner, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .extend({ top: pad, bottom: pad, left: pad, right: pad, background: BG })
+    .sharpen({ sigma: size <= 32 ? 1.2 : 0.8 })
+    .png({ compressionLevel: 9 });
 }
 
 const publicSizes = [
@@ -53,6 +59,7 @@ await resizeLogo(180).toFile(path.join(appDir, "apple-icon.png"));
 console.log("Wrote src/app/favicon.ico, icon.png, apple-icon.png");
 
 if (fs.existsSync(communityDir)) {
+  fs.copyFileSync(src, path.join(communityDir, "brand-logo.png"));
   const communityFiles = [
     "favicon.ico",
     "favicon-16x16.png",
@@ -60,9 +67,14 @@ if (fs.existsSync(communityDir)) {
     "apple-touch-icon.png",
     "android-chrome-192x192.png",
     "android-chrome-512x512.png",
+    "brand-logo.png",
   ];
   for (const name of communityFiles) {
     fs.copyFileSync(path.join(publicDir, name), path.join(communityDir, name));
   }
-  console.log("Synced favicons to deweb-community/");
+  fs.copyFileSync(
+    path.join(publicDir, "site.webmanifest"),
+    path.join(communityDir, "site.webmanifest")
+  );
+  console.log("Synced D logo favicons to deweb-community/");
 }

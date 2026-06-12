@@ -18,10 +18,14 @@ if [[ -f "$APP_DIR/web/package.json" ]]; then
   export NEXT_PUBLIC_LEGACY_URL="https://${DOMAIN}"
   unset NODE_ENV
   npm install
+  npm run favicons
   npm run build
   systemctl restart deweb-next
 fi
 
+if [[ -f "$APP_DIR/deploy/nginx-deweb-production.conf" ]]; then
+  cp "$APP_DIR/deploy/nginx-deweb-production.conf" /etc/nginx/sites-available/deweb
+fi
 nginx -t && systemctl reload nginx
 
 sleep 2
