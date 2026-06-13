@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { ServiceBannerVisual } from "@/components/services/ServiceBannerVisual";
 import { serviceBanners, type ServiceBanner } from "@/lib/service-banners-data";
+import { bannerReveal3D, motion3DStyle, transition3D, PERSPECTIVE } from "@/lib/motion-3d";
 
 function MetaBlock({
   label,
@@ -27,21 +28,25 @@ function MetaBlock({
 
 function ServiceRow({ banner, index }: { banner: ServiceBanner; index: number }) {
   const t = useTranslations("services");
+  const reduceMotion = useReducedMotion();
   const visualRight = index % 2 === 0;
   const sectionNum = String(index + 1).padStart(2, "0");
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={reduceMotion ? false : "hidden"}
+      whileInView={reduceMotion ? undefined : "visible"}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="relative w-full overflow-hidden border-b border-white/[0.07]"
+      variants={bannerReveal3D(!visualRight)}
+      transition={{ ...transition3D, delay: index * 0.05 }}
       style={{
+        ...motion3DStyle,
+        perspective: PERSPECTIVE,
         background: banner.featured
           ? "linear-gradient(105deg, #061008 0%, #0a1610 40%, #070d14 100%)"
           : "linear-gradient(105deg, #060a10 0%, #0a121c 50%, #060a10 100%)",
       }}
+      className="preserve-3d relative w-full overflow-hidden border-b border-white/[0.07]"
     >
       <div
         className="pointer-events-none absolute inset-0"

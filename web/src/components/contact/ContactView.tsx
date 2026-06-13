@@ -5,6 +5,7 @@ import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SocialLinks } from "@/components/contact/SocialLinks";
+import { ScrollReveal3D } from "@/components/ui/ScrollReveal3D";
 import { dewebApi } from "@/lib/api";
 import { getBlogAttribution } from "@/lib/blog/tracking";
 
@@ -71,9 +72,10 @@ export function ContactView() {
         </p>
         <SocialLinks size="lg" className="mt-8" />
 
+        <ScrollReveal3D depth="panel" className="mx-auto mt-14 max-w-2xl">
         <form
           onSubmit={handleSubmit}
-          className="glass-panel-glow mx-auto mt-14 max-w-2xl space-y-4 p-8"
+          className="glass-panel-glow space-y-4 p-8"
         >
           <label className="block text-xs font-bold uppercase text-white/40">
             {t("name")}
@@ -127,6 +129,7 @@ export function ContactView() {
             {status === "loading" ? t("sending") : t("send")}
           </button>
         </form>
+        </ScrollReveal3D>
       </div>
     </>
   );

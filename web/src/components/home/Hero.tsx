@@ -1,24 +1,30 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { HeroBackground } from "@/components/ui/HeroBackground";
+import { Floating3DPanels } from "@/components/ui/Floating3DPanels";
+import { heroReveal3D, motion3DStyle, transition3D, PERSPECTIVE } from "@/lib/motion-3d";
 import { LiveDashboard } from "./LiveDashboard";
 
 export function Hero() {
   const t = useTranslations("home");
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="hero" className="relative min-h-[92vh] overflow-hidden pt-28 pb-20 sm:pt-32 lg:pt-36">
+    <section id="hero" className="perspective-3d relative min-h-[92vh] overflow-hidden pt-28 pb-20 sm:pt-32 lg:pt-36" style={{ perspective: PERSPECTIVE }}>
       <HeroBackground />
+      <Floating3DPanels />
 
       <div className="container-narrow relative z-10 px-4 text-center sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-5xl"
+          initial={reduceMotion ? false : "hidden"}
+          animate={reduceMotion ? undefined : "visible"}
+          variants={heroReveal3D}
+          transition={transition3D}
+          style={motion3DStyle}
+          className="preserve-3d mx-auto max-w-5xl"
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-deweb-cyan/25 bg-deweb-cyan/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-deweb-cyan">
             <span className="h-2 w-2 animate-pulse rounded-full bg-deweb-cyan" />
@@ -43,10 +49,11 @@ export function Hero() {
           </p>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 16, rotateX: 8 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0, rotateX: 0 }}
             transition={{ delay: 0.25, duration: 0.5 }}
-            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            style={motion3DStyle}
+            className="preserve-3d mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <GlowButton href="/contact" variant="primary">
               {t("ctaPrimary")}

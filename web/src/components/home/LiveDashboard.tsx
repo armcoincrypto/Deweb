@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { liveBids } from "@/lib/data";
+import { motion3DStyle, PERSPECTIVE } from "@/lib/motion-3d";
 
 function MiniChart() {
   const points = [72, 68, 65, 58, 52, 48, 44, 40];
@@ -47,18 +48,22 @@ function MiniChart() {
 }
 
 export function LiveDashboard() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto mt-12 max-w-5xl"
+      initial={reduceMotion ? false : { opacity: 0, y: 50, rotateX: 18, scale: 0.92, z: -60 }}
+      animate={reduceMotion ? undefined : { opacity: 1, y: 0, rotateX: 4, scale: 1, z: 0 }}
+      transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      style={{ ...motion3DStyle, perspective: PERSPECTIVE }}
+      className="preserve-3d relative mx-auto mt-12 max-w-5xl"
     >
       <div className="absolute -inset-4 rounded-3xl bg-deweb-cyan/10 blur-3xl" />
       <motion.div
-        animate={{ y: [0, -8, 0] }}
+        animate={reduceMotion ? undefined : { y: [0, -10, 0], rotateX: [4, 2, 4] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         className="glass-panel-glow glow-border relative overflow-hidden rounded-2xl border border-white/10 p-1 sm:rounded-3xl"
+        style={motion3DStyle}
       >
         <div className="grid gap-0 lg:grid-cols-[220px_1fr]">
           {/* Sidebar */}

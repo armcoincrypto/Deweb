@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { HeroBackground } from "@/components/ui/HeroBackground";
+import { heroReveal3D, motion3DStyle, transition3D, PERSPECTIVE } from "@/lib/motion-3d";
 import type { ServiceLandingPage } from "@/lib/service-landing/types";
 import type { BreadcrumbItem } from "@/lib/schema";
 
@@ -15,13 +17,24 @@ type ServiceLandingViewProps = {
 
 export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const reduceMotion = useReducedMotion();
 
   return (
     <>
-      {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/[0.06]">
         <HeroBackground />
-        <div className="container-narrow relative z-10 px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-20 lg:pt-32">
+        <div
+          className="perspective-3d container-narrow relative z-10 px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-20 lg:pt-32"
+          style={{ perspective: PERSPECTIVE }}
+        >
+          <motion.div
+            initial={reduceMotion ? false : "hidden"}
+            animate={reduceMotion ? undefined : "visible"}
+            variants={heroReveal3D}
+            transition={transition3D}
+            style={motion3DStyle}
+            className="preserve-3d"
+          >
           <nav aria-label="Breadcrumb" className="mb-6 text-sm text-white/45">
             <ol className="flex flex-wrap items-center gap-2">
               {breadcrumbs.map((crumb, i) => (
@@ -66,6 +79,7 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
               </GlowButton>
             )}
           </div>
+          </motion.div>
         </div>
       </section>
 
@@ -105,11 +119,14 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
             </p>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {page.benefits.map((benefit) => (
+            {page.benefits.map((benefit, i) => (
               <GlassCard
                 key={benefit.title}
-                className="group p-6 transition-colors hover:border-deweb-cyan/30"
+                tilt
+                delay={i * 0.06}
+                className="group"
               >
+                <div className="p-6 transition-colors hover:border-deweb-cyan/30">
                 <span className="text-3xl" aria-hidden="true">
                   {benefit.icon}
                 </span>
@@ -117,6 +134,7 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
                   {benefit.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/55">{benefit.description}</p>
+                </div>
               </GlassCard>
             ))}
           </div>

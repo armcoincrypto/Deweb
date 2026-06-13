@@ -13,6 +13,18 @@ export function HeroBackground() {
       {!reduceMotion && (
         <>
           <motion.div
+            className="preserve-3d absolute left-[15%] top-[25%] h-24 w-24 rounded-2xl border border-deweb-cyan/20 bg-deweb-cyan/5"
+            style={{ transformPerspective: 1200 }}
+            animate={{ rotateX: [12, 20, 12], rotateY: [0, 360, 0], y: [0, -12, 0] }}
+            transition={{ rotateY: { duration: 28, repeat: Infinity, ease: "linear" }, y: { duration: 6, repeat: Infinity } }}
+          />
+          <motion.div
+            className="preserve-3d absolute right-[12%] top-[35%] h-16 w-28 rounded-xl border border-deweb-purple/25 bg-deweb-purple/5"
+            style={{ transformPerspective: 1200 }}
+            animate={{ rotateX: [-8, 8, -8], rotateY: [15, -15, 15], y: [0, 14, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
             className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-deweb-cyan/10 blur-[100px]"
             animate={{ x: [0, 40, 0], y: [0, -20, 0], opacity: [0.5, 0.8, 0.5] }}
             transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}

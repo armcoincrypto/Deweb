@@ -246,7 +246,8 @@ export function AboutView() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.04 }}
             >
-              <GlassCard glow className="flex h-full flex-col p-6">
+              <GlassCard glow tilt className="flex h-full flex-col">
+                <div className="flex h-full flex-col p-6">
                 <span className="text-2xl">{svc.icon}</span>
                 <h3 className="mt-3 text-lg font-bold text-white">{svc.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/55">{svc.desc}</p>
@@ -264,6 +265,7 @@ export function AboutView() {
                 >
                   {t("learnMore")} →
                 </Link>
+                </div>
               </GlassCard>
             </motion.div>
           ))}

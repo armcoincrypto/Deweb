@@ -82,6 +82,14 @@
     @apply mx-auto max-w-7xl;
   }
 
+  .perspective-3d {
+    perspective: 1200px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
   .premium-gradient-border {
     position: relative;
     background: linear-gradient(135deg, rgba(0, 242, 255, 0.08), rgba(124, 58, 237, 0.06));

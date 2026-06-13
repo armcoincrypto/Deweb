@@ -19,8 +19,8 @@ export function SolutionsShowcase() {
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2">
           {solutionBlocks.map((block, i) => (
-            <GlassCard key={block.id} glow delay={i * 0.08} className="group p-6 sm:p-8">
-              <Link href={block.href} className="block h-full">
+            <GlassCard key={block.id} glow delay={i * 0.08} tilt className="group">
+              <Link href={block.href} className="block h-full p-6 sm:p-8">
                 <div className="flex items-start gap-4">
                   <div
                     className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl transition-transform duration-300 group-hover:scale-110"

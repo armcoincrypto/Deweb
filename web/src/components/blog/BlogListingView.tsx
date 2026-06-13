@@ -136,8 +136,9 @@ export function BlogListingView({
           </GlassCard>
         ) : (
           <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {articles.map((post) => (
-              <article key={post.slug} className="glass-panel-glow group overflow-hidden">
+            {articles.map((post, i) => (
+              <GlassCard key={post.slug} glow tilt delay={i * 0.05} className="group overflow-hidden">
+              <article>
                 <Link href={`/blog/${post.slug}`} className="block">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <BlogImage
@@ -176,6 +177,7 @@ export function BlogListingView({
                   </div>
                 </Link>
               </article>
+              </GlassCard>
             ))}
           </div>
         )}

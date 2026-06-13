@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ConsultationForm } from "@/components/services/ConsultationForm";
 import { ServiceBanners } from "@/components/services/ServiceBanners";
+import { HeroBackground } from "@/components/ui/HeroBackground";
+import { heroReveal3D, cardReveal3D, motion3DStyle, transition3D, PERSPECTIVE } from "@/lib/motion-3d";
 import { dewebApi, type ServicesPageData } from "@/lib/api";
 import { servicesPageFallback } from "@/lib/services-data";
 import { serviceBanners } from "@/lib/service-banners-data";
 
 export function ServicesView() {
   const t = useTranslations("services");
+  const reduceMotion = useReducedMotion();
   const [data, setData] = useState<ServicesPageData>(servicesPageFallback);
 
   useEffect(() => {
@@ -24,8 +27,16 @@ export function ServicesView() {
   return (
     <div className="pb-20">
       <section className="relative overflow-hidden border-b border-white/[0.06] py-16 text-center">
-        <div className="absolute inset-0 bg-hero-mesh" />
-        <div className="container-narrow relative z-10 px-4 sm:px-6 lg:px-8">
+        <HeroBackground />
+        <div className="perspective-3d container-narrow relative z-10 px-4 sm:px-6 lg:px-8" style={{ perspective: PERSPECTIVE }}>
+          <motion.div
+            initial={reduceMotion ? false : "hidden"}
+            animate={reduceMotion ? undefined : "visible"}
+            variants={heroReveal3D}
+            transition={transition3D}
+            style={motion3DStyle}
+            className="preserve-3d"
+          >
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-deweb-cyan">
             DEWEB Services
           </span>
@@ -34,6 +45,7 @@ export function ServicesView() {
             Shopify development, AI automation, SaaS platforms, marketplaces, and custom web
             applications — built for measurable business growth.
           </p>
+          </motion.div>
         </div>
       </section>
 
@@ -47,11 +59,14 @@ export function ServicesView() {
             {data.stats.map((s, i) => (
               <motion.div
                 key={s.label}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={reduceMotion ? false : "hidden"}
+                whileInView={reduceMotion ? undefined : "visible"}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
-                className="glass-panel-glow p-6 text-center"
+                variants={cardReveal3D}
+                transition={{ ...transition3D, delay: i * 0.06 }}
+                style={motion3DStyle}
+                whileHover={reduceMotion ? undefined : { z: 8, rotateX: -3, scale: 1.02 }}
+                className="preserve-3d glass-panel-glow p-6 text-center"
               >
                 <p className="text-3xl font-bold text-deweb-cyan sm:text-4xl">{s.value}</p>
                 <p className="mt-2 text-sm text-white/50">{s.label}</p>
