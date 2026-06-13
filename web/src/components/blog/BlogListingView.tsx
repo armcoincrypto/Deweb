@@ -53,9 +53,28 @@ export function BlogListingView({
         title={activeCat ? `${activeCat.name} Articles` : "DEWEB Blog"}
         subtitle={
           activeCat?.description ??
-          "Practical guides on Shopify, AI automation, web development, SaaS and marketplace strategy."
+          "Expert guides on Shopify development, AI automation, SaaS growth, marketplace strategy, and web application development."
         }
       />
+
+      <section className="container-narrow px-4 pb-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap gap-2">
+          {[
+            { label: "Shopify", href: "/services/shopify-development" },
+            { label: "AI Automation", href: "/services/ai-business-automation" },
+            { label: "SaaS", href: "/services/saas-development" },
+            { label: "Contact DEWEB", href: "/contact" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-white/50 transition-colors hover:border-deweb-cyan/40 hover:text-deweb-cyan"
+            >
+              {link.label} →
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="container-narrow px-4 py-10 sm:px-6 lg:px-8">
         {/* Search + category filters */}

@@ -20,14 +20,14 @@
     "admin": "Admin"
   },
   "home": {
-    "badge": "IT marketplace · competitive bidding",
-    "seoH1": "IT Marketplace, Shopify Development & AI Solutions",
-    "taglineAria": "Suppliers Compete. You Win.",
+    "badge": "Premium IT agency · Shopify · AI · SaaS",
+    "seoH1": "DEWEB builds Shopify stores, AI automations, SaaS platforms & custom web solutions",
+    "taglineAria": "Technology that helps businesses grow faster",
     "title": "Suppliers Compete.",
-    "titleAccent": "You Win.",
-    "subtitle": "Clients post IT projects and receive multiple competitive offers from verified suppliers. Compare pricing, timelines, and portfolios — then launch with confidence.",
-    "ctaPrimary": "Post a Project & Get Bids",
-    "ctaSecondary": "Explore Marketplace",
+    "titleAccent": "Technology that helps businesses grow faster.",
+    "subtitle": "DEWEB builds Shopify stores, AI automations, SaaS platforms, marketplaces, and custom web solutions that help businesses grow faster.",
+    "ctaPrimary": "Start Your Project",
+    "ctaSecondary": "Explore Services",
     "statBids": "avg bids / project",
     "statSuccess": "success rate",
     "statTag": "AI automation · escrow · DEWEB coins",
@@ -56,10 +56,10 @@
     "testimonialsTitle": "Trusted by builders worldwide",
     "pricingKicker": "Pricing",
     "pricingTitle": "Plans that scale with your ambition",
-    "ctaFinalTitle": "Ready to Build the Future?",
-    "ctaFinalSubtitle": "Post your project today. Let verified suppliers compete. Choose the best offer and launch with DEWEB escrow.",
-    "ctaFinalPrimary": "Start Your Project Now",
-    "ctaFinalSecondary": "Browse Suppliers"
+    "ctaFinalTitle": "Ready to grow with premium technology?",
+    "ctaFinalSubtitle": "Tell us about your Shopify store, AI automation, SaaS product, or marketplace idea. DEWEB responds within 24 hours.",
+    "ctaFinalPrimary": "Start Your Project",
+    "ctaFinalSecondary": "Explore Services"
   },
   "services": {
     "title": "Services",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "@/i18n/routing";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { HeroBackground } from "@/components/ui/HeroBackground";
 import type { ServiceLandingPage } from "@/lib/service-landing/types";
 import type { BreadcrumbItem } from "@/lib/schema";
 
@@ -19,8 +20,8 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/[0.06]">
-        <div className="absolute inset-0 bg-gradient-to-br from-deweb-cyan/[0.08] via-transparent to-purple-900/10" />
-        <div className="container-narrow relative px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-20 lg:pt-32">
+        <HeroBackground />
+        <div className="container-narrow relative z-10 px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-20 lg:pt-32">
           <nav aria-label="Breadcrumb" className="mb-6 text-sm text-white/45">
             <ol className="flex flex-wrap items-center gap-2">
               {breadcrumbs.map((crumb, i) => (

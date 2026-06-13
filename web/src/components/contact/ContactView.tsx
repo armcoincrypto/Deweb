@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SocialLinks } from "@/components/contact/SocialLinks";
@@ -42,6 +43,27 @@ export function ContactView() {
   return (
     <>
       <PageHeader title={t("title")} subtitle={t("subtitle")} />
+
+      {/* Service quick links */}
+      <section className="container-narrow px-4 pb-8 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap justify-center gap-3">
+          {[
+            { label: "Shopify", href: "/services/shopify-development" },
+            { label: "AI Automation", href: "/services/ai-business-automation" },
+            { label: "SaaS", href: "/services/saas-development" },
+            { label: "Marketplace", href: "/services/marketplace-development" },
+            { label: "Web Apps", href: "/services/web-application-development" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-full border border-white/10 px-4 py-2 text-sm text-white/60 transition-colors hover:border-deweb-cyan/40 hover:text-deweb-cyan"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="container-narrow px-4 pb-16 sm:px-6 lg:px-8">
         <p className="text-center text-sm font-semibold uppercase tracking-wider text-white/45">

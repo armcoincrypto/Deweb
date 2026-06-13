@@ -145,20 +145,28 @@ function ServiceRow({ banner, index }: { banner: ServiceBanner; index: number })
   );
 }
 
-export function ServiceBanners({ pageTitle }: { pageTitle?: string }) {
+export function ServiceBanners({
+  pageTitle,
+  hideTitle = false,
+}: {
+  pageTitle?: string;
+  hideTitle?: boolean;
+}) {
   const t = useTranslations("services");
 
   return (
-    <section className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 pt-24 sm:pt-28">
+    <section className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 sm:pt-4">
       <div className="border-y border-white/[0.08]">
-        <div className="border-b border-white/[0.06] bg-white/[0.02] px-6 py-10 text-center lg:py-14">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-deweb-cyan/60">
-            DEWEB Services
-          </p>
-          <h1 className="mt-2 text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
-            {pageTitle ?? t("categoriesTitle")}
-          </h1>
-        </div>
+        {!hideTitle && (
+          <div className="border-b border-white/[0.06] bg-white/[0.02] px-6 py-10 text-center lg:py-14">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-deweb-cyan/60">
+              DEWEB Services
+            </p>
+            <h1 className="mt-2 text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+              {pageTitle ?? t("categoriesTitle")}
+            </h1>
+          </div>
+        )}
 
         <div className="flex w-full flex-col">
           {serviceBanners.map((banner, i) => (

@@ -20,7 +20,7 @@ export function GlowButton({
   onClick,
 }: GlowButtonProps) {
   const base =
-    "relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold tracking-wide transition-all duration-300";
+    "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-7 py-3.5 text-sm font-bold tracking-wide transition-all duration-300";
 
   const variants = {
     primary:
@@ -36,10 +36,16 @@ export function GlowButton({
   const inner = (
     <motion.span
       className={classes}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.03, y: -1 }}
       whileTap={{ scale: 0.98 }}
     >
-      {children}
+      {variant === "primary" && (
+        <span
+          className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/25 to-transparent"
+          aria-hidden="true"
+        />
+      )}
+      <span className="relative">{children}</span>
     </motion.span>
   );
 

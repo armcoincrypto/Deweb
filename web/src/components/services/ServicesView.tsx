@@ -23,7 +23,21 @@ export function ServicesView() {
 
   return (
     <div className="pb-20">
-      <ServiceBanners pageTitle={data.hero.title} />
+      <section className="relative overflow-hidden border-b border-white/[0.06] py-16 text-center">
+        <div className="absolute inset-0 bg-hero-mesh" />
+        <div className="container-narrow relative z-10 px-4 sm:px-6 lg:px-8">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-deweb-cyan">
+            DEWEB Services
+          </span>
+          <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">{data.hero.title}</h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/55">
+            Shopify development, AI automation, SaaS platforms, marketplaces, and custom web
+            applications — built for measurable business growth.
+          </p>
+        </div>
+      </section>
+
+      <ServiceBanners pageTitle={data.hero.title} hideTitle />
 
       {/* Stats */}
       <section className="border-y border-white/[0.06] bg-white/[0.02] py-16">

@@ -81,6 +81,21 @@
   .container-narrow {
     @apply mx-auto max-w-7xl;
   }
+
+  .premium-gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, rgba(0, 242, 255, 0.08), rgba(124, 58, 237, 0.06));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 /* Custom scrollbar */

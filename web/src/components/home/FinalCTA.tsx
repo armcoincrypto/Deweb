@@ -27,10 +27,10 @@ export function FinalCTA() {
               {t("ctaFinalSubtitle")}
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <GlowButton href="/signup" variant="primary">
+              <GlowButton href="/contact" variant="primary">
                 {t("ctaFinalPrimary")}
               </GlowButton>
-              <GlowButton href="/marketplace" variant="secondary">
+              <GlowButton href="/services" variant="secondary">
                 {t("ctaFinalSecondary")}
               </GlowButton>
             </div>

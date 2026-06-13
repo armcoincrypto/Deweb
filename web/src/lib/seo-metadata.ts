@@ -7,24 +7,24 @@ export type SeoEntry = { title: string; description: string };
 
 export const PAGE_SEO: Record<string, SeoEntry> = {
   home: {
-    title: "DEWEB | IT Marketplace, Shopify Development & AI Solutions",
+    title: "DEWEB | Shopify Development, AI Automation & SaaS Agency",
     description:
-      "Connect with verified developers, launch projects, build Shopify stores, AI automation systems and digital solutions.",
+      "DEWEB builds Shopify stores, AI automations, SaaS platforms, marketplaces, and custom web solutions that help businesses grow faster. Start your project today.",
   },
   about: {
-    title: "About DEWEB | Technology Marketplace & Development Team",
+    title: "About DEWEB | Premium IT Development Agency",
     description:
-      "Learn about DEWEB, our development team, marketplace platform, AI solutions and software services.",
+      "Meet DEWEB — a premium agency for Shopify development, AI automation, SaaS products, marketplaces, and custom web applications.",
   },
   contact: {
-    title: "Contact DEWEB | Get a Quote & Project Consultation",
+    title: "Contact DEWEB | Start Your Shopify, AI or SaaS Project",
     description:
-      "Contact DEWEB for project inquiries, pricing offers and consultations. Our team responds within 24 hours.",
+      "Get a free consultation for Shopify development, AI automation, SaaS MVPs, or marketplace builds. DEWEB responds within 24 hours.",
   },
   services: {
-    title: "Digital Services | Web, Shopify, AI & Software Development | DEWEB",
+    title: "Digital Services | Shopify, AI Automation, SaaS & Web Apps | DEWEB",
     description:
-      "Explore DEWEB services: Shopify stores, AI automation, web apps, mobile development, SaaS platforms and digital marketing.",
+      "Explore DEWEB services: Shopify development, AI chatbots, business automation, SaaS platforms, marketplace builds, and custom web applications.",
   },
   marketplace: {
     title: "IT Marketplace | Find Developers & Digital Services | DEWEB",
@@ -32,9 +32,9 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
       "Post projects, compare offers and connect with verified software developers and digital service providers.",
   },
   blog: {
-    title: "DEWEB Blog | IT Marketplace Tips & Technology Guides",
+    title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
     description:
-      "Insights on competitive bidding, web development, AI automation, ecommerce trends and marketplace strategy.",
+      "Expert guides on Shopify development, AI automation, SaaS growth, marketplace strategy, and web application development.",
   },
   "privacy-policy": {
     title: "Privacy Policy | DEWEB",
