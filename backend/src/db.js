@@ -530,6 +530,7 @@ db.exec(`
     refresh_token TEXT,
     expires_at TEXT,
     scope TEXT,
+    person_urn TEXT,
     created_at TEXT NOT NULL,
     updated_at TEXT NOT NULL
   );
@@ -549,6 +550,7 @@ const blogPostColumns = [
   ["blog_posts", "approved_at", "TEXT"],
   ["blog_posts", "approved_by", "TEXT"],
   ["blog_posts", "publish_mode", "TEXT"],
+  ["linkedin_credentials", "person_urn", "TEXT"],
 ];
 for (const [table, col, type] of blogPostColumns) {
   try {

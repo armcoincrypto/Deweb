@@ -6,6 +6,7 @@ import {
   buildAuthorizationUrl,
   exchangeCodeForToken,
   saveLinkedInCredentials,
+  fetchLinkedInPersonUrn,
   getLinkedInConnectionStatus,
 } from "../services/linkedinOAuth.js";
 
@@ -22,7 +23,7 @@ function setupKeyRequired(req, res) {
   return true;
 }
 
-function successHtml({ expiresAt, scope }) {
+function successHtml({ expiresAt, scope, postingNote }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +43,7 @@ function successHtml({ expiresAt, scope }) {
     <div class="ok">✅</div>
     <h1>LinkedIn Connected</h1>
     <p>DeWeb is now authorized to post on LinkedIn via DeWebam.</p>
+    ${postingNote ? `<p><small>${postingNote}</small></p>` : ""}
     ${expiresAt ? `<p><small>Token expires: ${expiresAt}</small></p>` : ""}
     ${scope ? `<p><small>Scopes: ${scope}</small></p>` : ""}
     <p><small>You can close this page and return to Telegram.</small></p>
@@ -94,8 +96,12 @@ router.get("/callback", async (req, res) => {
 
   try {
     const tokenData = await exchangeCodeForToken(String(code));
-    const saved = saveLinkedInCredentials(tokenData);
-    res.send(successHtml(saved));
+    const personUrn = await fetchLinkedInPersonUrn(tokenData.access_token);
+    const saved = saveLinkedInCredentials(tokenData, personUrn);
+    const postingNote = saved.scope?.includes("w_organization_social")
+      ? "Posting as DeWeb company page (if org URN is set)."
+      : "Posting as your personal LinkedIn profile. Request org scopes in LinkedIn Developer portal to post as company.";
+    res.send(successHtml({ ...saved, postingNote }));
   } catch (err) {
     console.error("[linkedin-oauth] Token exchange failed:", err.message);
     res.status(500).send(errorHtml(err.message));
