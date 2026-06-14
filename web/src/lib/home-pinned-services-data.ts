@@ -30,7 +30,7 @@ const bannerByHref: Record<string, string> = {
   "/services/ai-chatbot-development": "ai-chatbots",
   "/services/ai-business-automation": "ai-chatbots",
   "/services/saas-development": "marketplace",
-  "/contact": "uiux",
+  "/services/landing-page-development": "uiux",
 };
 
 const sceneByHref: Record<string, PinnedSceneKey> = {
@@ -39,7 +39,7 @@ const sceneByHref: Record<string, PinnedSceneKey> = {
   "/services/ai-chatbot-development": "ai",
   "/services/ai-business-automation": "automation",
   "/services/saas-development": "web",
-  "/contact": "none",
+  "/services/landing-page-development": "none",
 };
 
 const visualByHref: Record<string, ServiceBannerVisual> = {
@@ -48,7 +48,7 @@ const visualByHref: Record<string, ServiceBannerVisual> = {
   "/services/ai-chatbot-development": "ai",
   "/services/ai-business-automation": "ai",
   "/services/saas-development": "marketplace",
-  "/contact": "uiux",
+  "/services/landing-page-development": "uiux",
 };
 
 function getBanner(href: string): ServiceBanner {

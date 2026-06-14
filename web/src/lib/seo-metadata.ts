@@ -246,6 +246,11 @@ export const LANDING_SEO: Record<string, SeoEntry> = {
     description:
       "Full SaaS product development — auth, subscription billing, admin dashboards and scalable cloud architecture by DEWEB.",
   },
+  "landing-page-development": {
+    title: "Landing Page Development | High-Conversion Campaign Pages | DEWEB",
+    description:
+      "Conversion-focused landing pages for ads, launches, and lead generation — mobile-first, fast, and built by DEWEB.",
+  },
 };
 
 export const BLOG_CATEGORY_SEO: Record<string, SeoEntry> = {

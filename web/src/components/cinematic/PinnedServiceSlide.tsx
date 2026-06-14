@@ -216,7 +216,9 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/40">
                       {tServices("priceRange")}
                     </p>
-                    <p className="mt-1 text-sm font-bold text-white">{slide.banner.pricing}</p>
+                    <p className="mt-1 text-sm font-bold text-white">
+                      {slide.category.startingPrice || slide.banner.pricing}
+                    </p>
                   </div>
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/40">

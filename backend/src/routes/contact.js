@@ -14,6 +14,9 @@ router.post("/", limiter, optionalAuth, async (req, res) => {
   const message = cleanText(req.body.message, 8000);
   const name = cleanText(req.body.name, 120);
   const phone = cleanPhone(req.body.phone);
+  const service = cleanText(req.body.service, 80);
+  const budget = cleanText(req.body.budget, 80);
+  const deadline = cleanText(req.body.deadline, 80);
 
   if (!email || !message) {
     return res.status(400).json({ error: "Email and message are required." });
@@ -24,6 +27,12 @@ router.post("/", limiter, optionalAuth, async (req, res) => {
 
   const id = uid();
   const createdAt = nowIso();
+  const meta = {
+    contactId: id,
+    service: service || null,
+    budget: budget || null,
+    deadline: deadline || null,
+  };
 
   db.prepare(`
     INSERT INTO contact_messages (id, email, message, name, created_at)
@@ -33,8 +42,8 @@ router.post("/", limiter, optionalAuth, async (req, res) => {
   const leadId = uid();
   db.prepare(`
     INSERT INTO lead_submissions (
-      id, user_id, submission_type, status, name, email, phone, message, meta, created_at, updated_at
-    ) VALUES (?, ?, 'contact', 'new', ?, ?, ?, ?, ?, ?, ?)
+      id, user_id, submission_type, status, name, email, phone, message, category, meta, created_at, updated_at
+    ) VALUES (?, ?, 'contact', 'new', ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     leadId,
     req.userId || null,
@@ -42,22 +51,36 @@ router.post("/", limiter, optionalAuth, async (req, res) => {
     email,
     phone || null,
     message,
-    JSON.stringify({ contactId: id }),
+    service || null,
+    JSON.stringify(meta),
     createdAt,
     createdAt
   );
 
   saveBlogLeadAttribution(leadId, req.body);
 
+  const details = [
+    `From: ${name || "—"}`,
+    `Email: ${email}`,
+    `Phone: ${phone || "—"}`,
+    service ? `Service: ${service}` : null,
+    budget ? `Budget: ${budget}` : null,
+    deadline ? `Deadline: ${deadline}` : null,
+    "",
+    message,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
   sendAdminEmail({
     subject: `[DEWEB] Contact — ${name || email}`,
-    text: `From: ${name || "—"}\nEmail: ${email}\nPhone: ${phone || "—"}\n\n${message}`
+    text: details,
   }).catch(() => null);
 
   sendUserEmail({
     to: email,
     subject: "[DEWEB] We received your message",
-    text: `Hi${name ? ` ${name}` : ""},\n\nThank you for contacting DeWeb. We will respond as soon as possible.\n\n— DeWeb Team`
+    text: `Hi${name ? ` ${name}` : ""},\n\nThank you for contacting DeWeb. We will respond as soon as possible.\n\n— DeWeb Team`,
   }).catch(() => null);
 
   res.status(201).json({ ok: true, id, message: "Thank you! Your message has been received." });

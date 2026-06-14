@@ -245,15 +245,19 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Questions about projects, suppliers, or enterprise plans — we're here.",
+    "subtitle": "Tell us about your project and we'll reply with a clear plan, timeline, and starting estimate.",
     "followUs": "Follow DEWEB",
     "connectWithUs": "Connect with us",
     "name": "Name",
     "email": "Email",
-    "message": "Message",
-    "send": "Send message",
+    "phone": "WhatsApp / Telegram",
+    "service": "Service needed",
+    "budget": "Budget range",
+    "deadline": "Deadline",
+    "message": "Project description",
+    "send": "Send Project Request",
     "sending": "Sending…",
-    "success": "Thank you! Your message has been received.",
+    "success": "Thank you! Your project request has been received. We'll reply within 24 hours.",
     "error": "Something went wrong. Please try again."
   },
   "auth": {

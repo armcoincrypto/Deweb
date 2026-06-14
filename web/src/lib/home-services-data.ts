@@ -7,6 +7,7 @@ export type ServiceCategory = {
   result: string;
   href: string;
   accent: string;
+  startingPrice?: string;
 };
 
 export const serviceCategories: ServiceCategory[] = [
@@ -18,6 +19,7 @@ export const serviceCategories: ServiceCategory[] = [
     result: "More sales, better checkout, stronger brand.",
     href: "/services/shopify-development",
     accent: "#95BF47",
+    startingPrice: "From $500",
   },
   {
     icon: "💻",
@@ -27,6 +29,7 @@ export const serviceCategories: ServiceCategory[] = [
     result: "More trust, more inquiries, more clients.",
     href: "/services/web-application-development",
     accent: "#38bdf8",
+    startingPrice: "From $400",
   },
   {
     icon: "💬",
@@ -36,6 +39,7 @@ export const serviceCategories: ServiceCategory[] = [
     result: "24/7 answers, more leads, less support work.",
     href: "/services/ai-chatbot-development",
     accent: "#00f2ff",
+    startingPrice: "From $300",
   },
   {
     icon: "⚙️",
@@ -45,6 +49,7 @@ export const serviceCategories: ServiceCategory[] = [
     result: "Save hours every week and reduce mistakes.",
     href: "/services/ai-business-automation",
     accent: "#34d399",
+    startingPrice: "From $600",
   },
   {
     icon: "☁️",
@@ -54,6 +59,7 @@ export const serviceCategories: ServiceCategory[] = [
     result: "Launch faster and scale with confidence.",
     href: "/services/saas-development",
     accent: "#7c3aed",
+    startingPrice: "From $1000",
   },
   {
     icon: "🎯",
@@ -61,7 +67,8 @@ export const serviceCategories: ServiceCategory[] = [
     what: "A focused page built to turn visitors into leads.",
     who: "For ads, launches, and campaigns that need conversions.",
     result: "More signups and better ad performance.",
-    href: "/contact",
+    href: "/services/landing-page-development",
     accent: "#f472b6",
+    startingPrice: "From $200",
   },
 ];

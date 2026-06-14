@@ -8,6 +8,8 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { heroReveal3D, motion3DStyle, transition3D, PERSPECTIVE } from "@/lib/motion-3d";
 import type { ServiceLandingPage } from "@/lib/service-landing/types";
+import { ServiceConversionBlocks } from "@/components/conversion/ServiceConversionBlocks";
+import { getServiceOffer } from "@/lib/conversion-data";
 import type { BreadcrumbItem } from "@/lib/schema";
 
 type ServiceLandingViewProps = {
@@ -18,6 +20,7 @@ type ServiceLandingViewProps = {
 export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const reduceMotion = useReducedMotion();
+  const offer = getServiceOffer(page.slug);
 
   return (
     <>
@@ -63,10 +66,19 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
             {page.subtitle}
           </p>
 
-          {page.priceRange && (
-            <p className="mt-4 text-sm font-semibold text-deweb-cyan">
-              Typical investment: {page.priceRange}
-            </p>
+          {(offer || page.priceRange) && (
+            <div className="mt-6 flex flex-wrap gap-4 text-sm">
+              {offer && (
+                <span className="rounded-full border border-deweb-cyan/30 bg-deweb-cyan/10 px-4 py-2 font-semibold text-deweb-cyan">
+                  {offer.startingPrice}
+                </span>
+              )}
+              {(offer?.timeline || page.priceRange) && (
+                <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-white/70">
+                  {offer ? `Timeline: ${offer.timeline}` : `Typical investment: ${page.priceRange}`}
+                </span>
+              )}
+            </div>
           )}
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -92,6 +104,8 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
             </p>
           ))}
         </div>
+
+        {offer && <ServiceConversionBlocks offer={offer} />}
 
         <div className="mx-auto mt-16 max-w-3xl space-y-14">
           {page.sections.map((section) => (

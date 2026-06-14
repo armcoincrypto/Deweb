@@ -206,6 +206,9 @@ export const dewebApi = {
         email: string;
         phone?: string;
         message: string;
+        service?: string;
+        budget?: string;
+        deadline?: string;
         visitorId?: string;
         lastBlogSlug?: string;
         utmSource?: string;
