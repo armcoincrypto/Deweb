@@ -1,6 +1,7 @@
 node_modules
 .next
 out
+.lighthouse
 .env*.local
 *.tsbuildinfo
 next-env.d.ts
