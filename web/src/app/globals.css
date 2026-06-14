@@ -11,7 +11,20 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
   }
 
   body {
@@ -93,6 +106,34 @@
   .premium-gradient-border {
     position: relative;
     background: linear-gradient(135deg, rgba(0, 242, 255, 0.08), rgba(124, 58, 237, 0.06));
+  }
+
+  .cinematic-section {
+    @apply relative;
+    transform-style: preserve-3d;
+  }
+
+  .cinematic-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, var(--deweb-bg) 100%);
+    pointer-events: none;
+  }
+
+  .cinematic-glow {
+    box-shadow:
+      0 0 80px rgba(0, 242, 255, 0.08),
+      0 25px 60px -15px rgba(0, 0, 0, 0.5);
+  }
+
+  .reflection-surface {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 50%,
+      rgba(0, 242, 255, 0.03) 100%
+    );
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -23,18 +23,18 @@ function navLinkClass(pathname: string, href: string, mobile = false) {
 
   if (mobile) {
     return cn(
-      "block py-3 font-medium transition-colors",
+      "block rounded-lg px-3 py-3 font-medium transition-all hover:bg-white/5",
       active ? "text-deweb-cyan" : "text-white/80"
     );
   }
 
   return cn(
-    "relative text-sm font-medium transition-colors",
+    "relative rounded-lg px-3 py-2 text-sm font-medium transition-all hover:bg-white/[0.04] hover:text-deweb-cyan",
     active
       ? isPrimary
-        ? "text-deweb-cyan after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-0.5 after:rounded-full after:bg-deweb-cyan after:shadow-[0_0_10px_rgba(0,242,255,0.55)]"
+        ? "text-deweb-cyan after:absolute after:-bottom-0.5 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-deweb-cyan after:shadow-[0_0_10px_rgba(0,242,255,0.55)]"
         : "text-deweb-cyan"
-      : "text-white/65 hover:text-deweb-cyan"
+      : "text-white/65"
   );
 }
 
@@ -46,7 +46,7 @@ export function PlatformNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 40));
 
   const links = [
     { href: "/", label: t("home") },
@@ -61,23 +61,30 @@ export function PlatformNavbar() {
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={cn(
-        "fixed left-0 right-0 top-0 z-50 transition-all duration-500",
-        scrolled
-          ? "border-b border-white/[0.06] bg-deweb-bg/85 py-3 backdrop-blur-2xl"
-          : "bg-transparent py-4"
-      )}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8"
     >
-      <div className="container-narrow flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div
+        className={cn(
+          "container-narrow mx-auto flex items-center justify-between gap-4 rounded-2xl border px-4 py-3 transition-all duration-500 sm:px-6",
+          scrolled
+            ? "border-white/[0.08] bg-deweb-bg/70 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-2xl"
+            : "border-white/[0.04] bg-white/[0.02] backdrop-blur-xl"
+        )}
+        style={{
+          boxShadow: scrolled
+            ? "0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04) inset"
+            : "0 0 0 1px rgba(255,255,255,0.03) inset",
+        }}
+      >
         <Link href="/" className="group flex shrink-0 items-center gap-2.5">
-          <BrandLogo size={40} priority className="transition-transform group-hover:scale-105" />
-          <span className="text-xl font-bold tracking-tight text-white group-hover:text-deweb-cyan transition-colors">
+          <BrandLogo size={36} priority className="transition-transform group-hover:scale-105" />
+          <span className="text-lg font-bold tracking-tight text-white transition-colors group-hover:text-deweb-cyan sm:text-xl">
             DEWEB
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 xl:flex">
+        <nav className="hidden items-center gap-1 xl:flex">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -97,14 +104,14 @@ export function PlatformNavbar() {
               {user.isAdmin && (
                 <Link
                   href="/admin"
-                  className="rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-2 text-xs font-bold text-amber-300"
+                  className="rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-2 text-xs font-bold text-amber-300 transition-colors hover:bg-amber-400/20"
                 >
                   {t("admin")}
                 </Link>
               )}
               <Link
                 href="/account"
-                className="flex items-center gap-2 rounded-full border border-deweb-cyan/30 bg-deweb-cyan/10 px-4 py-2 text-sm font-bold text-deweb-cyan"
+                className="flex items-center gap-2 rounded-full border border-deweb-cyan/30 bg-deweb-cyan/10 px-4 py-2 text-sm font-bold text-deweb-cyan transition-all hover:bg-deweb-cyan/20"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-deweb-cyan text-xs font-black text-deweb-bg">
                   {displayName[0]?.toUpperCase() || "U"}
@@ -114,7 +121,7 @@ export function PlatformNavbar() {
               <button
                 type="button"
                 onClick={logout}
-                className="px-2 text-xs text-white/45 hover:text-white"
+                className="px-2 text-xs text-white/45 transition-colors hover:text-white"
               >
                 {t("logout")}
               </button>
@@ -123,7 +130,7 @@ export function PlatformNavbar() {
             <>
               <Link
                 href="/account/login"
-                className="px-3 py-2 text-sm font-semibold text-white/75 hover:text-white"
+                className="rounded-lg px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/5 hover:text-white"
               >
                 {t("login")}
               </Link>
@@ -136,16 +143,21 @@ export function PlatformNavbar() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 transition-colors hover:border-deweb-cyan/30 hover:bg-white/5 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? "✕" : "☰"}
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-deweb-bg/95 px-4 py-4 backdrop-blur-xl md:hidden">
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="container-narrow mx-auto mt-2 rounded-2xl border border-white/10 bg-deweb-bg/95 p-4 backdrop-blur-2xl md:hidden"
+        >
           {links.map((link) => (
             <Link
               key={link.href}
@@ -157,7 +169,7 @@ export function PlatformNavbar() {
               {link.label}
             </Link>
           ))}
-          <div className="mt-4 flex flex-col gap-3">
+          <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4">
             <LanguageSwitcher />
             {user ? (
               <Link href="/account" className="text-center font-bold text-deweb-cyan">
@@ -174,7 +186,7 @@ export function PlatformNavbar() {
               </>
             )}
           </div>
-        </div>
+        </motion.div>
       )}
     </motion.header>
   );

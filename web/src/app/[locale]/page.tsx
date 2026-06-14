@@ -1,9 +1,5 @@
-import { Hero } from "@/components/home/Hero";
-import { ServicesShowcase } from "@/components/home/ServicesShowcase";
-import { WhyChoose } from "@/components/home/WhyChoose";
-import { HomePortfolio } from "@/components/home/HomePortfolio";
+import { CinematicHome } from "@/components/cinematic/CinematicHome";
 import { HomeBlogSection } from "@/components/home/HomeBlogSection";
-import { HomeContact } from "@/components/home/HomeContact";
 import { PageSchemas } from "@/components/seo/PageSchemas";
 import { metadataFromEntry } from "@/lib/seo";
 import { getPageSeo } from "@/lib/seo-metadata";
@@ -30,12 +26,7 @@ export default async function HomePage({ params }: Props) {
         description={seo.description}
         breadcrumbs={[{ name: "Home", path: "/" }]}
       />
-      <Hero />
-      <ServicesShowcase />
-      <WhyChoose />
-      <HomePortfolio />
-      <HomeBlogSection />
-      <HomeContact />
+      <CinematicHome blogSection={<HomeBlogSection />} />
     </>
   );
 }

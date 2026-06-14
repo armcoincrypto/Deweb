@@ -1,12 +1,13 @@
 "use client";
 
+import { CinematicSection } from "@/components/cinematic/CinematicSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { whyChooseItems } from "@/lib/portfolio-data";
 
 export function WhyChoose() {
   return (
-    <section className="section-padding" aria-labelledby="why-heading">
+    <CinematicSection id="why" fullScreen={false} className="section-padding">
       <div className="container-narrow px-4 sm:px-6 lg:px-8">
         <SectionHeading
           kicker="Why DEWEB"
@@ -18,7 +19,7 @@ export function WhyChoose() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {whyChooseItems.map((item, i) => (
             <GlassCard key={item.title} glow tilt delay={i * 0.06}>
-              <div className="p-6 sm:p-8">
+              <div className="reflection-surface p-6 sm:p-8">
                 <div
                   className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl text-xl"
                   style={{
@@ -36,6 +37,6 @@ export function WhyChoose() {
           ))}
         </div>
       </div>
-    </section>
+    </CinematicSection>
   );
 }

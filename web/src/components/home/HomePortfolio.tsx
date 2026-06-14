@@ -2,6 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
+import { CinematicSection } from "@/components/cinematic/CinematicSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { GlowButton } from "@/components/ui/GlowButton";
@@ -9,9 +10,10 @@ import { portfolioProjects } from "@/lib/portfolio-data";
 
 export function HomePortfolio() {
   return (
-    <section
+    <CinematicSection
+      id="portfolio"
+      fullScreen={false}
       className="section-padding border-y border-white/[0.06] bg-white/[0.02]"
-      aria-labelledby="portfolio-heading"
     >
       <div className="container-narrow px-4 sm:px-6 lg:px-8">
         <SectionHeading
@@ -69,6 +71,6 @@ export function HomePortfolio() {
           </GlowButton>
         </div>
       </div>
-    </section>
+    </CinematicSection>
   );
 }
