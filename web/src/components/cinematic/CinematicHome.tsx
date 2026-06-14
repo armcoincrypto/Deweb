@@ -21,10 +21,10 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
       <ServiceStorySection
         id="shopify"
         kicker="Shopify Development"
-        title="Launch a fast Shopify store designed to sell"
-        description="Launch a fast Shopify store designed to sell."
+        title="Ecommerce that converts and scales"
+        description="Launch a fast Shopify store designed to sell — with floating products, optimized checkout, and a premium storefront experience."
         href="/services/shopify-development"
-        ctaLabel="Build My Shopify Store"
+        ctaLabel="Explore Shopify"
         accent="#95BF47"
         sceneKey="shopify"
       />
@@ -32,10 +32,10 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
       <ServiceStorySection
         id="ai-chatbots"
         kicker="AI Chatbots"
-        title="Answer customers and collect leads 24/7"
-        description="Answer customers and collect leads 24/7."
+        title="Intelligent conversations that never sleep"
+        description="Answer customers and collect leads 24/7 with AI nodes, real-time messaging, and smart automation built for your business."
         href="/services/ai-chatbot-development"
-        ctaLabel="Add AI Chatbot"
+        ctaLabel="Explore AI Chatbots"
         accent="#00f2ff"
         sceneKey="ai"
         reverse
@@ -44,10 +44,10 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
       <ServiceStorySection
         id="automation"
         kicker="Automation Systems"
-        title="Save time by automating repeated business tasks"
-        description="Save time by automating repeated business tasks."
+        title="Workflows that run while you grow"
+        description="Save time by automating repeated business tasks — connected apps, emails, forms, and workflows moving automatically."
         href="/services/ai-business-automation"
-        ctaLabel="Automate My Business"
+        ctaLabel="Explore Automation"
         accent="#34d399"
         sceneKey="automation"
       />
@@ -55,10 +55,10 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
       <ServiceStorySection
         id="web-saas"
         kicker="Web & SaaS Development"
-        title="Turn your idea into a scalable digital product"
-        description="Turn your idea into a scalable digital product."
+        title="From code to scalable product"
+        description="Turn your idea into a scalable digital product — floating browser windows, dashboards, and code transforming into live UI."
         href="/services/saas-development"
-        ctaLabel="Build My Platform"
+        ctaLabel="Explore Web & SaaS"
         accent="#7c3aed"
         sceneKey="web"
         reverse

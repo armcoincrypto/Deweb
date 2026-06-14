@@ -20,8 +20,9 @@ const connections = [
 ];
 
 const stores = [
-  { name: "Store", revenue: "+28%", x: "8%", y: "16%", rotateY: -14 },
-  { name: "Shop", revenue: "+41%", x: "72%", y: "14%", rotateY: 12 },
+  { name: "Store A", revenue: "+28%", x: "8%", y: "16%", rotateY: -14 },
+  { name: "Store B", revenue: "+41%", x: "72%", y: "14%", rotateY: 12 },
+  { name: "Store C", revenue: "+33%", x: "58%", y: "78%", rotateY: -8 },
 ];
 
 type EcosystemSceneProps = {
@@ -44,7 +45,7 @@ export function EcosystemScene({ variant = "full" }: EcosystemSceneProps) {
       <div className="absolute right-1/4 top-1/2 h-64 w-64 rounded-full bg-deweb-purple/10 blur-[90px]" />
 
       {!reduceMotion &&
-        connections.slice(0, isHero ? 2 : connections.length).map((c, i) => (
+        connections.map((c, i) => (
           <DataStream
             key={`${c.from.id}-${c.to.id}`}
             from={{ x: c.from.x, y: c.from.y }}
@@ -62,7 +63,7 @@ export function EcosystemScene({ variant = "full" }: EcosystemSceneProps) {
             animate={{ opacity: 0.85, rotateY: store.rotateY }}
             transition={{ delay: 0.3 + i * 0.15 }}
             style={{ ...motion3DStyle, left: store.x, top: store.y, position: "absolute" }}
-            className="preserve-3d hidden w-32 lg:block lg:w-36"
+            className="preserve-3d hidden w-32 md:block lg:w-36"
           >
             <motion.div
               animate={{ y: [0, -10, 0] }}
@@ -78,7 +79,7 @@ export function EcosystemScene({ variant = "full" }: EcosystemSceneProps) {
           </motion.div>
         ))}
 
-      {nodes.slice(0, isHero ? 3 : 5).map((node, i) => (
+      {nodes.map((node, i) => (
         <motion.div
           key={node.id}
           initial={{ opacity: 0 }}
@@ -89,7 +90,7 @@ export function EcosystemScene({ variant = "full" }: EcosystemSceneProps) {
             left: `${node.x}%`,
             top: `${node.y}%`,
             position: "absolute",
-            transform: `translate(-50%, -50%) translateZ(${isHero ? 0 : node.z}px)`,
+            transform: `translate(-50%, -50%) translateZ(${node.z}px)`,
           }}
           className="preserve-3d"
         >
@@ -109,10 +110,10 @@ export function EcosystemScene({ variant = "full" }: EcosystemSceneProps) {
       ))}
 
       {!reduceMotion &&
-        Array.from({ length: isHero ? 4 : 10 }).map((_, i) => (
+        Array.from({ length: isHero ? 8 : 12 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute hidden h-1 w-1 rounded-full bg-deweb-cyan/50 sm:block"
+            className="absolute h-1 w-1 rounded-full bg-deweb-cyan/50"
             style={{ left: `${(i * 19) % 100}%`, top: `${(i * 27) % 100}%` }}
             animate={{ opacity: [0.1, 0.6, 0.1], y: [0, -20, 0] }}
             transition={{ duration: 2.5 + (i % 4), repeat: Infinity, delay: i * 0.12 }}
