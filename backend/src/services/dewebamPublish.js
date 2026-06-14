@@ -297,6 +297,30 @@ export function getPublishConfigStatus() {
   };
 }
 
+export function getPublishFailureHint(platform, error) {
+  const err = String(error || "");
+
+  if (platform === "x") {
+    if (/402|credits|CreditsDepleted/i.test(err)) {
+      return (
+        "X API credits depleted — posting requires prepaid credits.\n" +
+        "Go to https://console.x.com → Billing → Credits and add balance (~$5 covers hundreds of posts).\n" +
+        "Your keys are configured correctly; @dewebam auth works."
+      );
+    }
+    if (/Missing X credentials|not configured/i.test(err)) {
+      return "Add X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET to server .env";
+    }
+    return "Check X app permissions (Read and Write) at https://console.x.com";
+  }
+
+  if (/Missing|not configured/i.test(err)) {
+    return "Add the required API keys to server .env (see .env.example).";
+  }
+
+  return "Check platform API credentials and status in server .env.";
+}
+
 export async function publishToPlatform(platform, post) {
   const content = post.contentParsed || {};
   const text = buildPostText(platform, content);

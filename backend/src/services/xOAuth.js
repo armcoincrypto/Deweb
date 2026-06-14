@@ -78,6 +78,10 @@ export function getXConnectionStatus() {
     hasBearerToken,
     canPost: !!creds,
     mode: creds?.mode || null,
+    creditsNote:
+      creds
+        ? "Credentials OK. If publish returns 402, add credits at https://console.x.com → Billing"
+        : "Set X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET in backend/.env",
   };
 }
 

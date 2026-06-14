@@ -31,7 +31,7 @@ import {
   formatCopyText,
 } from "./dewebamContentAi.js";
 import { generateSocialImage, absoluteImageUrl, localImagePath } from "./dewebamImage.js";
-import { publishToPlatform, getPublishConfigStatus } from "./dewebamPublish.js";
+import { publishToPlatform, getPublishConfigStatus, getPublishFailureHint } from "./dewebamPublish.js";
 
 const BOT_NAME = "DeWebam";
 
@@ -115,7 +115,7 @@ function helpText() {
     `LinkedIn: ${cfg.linkedin ? "✅" : "❌ add keys to .env"}\n` +
     `Instagram: ${cfg.instagram ? "✅" : "❌ add keys to .env"}\n` +
     `Facebook: ${cfg.facebook ? "✅" : "❌ add keys to .env"}\n` +
-    `X: ${cfg.x ? "✅" : "❌ add keys to .env"}\n` +
+    `X: ${cfg.x ? "✅ keys set (needs API credits to post)" : "❌ add keys to .env"}\n` +
     `Blog CMS: ✅\n\n` +
     `<b>Commands:</b> /start /menu /linkedin /instagram /facebook /x /blog /status /help`
   );
@@ -344,10 +344,11 @@ async function handlePostAction(action, postId, chatId, userId, callbackQuery) {
         const copyText = formatCopyText(post.platform, content);
         const imageUrl = absoluteImageUrl(post.image_url);
 
+        const hint = getPublishFailureHint(post.platform, result.error);
         let msg =
           `❌ <b>Auto-post failed</b>\n` +
           `${escapeHtml(result.error)}\n\n` +
-          `Add the required API keys to server <code>.env</code> (see .env.example).\n\n` +
+          `${escapeHtml(hint)}\n\n` +
           `<b>Copy & post manually:</b>\n<pre>${escapeHtml(copyText)}</pre>`;
 
         const rows = [];
