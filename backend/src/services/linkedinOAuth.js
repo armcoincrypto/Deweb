@@ -10,8 +10,7 @@ function env(name) {
 }
 
 export function getLinkedInOAuthConfig() {
-  const scopesRaw =
-    env("LINKEDIN_OAUTH_SCOPES") || "openid profile w_member_social";
+  const scopesRaw = env("LINKEDIN_OAUTH_SCOPES") || "w_member_social";
   const scopes = scopesRaw.split(/[\s,]+/).filter(Boolean);
 
   return {
@@ -100,17 +99,36 @@ export async function exchangeCodeForToken(code) {
 }
 
 export async function fetchLinkedInPersonUrn(accessToken) {
+  // Try OpenID userinfo (requires openid scope)
   try {
     const res = await fetch("https://api.linkedin.com/v2/userinfo", {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    if (!res.ok) return null;
-    const data = await res.json();
-    if (!data.sub) return null;
-    return `urn:li:person:${data.sub}`;
+    if (res.ok) {
+      const data = await res.json();
+      if (data.sub) return `urn:li:person:${data.sub}`;
+    }
   } catch {
-    return null;
+    /* fall through */
   }
+
+  // Fallback: /v2/me works with w_member_social on most Share on LinkedIn apps
+  try {
+    const res = await fetch("https://api.linkedin.com/v2/me", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Restli-Protocol-Version": "2.0.0",
+      },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.id) return `urn:li:person:${data.id}`;
+    }
+  } catch {
+    /* ignore */
+  }
+
+  return null;
 }
 
 export function saveLinkedInCredentials(tokenData, personUrn = null) {

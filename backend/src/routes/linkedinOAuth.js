@@ -98,9 +98,13 @@ router.get("/callback", async (req, res) => {
     const tokenData = await exchangeCodeForToken(String(code));
     const personUrn = await fetchLinkedInPersonUrn(tokenData.access_token);
     const saved = saveLinkedInCredentials(tokenData, personUrn);
-    const postingNote = saved.scope?.includes("w_organization_social")
+    let postingNote = saved.scope?.includes("w_organization_social")
       ? "Posting as DeWeb company page (if org URN is set)."
-      : "Posting as your personal LinkedIn profile. Request org scopes in LinkedIn Developer portal to post as company.";
+      : "Posting as your personal LinkedIn profile.";
+    if (!personUrn) {
+      postingNote +=
+        " Could not auto-detect profile URN — set LINKEDIN_PERSON_URN in .env if Post fails.";
+    }
     res.send(successHtml({ ...saved, postingNote }));
   } catch (err) {
     console.error("[linkedin-oauth] Token exchange failed:", err.message);
