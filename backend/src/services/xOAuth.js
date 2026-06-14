@@ -1,4 +1,15 @@
 import crypto from "crypto";
+import { ENV_FILE_PATH } from "../loadEnv.js";
+
+function readEnv(name) {
+  const raw = process.env[name]?.trim() || "";
+  if (!raw) return "";
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+}
 
 function percentEncode(value) {
   return encodeURIComponent(String(value))
@@ -35,11 +46,11 @@ function buildSignature({ method, url, params, apiSecret, accessSecret }) {
 }
 
 export function getXCredentials() {
-  const apiKey = process.env.X_API_KEY?.trim();
-  const apiSecret = process.env.X_API_SECRET?.trim();
-  const accessToken = process.env.X_ACCESS_TOKEN?.trim();
-  const accessSecret = process.env.X_ACCESS_TOKEN_SECRET?.trim();
-  const bearerToken = process.env.X_BEARER_TOKEN?.trim();
+  const apiKey = readEnv("X_API_KEY");
+  const apiSecret = readEnv("X_API_SECRET");
+  const accessToken = readEnv("X_ACCESS_TOKEN");
+  const accessSecret = readEnv("X_ACCESS_TOKEN_SECRET");
+  const bearerToken = readEnv("X_BEARER_TOKEN");
 
   if (apiKey && apiSecret && accessToken && accessSecret) {
     return { mode: "oauth1", apiKey, apiSecret, accessToken, accessSecret };
@@ -48,6 +59,26 @@ export function getXCredentials() {
     return { mode: "bearer", bearerToken };
   }
   return null;
+}
+
+export function getXConnectionStatus() {
+  const hasApiKey = !!readEnv("X_API_KEY");
+  const hasApiSecret = !!readEnv("X_API_SECRET");
+  const hasAccessToken = !!readEnv("X_ACCESS_TOKEN");
+  const hasAccessTokenSecret = !!readEnv("X_ACCESS_TOKEN_SECRET");
+  const hasBearerToken = !!readEnv("X_BEARER_TOKEN");
+  const creds = getXCredentials();
+
+  return {
+    envFile: ENV_FILE_PATH,
+    hasApiKey,
+    hasApiSecret,
+    hasAccessToken,
+    hasAccessTokenSecret,
+    hasBearerToken,
+    canPost: !!creds,
+    mode: creds?.mode || null,
+  };
 }
 
 export function isXConfigured() {
