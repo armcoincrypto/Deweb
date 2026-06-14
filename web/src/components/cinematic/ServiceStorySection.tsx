@@ -10,19 +10,19 @@ import { cn } from "@/lib/utils";
 
 const ShopifyScene = dynamic(
   () => import("./scenes/ShopifyScene").then((m) => ({ default: m.ShopifyScene })),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 const AINeuralScene = dynamic(
   () => import("./scenes/AINeuralScene").then((m) => ({ default: m.AINeuralScene })),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 const AutomationScene = dynamic(
   () => import("./scenes/AutomationScene").then((m) => ({ default: m.AutomationScene })),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 const WebSaasScene = dynamic(
   () => import("./scenes/WebSaasScene").then((m) => ({ default: m.WebSaasScene })),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 
 const sceneMap = {
@@ -88,7 +88,7 @@ export function ServiceStorySection({
     <CinematicSection
       id={id}
       fullScreen
-      className="relative flex min-h-[88vh] items-center py-16 lg:py-20"
+      className="relative flex min-h-[72vh] items-center py-14 sm:min-h-[88vh] sm:py-20"
     >
       <div
         className={cn(

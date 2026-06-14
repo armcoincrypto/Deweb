@@ -62,7 +62,7 @@ export function EcosystemScene({ variant = "full" }: EcosystemSceneProps) {
             animate={{ opacity: 0.85, rotateY: store.rotateY }}
             transition={{ delay: 0.3 + i * 0.15 }}
             style={{ ...motion3DStyle, left: store.x, top: store.y, position: "absolute" }}
-            className="preserve-3d hidden w-32 sm:block lg:w-36"
+            className="preserve-3d hidden w-32 lg:block lg:w-36"
           >
             <motion.div
               animate={{ y: [0, -10, 0] }}
@@ -109,10 +109,10 @@ export function EcosystemScene({ variant = "full" }: EcosystemSceneProps) {
       ))}
 
       {!reduceMotion &&
-        Array.from({ length: isHero ? 8 : 14 }).map((_, i) => (
+        Array.from({ length: isHero ? 4 : 10 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute h-1 w-1 rounded-full bg-deweb-cyan/50"
+            className="absolute hidden h-1 w-1 rounded-full bg-deweb-cyan/50 sm:block"
             style={{ left: `${(i * 19) % 100}%`, top: `${(i * 27) % 100}%` }}
             animate={{ opacity: [0.1, 0.6, 0.1], y: [0, -20, 0] }}
             transition={{ duration: 2.5 + (i % 4), repeat: Infinity, delay: i * 0.12 }}

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { motion3DStyle } from "@/lib/motion-3d";
+import { cn } from "@/lib/utils";
 
 const products = [
   { name: "Hoodie", price: "$89", img: "👕", x: "12%", y: "18%", z: 40 },
@@ -26,7 +27,7 @@ export function ShopifyScene() {
             rotateY: { duration: 7, repeat: Infinity, ease: "easeInOut" },
           }}
           style={{ ...motion3DStyle, left: p.x, top: p.y, position: "absolute" }}
-          className="preserve-3d w-32 sm:w-36"
+          className={cn("preserve-3d w-32 sm:w-36", i === 2 && "hidden md:block")}
         >
           <motion.div
             animate={reduceMotion ? undefined : { y: [0, -10, 0] }}

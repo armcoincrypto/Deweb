@@ -8,7 +8,7 @@ import { heroReveal3D, transitionFast } from "@/lib/motion-3d";
 
 const EcosystemScene = dynamic(
   () => import("./scenes/EcosystemScene").then((m) => ({ default: m.EcosystemScene })),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="absolute inset-0 bg-hero-mesh" aria-hidden="true" /> }
 );
 
 export function CinematicHero() {
