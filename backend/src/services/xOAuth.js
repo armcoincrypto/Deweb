@@ -126,6 +126,9 @@ export async function xOAuth1Request(method, url, { query, form, json, credentia
   const fullUrl = `${url}${queryString}`;
 
   const extraParams = {};
+  if (query) {
+    for (const [key, value] of Object.entries(query)) extraParams[key] = String(value);
+  }
   if (form) {
     for (const [key, value] of Object.entries(form)) extraParams[key] = String(value);
   }
