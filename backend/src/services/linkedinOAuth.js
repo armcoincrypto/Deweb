@@ -98,34 +98,91 @@ export async function exchangeCodeForToken(code) {
   return data;
 }
 
+/** REST Posts API uses urn:li:person:{id}; legacy ugcPosts uses urn:li:member:{numericId}. */
+export function normalizeLinkedInPersonUrn(raw) {
+  const v = String(raw || "").trim();
+  if (!v) return null;
+
+  if (v.startsWith("urn:li:person:")) return v;
+
+  if (v.startsWith("urn:li:member:")) {
+    const id = v.slice("urn:li:member:".length);
+    return id ? `urn:li:person:${id}` : null;
+  }
+
+  if (v.startsWith("urn:li:organization:")) return v;
+
+  return `urn:li:person:${v}`;
+}
+
 export async function fetchLinkedInPersonUrn(accessToken) {
-  // Try OpenID userinfo (requires openid scope)
+  // OpenID userinfo (requires openid + profile scopes and Sign In product)
   try {
     const res = await fetch("https://api.linkedin.com/v2/userinfo", {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
     if (res.ok) {
       const data = await res.json();
-      if (data.sub) return `urn:li:person:${data.sub}`;
+      if (data.sub) return normalizeLinkedInPersonUrn(data.sub);
     }
   } catch {
     /* fall through */
   }
 
-  // Fallback: /v2/me works with w_member_social on most Share on LinkedIn apps
+  // REST /me (requires profile scope)
   try {
-    const res = await fetch("https://api.linkedin.com/v2/me", {
+    const res = await fetch("https://api.linkedin.com/rest/me", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        "LinkedIn-Version": "202506",
         "X-Restli-Protocol-Version": "2.0.0",
       },
     });
     if (res.ok) {
       const data = await res.json();
-      if (data.id) return `urn:li:person:${data.id}`;
+      const id = data.id || data.sub;
+      if (id) return normalizeLinkedInPersonUrn(id);
     }
   } catch {
     /* ignore */
+  }
+
+  return null;
+}
+
+export function saveLinkedInPersonUrn(raw) {
+  const personUrn = normalizeLinkedInPersonUrn(raw);
+  if (!personUrn || personUrn.includes("organization")) {
+    throw new Error("Invalid LinkedIn person ID or URN.");
+  }
+
+  const existing = db
+    .prepare("SELECT id FROM linkedin_credentials WHERE id = ?")
+    .get(CREDENTIALS_ID);
+  if (!existing) {
+    throw new Error("Connect LinkedIn first via /api/linkedin/connect");
+  }
+
+  db.prepare(
+    "UPDATE linkedin_credentials SET person_urn = ?, updated_at = ? WHERE id = ?"
+  ).run(personUrn, nowIso(), CREDENTIALS_ID);
+
+  console.log("[linkedin-oauth] Person URN saved.", { personUrn });
+  return personUrn;
+}
+
+/** Resolve author URN at post time — may fetch from API if scopes allow. */
+export async function ensureLinkedInAuthorUrn() {
+  let author = getLinkedInAuthorUrn();
+  if (author) return normalizeLinkedInPersonUrn(author);
+
+  const token = getLinkedInAccessToken();
+  if (!token) return null;
+
+  const personUrn = await fetchLinkedInPersonUrn(token);
+  if (personUrn) {
+    saveLinkedInPersonUrn(personUrn);
+    return personUrn;
   }
 
   return null;
@@ -191,9 +248,10 @@ export function getLinkedInAuthorUrn(storedScope) {
   const hasOrgScope = scope.includes("w_organization_social");
 
   if (orgUrn && hasOrgScope) return orgUrn;
-  if (row?.person_urn) return row.person_urn;
+  if (row?.person_urn) return normalizeLinkedInPersonUrn(row.person_urn);
 
-  return env("LINKEDIN_PERSON_URN") || null;
+  const fromEnv = env("LINKEDIN_PERSON_URN");
+  return fromEnv ? normalizeLinkedInPersonUrn(fromEnv) : null;
 }
 
 /** Returns active access token — DB first, then env fallback */
@@ -222,6 +280,8 @@ export function getLinkedInConnectionStatus() {
   const authorUrn = getLinkedInAuthorUrn(row?.scope);
   const postingAs = authorUrn?.includes("organization") ? "company" : authorUrn ? "personal" : null;
 
+  const hasPersonUrn = !!(row?.person_urn || env("LINKEDIN_PERSON_URN"));
+
   return {
     connected: !!token,
     source: row ? "oauth" : env("LINKEDIN_ACCESS_TOKEN") ? "env" : null,
@@ -230,5 +290,8 @@ export function getLinkedInConnectionStatus() {
     updatedAt: row?.updated_at || null,
     postingAs,
     hasOrgScope: (row?.scope || "").includes("w_organization_social"),
+    hasPersonUrn,
+    needsProfileSetup: !!token && !authorUrn,
+    setupUrl: "/api/linkedin/setup",
   };
 }

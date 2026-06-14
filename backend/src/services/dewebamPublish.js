@@ -8,10 +8,20 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { absoluteImageUrl } from "./dewebamImage.js";
 import { formatCopyText } from "./dewebamContentAi.js";
-import { getLinkedInAccessToken, getLinkedInAuthorUrn } from "./linkedinOAuth.js";
+import { getLinkedInAccessToken, ensureLinkedInAuthorUrn } from "./linkedinOAuth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const UPLOAD_ROOT = path.resolve(__dirname, "../../uploads");
+const LINKEDIN_API_VERSION = "202506";
+
+function linkedInHeaders(token) {
+  return {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+    "LinkedIn-Version": LINKEDIN_API_VERSION,
+    "X-Restli-Protocol-Version": "2.0.0",
+  };
+}
 
 function env(name) {
   return process.env[name]?.trim() || "";
@@ -36,48 +46,80 @@ async function downloadImageBuffer(imageUrl) {
   return Buffer.from(await res.arrayBuffer());
 }
 
-/** LinkedIn — https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/ugc-post-api */
+/** LinkedIn — REST Posts API (replaces legacy ugcPosts) */
+async function uploadLinkedInImage(token, authorUrn, imageBuffer) {
+  const initRes = await fetch("https://api.linkedin.com/rest/images?action=initializeUpload", {
+    method: "POST",
+    headers: linkedInHeaders(token),
+    body: JSON.stringify({ initializeUploadRequest: { owner: authorUrn } }),
+  });
+
+  if (!initRes.ok) {
+    const err = await initRes.text().catch(() => "");
+    throw new Error(`LinkedIn image init ${initRes.status}: ${err.slice(0, 300)}`);
+  }
+
+  const initData = await initRes.json();
+  const uploadUrl = initData.value?.uploadUrl;
+  const imageUrn = initData.value?.image;
+  if (!uploadUrl || !imageUrn) {
+    throw new Error("LinkedIn image init missing uploadUrl or image URN");
+  }
+
+  const putRes = await fetch(uploadUrl, {
+    method: "PUT",
+    headers: { "Content-Type": "image/png" },
+    body: imageBuffer,
+  });
+  if (!putRes.ok) {
+    const err = await putRes.text().catch(() => "");
+    throw new Error(`LinkedIn image upload ${putRes.status}: ${err.slice(0, 200)}`);
+  }
+
+  return imageUrn;
+}
+
 async function publishLinkedIn(text, imageUrl) {
   const token = getLinkedInAccessToken();
-  const author = getLinkedInAuthorUrn();
+  const author = await ensureLinkedInAuthorUrn();
   if (!token || !author) {
     return {
       ok: false,
       error:
-        "Missing LinkedIn token or author. Connect via /api/linkedin/connect — org scopes need LinkedIn approval.",
+        "Missing LinkedIn token or profile ID. Open /api/linkedin/setup after connecting, or reconnect with openid profile w_member_social scopes.",
     };
   }
 
-  const body = {
-    author,
-    lifecycleState: "PUBLISHED",
-    specificContent: {
-      "com.linkedin.ugc.ShareContent": {
-        shareCommentary: { text: text.slice(0, 3000) },
-        shareMediaCategory: imageUrl ? "IMAGE" : "NONE",
-      },
-    },
-    visibility: { "com.linkedin.ugc.MemberNetworkVisibility": "PUBLIC" },
-  };
-
+  let imageUrn = null;
   if (imageUrl) {
-    body.specificContent["com.linkedin.ugc.ShareContent"].media = [
-      {
-        status: "READY",
-        description: { text: "DeWeb" },
-        media: imageUrl,
-        title: { text: "DeWeb" },
-      },
-    ];
+    const imageBuffer = await downloadImageBuffer(imageUrl);
+    if (!imageBuffer) {
+      return { ok: false, error: "Could not load image for LinkedIn post." };
+    }
+    try {
+      imageUrn = await uploadLinkedInImage(token, author, imageBuffer);
+    } catch (err) {
+      return { ok: false, error: err.message };
+    }
   }
 
-  const res = await fetch("https://api.linkedin.com/v2/ugcPosts", {
+  const commentary = text.trim() ? text.slice(0, 3000) : " ";
+  const body = {
+    author,
+    commentary,
+    visibility: "PUBLIC",
+    distribution: { feedDistribution: "MAIN_FEED" },
+    lifecycleState: "PUBLISHED",
+    isReshareDisabledByAuthor: false,
+  };
+
+  if (imageUrn) {
+    body.content = { media: { id: imageUrn, altText: "DeWeb" } };
+  }
+
+  const res = await fetch("https://api.linkedin.com/rest/posts", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      "X-Restli-Protocol-Version": "2.0.0",
-    },
+    headers: linkedInHeaders(token),
     body: JSON.stringify(body),
   });
 
@@ -86,8 +128,11 @@ async function publishLinkedIn(text, imageUrl) {
     return { ok: false, error: `LinkedIn API ${res.status}: ${err.slice(0, 300)}` };
   }
 
-  const data = await res.json().catch(() => ({}));
-  return { ok: true, platformId: data.id || null, url: env("SOCIAL_LINK_LINKEDIN") || null };
+  const platformId =
+    res.headers.get("x-restli-id") ||
+    res.headers.get("location")?.split("/").pop() ||
+    null;
+  return { ok: true, platformId, url: env("SOCIAL_LINK_LINKEDIN") || null };
 }
 
 /** Facebook Page — Graph API */
