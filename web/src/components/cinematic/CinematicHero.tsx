@@ -1,11 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { heroReveal3D, transitionFast } from "@/lib/motion-3d";
-import { sellingPoints } from "@/lib/home-services-data";
 
 const EcosystemScene = dynamic(
   () => import("./scenes/EcosystemScene").then((m) => ({ default: m.EcosystemScene })),
@@ -19,13 +18,17 @@ export function CinematicHero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[90vh] items-center overflow-hidden pt-28 pb-16"
+      className="cinematic-hero relative flex min-h-screen items-center overflow-hidden pt-28 pb-20"
       aria-label={t("taglineAria")}
     >
-      <div className="absolute inset-0 hidden opacity-60 lg:block">
-        <EcosystemScene />
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 opacity-55 sm:opacity-75 lg:opacity-95">
+          <EcosystemScene variant="hero" />
+        </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-deweb-bg/40 via-deweb-bg/80 to-deweb-bg lg:from-deweb-bg/60" />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-deweb-bg/50 via-deweb-bg/75 to-deweb-bg" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,transparent,rgba(5,7,10,0.85))]" />
 
       <div className="container-narrow relative z-10 px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -33,17 +36,13 @@ export function CinematicHero() {
           animate={reduceMotion ? undefined : "visible"}
           variants={heroReveal3D}
           transition={transitionFast}
-          className="mx-auto max-w-4xl text-center"
+          className="hero-glass-panel mx-auto max-w-3xl rounded-3xl px-6 py-10 text-center sm:px-10 sm:py-12"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-deweb-cyan/30 bg-deweb-cyan/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-deweb-cyan">
-            {t("badge")}
-          </span>
-
-          <h1 className="mt-6 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.25rem]">
             {t("seoH1")}
           </h1>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
             {t("subtitle")}
           </p>
 
@@ -72,17 +71,6 @@ export function CinematicHero() {
             >
               {t("ctaSecondary")}
             </GlowButton>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            {sellingPoints.map((point) => (
-              <span
-                key={point}
-                className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs font-medium text-white/70"
-              >
-                {point}
-              </span>
-            ))}
           </div>
         </motion.div>
       </div>

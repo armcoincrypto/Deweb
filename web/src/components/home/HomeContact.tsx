@@ -1,10 +1,9 @@
 "use client";
 
+import { CinematicSection } from "@/components/cinematic/CinematicSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowButton } from "@/components/ui/GlowButton";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { SocialLinks } from "@/components/contact/SocialLinks";
-import { CinematicSection } from "@/components/cinematic/CinematicSection";
 
 export function HomeContact() {
   return (
@@ -18,18 +17,18 @@ export function HomeContact() {
         />
 
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-          <div className="content-panel rounded-2xl p-7 sm:p-9">
+          <div className="hero-glass-panel rounded-2xl p-7 sm:p-9">
             <h3 className="text-xl font-bold text-white sm:text-2xl">Start your project today</h3>
-            <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
+            <p className="mt-3 text-sm leading-relaxed text-white/80 sm:text-base">
               Fill out the form and we&apos;ll get back to you with a clear plan, timeline, and price.
             </p>
-            <ContactForm className="mt-6 space-y-4" compact />
+            <ContactForm className="mt-6 space-y-4" compact submitLabel="Send Request" />
           </div>
 
           <div className="space-y-6">
             <div className="content-panel rounded-2xl p-7">
               <h3 className="text-lg font-bold text-white">What you get</h3>
-              <ul className="mt-4 space-y-3 text-sm text-white/75">
+              <ul className="mt-4 space-y-3 text-sm text-white/80">
                 <li className="flex gap-2">
                   <span className="font-bold text-deweb-cyan">✓</span> Free consultation
                 </li>
@@ -43,11 +42,6 @@ export function HomeContact() {
                   <span className="font-bold text-deweb-cyan">✓</span> Support after launch
                 </li>
               </ul>
-              <div className="mt-6">
-                <GlowButton href="/services" variant="primary">
-                  See Our Services
-                </GlowButton>
-              </div>
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-white/50">Follow DeWeb</p>

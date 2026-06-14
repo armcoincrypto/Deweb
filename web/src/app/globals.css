@@ -118,6 +118,14 @@
     transform-style: preserve-3d;
   }
 
+  .hero-glass-panel {
+    @apply border border-white/[0.12] bg-[rgba(10,16,28,0.82)] backdrop-blur-xl;
+    box-shadow:
+      0 0 0 1px rgba(0, 242, 255, 0.08) inset,
+      0 8px 40px rgba(0, 0, 0, 0.35),
+      0 0 60px rgba(0, 242, 255, 0.06);
+  }
+
   .cinematic-hero::after {
     content: "";
     position: absolute;

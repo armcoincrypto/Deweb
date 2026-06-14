@@ -4,7 +4,6 @@ import { Link } from "@/i18n/routing";
 import { motion, useReducedMotion } from "framer-motion";
 import { CinematicSection } from "@/components/cinematic/CinematicSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowButton } from "@/components/ui/GlowButton";
 import { serviceCategories } from "@/lib/home-services-data";
 import { cardReveal3D, transitionFast } from "@/lib/motion-3d";
 
@@ -16,8 +15,8 @@ export function ServiceCategories() {
       <div className="container-narrow px-4 sm:px-6 lg:px-8">
         <SectionHeading
           kicker="What we build"
-          title="Everything your business needs to grow online"
-          subtitle="Websites, Shopify stores, AI chatbots, automation, and custom digital tools — built to get you more clients and sales."
+          title="Simple solutions for real business growth"
+          subtitle="Pick the service that fits your goal. Every option is built to help you get more clients, save time, or sell more."
           id="services-heading"
         />
 
@@ -47,8 +46,19 @@ export function ServiceCategories() {
                 <h3 className="text-lg font-bold text-white group-hover:text-deweb-cyan transition-colors">
                   {service.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-white/75">
-                  {service.description}
+                <p className="mt-3 text-sm text-white/80">
+                  <span className="font-semibold text-white/90">What: </span>
+                  {service.what}
+                </p>
+                <p className="mt-2 text-sm text-white/70">
+                  <span className="font-semibold text-white/85">Who: </span>
+                  {service.who}
+                </p>
+                <p className="mt-2 flex-1 text-sm text-white/75">
+                  <span className="font-semibold" style={{ color: service.accent }}>
+                    Result:{" "}
+                  </span>
+                  {service.result}
                 </p>
                 <span
                   className="mt-5 inline-flex text-sm font-bold transition-colors"
@@ -59,15 +69,6 @@ export function ServiceCategories() {
               </Link>
             </motion.div>
           ))}
-        </div>
-
-        <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <GlowButton href="/services" variant="primary">
-            See Our Services
-          </GlowButton>
-          <GlowButton href="#contact" variant="secondary">
-            Contact Us
-          </GlowButton>
         </div>
       </div>
     </CinematicSection>

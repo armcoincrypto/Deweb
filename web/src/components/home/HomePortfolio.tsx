@@ -64,12 +64,9 @@ export function HomePortfolio() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <div className="mt-12 text-center">
           <GlowButton href="#contact" variant="primary">
-            Start Your Project
-          </GlowButton>
-          <GlowButton href="/services" variant="secondary">
-            See Our Services
+            View Results
           </GlowButton>
         </div>
       </div>

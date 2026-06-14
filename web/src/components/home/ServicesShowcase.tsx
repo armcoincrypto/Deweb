@@ -2,7 +2,6 @@
 
 import { Link } from "@/i18n/routing";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowButton } from "@/components/ui/GlowButton";
 import { serviceCategories } from "@/lib/home-services-data";
 
 export function ServicesShowcase() {
@@ -27,15 +26,12 @@ export function ServicesShowcase() {
               <h3 className="mt-3 text-lg font-bold text-white group-hover:text-deweb-cyan">
                 {service.title}
               </h3>
-              <p className="mt-2 text-sm text-white/75">{service.description}</p>
+              <p className="mt-2 text-sm text-white/75">{service.what}</p>
+              <span className="mt-4 inline-flex text-sm font-bold text-deweb-cyan">
+                Learn more →
+              </span>
             </Link>
           ))}
-        </div>
-
-        <div className="mt-10 text-center">
-          <GlowButton href="/services" variant="primary">
-            See Our Services
-          </GlowButton>
         </div>
       </div>
     </section>

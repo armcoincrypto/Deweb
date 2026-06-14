@@ -2,7 +2,6 @@
 
 import { CinematicSection } from "@/components/cinematic/CinematicSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowButton } from "@/components/ui/GlowButton";
 import { whyChooseItems } from "@/lib/portfolio-data";
 import { motion, useReducedMotion } from "framer-motion";
 import { cardReveal3D, transitionFast } from "@/lib/motion-3d";
@@ -44,12 +43,6 @@ export function WhyChoose() {
               <p className="mt-2 text-sm leading-relaxed text-white/75">{item.description}</p>
             </motion.div>
           ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <GlowButton href="#contact" variant="primary">
-            Start Your Project
-          </GlowButton>
         </div>
       </div>
     </CinematicSection>

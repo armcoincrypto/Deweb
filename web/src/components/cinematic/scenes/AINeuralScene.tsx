@@ -3,9 +3,16 @@
 import { motion, useReducedMotion } from "framer-motion";
 
 const nodes = [
-  { x: 50, y: 40, color: "#00f2ff" },
-  { x: 28, y: 58, color: "#34d399" },
-  { x: 72, y: 55, color: "#7c3aed" },
+  { x: 50, y: 38, color: "#00f2ff", size: 14 },
+  { x: 28, y: 55, color: "#34d399", size: 10 },
+  { x: 72, y: 52, color: "#7c3aed", size: 10 },
+  { x: 40, y: 72, color: "#38bdf8", size: 8 },
+];
+
+const messages = [
+  { text: "How can I help?", x: "14%", y: "20%" },
+  { text: "I need a quote", x: "58%", y: "28%" },
+  { text: "Lead captured ✓", x: "22%", y: "68%" },
 ];
 
 export function AINeuralScene() {
@@ -13,11 +20,11 @@ export function AINeuralScene() {
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_45%,rgba(0,242,255,0.08),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_45%,rgba(0,242,255,0.12),transparent)]" />
 
       <svg className="absolute inset-0 h-full w-full" aria-hidden="true">
         {nodes.slice(1).map((node, i) => (
-          <line
+          <motion.line
             key={i}
             x1={`${nodes[0].x}%`}
             y1={`${nodes[0].y}%`}
@@ -25,7 +32,8 @@ export function AINeuralScene() {
             y2={`${node.y}%`}
             stroke="#00f2ff"
             strokeWidth="1"
-            strokeOpacity="0.25"
+            animate={{ strokeOpacity: [0.15, 0.5, 0.15] }}
+            transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.3 }}
           />
         ))}
       </svg>
@@ -37,25 +45,29 @@ export function AINeuralScene() {
           style={{
             left: `${node.x}%`,
             top: `${node.y}%`,
-            width: 12,
-            height: 12,
+            width: node.size,
+            height: node.size,
             transform: "translate(-50%, -50%)",
             background: node.color,
-            boxShadow: `0 0 16px ${node.color}`,
+            boxShadow: `0 0 ${node.size * 2}px ${node.color}`,
           }}
-          animate={reduceMotion ? undefined : { opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+          animate={reduceMotion ? undefined : { scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity, delay: i * 0.25 }}
         />
       ))}
 
-      <motion.div
-        style={{ left: "20%", top: "25%", position: "absolute" }}
-        className="content-panel max-w-[130px] rounded-xl px-3 py-2 text-xs text-white/80"
-        animate={reduceMotion ? undefined : { opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 3, repeat: Infinity }}
-      >
-        How can I help?
-      </motion.div>
+      {!reduceMotion &&
+        messages.map((msg, i) => (
+          <motion.div
+            key={msg.text}
+            style={{ left: msg.x, top: msg.y, position: "absolute" }}
+            className="glass-panel max-w-[130px] rounded-xl rounded-bl-sm px-3 py-2 text-xs text-white/85"
+            animate={{ opacity: [0.4, 1, 0.4], y: [4, 0, 4] }}
+            transition={{ duration: 3.5, repeat: Infinity, delay: i * 1.2 }}
+          >
+            {msg.text}
+          </motion.div>
+        ))}
     </div>
   );
 }

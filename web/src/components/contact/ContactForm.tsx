@@ -9,9 +9,10 @@ import { trackHomeCta } from "@/lib/cta-tracking";
 type ContactFormProps = {
   className?: string;
   compact?: boolean;
+  submitLabel?: string;
 };
 
-export function ContactForm({ className, compact = false }: ContactFormProps) {
+export function ContactForm({ className, compact = false, submitLabel }: ContactFormProps) {
   const t = useTranslations("contact");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -124,7 +125,7 @@ export function ContactForm({ className, compact = false }: ContactFormProps) {
         disabled={status === "loading"}
         className="w-full rounded-full bg-deweb-cyan py-3.5 font-bold text-deweb-bg shadow-glow transition-all hover:shadow-glow-lg disabled:opacity-60"
       >
-        {status === "loading" ? t("sending") : t("send")}
+        {status === "loading" ? t("sending") : submitLabel || t("send")}
       </button>
     </form>
   );

@@ -37,7 +37,6 @@ type ServiceStorySectionProps = {
   kicker: string;
   title: string;
   description: string;
-  benefits: string[];
   href: string;
   ctaLabel: string;
   accent: string;
@@ -50,7 +49,6 @@ export function ServiceStorySection({
   kicker,
   title,
   description,
-  benefits,
   href,
   ctaLabel,
   accent,
@@ -68,15 +66,16 @@ export function ServiceStorySection({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         contentRef.current,
-        { opacity: 0, y: 24 },
+        { opacity: 0, y: 32, scale: 0.98 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.4,
+          scale: 1,
+          duration: 0.5,
           ease: "power2.out",
           scrollTrigger: {
             trigger: contentRef.current,
-            start: "top 85%",
+            start: "top 82%",
           },
         }
       );
@@ -86,55 +85,53 @@ export function ServiceStorySection({
   }, [reduceMotion]);
 
   return (
-    <CinematicSection id={id} className="section-padding">
-      <div className="container-narrow relative px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div
-            ref={contentRef}
-            className={cn("relative z-10", reverse && "lg:order-2")}
-          >
-            <div className="content-panel rounded-2xl p-7 sm:p-9">
-              <span
-                className="inline-flex rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wider"
-                style={{ borderColor: `${accent}44`, color: accent, background: `${accent}12` }}
-              >
-                {kicker}
-              </span>
-              <h2 className="mt-5 text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl">
-                {title}
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
-                {description}
-              </p>
-              <ul className="mt-6 space-y-2.5">
-                {benefits.map((b) => (
-                  <li key={b} className="flex items-start gap-2.5 text-sm text-white/75">
-                    <span className="mt-0.5 font-bold" style={{ color: accent }}>
-                      ✓
-                    </span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <GlowButton href={href} variant="primary">
-                  {ctaLabel}
-                </GlowButton>
-                <GlowButton href="#contact" variant="secondary">
-                  Contact Us
-                </GlowButton>
-              </div>
-            </div>
-          </div>
+    <CinematicSection
+      id={id}
+      fullScreen
+      className="relative flex min-h-[88vh] items-center py-16 lg:py-20"
+    >
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0 overflow-hidden",
+          reverse ? "lg:right-[35%]" : "lg:left-[35%]"
+        )}
+      >
+        <div
+          className={cn(
+            "absolute inset-0 z-10 from-deweb-bg/40 via-deweb-bg/70 to-deweb-bg bg-gradient-to-b lg:bg-gradient-to-r",
+            reverse ? "lg:from-transparent lg:via-deweb-bg/50 lg:to-deweb-bg/95" : "lg:from-deweb-bg/95 lg:via-deweb-bg/50 lg:to-transparent"
+          )}
+        />
+        <div className="absolute inset-0 opacity-70 sm:opacity-85 lg:opacity-100">
+          <Scene />
+        </div>
+      </div>
 
-          <div
-            className={cn(
-              "relative hidden min-h-[320px] lg:block",
-              reverse && "lg:order-1"
-            )}
-          >
-            <div className="absolute inset-0 overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
-              <Scene />
+      <div className="container-narrow relative z-20 w-full px-4 sm:px-6 lg:px-8">
+        <div
+          ref={contentRef}
+          className={cn(
+            "max-w-lg",
+            reverse ? "lg:ml-auto" : "lg:mr-auto"
+          )}
+        >
+          <div className="hero-glass-panel rounded-2xl p-7 sm:p-9">
+            <span
+              className="inline-flex rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wider"
+              style={{ borderColor: `${accent}44`, color: accent, background: `${accent}12` }}
+            >
+              {kicker}
+            </span>
+            <h2 className="mt-5 text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl">
+              {title}
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-white/85 sm:text-lg">
+              {description}
+            </p>
+            <div className="mt-8">
+              <GlowButton href={href} variant="primary">
+                {ctaLabel}
+              </GlowButton>
             </div>
           </div>
         </div>

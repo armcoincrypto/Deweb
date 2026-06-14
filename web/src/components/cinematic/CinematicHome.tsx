@@ -17,20 +17,14 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
     <div className="cinematic-home">
       <CinematicHero />
       <ServiceCategories />
-      <SocialProof />
 
       <ServiceStorySection
         id="shopify"
         kicker="Shopify Development"
-        title="Sell more with a store built to convert"
-        description="Launch a fast, modern, and conversion-focused Shopify store designed to sell."
-        benefits={[
-          "Custom design that matches your brand",
-          "Fast loading and mobile-friendly",
-          "SEO-ready product pages",
-        ]}
+        title="Launch a fast Shopify store designed to sell"
+        description="Launch a fast Shopify store designed to sell."
         href="/services/shopify-development"
-        ctaLabel="Get a Shopify Store"
+        ctaLabel="Build My Shopify Store"
         accent="#95BF47"
         sceneKey="shopify"
       />
@@ -38,15 +32,10 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
       <ServiceStorySection
         id="ai-chatbots"
         kicker="AI Chatbots"
-        title="Answer customers instantly, 24/7"
-        description="Smart chatbots that answer questions, collect leads, and support customers 24/7."
-        benefits={[
-          "Capture leads while you sleep",
-          "Answer FAQs automatically",
-          "Connect to your CRM and email",
-        ]}
+        title="Answer customers and collect leads 24/7"
+        description="Answer customers and collect leads 24/7."
         href="/services/ai-chatbot-development"
-        ctaLabel="Get an AI Chatbot"
+        ctaLabel="Add AI Chatbot"
         accent="#00f2ff"
         sceneKey="ai"
         reverse
@@ -55,13 +44,8 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
       <ServiceStorySection
         id="automation"
         kicker="Automation Systems"
-        title="Stop doing the same tasks every day"
-        description="Save time by automating repeated tasks, forms, emails, and business workflows."
-        benefits={[
-          "Automate forms, emails, and follow-ups",
-          "Connect your existing tools",
-          "Reduce errors and save hours weekly",
-        ]}
+        title="Save time by automating repeated business tasks"
+        description="Save time by automating repeated business tasks."
         href="/services/ai-business-automation"
         ctaLabel="Automate My Business"
         accent="#34d399"
@@ -71,13 +55,8 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
       <ServiceStorySection
         id="web-saas"
         kicker="Web & SaaS Development"
-        title="Turn your idea into a live product"
-        description="Custom platforms, dashboards, and digital tools built for your business goals."
-        benefits={[
-          "Business websites that build trust",
-          "SaaS platforms with billing and dashboards",
-          "From idea to live product — fast",
-        ]}
+        title="Turn your idea into a scalable digital product"
+        description="Turn your idea into a scalable digital product."
         href="/services/saas-development"
         ctaLabel="Build My Platform"
         accent="#7c3aed"
@@ -85,6 +64,7 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
         reverse
       />
 
+      <SocialProof />
       <WhyChoose />
       <HomePortfolio />
       {blogSection}
