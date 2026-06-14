@@ -16,9 +16,6 @@ type Category = { slug: string; name: string; description: string };
 
 type Props = {
   articles: BlogArticle[];
-  title: string;
-  subtitle: string;
-  kicker?: string;
   categories: Category[];
   activeCategory: string;
   onCategoryChange: (slug: string) => void;
@@ -28,9 +25,6 @@ type Props = {
 
 export function PinnedBlogListingExperience({
   articles,
-  title,
-  subtitle,
-  kicker,
   categories,
   activeCategory,
   onCategoryChange,
@@ -45,10 +39,7 @@ export function PinnedBlogListingExperience({
   const [usePin, setUsePin] = useState(false);
   const [ready, setReady] = useState(false);
 
-  const slides = useMemo(
-    () => buildBlogListingSlides(articles, { title, subtitle, kicker }),
-    [articles, title, subtitle, kicker]
-  );
+  const slides = useMemo(() => buildBlogListingSlides(articles), [articles]);
   const total = slides.length;
   const filterKey = `${activeCategory}-${query}-${articles.length}`;
 

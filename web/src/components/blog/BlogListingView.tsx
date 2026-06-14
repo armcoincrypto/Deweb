@@ -41,17 +41,9 @@ export function BlogListingView({
     return list;
   }, [query, activeCategory, articlesProp]);
 
-  const activeCat = allCategories.find((c) => c.slug === activeCategory);
-
   return (
     <PinnedBlogListingExperience
       articles={articles}
-      kicker="Insights"
-      title={activeCat ? `${activeCat.name} Articles` : "DEWEB Blog"}
-      subtitle={
-        activeCat?.description ??
-        "Expert guides on Shopify development, AI automation, SaaS growth, marketplace strategy, and web application development."
-      }
       categories={allCategories}
       activeCategory={activeCategory}
       onCategoryChange={setActiveCategory}
