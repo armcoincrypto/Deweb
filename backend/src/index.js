@@ -29,6 +29,7 @@ import adminBlogTopicQueueRoutes from "./routes/adminBlogTopicQueue.js";
 import adminBlogSocialRoutes from "./routes/adminBlogSocial.js";
 import testAiRoutes from "./routes/testAi.js";
 import telegramWebhookRoutes from "./routes/telegramWebhook.js";
+import linkedinOAuthRoutes from "./routes/linkedinOAuth.js";
 import { startDeWebamBot } from "./services/dewebamBot.js";
 
 runSeed();
@@ -51,6 +52,7 @@ app.get("/api/health", (_req, res) => {
 
 app.use("/api/test-ai", testAiRoutes);
 app.use("/api/telegram", telegramWebhookRoutes);
+app.use("/api/linkedin", linkedinOAuthRoutes);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);

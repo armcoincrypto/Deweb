@@ -8,6 +8,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { absoluteImageUrl } from "./dewebamImage.js";
 import { formatCopyText } from "./dewebamContentAi.js";
+import { getLinkedInAccessToken } from "./linkedinOAuth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const UPLOAD_ROOT = path.resolve(__dirname, "../../uploads");
@@ -37,10 +38,10 @@ async function downloadImageBuffer(imageUrl) {
 
 /** LinkedIn — https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/ugc-post-api */
 async function publishLinkedIn(text, imageUrl) {
-  const token = env("LINKEDIN_ACCESS_TOKEN");
+  const token = getLinkedInAccessToken();
   const author = env("LINKEDIN_ORGANIZATION_URN");
   if (!token || !author) {
-    return { ok: false, error: "Missing LINKEDIN_ACCESS_TOKEN or LINKEDIN_ORGANIZATION_URN" };
+    return { ok: false, error: "Missing LinkedIn token (connect via /api/linkedin/connect) or LINKEDIN_ORGANIZATION_URN" };
   }
 
   const body = {
@@ -227,7 +228,7 @@ async function publishBlog(blogPostId) {
 
 export function getPublishConfigStatus() {
   return {
-    linkedin: !!(env("LINKEDIN_ACCESS_TOKEN") && env("LINKEDIN_ORGANIZATION_URN")),
+    linkedin: !!(getLinkedInAccessToken() && env("LINKEDIN_ORGANIZATION_URN")),
     facebook: !!(env("FACEBOOK_PAGE_ID") && env("FACEBOOK_PAGE_ACCESS_TOKEN")),
     instagram: !!(env("INSTAGRAM_BUSINESS_ACCOUNT_ID") && env("FACEBOOK_PAGE_ACCESS_TOKEN")),
     x: !!env("X_BEARER_TOKEN"),
