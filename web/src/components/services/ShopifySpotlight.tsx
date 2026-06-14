@@ -16,9 +16,9 @@ const OFFERS = [
 ] as const;
 
 const PACKAGES = [
-  { name: "Starter Store", price: "$2,000", note: "Landing + catalog up to 25 products" },
-  { name: "Growth Store", price: "$7,500", note: "Custom theme, apps, marketing stack" },
-  { name: "Shopify Plus", price: "$25,000+", note: "Enterprise, multi-store, automation" },
+  { name: "Starter Store", price: "From $500", note: "Landing + catalog up to 25 products" },
+  { name: "Growth Store", price: "From $1000", note: "Custom theme, apps, marketing stack" },
+  { name: "Shopify Plus", price: "From $2500", note: "Enterprise, multi-store, automation" },
 ] as const;
 
 export function ShopifySpotlight() {

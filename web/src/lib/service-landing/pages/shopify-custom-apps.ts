@@ -8,7 +8,7 @@ export const shopifyCustomApps: ServiceLandingPage = {
   subtitle:
     "Extend Shopify with tailored apps that automate workflows, unlock new experiences, and support scale.",
   heroBadge: "Custom Commerce Engineering",
-  priceRange: "$7,000 - $60,000+",
+  priceRange: "From $500",
   intro: [
     "Shopify apps become essential when your business outgrows standard plugin behavior. As catalogs, teams, and channels expand, manual processes and disconnected tools create friction that slows growth. Our Shopify custom app development service builds focused software around your real operations, from inventory synchronization and order routing to personalized customer experiences. Instead of bending processes to fit generic tools, we engineer reliable apps that align with your data model, workflows, and performance expectations.",
     "We design custom apps with long-term maintainability in mind. That means clear boundaries between storefront features, admin workflows, and backend services, plus disciplined authentication and observability from day one. We evaluate when an embedded admin app, a Shopify function extension, or an external service is the right architecture for your use case. This avoids overbuilding while ensuring the solution can handle growth without becoming brittle or expensive to maintain.",

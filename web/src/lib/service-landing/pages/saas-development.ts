@@ -8,7 +8,7 @@ export const saasDevelopment: ServiceLandingPage = {
   subtitle:
     "Build secure, scalable SaaS products with strong architecture, clear UX, and reliable growth foundations.",
   heroBadge: "Product Platform Engineering",
-  priceRange: "$20,000 - $220,000+",
+  priceRange: "From $1000",
   intro: [
     "SaaS products win through consistent customer value, reliable operations, and disciplined product evolution. Our SaaS development service helps teams turn product ideas into production-ready platforms with architecture and delivery practices built for long-term growth. We support early-stage launches and mature platform modernization efforts, ensuring product decisions, engineering execution, and business models remain aligned as complexity increases.",
     "Developing SaaS products requires more than building core features. You need multi-tenant architecture, identity and permission controls, billing integration, usage analytics, and a deployment model that supports frequent iteration without service disruption. We design these foundations deliberately so your team can move quickly while maintaining security, reliability, and maintainability. This prevents expensive re-platforming as customer volume and feature scope expand.",

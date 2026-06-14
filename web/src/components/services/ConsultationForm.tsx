@@ -119,7 +119,7 @@ export function ConsultationForm({ categories = [], className }: ConsultationFor
           <input
             value={budget}
             onChange={(e) => setBudget(e.target.value)}
-            placeholder="$5k – $15k"
+            placeholder="e.g. From $500"
             className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-deweb-cyan/50"
           />
         </label>

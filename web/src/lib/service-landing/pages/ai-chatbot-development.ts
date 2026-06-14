@@ -8,7 +8,7 @@ export const aiChatbotDevelopment: ServiceLandingPage = {
   subtitle:
     "Deploy AI chatbots that resolve customer requests, qualify leads, and reduce support workload.",
   heroBadge: "Conversational AI",
-  priceRange: "$6,000 - $45,000+",
+  priceRange: "From $300",
   intro: [
     "AI chatbots can deliver meaningful business value when they are connected to real workflows, not treated as a novelty widget. Our AI chatbot development service focuses on outcomes such as faster support resolution, improved lead qualification, and higher response consistency across channels. We design bots that understand your domain language, access relevant knowledge sources, and escalate appropriately when human intervention is needed. This creates helpful conversations that build trust instead of frustrating users.",
     "We combine conversation design, retrieval architecture, integration engineering, and governance controls in a single delivery process. That means your bot does more than answer generic questions. It can check order status, suggest relevant products, route prospects to sales teams, and capture structured context for follow-up. By grounding responses in approved data and clear policies, we reduce hallucination risk and keep interactions aligned with your brand voice and operational standards.",

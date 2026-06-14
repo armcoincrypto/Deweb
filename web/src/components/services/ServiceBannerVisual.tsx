@@ -182,7 +182,7 @@ function MarketplaceVisual() {
         <div className="grid grid-cols-3 gap-2 text-center">
           {[
             { v: "248", l: "Bids" },
-            { v: "$12k", l: "Volume" },
+            { v: "$2.5k", l: "Volume" },
             { v: "98%", l: "Success" },
           ].map((s) => (
             <div key={s.l} className="rounded-lg border border-deweb-cyan/20 bg-deweb-cyan/5 py-2">

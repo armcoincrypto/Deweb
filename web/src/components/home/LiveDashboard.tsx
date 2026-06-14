@@ -72,7 +72,7 @@ export function LiveDashboard() {
               Active project
             </p>
             <h3 className="mt-2 text-lg font-bold text-white">Custom AI CRM</h3>
-            <p className="mt-1 text-sm text-white/50">Budget: $5k – $10k</p>
+            <p className="mt-1 text-sm text-white/50">Budget: From $400</p>
             <div className="mt-6">
               <p className="text-xs text-white/40">Live price comparison</p>
               <MiniChart />

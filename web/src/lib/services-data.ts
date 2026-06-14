@@ -21,7 +21,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "Corporate sites, landing pages, and web apps with modern stacks.",
     tech: ["Next.js", "React", "WordPress"],
     timeline: "2–8 weeks",
-    price: "$2k – $25k",
+    price: "From $400",
     overview:
       "We build fast, responsive websites that convert visitors into customers — from simple landing pages to full corporate portals.",
     offering:
@@ -45,7 +45,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "Shopify Plus, custom themes, and conversion-optimized storefronts.",
     tech: ["Shopify", "Stripe", "Headless"],
     timeline: "4–12 weeks",
-    price: "$5k – $50k",
+    price: "From $500",
     overview:
       "Full online stores with product catalogs, secure checkout, inventory management, and conversion optimization.",
     offering:
@@ -69,7 +69,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "AI agents, chatbots, workflows, CRM sync, and intelligent operations.",
     tech: ["OpenAI", "LangChain", "n8n"],
     timeline: "2–6 weeks",
-    price: "$3k – $40k",
+    price: "From $300",
     overview:
       "Intelligent automation that saves hours — AI agents, smart workflows, and CRM integrations tailored to your business.",
     offering:
@@ -93,7 +93,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "Telegram, Discord, and support bots with integrations.",
     tech: ["Node.js", "Python", "APIs"],
     timeline: "1–4 weeks",
-    price: "$1k – $15k",
+    price: "From $300",
     overview:
       "Custom bots for Telegram, Discord, and web chat that handle support, notifications, and user engagement.",
     offering:
@@ -117,7 +117,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "Multi-tenant platforms, dashboards, and subscription billing.",
     tech: ["Next.js", "PostgreSQL", "Auth"],
     timeline: "8–20 weeks",
-    price: "$15k – $120k",
+    price: "From $1000",
     overview:
       "Full SaaS products with user auth, subscription billing, admin dashboards, and scalable architecture.",
     offering:
@@ -141,7 +141,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "iOS, Android, and cross-platform product builds.",
     tech: ["React Native", "Flutter", "Swift"],
     timeline: "6–16 weeks",
-    price: "$10k – $80k",
+    price: "From $1000",
     overview:
       "Native and cross-platform mobile apps for iOS and Android with polished UX and backend integration.",
     offering:
@@ -165,7 +165,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "Product design, design systems, and high-fidelity prototypes.",
     tech: ["Figma", "Framer", "Design tokens"],
     timeline: "2–8 weeks",
-    price: "$2k – $30k",
+    price: "From $400",
     overview:
       "User-centered design that makes products intuitive, beautiful, and conversion-focused.",
     offering:
@@ -189,7 +189,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "Identity, logos, and brand guidelines for digital products.",
     tech: ["Illustrator", "Figma", "Motion"],
     timeline: "2–6 weeks",
-    price: "$1.5k – $20k",
+    price: "From $400",
     overview:
       "Complete brand identity — logo, colors, typography, and guidelines that make your business memorable.",
     offering:
@@ -213,7 +213,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "Technical SEO, content strategy, and growth optimization.",
     tech: ["Analytics", "Core Web Vitals", "Content"],
     timeline: "Ongoing",
-    price: "$500 – $8k/mo",
+    price: "From $400",
     overview:
       "Data-driven SEO that improves rankings, drives organic traffic, and grows your online visibility.",
     offering:
@@ -237,7 +237,7 @@ export const serviceCategories: ServiceCategory[] = [
     desc: "Paid ads, funnels, email, and conversion-focused campaigns.",
     tech: ["Meta Ads", "Google", "Email"],
     timeline: "Ongoing",
-    price: "$1k – $15k/mo",
+    price: "From $600",
     overview:
       "Performance marketing campaigns that drive leads, sales, and measurable ROI across channels.",
     offering:
@@ -286,7 +286,7 @@ export const servicesPageFallback = {
         "Inventory & fulfillment automation",
       ],
       timeline: "2–8 weeks",
-      price: "$2k – $25k",
+      price: "From $500",
       highlight: "Most Requested Service",
       imageAccent: "shopify",
     },
@@ -301,7 +301,7 @@ export const servicesPageFallback = {
         "Multilingual AI assistants",
       ],
       timeline: "2–6 weeks",
-      price: "$3k – $40k",
+      price: "From $300",
       highlight: "Increase Conversions Up To 35%",
       imageAccent: "ai",
     },
@@ -314,7 +314,7 @@ export const servicesPageFallback = {
       desc: "Scalable web apps with modern stacks, APIs, and admin dashboards.",
       tech: ["Next.js", "React", "Node.js"],
       timeline: "4–12 weeks",
-      price: "$5k – $50k",
+      price: "From $400",
     },
     {
       id: "mobile",
@@ -323,7 +323,7 @@ export const servicesPageFallback = {
       desc: "iOS, Android, and cross-platform apps with polished UX.",
       tech: ["React Native", "Flutter", "iOS & Android"],
       timeline: "6–16 weeks",
-      price: "$10k – $80k",
+      price: "From $1000",
     },
     {
       id: "saas",
@@ -332,7 +332,7 @@ export const servicesPageFallback = {
       desc: "Multi-vendor platforms with bidding, escrow, and supplier dashboards.",
       tech: ["Next.js", "PostgreSQL", "Stripe"],
       timeline: "8–20 weeks",
-      price: "$15k – $120k",
+      price: "From $2500",
     },
     {
       id: "bots",
@@ -341,7 +341,7 @@ export const servicesPageFallback = {
       desc: "Community bots, sales automation, and support on messaging platforms.",
       tech: ["Node.js", "Python", "APIs"],
       timeline: "1–4 weeks",
-      price: "$1k – $15k",
+      price: "From $300",
     },
     {
       id: "uiux",
@@ -350,7 +350,7 @@ export const servicesPageFallback = {
       desc: "Product design, design systems, and high-fidelity prototypes.",
       tech: ["Figma", "Framer", "Design tokens"],
       timeline: "2–8 weeks",
-      price: "$2k – $30k",
+      price: "From $400",
     },
     {
       id: "branding",
@@ -359,7 +359,7 @@ export const servicesPageFallback = {
       desc: "Logos, brand guidelines, and visual identity for digital products.",
       tech: ["Illustrator", "Figma", "Motion"],
       timeline: "2–6 weeks",
-      price: "$1.5k – $20k",
+      price: "From $400",
     },
     {
       id: "seo",
@@ -368,7 +368,7 @@ export const servicesPageFallback = {
       desc: "Technical SEO, content strategy, and conversion optimization.",
       tech: ["Analytics", "Core Web Vitals", "Content"],
       timeline: "Ongoing",
-      price: "$500 – $8k/mo",
+      price: "From $400",
     },
     {
       id: "marketing",
@@ -377,7 +377,7 @@ export const servicesPageFallback = {
       desc: "Intelligent workflows, CRM sync, and autonomous business operations.",
       tech: ["OpenAI", "LangChain", "n8n"],
       timeline: "2–6 weeks",
-      price: "$3k – $40k",
+      price: "From $600",
     },
   ],
   stats: [

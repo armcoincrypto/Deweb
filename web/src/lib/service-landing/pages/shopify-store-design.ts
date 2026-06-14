@@ -8,7 +8,7 @@ export const shopifyStoreDesign: ServiceLandingPage = {
   subtitle:
     "Design a Shopify storefront that strengthens brand trust and improves conversion across every device.",
   heroBadge: "UX for Ecommerce",
-  priceRange: "$3,500 - $28,000+",
+  priceRange: "From $500",
   intro: [
     "Great Shopify design is not decoration. It is a revenue system that helps shoppers understand your value quickly, evaluate products confidently, and complete purchases without friction. Our Shopify store design service combines brand storytelling, conversion-focused UX, and implementation-aware interface planning so every page does real commercial work. We design for modern customer behavior, where visitors move between mobile and desktop, compare alternatives quickly, and decide based on clarity, trust, and speed.",
     "We begin by studying your positioning, audience motivations, and buying objections, then translate those insights into a structured storefront experience. Navigation, collection layouts, product detail modules, and content hierarchy are all shaped around decision flow, not visual trends. This ensures the design is memorable while remaining practical for merchandising and campaign execution. Your internal team receives reusable page patterns that make launching promotions and seasonal updates efficient without sacrificing consistency.",

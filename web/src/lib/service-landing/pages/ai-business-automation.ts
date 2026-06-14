@@ -8,7 +8,7 @@ export const aiBusinessAutomation: ServiceLandingPage = {
   subtitle:
     "Automate repetitive operations with AI workflows that improve speed, quality, and decision consistency.",
   heroBadge: "Operational AI",
-  priceRange: "$8,000 - $75,000+",
+  priceRange: "From $600",
   intro: [
     "Most organizations know where inefficiency lives: repetitive approvals, manual data transfer, delayed reporting, and inconsistent decision handling across teams. Our AI business automation service helps replace these bottlenecks with reliable workflows that combine AI reasoning, rule-based control, and system integration. We focus on practical automation opportunities that reduce cycle time, improve output quality, and free your team to spend more effort on high-value work.",
     "Effective automation is not just model selection. It requires process redesign, clear governance, and dependable integration with the tools your teams already use. We map current-state workflows, identify failure points, and build automation paths with human oversight where needed. This balanced approach increases throughput while preserving accountability, compliance, and operational trust across departments.",

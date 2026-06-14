@@ -8,7 +8,7 @@ export const shopifyDevelopment: ServiceLandingPage = {
   subtitle:
     "Build, optimize, and scale a Shopify storefront that converts more visitors into loyal customers.",
   heroBadge: "Ecommerce Engineering",
-  priceRange: "$4,000 - $35,000+",
+  priceRange: "From $500",
   intro: [
     "Shopify gives growing brands an excellent commercial engine, but real growth requires more than installing a theme and adding products. High-performing stores depend on structured information architecture, robust app integrations, fast page rendering, and a purchase flow designed around real customer behavior. Our Shopify development service combines technical execution with ecommerce strategy so your storefront is dependable on launch day and flexible enough to evolve as your catalog, channels, and operations become more complex.",
     "We start by understanding your offer, average order value goals, margin constraints, fulfillment model, and internal team workflows. That context informs every implementation choice, from variant modeling and collection rules to automation triggers and analytics event design. Instead of pushing one-size-fits-all templates, we build a maintainable storefront foundation with clear code standards, reusable content blocks, and practical documentation. Your marketing team can publish campaigns quickly while your operations team gains confidence that promotions, taxes, and shipping logic work exactly as expected.",

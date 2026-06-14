@@ -124,6 +124,24 @@ export const SERVICE_OFFERS: ServiceOffer[] = [
     ],
     benefits: ["Better ad performance", "More signups and leads", "Clear campaign message", "Quick launch turnaround"],
   },
+  {
+    slug: "marketplace-development",
+    title: "Marketplace Development",
+    startingPrice: "From $2500",
+    timeline: "6–12 weeks",
+    whatItIs: "A multi-vendor marketplace with vendor onboarding, payments, dashboards, and secure transactions.",
+    whoFor: "Businesses building a platform to connect buyers and sellers or service providers.",
+    problem: "Without the right marketplace structure, platforms become hard to scale and trust breaks down early.",
+    delivers: [
+      "Vendor onboarding flows",
+      "Payments & escrow setup",
+      "User roles & dashboards",
+      "Reviews & messaging",
+      "Admin panel",
+      "Launch-ready architecture",
+    ],
+    benefits: ["Monetize transactions", "Scalable platform foundation", "Better vendor management", "Secure buyer experience"],
+  },
 ];
 
 export function getServiceOffer(slug: string): ServiceOffer | undefined {
@@ -252,7 +270,7 @@ export const dewebProcess = [
 export const siteFaqs = [
   {
     question: "How much does a website cost?",
-    answer: "Business websites start from $400, landing pages from $200, Shopify stores from $500, AI chatbots from $300, automation systems from $600, and SaaS/web apps from $1000. Final pricing depends on features, design, integrations, and timeline.",
+    answer: "Business websites start from $400, landing pages from $200, Shopify stores from $500, AI chatbots from $300, automation systems from $600, SaaS/web apps from $1000, and marketplaces from $2500. Final pricing depends on features, design, integrations, and timeline.",
   },
   {
     question: "How long does a Shopify store take?",
@@ -295,6 +313,7 @@ export const contactServiceOptions = [
   { value: "automation", label: "Automation System" },
   { value: "saas", label: "SaaS / Web App" },
   { value: "landing", label: "Landing Page" },
+  { value: "marketplace", label: "Marketplace" },
   { value: "other", label: "Other" },
 ];
 

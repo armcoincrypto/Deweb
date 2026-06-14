@@ -8,7 +8,7 @@ export const marketplaceDevelopment: ServiceLandingPage = {
   subtitle:
     "Build scalable multi-vendor marketplaces with robust transaction flows and reliable platform operations.",
   heroBadge: "Multi-Vendor Platforms",
-  priceRange: "$18,000 - $180,000+",
+  priceRange: "From $2500",
   intro: [
     "Marketplace businesses succeed when they balance three competing needs: smooth buyer experience, efficient seller operations, and trustworthy platform governance. Our marketplace development service helps organizations build and scale platforms that support this balance from day one. We design and engineer systems for vendor onboarding, catalog management, discovery, checkout, payouts, and dispute handling while keeping the user journey intuitive and operational complexity manageable.",
     "Unlike single-merchant ecommerce, marketplaces require careful coordination of identity, permissions, incentives, and financial workflows across multiple participant types. We architect platforms with explicit role boundaries, auditable transaction flows, and modular components that allow controlled evolution as supply and demand dynamics change. This foundation helps you launch faster without sacrificing the reliability needed for long-term marketplace credibility.",

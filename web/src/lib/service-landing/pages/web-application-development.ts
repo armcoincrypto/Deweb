@@ -8,7 +8,7 @@ export const webApplicationDevelopment: ServiceLandingPage = {
   subtitle:
     "Design and build secure, scalable web applications tailored to your workflows and growth goals.",
   heroBadge: "Custom Product Engineering",
-  priceRange: "$10,000 - $120,000+",
+  priceRange: "From $400",
   intro: [
     "Custom web applications become strategic assets when they are designed around real business workflows and long-term product goals. Our web application development service helps organizations move beyond fragile spreadsheets, disconnected tools, and off-the-shelf limitations by building software that fits how teams and customers actually work. We combine product strategy, UX, engineering, and delivery discipline to create applications that are reliable, maintainable, and ready to scale with your operations.",
     "Every engagement starts with outcome clarity. We align stakeholders on user roles, process bottlenecks, integration dependencies, and measurable success criteria before writing production code. This planning phase reduces uncertainty and ensures architecture choices support both immediate delivery and future expansion. Whether you need an internal operations platform, a customer-facing portal, or a workflow-heavy B2B application, we build with practical governance and operational realities in mind.",
