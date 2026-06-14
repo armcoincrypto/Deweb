@@ -40,15 +40,15 @@ export function PinnedServiceExperience() {
       slideEls.forEach((el, i) => {
         gsap.set(el, {
           autoAlpha: i === 0 ? 1 : 0,
-          z: i === 0 ? 0 : -280,
-          rotateX: i === 0 ? 0 : 14,
-          scale: i === 0 ? 1 : 0.84,
-          transformOrigin: "50% 50%",
+          z: i === 0 ? 0 : -160,
+          rotateX: i === 0 ? 0 : 8,
+          scale: i === 0 ? 1 : 0.9,
+          transformOrigin: "50% 55%",
           pointerEvents: i === 0 ? "auto" : "none",
         });
       });
 
-      const scrollDistance = (total - 1) * window.innerHeight;
+      const scrollDistance = (total - 1) * window.innerHeight * 0.68;
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -56,9 +56,15 @@ export function PinnedServiceExperience() {
           start: "top top",
           end: `+=${scrollDistance}`,
           pin: stageRef.current,
-          scrub: 0.85,
+          scrub: 0.35,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          snap: {
+            snapTo: 1 / (total - 1),
+            duration: { min: 0.12, max: 0.28 },
+            delay: 0.02,
+            ease: "power1.inOut",
+          },
           onUpdate: (self) => {
             const progress = self.progress;
             const idx = Math.min(total - 1, Math.round(progress * (total - 1)));
@@ -76,11 +82,11 @@ export function PinnedServiceExperience() {
           prev,
           {
             autoAlpha: 0,
-            z: 180,
-            rotateX: -8,
-            scale: 0.9,
-            duration: 0.38,
-            ease: "power2.in",
+            z: 100,
+            rotateX: -5,
+            scale: 0.94,
+            duration: 0.22,
+            ease: "power1.in",
             pointerEvents: "none",
           },
           at
@@ -90,9 +96,9 @@ export function PinnedServiceExperience() {
           curr,
           {
             autoAlpha: 0,
-            z: -280,
-            rotateX: 14,
-            scale: 0.84,
+            z: -160,
+            rotateX: 8,
+            scale: 0.9,
             pointerEvents: "none",
           },
           {
@@ -100,11 +106,11 @@ export function PinnedServiceExperience() {
             z: 0,
             rotateX: 0,
             scale: 1,
-            duration: 0.48,
+            duration: 0.28,
             ease: "power2.out",
             pointerEvents: "auto",
           },
-          at + 0.08
+          at + 0.04
         );
       }
     }, containerRef);
@@ -142,7 +148,7 @@ export function PinnedServiceExperience() {
       ref={containerRef}
       id="services"
       className="pinned-experience"
-      style={{ height: `${total * 100}vh` }}
+      style={{ height: `${100 + (total - 1) * 68}vh` }}
       aria-label="DeWeb services"
     >
       <div ref={stageRef} className="pinned-stage perspective-3d">
@@ -167,7 +173,7 @@ export function PinnedServiceExperience() {
             <div
               key={slide.id}
               className={cn(
-                "flex items-center justify-end gap-2 transition-all duration-300",
+                "flex items-center justify-end gap-2 transition-all duration-200",
                 activeIndex === i ? "opacity-100" : "opacity-35"
               )}
             >
@@ -180,7 +186,7 @@ export function PinnedServiceExperience() {
               </span>
               <span
                 className={cn(
-                  "h-2 w-2 rounded-full transition-all duration-300",
+                  "h-2 w-2 rounded-full transition-all duration-200",
                   activeIndex === i
                     ? "scale-125 bg-deweb-cyan shadow-[0_0_12px_rgba(0,242,255,0.8)]"
                     : "bg-white/30"
