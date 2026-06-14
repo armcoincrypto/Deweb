@@ -9,6 +9,7 @@
     "lint": "next lint",
     "favicons": "node scripts/generate-favicons.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
+    "lighthouse:audit": "node scripts/lighthouse-audit.mjs",
     "blog:covers": "node scripts/generate-blog-covers.mjs"
   },
   "dependencies": {

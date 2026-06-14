@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { dewebApi } from "@/lib/api";
 import { getBlogAttribution } from "@/lib/blog/tracking";
+import { trackHomeCta } from "@/lib/cta-tracking";
 
 type ContactFormProps = {
   className?: string;
@@ -33,6 +34,11 @@ export function ContactForm({ className, compact = false }: ContactFormProps) {
       });
       setStatus("success");
       setFeedback(res.message || t("success"));
+      trackHomeCta("contact_click", {
+        placement: "contact_form",
+        label: "form_submit",
+        href: "#contact",
+      });
       setName("");
       setEmail("");
       setPhone("");

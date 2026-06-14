@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import { trackHomeCta, type CtaEventType } from "@/lib/cta-tracking";
 
 type GlowButtonProps = {
   children: React.ReactNode;
@@ -10,6 +11,11 @@ type GlowButtonProps = {
   variant?: "primary" | "secondary" | "ghost";
   className?: string;
   onClick?: () => void;
+  trackCta?: {
+    eventType: CtaEventType;
+    placement: string;
+    label: string;
+  };
 };
 
 export function GlowButton({
@@ -18,6 +24,7 @@ export function GlowButton({
   variant = "primary",
   className,
   onClick,
+  trackCta,
 }: GlowButtonProps) {
   const reduceMotion = useReducedMotion();
 
@@ -39,6 +46,15 @@ export function GlowButton({
     ? {}
     : { whileHover: { scale: 1.02 }, whileTap: { scale: 0.98 } };
 
+  function handleTrack() {
+    if (!trackCta || !href) return;
+    trackHomeCta(trackCta.eventType, {
+      placement: trackCta.placement,
+      label: trackCta.label,
+      href,
+    });
+  }
+
   const inner = (
     <motion.span className={classes} {...hoverProps}>
       {children}
@@ -47,14 +63,14 @@ export function GlowButton({
 
   if (href) {
     return (
-      <Link href={href} className="inline-block" onClick={onClick}>
+      <Link href={href} className="inline-block" onClick={() => { handleTrack(); onClick?.(); }}>
         {inner}
       </Link>
     );
   }
 
   return (
-    <button type="button" onClick={onClick} className="inline-block border-0 bg-transparent p-0">
+    <button type="button" onClick={() => { handleTrack(); onClick?.(); }} className="inline-block border-0 bg-transparent p-0">
       {inner}
     </button>
   );

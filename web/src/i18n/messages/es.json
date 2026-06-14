@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "DEWEB — Suppliers Compete. Customers Win.",
-    "description": "Post IT projects, receive competitive bids from verified suppliers, and launch with escrow-backed delivery."
+    "title": "DeWeb | Sitios web, tiendas Shopify y sistemas de IA para hacer crecer tu negocio",
+    "description": "DeWeb crea sitios web modernos, tiendas Shopify de alta conversión, chatbots de IA y sistemas de automatización para empresas que quieren más clientes y mejores ventas."
   },
   "nav": {
     "home": "Inicio",
@@ -20,18 +20,18 @@
     "admin": "Admin"
   },
   "home": {
-    "badge": "IT marketplace · competitive bidding",
-    "seoH1": "Mercado IT, Desarrollo Shopify y Soluciones de IA",
-    "taglineAria": "Suppliers Compete. You Win.",
-    "title": "Suppliers Compete.",
-    "titleAccent": "You Win.",
-    "subtitle": "Clients post IT projects and receive multiple competitive offers from verified suppliers. Compare pricing, timelines, and portfolios — then launch with confidence.",
-    "ctaPrimary": "Post a Project & Get Bids",
-    "ctaSecondary": "Explore Marketplace",
-    "statBids": "avg bids / project",
-    "statSuccess": "success rate",
-    "statTag": "AI automation · escrow · DEWEB coins",
-    "trusted": "Trusted by teams building at scale",
+    "badge": "Sitios web · Shopify · IA · Automatización",
+    "seoH1": "Sitios web, tiendas Shopify y sistemas de IA que hacen crecer tu negocio",
+    "taglineAria": "Sitios web, tiendas Shopify, chatbots de IA y automatización para el crecimiento empresarial",
+    "title": "Sitios web, tiendas Shopify y sistemas de IA que hacen crecer tu negocio",
+    "titleAccent": "Diseñado para el crecimiento real de tu negocio.",
+    "subtitle": "DeWeb crea sitios web modernos, tiendas Shopify de alta conversión, chatbots de IA y sistemas de automatización para empresas que quieren más clientes, mejores ventas y crecimiento más rápido.",
+    "ctaPrimary": "Iniciar tu proyecto",
+    "ctaSecondary": "Ver nuestros servicios",
+    "trusted": "Construido con tecnología en la que confían empresas en crecimiento",
+    "testimonialsKicker": "Historias de clientes",
+    "testimonialsTitle": "Lo que dicen nuestros clientes",
+    "testimonialsSubtitle": "Resultados reales en tiendas Shopify, chatbots de IA, sitios web y proyectos de automatización.",
     "howKicker": "How it works",
     "howTitle": "From brief to delivery in three steps",
     "howSubtitle": "Supplier bidding, transparent pricing, and escrow-backed payments — built for IT procurement at scale.",

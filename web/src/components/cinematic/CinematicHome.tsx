@@ -3,6 +3,7 @@
 import { CinematicHero } from "./CinematicHero";
 import { ServiceStorySection } from "./ServiceStorySection";
 import { ServiceCategories } from "@/components/home/ServiceCategories";
+import { SocialProof } from "@/components/home/SocialProof";
 import { WhyChoose } from "@/components/home/WhyChoose";
 import { HomePortfolio } from "@/components/home/HomePortfolio";
 import { HomeContact } from "@/components/home/HomeContact";
@@ -16,6 +17,7 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
     <div className="cinematic-home">
       <CinematicHero />
       <ServiceCategories />
+      <SocialProof />
 
       <ServiceStorySection
         id="shopify"

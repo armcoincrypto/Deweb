@@ -48,10 +48,28 @@ export function CinematicHero() {
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <GlowButton href="#contact" variant="primary" className="!px-8 !py-4 !text-base">
+            <GlowButton
+              href="#contact"
+              variant="primary"
+              className="!px-8 !py-4 !text-base"
+              trackCta={{
+                eventType: "contact_click",
+                placement: "hero",
+                label: t("ctaPrimary"),
+              }}
+            >
               {t("ctaPrimary")}
             </GlowButton>
-            <GlowButton href="/services" variant="secondary" className="!px-8 !py-4 !text-base">
+            <GlowButton
+              href="/services"
+              variant="secondary"
+              className="!px-8 !py-4 !text-base"
+              trackCta={{
+                eventType: "cta_click",
+                placement: "hero",
+                label: t("ctaSecondary"),
+              }}
+            >
               {t("ctaSecondary")}
             </GlowButton>
           </div>
