@@ -67,7 +67,7 @@ export function BlogArticleView({ article, breadcrumbs, locale }: BlogArticleVie
     <>
       {/* Hero */}
       <header className="border-b border-white/[0.06]">
-        <div className="container-narrow px-4 pb-10 pt-28 sm:px-6 lg:px-8 lg:pt-32">
+        <div className="container-narrow px-4 pb-10 pt-[var(--navbar-offset)] sm:px-6 lg:px-8 lg:pt-32">
           <nav aria-label="Breadcrumb" className="mb-4 text-sm text-white/45">
             <ol className="flex flex-wrap items-center gap-2">
               {breadcrumbs.map((crumb, i) => (

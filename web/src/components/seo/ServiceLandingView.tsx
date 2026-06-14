@@ -27,7 +27,7 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
       <section className="relative overflow-hidden border-b border-white/[0.06]">
         <HeroBackground />
         <div
-          className="perspective-3d container-narrow relative z-10 px-4 pb-16 pt-28 sm:px-6 lg:px-8 lg:pb-20 lg:pt-32"
+          className="perspective-3d container-narrow relative z-10 px-4 pb-16 pt-[var(--navbar-offset)] sm:px-6 lg:px-8 lg:pb-20 lg:pt-32"
           style={{ perspective: PERSPECTIVE }}
         >
           <motion.div

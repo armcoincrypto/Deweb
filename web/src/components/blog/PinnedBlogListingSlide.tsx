@@ -32,8 +32,8 @@ export const PinnedBlogListingSlide = forwardRef<HTMLDivElement, Props>(
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_35%,rgba(0,242,255,0.07),transparent_65%)]" />
 
         {slide.kind === "pair" && (
-          <div className="relative z-10 flex flex-1 flex-col justify-center px-4 pb-10 pt-44 sm:px-6 lg:px-10 lg:pb-12 lg:pt-48">
-            <div className="grid h-[calc(100vh-13rem)] max-h-[720px] grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-10">
+          <div className="relative z-10 flex flex-1 flex-col justify-center px-4 pb-10 pt-[var(--navbar-offset)] sm:px-6 lg:px-10 lg:pb-12 lg:pt-48">
+            <div className="grid min-h-0 auto-rows-fr grid-cols-1 gap-6 lg:h-[calc(100vh-13rem)] lg:max-h-[720px] lg:grid-cols-2 lg:gap-10">
               {slide.articles.map((article) => (
                 <BlogListingCard key={article.slug} article={article} large />
               ))}
@@ -52,7 +52,7 @@ export const PinnedBlogListingSlide = forwardRef<HTMLDivElement, Props>(
         )}
 
         {slide.kind === "empty" && (
-          <div className="relative z-10 flex flex-1 items-center justify-center px-4 pt-44">
+          <div className="relative z-10 flex flex-1 items-center justify-center px-4 pt-[var(--navbar-offset)] lg:pt-48">
             <GlassCard className="max-w-lg p-12 text-center">
               <p className="text-white/60">No articles found. Try a different search or category.</p>
             </GlassCard>

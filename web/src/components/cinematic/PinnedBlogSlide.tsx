@@ -28,7 +28,7 @@ export const PinnedBlogSlide = forwardRef<HTMLDivElement, Props>(
         className={cn(
           "pinned-slide preserve-3d",
           stacked
-            ? "relative min-h-screen w-full py-24"
+            ? "relative min-h-screen w-full py-20 pt-[var(--navbar-offset)] sm:py-24"
             : "absolute inset-0 flex items-center pt-24 pb-16"
         )}
       >

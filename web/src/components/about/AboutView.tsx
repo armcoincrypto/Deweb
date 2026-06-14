@@ -124,7 +124,7 @@ export function AboutView() {
   return (
     <div className="pb-24">
       {/* 1. Hero */}
-      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-32">
+      <section className="relative overflow-hidden pb-20 pt-[var(--navbar-offset)] lg:pb-20 lg:pt-32">
         <div className="pointer-events-none absolute inset-0 bg-hero-mesh" />
         <div className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-deweb-cyan/[0.06] blur-3xl" />
         <div className="container-narrow relative px-4 text-center sm:px-6 lg:px-8">

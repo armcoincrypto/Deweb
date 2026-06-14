@@ -55,7 +55,7 @@ export function CookieConsent() {
     <div
       role="dialog"
       aria-label="Cookie consent"
-      className="fixed bottom-0 left-0 right-0 z-[90] border-t border-deweb-cyan/25 bg-[#05070a]/98 p-5 shadow-2xl backdrop-blur-md sm:p-6"
+      className="fixed bottom-0 left-0 right-0 z-[90] border-t border-deweb-cyan/25 bg-[#05070a]/98 p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-2xl backdrop-blur-md sm:p-6"
     >
       <div className="container-narrow mx-auto max-w-4xl">
         <h3 className="text-lg font-bold text-deweb-cyan">We value your privacy</h3>

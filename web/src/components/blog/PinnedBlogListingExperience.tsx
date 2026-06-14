@@ -113,7 +113,7 @@ export function PinnedBlogListingExperience({
       aria-label="Blog articles"
     >
       <div ref={stageRef} className="pinned-stage perspective-3d">
-        <div className="absolute left-0 right-0 top-[4.5rem] z-40 sm:top-20">{filters}</div>
+        <div className="absolute left-0 right-0 top-[var(--navbar-offset)] z-40 lg:top-20">{filters}</div>
 
         {slides.map((slide, i) => (
           <PinnedBlogListingSlide

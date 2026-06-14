@@ -7,7 +7,7 @@ export function ParticlesBackground() {
   const reduceMotion = useReducedMotion();
   const particles = useMemo(
     () =>
-      Array.from({ length: 16 }, (_, i) => ({
+      Array.from({ length: 10 }, (_, i) => ({
         id: i,
         x: (i * 23 + 7) % 100,
         y: (i * 31 + 11) % 100,
@@ -20,12 +20,12 @@ export function ParticlesBackground() {
 
   return (
     <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-hero-mesh opacity-80" />
+      <div className="absolute inset-0 bg-hero-mesh opacity-60 md:opacity-80" />
       {!reduceMotion &&
         particles.map((p) => (
           <motion.div
             key={p.id}
-            className="absolute hidden rounded-full bg-deweb-cyan/25 sm:block"
+            className="absolute hidden rounded-full bg-deweb-cyan/20 md:block"
             style={{
               left: `${p.x}%`,
               top: `${p.y}%`,

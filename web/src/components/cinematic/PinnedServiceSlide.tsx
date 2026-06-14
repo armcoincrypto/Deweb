@@ -63,7 +63,10 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
         className={cn(
           "pinned-slide preserve-3d",
           stacked
-            ? "relative min-h-screen w-full"
+            ? cn(
+                "relative flex w-full flex-col justify-center pb-14 pt-[var(--navbar-offset)] sm:pb-16",
+                isHero ? "pinned-slide--hero" : "pinned-slide--stacked-service py-16 sm:py-20"
+              )
             : "absolute inset-0 flex items-center pt-24 pb-12",
           !stacked && !active && index > 0 && "pointer-events-none"
         )}
@@ -71,11 +74,13 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
         aria-hidden={!stacked && !active && index > 0 ? true : undefined}
       >
         {Scene && (
-          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 overflow-hidden" data-parallax-scene>
             <div
               className={cn(
                 "absolute inset-0",
-                isHero ? "opacity-75 sm:opacity-90" : "opacity-50 sm:opacity-65"
+                isHero
+                  ? "opacity-45 sm:opacity-60 md:opacity-75 lg:opacity-90"
+                  : "opacity-35 sm:opacity-50 md:opacity-65"
               )}
             >
               {slide.sceneKey === "ecosystem" ? (
@@ -88,30 +93,33 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
               className="absolute inset-0"
               style={{
                 background: isHero
-                  ? "linear-gradient(180deg, rgba(5,7,10,0.25) 0%, rgba(5,7,10,0.7) 55%, rgba(5,7,10,0.95) 100%)"
-                  : `radial-gradient(ellipse at 70% 40%, ${slide.accent}18, transparent 55%), linear-gradient(180deg, rgba(5,7,10,0.55) 0%, rgba(5,7,10,0.92) 100%)`,
+                  ? "linear-gradient(180deg, rgba(5,7,10,0.45) 0%, rgba(5,7,10,0.78) 55%, rgba(5,7,10,0.96) 100%)"
+                  : `radial-gradient(ellipse at 70% 40%, ${slide.accent}18, transparent 55%), linear-gradient(180deg, rgba(5,7,10,0.65) 0%, rgba(5,7,10,0.94) 100%)`,
               }}
             />
           </div>
         )}
 
-        <div className="container-narrow relative z-10 w-full px-4 sm:px-6 lg:px-8">
+        <div
+          data-mobile-reveal
+          className="mobile-reveal-target container-narrow relative z-10 w-full px-4 sm:px-6 lg:px-8"
+        >
           {isHero ? (
             <div className="mx-auto max-w-4xl text-center">
-              <span className="inline-flex rounded-full border border-deweb-cyan/25 bg-deweb-cyan/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-deweb-cyan">
+              <span className="inline-flex rounded-full border border-deweb-cyan/25 bg-deweb-cyan/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-deweb-cyan sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-[0.2em]">
                 {tHome("badge")}
               </span>
-              <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="mt-5 text-[1.85rem] font-bold leading-[1.1] tracking-tight sm:mt-6 sm:text-4xl md:text-5xl lg:text-7xl">
                 <span className="text-gradient-cyan">{tHome("seoH1")}</span>
               </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
+              <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/80 sm:mt-6 sm:text-base md:text-lg lg:text-xl">
                 {tHome("subtitle")}
               </p>
-              <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4">
                 <GlowButton
                   href="#contact"
                   variant="primary"
-                  className="!px-8 !py-4 !text-base"
+                  className="w-full !px-6 !py-3.5 !text-sm sm:w-auto sm:!px-8 sm:!py-4 sm:!text-base"
                   trackCta={{
                     eventType: "contact_click",
                     placement: "hero",
@@ -123,7 +131,7 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
                 <GlowButton
                   href="#services"
                   variant="secondary"
-                  className="!px-8 !py-4 !text-base"
+                  className="w-full !px-6 !py-3.5 !text-sm sm:w-auto sm:!px-8 sm:!py-4 sm:!text-base"
                   trackCta={{
                     eventType: "cta_click",
                     placement: "hero",
@@ -246,7 +254,7 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
                 </div>
               </div>
 
-              <div className="preserve-3d relative min-h-[300px] sm:min-h-[360px] lg:min-h-[480px]">
+              <div className="preserve-3d relative min-h-[220px] sm:min-h-[300px] md:min-h-[360px] lg:min-h-[480px]">
                 <div
                   className="absolute -inset-4 rounded-3xl opacity-60 blur-2xl"
                   style={{ background: slide.banner.glow || `${slide.accent}33` }}
@@ -269,7 +277,7 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
         </div>
 
         {isHero && (
-          <div className="pointer-events-none absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-center">
+          <div className="pointer-events-none absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 text-center sm:bottom-8 sm:block">
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/35">
               Scroll to explore solutions
             </p>

@@ -8,10 +8,18 @@
     --deweb-bg: #05070a;
     --deweb-glass: rgba(12, 18, 28, 0.65);
     --deweb-border: rgba(0, 242, 255, 0.18);
+    --navbar-safe-top: env(safe-area-inset-top, 0px);
+    --navbar-bar-height: 3.25rem;
+    --navbar-outer-gap: 0.75rem;
+    --navbar-offset: calc(
+      var(--navbar-safe-top) + var(--navbar-outer-gap) + var(--navbar-bar-height) + 0.5rem
+    );
   }
 
   html {
     scroll-behavior: auto;
+    scroll-padding-top: var(--navbar-offset);
+    overflow-x: hidden;
   }
 
   html.lenis,
@@ -93,7 +101,7 @@
   }
 
   .section-padding {
-    @apply px-4 py-24 sm:px-6 lg:px-8 lg:py-32;
+    @apply px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32;
   }
 
   .container-narrow {
@@ -163,6 +171,32 @@
 
   .pinned-experience-fallback .pinned-slide + .pinned-slide {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .pinned-slide--hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .pinned-slide--stacked-service {
+    min-height: auto;
+  }
+
+  @media (max-width: 1023px) {
+    .cinematic-section {
+      transform-style: preserve-3d;
+    }
+
+    .mobile-reveal-target {
+      transform-style: preserve-3d;
+      will-change: transform, opacity;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --navbar-offset: 7rem;
+    }
   }
 
   .blog-card {

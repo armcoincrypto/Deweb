@@ -5,9 +5,17 @@ import { useReducedMotion } from "framer-motion";
 import { gsap, registerGsap } from "@/lib/gsap-client";
 import { pinnedContainerHeight } from "@/lib/pinned-scroll-config";
 import { setupPinnedTimeline } from "@/lib/pinned-scroll-timeline";
+import { setupMobileStackedReveal } from "@/lib/mobile-scroll-reveal";
 import { pinnedHomeSlides } from "@/lib/home-pinned-services-data";
 import { PinnedServiceSlide } from "./PinnedServiceSlide";
 import { cn } from "@/lib/utils";
+
+function shouldUsePin(reduceMotion: boolean | null) {
+  if (typeof window === "undefined") return false;
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isMobile = window.matchMedia("(max-width: 1023px)").matches;
+  return !prefersReduced && !isMobile && !reduceMotion;
+}
 
 export function PinnedServiceExperience() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,10 +30,19 @@ export function PinnedServiceExperience() {
   const total = slides.length;
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isMobile = window.matchMedia("(max-width: 1023px)").matches;
-    setUsePin(!prefersReduced && !isMobile && !reduceMotion);
+    const update = () => setUsePin(shouldUsePin(reduceMotion));
+    update();
     setReady(true);
+
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const onMotionChange = () => update();
+    mq.addEventListener("change", onMotionChange);
+    window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", onMotionChange);
+
+    return () => {
+      mq.removeEventListener("change", onMotionChange);
+      window.matchMedia("(prefers-reduced-motion: reduce)").removeEventListener("change", onMotionChange);
+    };
   }, [reduceMotion]);
 
   useEffect(() => {
@@ -49,6 +66,19 @@ export function PinnedServiceExperience() {
     return () => ctx.revert();
   }, [ready, usePin, total]);
 
+  useEffect(() => {
+    if (!ready || usePin || !containerRef.current) return;
+
+    registerGsap();
+    slideRefs.current = slideRefs.current.slice(0, total);
+
+    const slideEls = slideRefs.current.filter(Boolean) as HTMLDivElement[];
+    if (slideEls.length !== total) return;
+
+    const ctx = setupMobileStackedReveal(slideEls);
+    return () => ctx.revert();
+  }, [ready, usePin, total]);
+
   if (!ready) {
     return (
       <section id="services" className="min-h-screen">
@@ -59,10 +89,13 @@ export function PinnedServiceExperience() {
 
   if (!usePin) {
     return (
-      <section id="services" className="pinned-experience-fallback">
+      <section id="services" ref={containerRef} className="pinned-experience-fallback">
         {slides.map((slide, i) => (
           <PinnedServiceSlide
             key={slide.id}
+            ref={(el) => {
+              slideRefs.current[i] = el;
+            }}
             slide={slide}
             index={i}
             total={total}

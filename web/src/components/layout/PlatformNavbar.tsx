@@ -3,7 +3,7 @@
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { BrandLogo } from "@/components/layout/BrandLogo";
@@ -48,6 +48,15 @@ export function PlatformNavbar() {
 
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 40));
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
+
   const links = [
     { href: "/", label: t("home") },
     { href: "/services", label: t("services") },
@@ -59,14 +68,15 @@ export function PlatformNavbar() {
 
   return (
     <motion.header
+      id="site-navbar"
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8"
+      className="fixed left-0 right-0 top-0 z-50 px-3 pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-6 lg:px-8"
     >
       <div
         className={cn(
-          "container-narrow mx-auto flex items-center justify-between gap-4 rounded-2xl border px-4 py-3 transition-all duration-500 sm:px-6",
+          "container-narrow mx-auto flex items-center justify-between gap-3 rounded-2xl border px-3 py-2.5 transition-all duration-500 sm:gap-4 sm:px-6 sm:py-3",
           scrolled
             ? "border-white/[0.08] bg-deweb-bg/70 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-2xl"
             : "border-white/[0.04] bg-white/[0.02] backdrop-blur-xl"
@@ -77,9 +87,9 @@ export function PlatformNavbar() {
             : "0 0 0 1px rgba(255,255,255,0.03) inset",
         }}
       >
-        <Link href="/" className="group flex shrink-0 items-center gap-2.5">
-          <BrandLogo size={36} priority className="transition-transform group-hover:scale-105" />
-          <span className="text-lg font-bold tracking-tight text-white transition-colors group-hover:text-deweb-cyan sm:text-xl">
+        <Link href="/" className="group flex shrink-0 items-center gap-2 sm:gap-2.5">
+          <BrandLogo size={32} priority className="transition-transform group-hover:scale-105 sm:h-9 sm:w-9" />
+          <span className="text-base font-bold tracking-tight text-white transition-colors group-hover:text-deweb-cyan sm:text-lg lg:text-xl">
             DEWEB
           </span>
         </Link>
@@ -143,7 +153,7 @@ export function PlatformNavbar() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 transition-colors hover:border-deweb-cyan/30 hover:bg-white/5 md:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 text-lg transition-colors hover:border-deweb-cyan/30 hover:bg-white/5 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
           aria-expanded={mobileOpen}
@@ -156,7 +166,7 @@ export function PlatformNavbar() {
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="container-narrow mx-auto mt-2 rounded-2xl border border-white/10 bg-deweb-bg/95 p-4 backdrop-blur-2xl md:hidden"
+          className="container-narrow mx-auto mt-2 max-h-[calc(100dvh-var(--navbar-offset)-1rem)] overflow-y-auto rounded-2xl border border-white/10 bg-deweb-bg/95 p-4 backdrop-blur-2xl md:hidden"
         >
           {links.map((link) => (
             <Link
