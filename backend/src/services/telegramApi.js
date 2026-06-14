@@ -29,7 +29,16 @@ export async function getMe() {
 }
 
 export async function deleteWebhook() {
-  return callTelegram("deleteWebhook", { drop_pending_updates: false });
+  return callTelegram("deleteWebhook", { drop_pending_updates: true });
+}
+
+export async function setWebhook(url, secretToken) {
+  return callTelegram("setWebhook", {
+    url,
+    secret_token: secretToken || undefined,
+    allowed_updates: ["message", "callback_query"],
+    drop_pending_updates: true,
+  });
 }
 
 export async function getUpdates(offset, timeout = 30) {
