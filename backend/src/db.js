@@ -483,6 +483,39 @@ db.exec(`
 
   CREATE INDEX IF NOT EXISTS idx_blog_translations_post ON blog_post_translations(source_post_id);
   CREATE INDEX IF NOT EXISTS idx_blog_translations_locale ON blog_post_translations(locale);
+
+  CREATE TABLE IF NOT EXISTS social_posts (
+    id TEXT PRIMARY KEY,
+    platform TEXT NOT NULL,
+    topic TEXT NOT NULL,
+    title TEXT,
+    content TEXT NOT NULL,
+    image_prompt TEXT,
+    image_url TEXT,
+    status TEXT NOT NULL DEFAULT 'pending',
+    blog_post_id TEXT,
+    telegram_user_id TEXT,
+    telegram_chat_id TEXT,
+    error_message TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    published_at TEXT,
+    FOREIGN KEY (blog_post_id) REFERENCES blog_posts(id) ON DELETE SET NULL
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_social_posts_status ON social_posts(status);
+  CREATE INDEX IF NOT EXISTS idx_social_posts_platform ON social_posts(platform);
+  CREATE INDEX IF NOT EXISTS idx_social_posts_created ON social_posts(created_at);
+
+  CREATE TABLE IF NOT EXISTS telegram_bot_sessions (
+    telegram_user_id TEXT PRIMARY KEY,
+    state TEXT NOT NULL DEFAULT 'idle',
+    platform TEXT,
+    topic TEXT,
+    current_post_id TEXT,
+    session_data TEXT,
+    updated_at TEXT NOT NULL
+  );
 `);
 
 const blogQueueColumns = [["blog_topic_queue", "topic_meta", "TEXT"]];

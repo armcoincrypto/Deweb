@@ -28,6 +28,7 @@ import adminBlogAnalyticsRoutes from "./routes/adminBlogAnalytics.js";
 import adminBlogTopicQueueRoutes from "./routes/adminBlogTopicQueue.js";
 import adminBlogSocialRoutes from "./routes/adminBlogSocial.js";
 import testAiRoutes from "./routes/testAi.js";
+import { startDeWebamBot } from "./services/dewebamBot.js";
 
 runSeed();
 
@@ -79,4 +80,7 @@ app.use((err, _req, res, _next) => {
 
 app.listen(port, () => {
   console.log(`DEWEB API running on http://localhost:${port}`);
+  startDeWebamBot().catch((err) => {
+    console.error("[dewebam] Bot startup error:", err.message);
+  });
 });

@@ -14,3 +14,5 @@ if (fs.existsSync(envPath)) {
 }
 
 console.log("OPENAI_API_KEY exists:", !!process.env.OPENAI_API_KEY?.trim());
+console.log("TELEGRAM_BOT configured:", !!process.env.TELEGRAM_BOT_TOKEN?.trim());
+console.log("TELEGRAM_ADMIN configured:", !!process.env.TELEGRAM_ADMIN_USER_ID?.trim());
