@@ -85,3 +85,11 @@ export function absoluteImageUrl(relativePath) {
   if (relativePath.startsWith("http")) return relativePath;
   return `${siteUrl()}${relativePath.startsWith("/") ? "" : "/"}${relativePath}`;
 }
+
+/** Resolve /api/uploads/social/foo.png to local filesystem path */
+export function localImagePath(relativePath) {
+  if (!relativePath) return null;
+  const rel = relativePath.replace(/^\/api\/uploads\//, "");
+  const local = path.join(path.resolve(__dirname, "../../uploads"), rel);
+  return fs.existsSync(local) ? local : null;
+}

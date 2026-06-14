@@ -2,6 +2,7 @@ import {
   sendMessage,
   answerCallbackQuery,
   sendPhoto,
+  sendPhotoFile,
   inlineKeyboard,
   btn,
   urlBtn,
@@ -29,7 +30,7 @@ import {
   formatPostPreview,
   formatCopyText,
 } from "./dewebamContentAi.js";
-import { generateSocialImage, absoluteImageUrl } from "./dewebamImage.js";
+import { generateSocialImage, absoluteImageUrl, localImagePath } from "./dewebamImage.js";
 import { publishToPlatform, getPublishConfigStatus } from "./dewebamPublish.js";
 
 const BOT_NAME = "DeWebam";
@@ -188,15 +189,25 @@ async function generateAndPreview(chatId, userId, platform, topicKey, customTopi
     await sendMessage(chatId, preview, { replyMarkup: previewKeyboard(post.id) });
 
     if (imageUrl) {
+      const localPath = localImagePath(imageUrl);
       const abs = absoluteImageUrl(imageUrl);
-      if (abs) {
-        try {
-          await sendPhoto(chatId, abs, {
-            caption: `🖼 ${label} banner`,
+      const photoOpts = {
+        caption: `🖼 ${label} banner`,
+        replyMarkup: previewKeyboard(post.id),
+      };
+
+      try {
+        if (localPath) {
+          await sendPhotoFile(chatId, localPath, photoOpts);
+        } else if (abs) {
+          await sendPhoto(chatId, abs, photoOpts);
+        }
+      } catch (photoErr) {
+        console.warn("[dewebam] Photo send failed:", photoErr.message);
+        if (abs) {
+          await sendMessage(chatId, `🖼 Image ready:\n${abs}`, {
             replyMarkup: previewKeyboard(post.id),
           });
-        } catch {
-          await sendMessage(chatId, `🖼 Image: ${abs}`, { replyMarkup: previewKeyboard(post.id) });
         }
       }
     }

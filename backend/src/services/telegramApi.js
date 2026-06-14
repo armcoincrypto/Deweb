@@ -88,6 +88,33 @@ export async function sendPhoto(chatId, photoUrl, extra = {}) {
   });
 }
 
+/** Upload image file directly to Telegram (works even when public URL is unreachable) */
+export async function sendPhotoFile(chatId, filePath, extra = {}) {
+  const fs = await import("fs");
+  const path = await import("path");
+  const { Blob } = await import("buffer");
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error("Image file not found");
+  }
+
+  const form = new FormData();
+  form.append("chat_id", String(chatId));
+  if (extra.caption) form.append("caption", extra.caption.slice(0, 1024));
+  form.append("parse_mode", extra.parseMode || "HTML");
+  if (extra.replyMarkup) form.append("reply_markup", JSON.stringify(extra.replyMarkup));
+
+  const buffer = fs.readFileSync(filePath);
+  form.append("photo", new Blob([buffer], { type: "image/png" }), path.basename(filePath));
+
+  const res = await fetch(apiUrl("sendPhoto"), { method: "POST", body: form });
+  const data = await res.json().catch(() => ({}));
+  if (!data.ok) {
+    throw new Error(data.description || "Telegram photo upload failed");
+  }
+  return data.result;
+}
+
 export function inlineKeyboard(rows) {
   return { inline_keyboard: rows };
 }
