@@ -16,11 +16,11 @@ export function SmoothScrollProvider({ children }: Props) {
     registerGsap();
 
     const lenis = new Lenis({
-      duration: 0.55,
+      duration: 1.05,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.2,
-      wheelMultiplier: 1.15,
+      touchMultiplier: 1,
+      wheelMultiplier: 1,
     });
 
     lenis.on("scroll", ScrollTrigger.update);

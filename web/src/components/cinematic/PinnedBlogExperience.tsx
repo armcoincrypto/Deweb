@@ -5,11 +5,18 @@ import { useReducedMotion } from "framer-motion";
 import { gsap, registerGsap } from "@/lib/gsap-client";
 import { pinnedContainerHeight } from "@/lib/pinned-scroll-config";
 import { setupPinnedTimeline } from "@/lib/pinned-scroll-timeline";
-import { pinnedHomeSlides } from "@/lib/home-pinned-services-data";
-import { PinnedServiceSlide } from "./PinnedServiceSlide";
-import { cn } from "@/lib/utils";
+import {
+  PinnedBlogSlide,
+  buildBlogPinnedSlides,
+  type BlogPinnedSlide,
+} from "./PinnedBlogSlide";
+import type { BlogArticle } from "@/lib/blog/types";
 
-export function PinnedServiceExperience() {
+type Props = {
+  articles: BlogArticle[];
+};
+
+export function PinnedBlogExperience({ articles }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -18,7 +25,7 @@ export function PinnedServiceExperience() {
   const [usePin, setUsePin] = useState(false);
   const [ready, setReady] = useState(false);
 
-  const slides = pinnedHomeSlides;
+  const slides: BlogPinnedSlide[] = buildBlogPinnedSlides(articles);
   const total = slides.length;
 
   useEffect(() => {
@@ -47,28 +54,21 @@ export function PinnedServiceExperience() {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [ready, usePin, total]);
+  }, [ready, usePin, total, articles.length]);
 
   if (!ready) {
     return (
-      <section id="services" className="min-h-screen">
-        <PinnedServiceSlide slide={slides[0]} index={0} total={total} active stacked />
+      <section id="blog" className="min-h-screen">
+        <PinnedBlogSlide slide={slides[0]} index={0} total={total} stacked />
       </section>
     );
   }
 
   if (!usePin) {
     return (
-      <section id="services" className="pinned-experience-fallback">
+      <section id="blog" className="pinned-experience-fallback">
         {slides.map((slide, i) => (
-          <PinnedServiceSlide
-            key={slide.id}
-            slide={slide}
-            index={i}
-            total={total}
-            active
-            stacked
-          />
+          <PinnedBlogSlide key={slide.id} slide={slide} index={i} total={total} stacked />
         ))}
       </section>
     );
@@ -77,14 +77,14 @@ export function PinnedServiceExperience() {
   return (
     <section
       ref={containerRef}
-      id="services"
+      id="blog"
       className="pinned-experience"
       style={{ height: pinnedContainerHeight(total) }}
-      aria-label="DeWeb services"
+      aria-label="DeWeb blog"
     >
       <div ref={stageRef} className="pinned-stage perspective-3d">
         {slides.map((slide, i) => (
-          <PinnedServiceSlide
+          <PinnedBlogSlide
             key={slide.id}
             ref={(el) => {
               slideRefs.current[i] = el;
@@ -92,40 +92,22 @@ export function PinnedServiceExperience() {
             slide={slide}
             index={i}
             total={total}
-            active={activeIndex === i}
           />
         ))}
 
-        <nav
-          className="pointer-events-none absolute right-4 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-3 lg:flex xl:right-8"
-          aria-label="Service progress"
+        <div
+          className="pointer-events-none absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2"
+          aria-hidden="true"
         >
           {slides.map((slide, i) => (
-            <div
+            <span
               key={slide.id}
-              className={cn(
-                "flex items-center justify-end gap-2 transition-all duration-500",
-                activeIndex === i ? "opacity-100" : "opacity-30"
-              )}
-            >
-              <span className="text-[10px] font-bold uppercase tracking-wider text-white/60">
-                {slide.kind === "hero"
-                  ? "Intro"
-                  : slide.kind === "service"
-                    ? slide.category.title
-                    : ""}
-              </span>
-              <span
-                className={cn(
-                  "h-2 w-2 rounded-full transition-all duration-500",
-                  activeIndex === i
-                    ? "scale-110 bg-deweb-cyan shadow-[0_0_10px_rgba(0,242,255,0.6)]"
-                    : "bg-white/25"
-                )}
-              />
-            </div>
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                activeIndex === i ? "w-8 bg-deweb-cyan" : "w-1.5 bg-white/25"
+              }`}
+            />
           ))}
-        </nav>
+        </div>
       </div>
     </section>
   );
