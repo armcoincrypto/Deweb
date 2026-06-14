@@ -7,9 +7,9 @@ export type SeoEntry = { title: string; description: string };
 
 export const PAGE_SEO: Record<string, SeoEntry> = {
   home: {
-    title: "DEWEB | Building The Future Of Digital Business",
+    title: "DeWeb | Websites, Shopify Stores & AI Systems for Business Growth",
     description:
-      "We create Shopify stores, AI systems, automation platforms, websites and scalable digital solutions. Premium technology company for growing businesses.",
+      "DeWeb builds modern websites, high-converting Shopify stores, AI chatbots, and automation systems for businesses that want more clients, better sales, and faster growth.",
   },
   about: {
     title: "About DEWEB | Premium IT Development Agency",

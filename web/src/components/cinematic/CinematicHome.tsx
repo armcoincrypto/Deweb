@@ -2,10 +2,7 @@
 
 import { CinematicHero } from "./CinematicHero";
 import { ServiceStorySection } from "./ServiceStorySection";
-import { ShopifyScene } from "./scenes/ShopifyScene";
-import { AINeuralScene } from "./scenes/AINeuralScene";
-import { AutomationScene } from "./scenes/AutomationScene";
-import { WebSaasScene } from "./scenes/WebSaasScene";
+import { ServiceCategories } from "@/components/home/ServiceCategories";
 import { WhyChoose } from "@/components/home/WhyChoose";
 import { HomePortfolio } from "@/components/home/HomePortfolio";
 import { HomeContact } from "@/components/home/HomeContact";
@@ -18,74 +15,71 @@ export function CinematicHome({ blogSection }: CinematicHomeProps) {
   return (
     <div className="cinematic-home">
       <CinematicHero />
+      <ServiceCategories />
 
       <ServiceStorySection
         id="shopify"
         kicker="Shopify Development"
-        title="Ecommerce that converts and scales"
-        description="Custom Shopify and Shopify Plus stores engineered for speed, brand differentiation, and revenue growth — not generic themes."
-        features={[
-          "Custom storefront design & CRO optimization",
-          "Shopify Plus migrations and integrations",
-          "Subscription flows and checkout optimization",
-          "Speed, SEO, and analytics built in",
+        title="Sell more with a store built to convert"
+        description="Launch a fast, modern, and conversion-focused Shopify store designed to sell."
+        benefits={[
+          "Custom design that matches your brand",
+          "Fast loading and mobile-friendly",
+          "SEO-ready product pages",
         ]}
         href="/services/shopify-development"
-        ctaLabel="Explore Shopify"
+        ctaLabel="Get a Shopify Store"
         accent="#95BF47"
-        scene={<ShopifyScene />}
+        sceneKey="shopify"
       />
 
       <ServiceStorySection
         id="ai-chatbots"
         kicker="AI Chatbots"
-        title="Intelligent conversations that never sleep"
-        description="AI-powered chatbots for sales, support, and lead qualification — integrated with your CRM and workflows."
-        features={[
-          "24/7 customer support automation",
-          "Lead qualification and CRM sync",
-          "Custom training on your business data",
-          "Human handoff when it matters",
+        title="Answer customers instantly, 24/7"
+        description="Smart chatbots that answer questions, collect leads, and support customers 24/7."
+        benefits={[
+          "Capture leads while you sleep",
+          "Answer FAQs automatically",
+          "Connect to your CRM and email",
         ]}
         href="/services/ai-chatbot-development"
-        ctaLabel="Explore AI Chatbots"
+        ctaLabel="Get an AI Chatbot"
         accent="#00f2ff"
-        scene={<AINeuralScene />}
+        sceneKey="ai"
         reverse
       />
 
       <ServiceStorySection
         id="automation"
         kicker="Automation Systems"
-        title="Workflows that run while you grow"
-        description="Connect your tools, eliminate manual work, and scale operations with AI-powered automation systems."
-        features={[
-          "CRM, email, and support integrations",
-          "Custom workflow orchestration",
-          "Error reduction and team efficiency",
-          "Real-time monitoring and alerts",
+        title="Stop doing the same tasks every day"
+        description="Save time by automating repeated tasks, forms, emails, and business workflows."
+        benefits={[
+          "Automate forms, emails, and follow-ups",
+          "Connect your existing tools",
+          "Reduce errors and save hours weekly",
         ]}
         href="/services/ai-business-automation"
-        ctaLabel="Explore Automation"
+        ctaLabel="Automate My Business"
         accent="#34d399"
-        scene={<AutomationScene />}
+        sceneKey="automation"
       />
 
       <ServiceStorySection
         id="web-saas"
         kicker="Web & SaaS Development"
-        title="From code to scalable product"
-        description="Modern websites, web applications, and SaaS platforms with premium UI, robust architecture, and growth-ready infrastructure."
-        features={[
-          "MVP to enterprise SaaS platforms",
-          "Admin panels, billing, and analytics",
-          "Mobile-first responsive design",
-          "SEO, performance, and security built in",
+        title="Turn your idea into a live product"
+        description="Custom platforms, dashboards, and digital tools built for your business goals."
+        benefits={[
+          "Business websites that build trust",
+          "SaaS platforms with billing and dashboards",
+          "From idea to live product — fast",
         ]}
         href="/services/saas-development"
-        ctaLabel="Explore Web & SaaS"
+        ctaLabel="Build My Platform"
         accent="#7c3aed"
-        scene={<WebSaasScene />}
+        sceneKey="web"
         reverse
       />
 

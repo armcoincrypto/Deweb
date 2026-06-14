@@ -10,15 +10,16 @@ export function SmoothScrollProvider({ children }: Props) {
   useEffect(() => {
     const prefersReduced =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (prefersReduced || isMobile) return;
 
     registerGsap();
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 0.75,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1,
     });
 
     lenis.on("scroll", ScrollTrigger.update);

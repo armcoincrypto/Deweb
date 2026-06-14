@@ -10,15 +10,13 @@ type CinematicSectionProps = {
   children: React.ReactNode;
   className?: string;
   fullScreen?: boolean;
-  parallax?: number;
 };
 
 export function CinematicSection({
   id,
   children,
   className,
-  fullScreen = true,
-  parallax = 0,
+  fullScreen = false,
 }: CinematicSectionProps) {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
@@ -30,47 +28,31 @@ export function CinematicSection({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ref.current,
-        { opacity: 0, y: 80, scale: 0.96, rotateX: 8 },
+        { opacity: 0, y: 28 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          rotateX: 0,
-          duration: 1.1,
-          ease: "power3.out",
+          duration: 0.45,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: ref.current,
-            start: "top 82%",
-            end: "top 35%",
-            toggleActions: "play none none reverse",
+            start: "top 88%",
+            toggleActions: "play none none none",
           },
         }
       );
-
-      if (parallax) {
-        gsap.to(ref.current, {
-          y: parallax,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-      }
     }, ref);
 
     return () => ctx.revert();
-  }, [reduceMotion, parallax]);
+  }, [reduceMotion]);
 
   return (
     <section
       id={id}
       ref={ref}
       className={cn(
-        "cinematic-section perspective-3d relative overflow-hidden",
-        fullScreen && "min-h-screen",
+        "cinematic-section relative overflow-hidden",
+        fullScreen && "min-h-[90vh]",
         className
       )}
     >

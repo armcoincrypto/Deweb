@@ -1,65 +1,60 @@
-import type { ServiceOfferCardProps } from "@/components/ui/ServiceOfferCard";
+/** Homepage service categories — simple, sales-focused copy */
+export type ServiceCategory = {
+  icon: string;
+  title: string;
+  description: string;
+  href: string;
+  accent: string;
+};
 
-/** Homepage services — priority order per product spec */
-export const homeServices: Omit<ServiceOfferCardProps, "delay">[] = [
+export const serviceCategories: ServiceCategory[] = [
   {
     icon: "🛒",
     title: "Shopify Development",
-    problem: "Generic themes and slow stores limit revenue and brand differentiation.",
-    solution: "Custom Shopify & Shopify Plus builds with CRO, speed optimization, and integrations.",
-    value: "Higher conversions, faster launches, and ecommerce that scales.",
+    description: "Launch a fast, modern, and conversion-focused Shopify store designed to sell.",
     href: "/services/shopify-development",
-    ctaLabel: "Shopify development",
     accent: "#95BF47",
+  },
+  {
+    icon: "💻",
+    title: "Business Websites",
+    description: "Professional websites that build trust, explain your services clearly, and help clients contact you.",
+    href: "/services/web-application-development",
+    accent: "#38bdf8",
   },
   {
     icon: "💬",
     title: "AI Chatbots",
-    problem: "Customers expect instant answers; support teams can't scale 24/7.",
-    solution: "Custom AI chatbots for sales, support, and lead qualification with CRM sync.",
-    value: "More leads, lower support costs, happier customers.",
+    description: "Smart chatbots that answer questions, collect leads, and support customers 24/7.",
     href: "/services/ai-chatbot-development",
-    ctaLabel: "AI chatbots",
-    accent: "#34d399",
-  },
-  {
-    icon: "💻",
-    title: "Website Development",
-    problem: "Outdated sites hurt trust, SEO, and conversion on every channel.",
-    solution: "Modern, fast websites and web apps with premium UI and technical SEO.",
-    value: "Professional brand presence that converts visitors into clients.",
-    href: "/services/web-application-development",
-    ctaLabel: "Web development",
-    accent: "#38bdf8",
+    accent: "#00f2ff",
   },
   {
     icon: "⚙️",
     title: "Automation Systems",
-    problem: "Manual workflows waste hours and create costly errors across teams.",
-    solution: "AI-powered automation for CRM, support, operations, and internal processes.",
-    value: "Save time, reduce errors, and scale operations without hiring.",
+    description: "Save time by automating repeated tasks, forms, emails, and business workflows.",
     href: "/services/ai-business-automation",
-    ctaLabel: "Automation systems",
-    accent: "#00f2ff",
+    accent: "#34d399",
   },
   {
     icon: "☁️",
-    title: "SaaS Development",
-    problem: "Startups need MVPs fast but lack capacity for billing, dashboards, and APIs.",
-    solution: "Full SaaS builds — MVPs, admin panels, subscriptions, and analytics.",
-    value: "Ship faster, validate PMF, and grow recurring revenue.",
+    title: "SaaS & Web Apps",
+    description: "Custom platforms, dashboards, and digital tools built for your business goals.",
     href: "/services/saas-development",
-    ctaLabel: "SaaS development",
     accent: "#7c3aed",
   },
   {
     icon: "🎯",
     title: "Landing Pages",
-    problem: "Campaign traffic lands on weak pages that fail to capture leads.",
-    solution: "High-converting landing pages with premium design, A/B-ready structure, and SEO.",
-    value: "More leads per ad dollar and campaigns that actually convert.",
+    description: "High-converting pages for ads, product launches, services, and lead generation.",
     href: "/contact",
-    ctaLabel: "Get a landing page",
     accent: "#f472b6",
   },
+];
+
+export const sellingPoints = [
+  "Built for real business growth",
+  "Fast, mobile-friendly and SEO-ready",
+  "From idea to live product",
+  "Clear design, clean code, real results",
 ];

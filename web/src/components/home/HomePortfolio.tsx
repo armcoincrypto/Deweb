@@ -1,73 +1,75 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { CinematicSection } from "@/components/cinematic/CinematicSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlassCard } from "@/components/ui/GlassCard";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { portfolioProjects } from "@/lib/portfolio-data";
+import { cardReveal3D, transitionFast } from "@/lib/motion-3d";
 
 export function HomePortfolio() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <CinematicSection
       id="portfolio"
       fullScreen={false}
-      className="section-padding border-y border-white/[0.06] bg-white/[0.02]"
+      className="section-padding border-y border-white/[0.06]"
     >
       <div className="container-narrow px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          kicker="Portfolio"
-          title="Projects that drive real business results"
-          subtitle="Shopify stores, AI platforms, SaaS products, and automation systems built for growth."
+          kicker="Results"
+          title="Real projects. Real results."
+          subtitle="See what we've built for businesses like yours — Shopify stores, AI tools, websites, and automation systems."
           id="portfolio-heading"
         />
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {portfolioProjects.map((project, i) => (
-            <GlassCard key={project.id} glow tilt delay={i * 0.05} className="group overflow-hidden">
-              <Link href={project.href} className="block h-full">
+            <motion.div
+              key={project.id}
+              initial={reduceMotion ? false : "hidden"}
+              whileInView={reduceMotion ? undefined : "visible"}
+              viewport={{ once: true, margin: "-40px" }}
+              variants={cardReveal3D}
+              transition={{ ...transitionFast, delay: i * 0.03 }}
+            >
+              <Link
+                href={project.href}
+                className="content-panel group flex h-full flex-col rounded-2xl overflow-hidden transition-all duration-200 hover:border-deweb-cyan/25 hover:shadow-glow-sm"
+              >
                 <div
-                  className="h-1.5 w-full"
+                  className="h-1 w-full"
                   style={{ background: `linear-gradient(90deg, ${project.accent}, transparent)` }}
                 />
-                <div className="p-6 sm:p-8">
+                <div className="flex flex-1 flex-col p-6">
                   <span
                     className="text-xs font-bold uppercase tracking-wider"
                     style={{ color: project.accent }}
                   >
                     {project.category}
                   </span>
-                  <h3 className="mt-3 text-xl font-bold text-white group-hover:text-deweb-cyan transition-colors">
+                  <h3 className="mt-2 text-lg font-bold text-white group-hover:text-deweb-cyan transition-colors">
                     {project.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/55">{project.description}</p>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/75">
+                    {project.description}
+                  </p>
                   <p className="mt-4 text-sm font-semibold text-emerald-400">{project.metrics}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] text-white/45"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <motion.span
-                    className="mt-5 inline-flex text-sm font-semibold text-deweb-cyan"
-                    whileHover={{ x: 4 }}
-                  >
-                    View solution →
-                  </motion.span>
+                  <span className="mt-4 text-sm font-bold text-deweb-cyan">View details →</span>
                 </div>
               </Link>
-            </GlassCard>
+            </motion.div>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <GlowButton href="/contact" variant="primary">
-            Start your project
+        <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <GlowButton href="#contact" variant="primary">
+            Start Your Project
+          </GlowButton>
+          <GlowButton href="/services" variant="secondary">
+            See Our Services
           </GlowButton>
         </div>
       </div>
