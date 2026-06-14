@@ -87,10 +87,17 @@ function platformPickerKeyboard() {
   ]);
 }
 
-/** Simple 2-button preview — Recreate + Post */
-function previewKeyboard(postId) {
+/** Preview actions — draft needs approval before publish */
+function previewKeyboard(postId, status = "draft") {
+  if (status === "approved") {
+    return inlineKeyboard([
+      [btn("📤 Publish", `post:publish:${postId}`), btn("🔄 Recreate", `post:recreate:${postId}`)],
+      [btn("« Menu", "menu:main")],
+    ]);
+  }
+
   return inlineKeyboard([
-    [btn("🔄 Recreate", `post:recreate:${postId}`), btn("📤 Post", `post:post:${postId}`)],
+    [btn("✅ Approve", `post:approve:${postId}`), btn("🔄 Recreate", `post:recreate:${postId}`)],
     [btn("« Menu", "menu:main")],
   ]);
 }
@@ -100,9 +107,10 @@ function helpText() {
   return (
     `<b>${BOT_NAME} — DeWeb Marketing Control Panel</b>\n\n` +
     `<b>How to use:</b>\n` +
-    `1. Tap a platform (LinkedIn, Instagram, etc.)\n` +
+    `1. Tap a platform (LinkedIn, X, Instagram, etc.)\n` +
     `2. AI generates professional content + image\n` +
-    `3. Tap <b>Recreate</b> to regenerate or <b>Post</b> to publish\n\n` +
+    `3. Review preview → <b>Approve</b> → <b>Publish</b>\n` +
+    `4. Drafts are saved before publishing\n\n` +
     `<b>API status:</b>\n` +
     `LinkedIn: ${cfg.linkedin ? "✅" : "❌ add keys to .env"}\n` +
     `Instagram: ${cfg.instagram ? "✅" : "❌ add keys to .env"}\n` +
@@ -123,8 +131,10 @@ async function showMainMenu(chatId) {
     chatId,
     `<b>👋 Welcome to ${BOT_NAME}</b>\n\n` +
       `Tap a platform to instantly generate professional DeWeb marketing content.\n\n` +
-      `<b>LinkedIn</b> is optimized for B2B — founders, Shopify sellers, agencies.\n\n` +
-      `After generation: <b>Recreate</b> or <b>Post</b>.`,
+      `<b>Flow:</b> Generate → Preview → Approve → Publish\n` +
+      `Drafts are stored until you approve and publish.\n\n` +
+      `<b>LinkedIn</b> is optimized for B2B — founders, Shopify sellers, agencies.\n` +
+      `<b>X</b> posts to @dewebam when API keys are configured.`,
     { replyMarkup: mainMenuKeyboard() }
   );
 }
@@ -172,7 +182,7 @@ async function generateAndPreview(chatId, userId, platform, topicKey, customTopi
         content,
         imagePrompt: content.imagePrompt,
         imageUrl,
-        status: "pending",
+        status: "draft",
         telegramUserId: userId,
         telegramChatId: chatId,
       });
@@ -186,14 +196,20 @@ async function generateAndPreview(chatId, userId, platform, topicKey, customTopi
     });
 
     const preview = formatPostPreview(platform, content, imageUrl);
-    await sendMessage(chatId, preview, { replyMarkup: previewKeyboard(post.id) });
+    const draftNote =
+      platform === "x"
+        ? "\n\n<i>Draft saved. Approve to publish to @dewebam.</i>"
+        : "\n\n<i>Draft saved. Approve before publishing.</i>";
+    await sendMessage(chatId, `${preview}${draftNote}`, {
+      replyMarkup: previewKeyboard(post.id, post.status),
+    });
 
     if (imageUrl) {
       const localPath = localImagePath(imageUrl);
       const abs = absoluteImageUrl(imageUrl);
       const photoOpts = {
         caption: `🖼 ${label} banner`,
-        replyMarkup: previewKeyboard(post.id),
+        replyMarkup: previewKeyboard(post.id, post.status),
       };
 
       try {
@@ -206,7 +222,7 @@ async function generateAndPreview(chatId, userId, platform, topicKey, customTopi
         console.warn("[dewebam] Photo send failed:", photoErr.message);
         if (abs) {
           await sendMessage(chatId, `🖼 Image ready:\n${abs}`, {
-            replyMarkup: previewKeyboard(post.id),
+            replyMarkup: previewKeyboard(post.id, post.status),
           });
         }
       }
@@ -216,7 +232,7 @@ async function generateAndPreview(chatId, userId, platform, topicKey, customTopi
       await sendMessage(
         chatId,
         `📝 Blog saved to CMS (pending review):\n${siteUrl()}/en/admin/blog/pending`,
-        { replyMarkup: previewKeyboard(post.id) }
+        { replyMarkup: previewKeyboard(post.id, post.status) }
       );
     }
 
@@ -270,7 +286,37 @@ async function handlePostAction(action, postId, chatId, userId, callbackQuery) {
     return;
   }
 
-  if (action === "post") {
+  if (action === "approve") {
+    if (post.status === "published") {
+      await answerCallbackQuery(callbackQuery.id, "Already published");
+      return;
+    }
+
+    updateSocialPost(postId, { status: "approved", error_message: null });
+    const label = DEWEBAM_PLATFORMS[post.platform]?.label || post.platform;
+    const approveNote =
+      post.platform === "x"
+        ? `✅ <b>${label} draft approved</b>\n\nReady to publish to <b>@dewebam</b>.`
+        : `✅ <b>${label} draft approved</b>\n\nReady to publish.`;
+
+    await answerCallbackQuery(callbackQuery.id, "Approved");
+    await sendMessage(chatId, approveNote, {
+      replyMarkup: previewKeyboard(postId, "approved"),
+    });
+    return;
+  }
+
+  if (action === "publish" || action === "post") {
+    if (post.status !== "approved") {
+      await answerCallbackQuery(callbackQuery.id, "Approve first");
+      await sendMessage(
+        chatId,
+        "⚠️ <b>Approve the draft first</b> before publishing.",
+        { replyMarkup: previewKeyboard(postId, post.status) }
+      );
+      return;
+    }
+
     await answerCallbackQuery(callbackQuery.id, "Publishing…");
     const publishingMsg = await sendMessage(
       chatId,
@@ -313,7 +359,7 @@ async function handlePostAction(action, postId, chatId, userId, callbackQuery) {
     } catch (err) {
       updateSocialPost(postId, { status: "failed", error_message: err.message });
       await sendMessage(chatId, `❌ Publish error: ${escapeHtml(err.message)}`, {
-        replyMarkup: previewKeyboard(postId),
+        replyMarkup: previewKeyboard(postId, post.status),
       });
     }
     clearSession(userId);

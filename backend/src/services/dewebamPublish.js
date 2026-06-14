@@ -8,7 +8,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { absoluteImageUrl } from "./dewebamImage.js";
 import { formatCopyText } from "./dewebamContentAi.js";
-import { getLinkedInAccessToken, ensureLinkedInAuthorUrn } from "./linkedinOAuth.js";
+import { getLinkedInAccessToken, ensureLinkedInAuthorUrn, getLinkedInAuthorUrn } from "./linkedinOAuth.js";
+import {
+  createXTweet,
+  getXCredentials,
+  isXConfigured,
+  uploadXMedia,
+} from "./xOAuth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const UPLOAD_ROOT = path.resolve(__dirname, "../../uploads");
@@ -207,49 +213,55 @@ async function publishInstagram(text, imageUrl) {
   return { ok: true, platformId: pubData.id || null };
 }
 
-/** X (Twitter) API v2 */
-async function publishX(text, content) {
-  const apiKey = env("X_API_KEY");
-  const apiSecret = env("X_API_SECRET");
-  const accessToken = env("X_ACCESS_TOKEN");
-  const accessSecret = env("X_ACCESS_TOKEN_SECRET");
-
-  if (!apiKey || !apiSecret || !accessToken || !accessSecret) {
-    return { ok: false, error: "Missing X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, or X_ACCESS_TOKEN_SECRET" };
-  }
-
-  const mainText = (content.postText || text).slice(0, 280);
-  const tweetBody = { text: mainText };
-
-  const res = await fetch("https://api.twitter.com/2/tweets", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${env("X_BEARER_TOKEN") || ""}`,
-    },
-    body: JSON.stringify(tweetBody),
-  });
-
-  // OAuth 1.0a is required for posting — use simplified bearer if user has OAuth2 user token
-  if (!env("X_BEARER_TOKEN")) {
+/** X (Twitter) API v2 — OAuth 1.0a user context (preferred) or bearer fallback */
+async function publishX(text, content, imageUrl) {
+  const creds = getXCredentials();
+  if (!creds) {
     return {
       ok: false,
-      error: "Set X_BEARER_TOKEN (OAuth 2.0 user token with tweet.write scope) for X posting",
+      error:
+        "Missing X credentials — set X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET (or X_BEARER_TOKEN)",
     };
   }
 
-  if (!res.ok) {
-    const err = await res.text().catch(() => "");
-    return { ok: false, error: `X API ${res.status}: ${err.slice(0, 300)}` };
+  const mainText = (content.postText || text || "").trim().slice(0, 280);
+  if (!mainText) {
+    return { ok: false, error: "X post text is empty" };
   }
 
-  const data = await res.json().catch(() => ({}));
-  const tweetId = data.data?.id;
-  return {
-    ok: true,
-    platformId: tweetId || null,
-    url: tweetId ? `https://x.com/i/web/status/${tweetId}` : null,
-  };
+  try {
+    let mediaIds = [];
+    if (imageUrl) {
+      const imageBuffer = await downloadImageBuffer(imageUrl);
+      if (imageBuffer) {
+        mediaIds = [await uploadXMedia(imageBuffer, creds)];
+      }
+    }
+
+    const first = await createXTweet({ text: mainText, mediaIds, credentials: creds });
+    let tweetId = first.data?.id || null;
+    let lastId = tweetId;
+
+    const thread = Array.isArray(content.thread)
+      ? content.thread.map((t) => String(t).trim()).filter(Boolean).slice(0, 4)
+      : [];
+
+    for (const replyText of thread) {
+      const reply = await createXTweet({
+        text: replyText.slice(0, 280),
+        replyToTweetId: lastId,
+        credentials: creds,
+      });
+      lastId = reply.data?.id || lastId;
+    }
+
+    const profile = env("SOCIAL_LINK_X") || "https://x.com/dewebam";
+    const url = tweetId ? `https://x.com/i/web/status/${tweetId}` : profile;
+
+    return { ok: true, platformId: tweetId, url };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
 }
 
 /** Blog — mark pending_review post as approved in CMS (no public publish without admin) */
@@ -280,7 +292,7 @@ export function getPublishConfigStatus() {
     linkedin: !!(getLinkedInAccessToken() && getLinkedInAuthorUrn()),
     facebook: !!(env("FACEBOOK_PAGE_ID") && env("FACEBOOK_PAGE_ACCESS_TOKEN")),
     instagram: !!(env("INSTAGRAM_BUSINESS_ACCOUNT_ID") && env("FACEBOOK_PAGE_ACCESS_TOKEN")),
-    x: !!env("X_BEARER_TOKEN"),
+    x: isXConfigured(),
     blog: true,
   };
 }
@@ -298,7 +310,7 @@ export async function publishToPlatform(platform, post) {
     case "instagram":
       return publishInstagram(text, imageUrl);
     case "x":
-      return publishX(text, content);
+      return publishX(text, content, imageUrl);
     case "blog":
       return publishBlog(post.blog_post_id);
     default:
