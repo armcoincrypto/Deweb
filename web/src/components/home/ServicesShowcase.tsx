@@ -24,7 +24,7 @@ export function ServicesShowcase() {
 
         <div className="mt-12 text-center">
           <GlowButton href="/services" variant="primary">
-            View all services
+            View Services
           </GlowButton>
         </div>
       </div>

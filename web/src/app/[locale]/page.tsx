@@ -1,14 +1,14 @@
 import { Hero } from "@/components/home/Hero";
-import { TrustBadges } from "@/components/home/TrustBadges";
-import { SolutionsShowcase } from "@/components/home/SolutionsShowcase";
 import { ServicesShowcase } from "@/components/home/ServicesShowcase";
-import { HowItWorks } from "@/components/home/HowItWorks";
-import { StatsBar } from "@/components/home/StatsBar";
-import { Testimonials } from "@/components/home/Testimonials";
-import { FinalCTA } from "@/components/home/FinalCTA";
+import { WhyChoose } from "@/components/home/WhyChoose";
+import { HomePortfolio } from "@/components/home/HomePortfolio";
+import { HomeBlogSection } from "@/components/home/HomeBlogSection";
+import { HomeContact } from "@/components/home/HomeContact";
 import { PageSchemas } from "@/components/seo/PageSchemas";
 import { metadataFromEntry } from "@/lib/seo";
 import { getPageSeo } from "@/lib/seo-metadata";
+
+export const revalidate = 60;
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -31,13 +31,11 @@ export default async function HomePage({ params }: Props) {
         breadcrumbs={[{ name: "Home", path: "/" }]}
       />
       <Hero />
-      <TrustBadges />
-      <SolutionsShowcase />
       <ServicesShowcase />
-      <HowItWorks />
-      <StatsBar />
-      <Testimonials />
-      <FinalCTA />
+      <WhyChoose />
+      <HomePortfolio />
+      <HomeBlogSection />
+      <HomeContact />
     </>
   );
 }
