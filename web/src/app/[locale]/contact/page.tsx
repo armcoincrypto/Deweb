@@ -1,18 +1,19 @@
 import { ContactView } from "@/components/contact/ContactView";
 import { PageSchemas } from "@/components/seo/PageSchemas";
 import { metadataFromEntry } from "@/lib/seo";
-import { getPageSeo } from "@/lib/seo-metadata";
+import { getLocalizedPageSeo } from "@/lib/i18n/locale-seo";
+import { localizedPageMetadata } from "@/lib/i18n/page-metadata";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  return metadataFromEntry(getPageSeo("contact"), "/contact", locale);
+  return localizedPageMetadata(locale, "contact", "/contact");
 }
 
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
-  const seo = getPageSeo("contact");
+  const seo = await getLocalizedPageSeo(locale, "contact");
 
   return (
     <>

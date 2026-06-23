@@ -51,7 +51,7 @@ export default async function LocaleLayout({
     <html lang={locale} className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen font-sans antialiased`}
-        style={{ backgroundColor: "#05070a", color: "#ffffff" }}
+        style={{ backgroundColor: "#0b1424", color: "#ffffff" }}
       >
         <GlobalSchema />
         <NextIntlClientProvider messages={messages}>

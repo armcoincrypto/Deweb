@@ -13,7 +13,7 @@ export type ServiceCategory = {
 export const serviceCategories: ServiceCategory[] = [
   {
     icon: "🛒",
-    title: "Shopify Stores",
+    title: "Shopify Development",
     what: "A fast online store built to sell your products.",
     who: "For brands and businesses selling online.",
     result: "More sales, better checkout, stronger brand.",
@@ -23,7 +23,7 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     icon: "💻",
-    title: "Business Websites",
+    title: "Custom Websites",
     what: "A professional website that explains what you do.",
     who: "For local businesses, agencies, and service companies.",
     result: "More trust, more inquiries, more clients.",
@@ -43,7 +43,7 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     icon: "⚙️",
-    title: "Automation",
+    title: "AI Automation",
     what: "Systems that handle repetitive tasks for you.",
     who: "For teams tired of manual emails, forms, and follow-ups.",
     result: "Save hours every week and reduce mistakes.",

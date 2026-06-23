@@ -51,28 +51,35 @@ const visualByHref: Record<string, ServiceBannerVisual> = {
   "/services/landing-page-development": "uiux",
 };
 
-function getBanner(href: string): ServiceBanner {
+function getBanner(href: string, banners: ServiceBanner[]): ServiceBanner {
   const id = bannerByHref[href];
-  return serviceBanners.find((b) => b.id === id) ?? serviceBanners[0];
+  return banners.find((b) => b.id === id) ?? banners[0];
 }
 
-export const pinnedHomeSlides: PinnedHomeSlide[] = [
-  {
-    id: "hero",
-    kind: "hero",
-    sceneKey: "ecosystem",
-    accent: "#00f2ff",
-  },
-  ...serviceCategories.map((category) => {
-    const banner = getBanner(category.href);
-    return {
-      id: category.title.toLowerCase().replace(/\s+/g, "-"),
-      kind: "service" as const,
-      category,
-      banner,
-      visual: visualByHref[category.href] ?? banner.visual,
-      sceneKey: sceneByHref[category.href] ?? "none",
-      accent: category.accent,
-    };
-  }),
-];
+export function buildPinnedHomeSlides(
+  categories: ServiceCategory[],
+  banners: ServiceBanner[] = serviceBanners
+): PinnedHomeSlide[] {
+  return [
+    {
+      id: "hero",
+      kind: "hero",
+      sceneKey: "ecosystem",
+      accent: "#00f2ff",
+    },
+    ...categories.map((category) => {
+      const banner = getBanner(category.href, banners);
+      return {
+        id: category.title.toLowerCase().replace(/\s+/g, "-"),
+        kind: "service" as const,
+        category,
+        banner,
+        visual: visualByHref[category.href] ?? banner.visual,
+        sceneKey: sceneByHref[category.href] ?? "none",
+        accent: category.accent,
+      };
+    }),
+  ];
+}
+
+export const pinnedHomeSlides: PinnedHomeSlide[] = buildPinnedHomeSlides(serviceCategories);

@@ -2,8 +2,10 @@ import { BlogListingView } from "@/components/blog/BlogListingView";
 import { PageSchemas } from "@/components/seo/PageSchemas";
 import { fetchCmsCategories } from "@/lib/blog/cms";
 import { getAllArticlesMerged } from "@/lib/blog/server";
-import { metadataFromEntry } from "@/lib/seo";
-import { getPageSeo } from "@/lib/seo-metadata";
+import { getLocalizedPageSeo } from "@/lib/i18n/locale-seo";
+import { localizedPageMetadata } from "@/lib/i18n/page-metadata";
+import { getLocalizedBlogCategories } from "@/lib/i18n/blog-categories";
+import type { Locale } from "@/i18n/routing";
 
 export const revalidate = 60;
 
@@ -11,15 +13,17 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  return metadataFromEntry(getPageSeo("blog"), "/blog", locale);
+  return localizedPageMetadata(locale, "blog", "/blog");
 }
 
 export default async function BlogPage({ params }: Props) {
   const { locale } = await params;
-  const seo = getPageSeo("blog");
-  const [articles, cmsCategories] = await Promise.all([
+  const loc = locale as Locale;
+  const seo = await getLocalizedPageSeo(loc, "blog");
+  const [articles, cmsCategories, blogCategories] = await Promise.all([
     getAllArticlesMerged(),
     fetchCmsCategories(),
+    getLocalizedBlogCategories(loc),
   ]);
 
   return (
@@ -36,11 +40,13 @@ export default async function BlogPage({ params }: Props) {
       />
       <BlogListingView
         articles={articles}
+        categories={blogCategories}
         extraCategories={cmsCategories.map((c) => ({
           slug: c.slug,
           name: c.name,
           description: c.description,
         }))}
+        pageHeading={seo.title.replace(/\s*\|\s*DEWEB Blog.*/, "")}
       />
     </>
   );

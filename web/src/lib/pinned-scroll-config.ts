@@ -4,13 +4,13 @@ export const PINNED_SCROLL = {
   stepVh: 95,
   /** Higher scrub = smoother, more lagged follow (feels cinematic) */
   scrub: 1.35,
-  /** Gentle 3D depth */
-  enterZ: -70,
-  exitZ: 50,
-  enterRotateX: 4,
-  exitRotateX: -3,
-  enterScale: 0.96,
-  exitScale: 0.97,
+  /** Gentle 3D depth — premium, no harsh snap */
+  enterZ: -85,
+  exitZ: 55,
+  enterRotateX: 5,
+  exitRotateX: -4,
+  enterScale: 0.92,
+  exitScale: 0.96,
   /** Timeline segment lengths within each slide step */
   exitDuration: 0.55,
   enterDuration: 0.65,

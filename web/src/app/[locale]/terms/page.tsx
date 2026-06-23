@@ -1,25 +1,47 @@
+import { getTranslations } from "next-intl/server";
 import { LegalPageView } from "@/components/legal/LegalPageView";
-import { termsOfUseSections } from "@/lib/legal-content";
-import { metadataFromEntry } from "@/lib/seo";
-import { getPageSeo } from "@/lib/seo-metadata";
+import { PageSchemas } from "@/components/seo/PageSchemas";
+import { getLegalContent } from "@/lib/i18n/content";
+import { getLocalizedPageSeo } from "@/lib/i18n/locale-seo";
+import { localizedPageMetadata } from "@/lib/i18n/page-metadata";
+import type { Locale } from "@/i18n/routing";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  return metadataFromEntry(getPageSeo("terms"), "/terms", locale);
+  return localizedPageMetadata(locale as Locale, "terms", "/terms");
 }
 
-export default function TermsPage() {
+export default async function TermsPage({ params }: Props) {
+  const { locale } = await params;
+  const loc = locale as Locale;
+  const seo = await getLocalizedPageSeo(loc, "terms");
+  const t = await getTranslations({ locale: loc, namespace: "legal" });
+  const tFooter = await getTranslations({ locale: loc, namespace: "footer" });
+  const legal = await getLegalContent(loc);
+
   return (
-    <LegalPageView
-      title="Terms of Use"
-      subtitle="Rules and conditions for using the DEWEB marketplace and services."
-      sections={termsOfUseSections}
-      relatedLinks={[
-        { href: "/privacy-policy", label: "Privacy Policy" },
-        { href: "/cookie-policy", label: "Cookie Policy" },
-      ]}
-    />
+    <>
+      <PageSchemas
+        locale={loc}
+        path="/terms"
+        title={seo.title}
+        description={seo.description}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: t("termsTitle"), path: "/terms" },
+        ]}
+      />
+      <LegalPageView
+        title={t("termsTitle")}
+        subtitle={t("termsSubtitle")}
+        sections={legal.termsOfUseSections}
+        relatedLinks={[
+          { href: "/privacy-policy", label: tFooter("privacyPolicy") },
+          { href: "/cookie-policy", label: tFooter("cookiePolicy") },
+        ]}
+      />
+    </>
   );
 }

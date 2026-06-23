@@ -3,14 +3,23 @@ import { ServiceDetailView } from "@/components/services/ServiceDetailView";
 import { ServiceLandingView } from "@/components/seo/ServiceLandingView";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageSchemas } from "@/components/seo/PageSchemas";
-import { getServiceById, serviceCategories } from "@/lib/services-data";
+import { serviceCategories } from "@/lib/services-data";
 import {
-  getServiceLandingPage,
+  getLocalizedLandingPage,
+  getServiceByIdLocalized,
+} from "@/lib/i18n/content";
+import {
   isServiceLandingSlug,
   SERVICE_LANDING_SLUGS,
 } from "@/lib/service-landing";
+import { SUPERSEDED_LEGACY_SERVICE_IDS } from "@/lib/seo";
 import { metadataFromEntry, absoluteUrl } from "@/lib/seo";
-import { getLandingSeo, getServiceSeo } from "@/lib/seo-metadata";
+import {
+  localizedLandingMetadata,
+  localizedServiceMetadata,
+} from "@/lib/i18n/page-metadata";
+import { getLocalizedLandingSeo, getLocalizedServiceSeo } from "@/lib/i18n/locale-seo";
+import type { Locale } from "@/i18n/routing";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -22,31 +31,42 @@ type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  const legacy = serviceCategories.map((s) => ({ slug: s.id }));
+  const legacy = serviceCategories
+    .filter((s) => !(SUPERSEDED_LEGACY_SERVICE_IDS as readonly string[]).includes(s.id))
+    .map((s) => ({ slug: s.id }));
   const landings = SERVICE_LANDING_SLUGS.map((slug) => ({ slug }));
   return [...legacy, ...landings];
 }
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-
+  const loc = locale as Locale;
   if (isServiceLandingSlug(slug)) {
-    const page = getServiceLandingPage(slug)!;
-    return metadataFromEntry(getLandingSeo(slug), page.path, locale);
+    const page = await getLocalizedLandingPage(slug, loc);
+    if (!page) notFound();
+    return localizedLandingMetadata(loc, slug, page.path);
   }
 
-  const service = getServiceById(slug);
-  if (!service) return {};
-  const seo = getServiceSeo(slug, service.title, service.overview || service.desc);
-  return metadataFromEntry(seo, `/services/${slug}`, locale);
+  const service = await getServiceByIdLocalized(slug, loc);
+  if (!service) notFound();
+  return localizedServiceMetadata(
+    loc,
+    slug,
+    `/services/${slug}`,
+    service.title,
+    service.overview || service.desc
+  );
 }
 
 export default async function ServicePage({ params }: Props) {
   const { locale, slug } = await params;
+  const loc = locale as Locale;
 
   if (isServiceLandingSlug(slug)) {
-    const page = getServiceLandingPage(slug);
+    const page = await getLocalizedLandingPage(slug, loc);
     if (!page) notFound();
 
     const url = absoluteUrl(locale, page.path);
@@ -76,10 +96,15 @@ export default async function ServicePage({ params }: Props) {
     );
   }
 
-  const service = getServiceById(slug);
+  const service = await getServiceByIdLocalized(slug, loc);
   if (!service) notFound();
 
-  const seo = getServiceSeo(slug, service.title, service.overview || service.desc);
+  const seo = await getLocalizedServiceSeo(
+    locale as Locale,
+    slug,
+    service.title,
+    service.overview || service.desc
+  );
   const path = `/services/${slug}`;
 
   return (

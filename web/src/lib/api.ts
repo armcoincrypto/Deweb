@@ -91,26 +91,36 @@ export const dewebApi = {
       password: string;
       accountMode?: string;
       newsletter?: boolean;
+      locale?: string;
     }) =>
       api<{ success: boolean; requireLogin: boolean; email: string; message: string }>(
         "/auth/register",
         { method: "POST", body: JSON.stringify(body) }
       ),
     me: () => api<{ user: User }>("/auth/me"),
-    forgotPassword: (email: string) =>
+    forgotPassword: (email: string, locale?: string) =>
       api<{ success: boolean; message: string; resetUrl?: string }>("/auth/forgot-password", {
         method: "POST",
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, locale }),
       }),
     resetPassword: (token: string, password: string) =>
       api<{ success: boolean; message: string }>("/auth/reset-password", {
         method: "POST",
         body: JSON.stringify({ token, password }),
       }),
-    sendVerification: () =>
+    verifyEmail: (token: string) =>
+      api<{ ok: boolean; message: string }>(
+        `/auth/verify-email?token=${encodeURIComponent(token)}`
+      ),
+    sendVerification: (locale?: string) =>
       api<{ ok: boolean; message: string; verifyUrl?: string }>("/auth/send-verification", {
         method: "POST",
-        body: "{}",
+        body: JSON.stringify({ locale }),
+      }),
+    resendVerificationEmail: (email: string, locale?: string) =>
+      api<{ success: boolean; message: string }>("/auth/resend-verification-email", {
+        method: "POST",
+        body: JSON.stringify({ email, locale }),
       }),
   },
   listings: {
