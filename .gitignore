@@ -75,6 +75,12 @@ web_modules/
 # Backend SQLite database
 backend/data/*.sqlite
 backend/data/*.sqlite-*
+
+# Runtime uploads (keep directory placeholders only)
+backend/uploads/blog/*
+!backend/uploads/blog/.gitkeep
+backend/uploads/social/
+
 !.env.example
 
 # parcel-bundler cache (https://parceljs.org/)

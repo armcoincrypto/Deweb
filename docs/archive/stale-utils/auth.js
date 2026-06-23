@@ -20,7 +20,6 @@ const verifyLimiter = rateLimit({
   keyFn: (req) => `verify:${req.userId || ipKey(req)}`,
 });
 const forgotLimiter = rateLimit({ windowMs: 300000, max: 5, keyFn: ipKey });
-const loginLimiter = rateLimit({ windowMs: 300000, max: 10, keyFn: ipKey });
 
 function validatePassword(password) {
   if (password.length < 8) {
@@ -192,7 +191,7 @@ router.post("/reset-password", (req, res) => {
   res.json({ success: true, message: "Password updated. You can sign in now." });
 });
 
-router.post("/login", loginLimiter, (req, res) => {
+router.post("/login", (req, res) => {
   const login = String(req.body.username || req.body.email || "").trim();
   const password = String(req.body.password || "");
 

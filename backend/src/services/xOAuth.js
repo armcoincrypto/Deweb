@@ -1,5 +1,4 @@
 import crypto from "crypto";
-import { ENV_FILE_PATH } from "../loadEnv.js";
 
 function readEnv(name) {
   const raw = process.env[name]?.trim() || "";
@@ -62,26 +61,14 @@ export function getXCredentials() {
 }
 
 export function getXConnectionStatus() {
-  const hasApiKey = !!readEnv("X_API_KEY");
-  const hasApiSecret = !!readEnv("X_API_SECRET");
-  const hasAccessToken = !!readEnv("X_ACCESS_TOKEN");
-  const hasAccessTokenSecret = !!readEnv("X_ACCESS_TOKEN_SECRET");
-  const hasBearerToken = !!readEnv("X_BEARER_TOKEN");
   const creds = getXCredentials();
 
   return {
-    envFile: ENV_FILE_PATH,
-    hasApiKey,
-    hasApiSecret,
-    hasAccessToken,
-    hasAccessTokenSecret,
-    hasBearerToken,
     canPost: !!creds,
     mode: creds?.mode || null,
-    creditsNote:
-      creds
-        ? "Credentials OK. If publish returns 402, add credits at https://console.x.com → Billing"
-        : "Set X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET in backend/.env",
+    creditsNote: creds
+      ? "If publish returns 402, add credits at https://console.x.com → Billing"
+      : "X API credentials are not fully configured.",
   };
 }
 

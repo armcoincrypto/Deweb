@@ -22,6 +22,10 @@ import setupRoutes from "./routes/setup.js";
 import listingRoutes from "./routes/listings.js";
 import dealChatRoutes from "./routes/dealChat.js";
 import leadRoutes from "./routes/leads.js";
+import walletRoutes from "./routes/wallet.js";
+import checkoutRoutes from "./routes/checkout.js";
+import cryptoRoutes from "./routes/crypto.js";
+import cardRoutes from "./routes/cards.js";
 import blogRoutes from "./routes/blog.js";
 import adminBlogRoutes from "./routes/adminBlog.js";
 import adminBlogAnalyticsRoutes from "./routes/adminBlogAnalytics.js";
@@ -51,7 +55,10 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true, service: "deweb-backend", version: "3.0" });
 });
 
-app.use("/api/test-ai", testAiRoutes);
+if (process.env.NODE_ENV !== "production") {
+  app.use("/api/test-ai", testAiRoutes);
+}
+
 app.use("/api/telegram", telegramWebhookRoutes);
 app.use("/api/linkedin", linkedinOAuthRoutes);
 app.use("/api/x", xStatusRoutes);
@@ -78,6 +85,10 @@ app.use("/api/support", supportRoutes);
 app.use("/api/setup", setupRoutes);
 app.use("/api/listings", listingRoutes);
 app.use("/api/deal-chat", dealChatRoutes);
+app.use("/api/wallet", walletRoutes);
+app.use("/api/checkout", checkoutRoutes);
+app.use("/api/crypto", cryptoRoutes);
+app.use("/api/cards", cardRoutes);
 
 app.use((err, _req, res, _next) => {
   console.error(err);

@@ -50,7 +50,7 @@
       "desc": "Scalable web apps with modern stacks, APIs, and admin dashboards.",
       "tech": ["Next.js", "React", "Node.js"],
       "timeline": "4–12 weeks",
-      "price": "From $400",
+      "price": "From $400"
     },
     {
       "id": "mobile",
@@ -59,7 +59,7 @@
       "desc": "iOS, Android, and cross-platform apps with polished UX.",
       "tech": ["React Native", "Flutter", "iOS & Android"],
       "timeline": "6–16 weeks",
-      "price": "From $1000",
+      "price": "From $1000"
     },
     {
       "id": "saas",
@@ -68,7 +68,7 @@
       "desc": "Multi-vendor platforms with bidding, escrow, and supplier dashboards.",
       "tech": ["Next.js", "PostgreSQL", "Stripe"],
       "timeline": "8–20 weeks",
-      "price": "From $2500",
+      "price": "From $2500"
     },
     {
       "id": "bots",
@@ -77,7 +77,7 @@
       "desc": "Community bots, sales automation, and support on messaging platforms.",
       "tech": ["Node.js", "Python", "APIs"],
       "timeline": "1–4 weeks",
-      "price": "From $300",
+      "price": "From $300"
     },
     {
       "id": "uiux",
@@ -86,7 +86,7 @@
       "desc": "Product design, design systems, and high-fidelity prototypes.",
       "tech": ["Figma", "Framer", "Design tokens"],
       "timeline": "2–8 weeks",
-      "price": "From $400",
+      "price": "From $400"
     },
     {
       "id": "branding",
@@ -95,7 +95,7 @@
       "desc": "Logos, brand guidelines, and visual identity for digital products.",
       "tech": ["Illustrator", "Figma", "Motion"],
       "timeline": "2–6 weeks",
-      "price": "From $400",
+      "price": "From $400"
     },
     {
       "id": "seo",
@@ -104,7 +104,7 @@
       "desc": "Technical SEO, content strategy, and conversion optimization.",
       "tech": ["Analytics", "Core Web Vitals", "Content"],
       "timeline": "Ongoing",
-      "price": "From $400",
+      "price": "From $400"
     },
     {
       "id": "marketing",
