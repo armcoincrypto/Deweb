@@ -2,9 +2,92 @@
 
 **Project:** `/var/www/deweb`  
 **Production:** `https://dewebam.com`  
-**Last updated:** 2026-06-23
+**Last updated:** 2026-06-23 (GitHub deploy recovery)
 
 Use this runbook for all production deployments. **Never** use `git reset --hard` on the server.
+
+---
+
+## Critical: correct build path
+
+The repository root `/var/www/deweb` has **no** root `package.json`. Frontend builds **must** run from:
+
+```bash
+cd /var/www/deweb/web
+npm ci    # or npm install
+npm run build
+```
+
+**Never run** `npm run build` from `/var/www/deweb` — it will fail or use the wrong directory.
+
+---
+
+## GitHub authentication
+
+### Verify remote and access
+
+```bash
+cd /var/www/deweb
+git remote -v
+git ls-remote origin
+```
+
+Expected: lists refs including `refs/heads/main`. If it fails, see recovery below.
+
+### Production server remote (SSH deploy key)
+
+The server uses SSH via `~/.ssh/config`:
+
+```
+Host github-deweb
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/deweb_github_ed25519
+  IdentitiesOnly yes
+```
+
+Remote URL:
+
+```
+git@github-deweb:gagpoghosyan99/deweb-community.git
+```
+
+### Test GitHub SSH auth
+
+```bash
+ssh -T git@github-deweb
+# Expected after deploy key is added: "Hi gagpoghosyan99/deweb-community! You've successfully authenticated..."
+git ls-remote origin
+```
+
+### If push/pull fails
+
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| `Repository not found` | Private repo + no access, or wrong URL | Confirm repo URL; add deploy key or PAT |
+| `Authentication failed` (HTTPS) | No credential helper on server | Switch to SSH deploy key |
+| `Permission denied (publickey)` | Deploy key not added to GitHub | Add public key to repo **Deploy keys** (Allow write access) |
+| `could not read Username` (HTTPS) | Non-interactive server | Use SSH, not HTTPS |
+| `git pull` fails with local changes | Dirty working tree | Stash/archive WIP; commit or discard intentional changes first |
+
+### Recover local commits if push blocked
+
+```bash
+# Preserve all refs offline
+git bundle create /var/backups/deweb/deweb-local-git-$(date +%Y%m%d-%H%M%S).bundle --all
+
+# After auth fixed
+git push origin main
+```
+
+**Do not** run `git reset --hard` or delete untracked WIP.
+
+### Avoid dirty production state
+
+- Commit production fixes before relying on `deploy/update.sh` (cron runs `git pull`).
+- Keep experimental UI in untracked dirs or a feature branch.
+- Run `git status --short` before every deploy.
+- Use `/var/backups/deweb/` for pre-deploy archives.
 
 ---
 
@@ -76,13 +159,15 @@ ls -lh "$BACKUP"
 
 ## 2. Pull changes
 
-### Option A — Standard deploy (clean tree)
-
 ```bash
 cd /var/www/deweb
 git fetch origin main
 git pull origin main
 ```
+
+**Pre-condition:** `git ls-remote origin` must succeed (GitHub auth OK) and working tree must not block pull.
+
+### Option A — Standard deploy (clean tree)
 
 ### Option B — Server has local commits to keep
 
@@ -115,12 +200,15 @@ git pull origin main
 
 ## 3. Build
 
+> **Run frontend build from `/var/www/deweb/web`, not the repo root.**
+
 ### Backend (no compile step)
 
 ```bash
 cd /var/www/deweb/backend
 npm install --omit=dev
 node --check src/index.js
+find src -name "*.js" -print0 | xargs -0 -n1 node --check
 ```
 
 ### Frontend
@@ -128,9 +216,10 @@ node --check src/index.js
 ```bash
 cd /var/www/deweb/web
 export NEXT_PUBLIC_LEGACY_URL="https://dewebam.com"
-npm install
+npm ci
 npm run favicons
 npm run build
+npm run lint || true
 ```
 
 **Build must exit 0 before restarting services.**
@@ -295,7 +384,26 @@ The canonical server script (used by cron and GitHub Actions):
 bash /var/www/deweb/deploy/update.sh
 ```
 
-Contents summary:
+**Correct manual equivalent:**
+
+```bash
+cd /var/www/deweb
+git pull origin main
+
+cd /var/www/deweb/web
+npm ci
+npm run build
+
+nginx -t
+
+sudo systemctl restart deweb-api
+sudo systemctl restart deweb-next
+
+curl -s -o /dev/null -w "health: %{http_code}\n" https://dewebam.com/api/health
+curl -s -o /dev/null -w "home: %{http_code}\n" https://dewebam.com/en
+```
+
+Contents summary (`deploy/update.sh`):
 1. `git pull origin main`
 2. Backend `npm install --omit=dev` + restart API
 3. Frontend `npm install` + `npm run favicons` + `npm run build` + restart Next
