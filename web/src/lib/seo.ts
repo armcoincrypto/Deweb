@@ -29,6 +29,8 @@ export const PUBLIC_STATIC_PATHS = [
   "/services",
   "/marketplace",
   "/marketplace/hire-web-developers",
+  "/marketplace/hire-telegram-bot-developers",
+  "/marketplace/hire-ai-automation-specialists",
   "/blog",
   "/privacy-policy",
   "/cookie-policy",

@@ -11,6 +11,7 @@ export type ServiceLandingPage = {
   process: { step: number; title: string; description: string }[];
   faqs: { question: string; answer: string }[];
   relatedServices: { slug: string; title: string; description: string }[];
+  marketplaceHire?: { href: string; label: string; description: string };
   cta: {
     title: string;
     description: string;

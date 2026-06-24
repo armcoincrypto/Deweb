@@ -36,6 +36,16 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "Hire web developers through DEWEB Marketplace — post your project, compare proposals, and staff front-end, back-end, and full-stack builds with transparent budgets and timelines.",
   },
+  "hire-telegram-bot-developers": {
+    title: "Hire Telegram Bot Developers | Post Bot Projects & Compare Proposals | DEWEB",
+    description:
+      "Hire Telegram bot developers on DEWEB Marketplace — post support bots, Mini Apps, payment flows, and CRM integrations; compare specialist proposals with clear budgets and timelines.",
+  },
+  "hire-ai-automation-specialists": {
+    title: "Hire AI Automation Specialists | Post Projects & Compare Proposals | DEWEB",
+    description:
+      "Hire AI automation specialists through DEWEB Marketplace — post workflow, integration, and intelligent operations projects; compare proposals from vetted automation engineers.",
+  },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
     description:

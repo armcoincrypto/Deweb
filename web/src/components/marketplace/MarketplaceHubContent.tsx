@@ -55,6 +55,20 @@ export async function MarketplaceHubContent() {
           <p className="mt-4 leading-relaxed text-white/65">{t("categoriesIntro")}</p>
           <ul className="mt-4 space-y-3 text-white/65">
             <li>
+              <Link href="/marketplace/hire-telegram-bot-developers" className="font-semibold text-deweb-cyan hover:underline">
+                {t("categoryHireTelegramLink")}
+              </Link>
+              {" — "}
+              {t("categoryHireTelegramDesc")}
+            </li>
+            <li>
+              <Link href="/marketplace/hire-ai-automation-specialists" className="font-semibold text-deweb-cyan hover:underline">
+                {t("categoryHireAiLink")}
+              </Link>
+              {" — "}
+              {t("categoryHireAiDesc")}
+            </li>
+            <li>
               <Link href="/marketplace/hire-web-developers" className="font-semibold text-deweb-cyan hover:underline">
                 {t("categoryHireWebLink")}
               </Link>

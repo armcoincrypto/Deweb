@@ -226,6 +226,25 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
           </div>
         </section>
 
+        {/* Marketplace hire — reciprocal link for specialist hiring */}
+        {page.marketplaceHire && (
+          <section className="mt-20" aria-labelledby="marketplace-hire-heading">
+            <GlassCard className="mx-auto max-w-3xl p-8 text-center sm:p-10">
+              <h2 id="marketplace-hire-heading" className="text-2xl font-bold text-white">
+                {page.marketplaceHire.label}
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-white/60">
+                {page.marketplaceHire.description}
+              </p>
+              <div className="mt-8">
+                <GlowButton href={page.marketplaceHire.href} variant="secondary">
+                  {page.marketplaceHire.label} →
+                </GlowButton>
+              </div>
+            </GlassCard>
+          </section>
+        )}
+
         {/* Contact CTA */}
         <section className="mt-20 overflow-hidden rounded-2xl border border-deweb-cyan/25 bg-gradient-to-br from-deweb-cyan/15 via-[#0a1628] to-purple-900/20 p-8 text-center sm:p-14">
           <h2 className="text-2xl font-bold text-white sm:text-4xl">{page.cta.title}</h2>

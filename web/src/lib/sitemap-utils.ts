@@ -18,7 +18,9 @@ export function pathPriority(path: string): number {
     path === "/contact" ||
     path === "/services" ||
     path === "/marketplace" ||
-    path === "/marketplace/hire-web-developers"
+    path === "/marketplace/hire-web-developers" ||
+    path === "/marketplace/hire-telegram-bot-developers" ||
+    path === "/marketplace/hire-ai-automation-specialists"
   ) {
     return 0.9;
   }
@@ -50,6 +52,8 @@ export function pathLastModified(path: string, fallback = MARKETING_LAST_MOD): D
     path === "/services" ||
     path === "/marketplace" ||
     path === "/marketplace/hire-web-developers" ||
+    path === "/marketplace/hire-telegram-bot-developers" ||
+    path === "/marketplace/hire-ai-automation-specialists" ||
     path === "/blog"
   ) {
     return MARKETING_LAST_MOD;

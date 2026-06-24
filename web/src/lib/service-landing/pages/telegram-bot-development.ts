@@ -219,6 +219,12 @@ export const telegramBotDevelopment: ServiceLandingPage = {
         "Develop APIs, admin panels, and backends that power bot and Mini App experiences.",
     },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-telegram-bot-developers",
+    label: "Hire Telegram Bot Developers",
+    description:
+      "Post your Telegram bot project on DEWEB Marketplace, compare proposals from bot developers, and move from brief to production with clear scope and budget.",
+  },
   cta: {
     title: "Ready to Build Your Telegram Bot?",
     description:

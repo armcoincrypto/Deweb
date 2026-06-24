@@ -214,6 +214,12 @@ export const aiBusinessAutomation: ServiceLandingPage = {
         "Automate ecommerce operations and build tailored Shopify workflows with custom app engineering.",
     },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-ai-automation-specialists",
+    label: "Hire AI Automation Specialists",
+    description:
+      "Publish your automation project on DEWEB Marketplace, review specialist proposals, and staff workflow, integration, and AI agent builds with transparent timelines.",
+  },
   cta: {
     title: "Ready to Remove Operational Bottlenecks with AI?",
     description:
