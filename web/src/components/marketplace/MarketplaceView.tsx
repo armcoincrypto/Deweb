@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { LeadFormModal } from "@/components/leads/LeadFormModal";
 import { dewebApi, getToken, type MarketplaceListing, type Product, type LeadSubmissionType } from "@/lib/api";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { MarketplaceAuthorityEmptyState } from "@/components/marketplace/MarketplaceAuthorityEmptyState";
 import { cn } from "@/lib/utils";
 
 type Filter = "customer_request" | "worker_offer" | "products";
@@ -201,7 +202,7 @@ export function MarketplaceView() {
           <p className="text-center text-white/45">No products listed yet.</p>
         )}
         {!loading && filter !== "products" && filteredListings.length === 0 && (
-          <p className="text-center text-white/45">{t("noListings")}</p>
+          <MarketplaceAuthorityEmptyState />
         )}
 
         <LeadFormModal
