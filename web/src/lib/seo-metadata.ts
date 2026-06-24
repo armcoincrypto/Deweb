@@ -31,6 +31,11 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "Post your software project, compare technical specialists, and connect with developers, designers, AI automation experts, and digital teams through DEWEB Marketplace.",
   },
+  "hire-web-developers": {
+    title: "Hire Web Developers | Post Projects & Compare Proposals | DEWEB Marketplace",
+    description:
+      "Hire web developers through DEWEB Marketplace — post your project, compare proposals, and staff front-end, back-end, and full-stack builds with transparent budgets and timelines.",
+  },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
     description:
