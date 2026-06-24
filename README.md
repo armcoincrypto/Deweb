@@ -1,23 +1,23 @@
-# deweb-community
+# Deweb
 
 DeWeb community marketplace — full-stack SaaS platform (Next.js + legacy UI + Node API + SQLite).
 
-**GitHub:** https://github.com/gagpoghosyan99/deweb-community  
+**GitHub:** https://github.com/armcoincrypto/Deweb  
 **Live site:** https://dewebam.com (redirects to `/en`)
 
 ## GitHub — connect & sync
 
-This folder is already linked to the repo:
+This folder is linked to the repo:
 
 ```text
-origin  https://github.com/gagpoghosyan99/deweb-community.git
+origin  git@github-deweb:armcoincrypto/Deweb.git
 ```
 
 ### Clone on a new computer
 
 ```bash
-git clone https://github.com/gagpoghosyan99/deweb-community.git
-cd deweb-community
+git clone git@github.com:armcoincrypto/Deweb.git
+cd Deweb
 ```
 
 ### Push your changes
@@ -68,28 +68,29 @@ npm run dev
 
 Check: http://localhost:3000/api/health → `{"ok":true,...}`
 
-### Terminal 2 — Frontend
+### Terminal 2 — Frontend (Next.js)
 
 ```bash
-cd deweb-community
-python3 -m http.server 8001
+cd web
+npm install
+npm run dev
 ```
 
-Open: http://localhost:8001/index.html
+Open: http://localhost:3000/en
 
 ## What works end-to-end
 
 | Feature | Page | Backend |
 |---------|------|---------|
-| Sign up / sign in | `account.html` | `/api/auth/*` |
-| Profile, wallet, products, orders | `account-dashboard.html` | users, wallet, products, orders, cards |
-| Marketplace sellers & products | `index.html` (slide 5) | developers, products |
-| Custom order inquiry | `index.html` (Order slide) | `/api/inquiries` |
-| Open orders & claim | `index.html` (Marketplace) | `/api/orders/open`, `claim` |
-| Contact message | `index.html` (Contact) | `/api/contact` |
-| Services offer form | `services.html` | `/api/offers` |
-| Cart → checkout | `cart.html` → `payment.html` | `/api/checkout` (sign in required) |
-| Promocode HAYUGEN | `services.html` | `/api/checkout/promo` |
+| Sign up / sign in | `/en/account/login` | `/api/auth/*` |
+| Profile, wallet, products, orders | `/en/account/profile` | users, wallet, products, orders, cards |
+| Marketplace sellers & products | `/en/marketplace` | developers, products |
+| Custom order inquiry | `/en/contact` | `/api/inquiries` |
+| Open orders & claim | `/en/marketplace` | `/api/orders/open`, `claim` |
+| Contact message | `/en/contact` | `/api/contact` |
+| Services offer form | `/en/services` | `/api/offers` |
+| Cart → checkout | legacy + API | `/api/checkout` (sign in required) |
+| Promocode HAYUGEN | `/en/services` | `/api/checkout/promo` |
 
 ## Demo seller logins
 
@@ -104,16 +105,16 @@ Switch to **Seller** in My Profile to add products; they appear on the main mark
 ## Project structure
 
 - **web/** — Premium Next.js homepage (Tailwind, Framer Motion) — `cd web && npm run dev`
-- **deweb-community/** — Frontend (HTML/CSS/JS), `api.js` client
+- **deweb-community/** — Legacy frontend (HTML/CSS/JS), `api.js` client
 - **backend/** — Express API, SQLite, seed data
 
 ## Troubleshooting
 
 **"Failed to fetch" on sign up** — backend is not running. Start Terminal 1 (`npm run dev`).
 
-**Checkout asks to sign in** — create an account on `account.html`, then pay from `payment.html`.
+**502 on homepage** — rebuild Next.js from `web/`: `cd web && npm run build`, then restart `deweb-next`.
 
-**Different API URL** — before `api.js`:
+**Different API URL** — set `NEXT_PUBLIC_API_URL` in web env or legacy:
 
 ```html
 <script>window.DEWEB_API_URL = "http://localhost:3000/api";</script>
