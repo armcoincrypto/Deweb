@@ -143,7 +143,7 @@ export const technicalSeoForEcommerce: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/shopify-development", label: "Shopify Development Services" },
-    { href: "/services/ecommerce-development", label: "Ecommerce Website Development" },
+    { href: "/services/shopify-development", label: "Ecommerce Website Development" },
     { href: "/services/seo", label: "Technical SEO and Growth Support" },
   ]),
   cta: {

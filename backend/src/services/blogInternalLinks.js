@@ -11,7 +11,7 @@ const SERVICE_LINKS = {
     label: "Shopify development services",
   },
   ai: {
-    href: `/${SITE_LOCALE}/services/ai-automation`,
+    href: `/${SITE_LOCALE}/services/ai-business-automation`,
     label: "AI automation services",
   },
   saas: {
@@ -23,7 +23,7 @@ const SERVICE_LINKS = {
     label: "Marketplace development services",
   },
   "web-development": {
-    href: `/${SITE_LOCALE}/services/web-development`,
+    href: `/${SITE_LOCALE}/services/web-application-development`,
     label: "Web development services",
   },
 };

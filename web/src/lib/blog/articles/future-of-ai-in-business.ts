@@ -151,6 +151,7 @@ export const futureOfAiInBusiness: BlogArticle = {
     "custom-web-application-development",
   ],
   internalLinks: blogInternalLinks([
+    { href: "/marketplace/hire-ai-automation-specialists", label: "Hire AI Automation Specialists on DEWEB Marketplace" },
     { href: "/services/ai-business-automation", label: "AI Automation Services" },
     { href: "/services/web-application-development", label: "AI-Enabled Web Applications" },
     { href: "/services/saas-development", label: "AI SaaS Product Development" },

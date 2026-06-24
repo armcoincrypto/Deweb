@@ -151,8 +151,8 @@ export const shopifyVsWoocommerce: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/shopify-development", label: "Shopify Development Services" },
-    { href: "/services/woocommerce-development", label: "WooCommerce Development Services" },
-    { href: "/services/ecommerce-development", label: "Ecommerce Development Services" },
+    { href: "/services/shopify-development", label: "WooCommerce Development Services" },
+    { href: "/services/shopify-development", label: "Ecommerce Development Services" },
   ]),
   cta: {
     title: "Choose the Right Ecommerce Platform with Confidence",

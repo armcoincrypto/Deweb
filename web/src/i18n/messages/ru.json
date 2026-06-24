@@ -1071,5 +1071,33 @@
       "title": "Нанять специалистов по AI-автоматизации | Опубликовать проекты и сравнить предложения | DEWEB",
       "description": "Нанимайте специалистов по AI-автоматизации через DEWEB Marketplace — публикуйте проекты по workflow, интеграциям и интеллектуальным операциям; сравнивайте предложения проверенных инженеров автоматизации."
     }
+  },
+  "serviceLanding": {
+    "relatedGuides": {
+      "title": "Связанные материалы",
+      "intro": "Изучите статьи DEWEB, которые помогут спланировать, оценить бюджет и организовать delivery в этой области.",
+      "readGuide": "Читать материал",
+      "labels": {
+        "telegram-bot-development-guide": "Гид по разработке Telegram-ботов: паттерны AI-автоматизации на 2026",
+        "ai-automation-for-ecommerce": "AI-автоматизация для ecommerce",
+        "future-of-ai-in-business": "Будущее AI в бизнесе: практическая стратегия и конкурентное преимущество",
+        "ai-chatbots-for-business": "AI-чатботы для бизнеса",
+        "how-to-build-a-marketplace-website": "Как создать marketplace-сайт в 2026",
+        "marketplace-monetization-strategies": "Стратегии монетизации marketplace в 2026",
+        "competitive-bidding-it-projects": "Конкурентные ставки в IT-проектах: модели marketplace и best practices",
+        "custom-web-application-development": "Разработка custom web-приложений: от business case до масштабируемого продукта",
+        "nextjs-vs-wordpress": "Next.js vs WordPress для современных business-сайтов",
+        "how-to-hire-software-developers": "Как нанять software-разработчиков: практический гид для растущих команд",
+        "outsourcing-software-development-2026": "Аутсорсинг разработки ПО в 2026: стратегический гид",
+        "shopify-development-cost-2026": "Сколько стоит разработка Shopify в 2026",
+        "shopify-vs-woocommerce": "Shopify vs WooCommerce: сравнение платформ",
+        "best-shopify-apps": "Лучшие приложения Shopify для растущих магазинов",
+        "shopify-plus-vs-standard": "Shopify Plus vs Standard Shopify: гид по масштабированию",
+        "headless-commerce-guide": "Headless commerce: гид по современным витринам",
+        "technical-seo-for-ecommerce": "Технический SEO для ecommerce: framework роста 2026",
+        "saas-development-guide": "Гид по SaaS-разработке 2026: архитектура и go-to-market",
+        "mvp-development-cost-guide": "Гид по стоимости MVP для product-команд"
+      }
+    }
   }
 }

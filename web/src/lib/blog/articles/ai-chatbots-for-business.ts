@@ -150,6 +150,7 @@ export const aiChatbotsForBusiness: BlogArticle = {
     "technical-seo-for-ecommerce",
   ],
   internalLinks: blogInternalLinks([
+    { href: "/marketplace/hire-ai-automation-specialists", label: "Hire AI Automation Specialists on DEWEB Marketplace" },
     { href: "/services/ai-chatbot-development", label: "AI Chatbot Development Services" },
     { href: "/services/web-application-development", label: "Custom Web Development Services" },
     { href: "/services/ai-business-automation", label: "AI Automation Services" },

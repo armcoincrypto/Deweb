@@ -1071,5 +1071,33 @@
         "description": "SaaS product development, MVP costing and subscription business guides from DEWEB."
       }
     }
+  },
+  "serviceLanding": {
+    "relatedGuides": {
+      "title": "Related guides",
+      "intro": "Explore DEWEB articles that help you plan, budget, and deliver projects in this service area.",
+      "readGuide": "Read guide",
+      "labels": {
+        "telegram-bot-development-guide": "Telegram Bot Development Guide: AI Automation Patterns for 2026",
+        "ai-automation-for-ecommerce": "AI Automation for Ecommerce",
+        "future-of-ai-in-business": "The Future of AI in Business: Practical Strategy and Competitive Advantage",
+        "ai-chatbots-for-business": "AI Chatbots for Business",
+        "how-to-build-a-marketplace-website": "How to Build a Marketplace Website in 2026",
+        "marketplace-monetization-strategies": "Marketplace Monetization Strategies for 2026",
+        "competitive-bidding-it-projects": "Competitive Bidding in IT Projects: Marketplace Models and Best Practices",
+        "custom-web-application-development": "Custom Web Application Development: From Business Case to Scalable Product",
+        "nextjs-vs-wordpress": "Next.js vs WordPress for Modern Business Websites",
+        "how-to-hire-software-developers": "How to Hire Software Developers: A Practical Guide for Growing Teams",
+        "outsourcing-software-development-2026": "Outsourcing Software Development in 2026: A Strategic Guide",
+        "shopify-development-cost-2026": "How Much Does Shopify Development Cost in 2026",
+        "shopify-vs-woocommerce": "Shopify vs WooCommerce: Platform Comparison",
+        "best-shopify-apps": "Best Shopify Apps for Growing Stores",
+        "shopify-plus-vs-standard": "Shopify Plus vs Standard Shopify: Scaling Decision Guide",
+        "headless-commerce-guide": "Headless Commerce Guide for Modern Storefronts",
+        "technical-seo-for-ecommerce": "Technical SEO for Ecommerce: 2026 Growth Framework",
+        "saas-development-guide": "SaaS Development Guide 2026: Architecture and Go-to-Market",
+        "mvp-development-cost-guide": "MVP Development Cost Guide for Product Teams"
+      }
+    }
   }
 }

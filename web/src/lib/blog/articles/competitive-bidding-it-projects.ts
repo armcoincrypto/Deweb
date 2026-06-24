@@ -143,7 +143,7 @@ export const competitiveBiddingItProjects: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/marketplace-development", label: "Marketplace Development for Procurement" },
-    { href: "/services/custom-web-development", label: "Custom Workflow Platform Development" },
+    { href: "/services/web-application-development", label: "Custom Workflow Platform Development" },
     { href: "/contact", label: "Discuss Your IT Bidding Platform Idea" },
   ]),
   cta: {

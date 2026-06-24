@@ -39,6 +39,10 @@ export function getServiceLandingPaths(): string[] {
   return SERVICE_LANDING_SLUGS.map((slug) => pages[slug].path);
 }
 
+export { getRelatedGuideSlugs, SERVICE_RELATED_GUIDES } from "./related-guides";
+export { resolveRelatedGuides } from "./resolve-related-guides";
+export type { ResolvedRelatedGuide } from "./resolve-related-guides";
+
 export function landingWordCount(page: ServiceLandingPage): number {
   const text = [
     page.subtitle,

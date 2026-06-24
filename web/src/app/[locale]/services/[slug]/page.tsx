@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { ServiceDetailView } from "@/components/services/ServiceDetailView";
 import { ServiceLandingView } from "@/components/seo/ServiceLandingView";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -11,7 +12,9 @@ import {
 import {
   isServiceLandingSlug,
   SERVICE_LANDING_SLUGS,
+  type ServiceLandingSlug,
 } from "@/lib/service-landing";
+import { resolveRelatedGuides } from "@/lib/service-landing/resolve-related-guides";
 import { SUPERSEDED_LEGACY_SERVICE_IDS, absoluteUrl } from "@/lib/seo";
 import {
   localizedLandingMetadata,
@@ -74,6 +77,8 @@ export default async function ServicePage({ params }: Props) {
       { name: "Services", path: "/services" },
       { name: page.h1, path: page.path },
     ];
+    const relatedGuides = await resolveRelatedGuides(slug as ServiceLandingSlug, loc);
+    const tGuides = await getTranslations("serviceLanding.relatedGuides");
 
     return (
       <>
@@ -90,7 +95,16 @@ export default async function ServicePage({ params }: Props) {
             faqPageSchema(page.faqs),
           ]}
         />
-        <ServiceLandingView page={page} breadcrumbs={breadcrumbs} />
+        <ServiceLandingView
+          page={page}
+          breadcrumbs={breadcrumbs}
+          relatedGuides={relatedGuides}
+          relatedGuidesCopy={{
+            title: tGuides("title"),
+            intro: tGuides("intro"),
+            readGuide: tGuides("readGuide"),
+          }}
+        />
       </>
     );
   }

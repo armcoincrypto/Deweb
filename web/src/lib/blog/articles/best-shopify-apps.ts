@@ -152,7 +152,7 @@ export const bestShopifyApps: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/shopify-development", label: "Shopify Development Services" },
-    { href: "/services/ecommerce-development", label: "Ecommerce Development Services" },
+    { href: "/services/shopify-development", label: "Ecommerce Development Services" },
     { href: "/services/ai-chatbot-development", label: "AI Chatbot Development Services" },
   ]),
   cta: {

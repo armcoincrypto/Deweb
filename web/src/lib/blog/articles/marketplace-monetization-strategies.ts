@@ -143,8 +143,8 @@ export const marketplaceMonetizationStrategies: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/marketplace-development", label: "Marketplace Platform Development" },
-    { href: "/services/product-strategy", label: "Product Strategy and Monetization Consulting" },
-    { href: "/services/custom-web-development", label: "Custom Marketplace Engineering" },
+    { href: "/services/marketplace-development", label: "Product Strategy and Monetization Consulting" },
+    { href: "/services/web-application-development", label: "Custom Marketplace Engineering" },
   ]),
   cta: {
     title: "Need a monetization strategy for your marketplace?",

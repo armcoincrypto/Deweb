@@ -214,6 +214,12 @@ export const webApplicationDevelopment: ServiceLandingPage = {
         "Launch conversational assistants that integrate with your web application workflows and support stack.",
     },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-web-developers",
+    label: "Hire Web Developers",
+    description:
+      "Post your web project on DEWEB Marketplace, compare developer proposals, and staff front-end, back-end, or full-stack delivery with transparent scope and budget.",
+  },
   cta: {
     title: "Planning a Custom Web Application Initiative?",
     description:

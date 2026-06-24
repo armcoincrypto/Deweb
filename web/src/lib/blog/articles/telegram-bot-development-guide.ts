@@ -142,6 +142,7 @@ export const telegramBotDevelopmentGuide: BlogArticle = {
     "ai-automation-for-ecommerce",
   ],
   internalLinks: blogInternalLinks([
+    { href: "/marketplace/hire-telegram-bot-developers", label: "Hire Telegram Bot Developers on DEWEB Marketplace" },
     { href: "/services/telegram-bot-development", label: "Telegram Bot Development Services" },
     { href: "/services/ai-business-automation", label: "Business Automation Services" },
     { href: "/services/web-application-development", label: "Custom Backend Integration" },

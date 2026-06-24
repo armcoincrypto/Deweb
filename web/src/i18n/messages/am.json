@@ -1099,5 +1099,33 @@
       "title": "Վարձել AI ավտոմատացման մասնագետներ | Հրապարակել նախագծեր և համեմատել առաջարկներ | DEWEB",
       "description": "Վարձեք AI ավտոմատացման մասնագետներ DEWEB Marketplace-ի միջոցով — հրապարակեք workflow, ինտեգրացիայի և intelligent operations նախագծերը; համեմատեք verified ավտոմատացման ինժեներների առաջարկները։"
     }
+  },
+  "serviceLanding": {
+    "relatedGuides": {
+      "title": "Կապված ուղեցույցներ",
+      "intro": "Ուսումնասիրեք DEWEB հոդվածները, որոնք օգնում են planning, budget և delivery-ն plan անել այս service ոլորտում։",
+      "readGuide": "Կարդալ ուղեցույցը",
+      "labels": {
+        "telegram-bot-development-guide": "Telegram բոտերի զարգացման ուղեցույց՝ AI ավտոմատացման pattern-ներ 2026",
+        "ai-automation-for-ecommerce": "AI ավտոմատացում ecommerce-ի համար",
+        "future-of-ai-in-business": "AI-ի ապագան բիզնեսում՝ գործնական ռազմավարություն և մրցակցային առավելություն",
+        "ai-chatbots-for-business": "AI չատբոտեր բիզնեսի համար",
+        "how-to-build-a-marketplace-website": "Ինչպես կառուցել marketplace վեբ կայք 2026",
+        "marketplace-monetization-strategies": "Marketplace monetization ռազմավարություններ 2026",
+        "competitive-bidding-it-projects": "Մրցակցային bidding IT նախագծերում՝ marketplace մոդելներ և best practices",
+        "custom-web-application-development": "Custom վեբ հավելվածների զարգացում՝ business case-ից մինչև scalable արտադրանք",
+        "nextjs-vs-wordpress": "Next.js vs WordPress ժամանակակից բիզնես կայքերի համար",
+        "how-to-hire-software-developers": "Ինչպես վարձել software մշակողներ՝ growing թիմերի գործնական ուղեցույց",
+        "outsourcing-software-development-2026": "Software զարգացման outsourcing 2026՝ strategic ուղեցույց",
+        "shopify-development-cost-2026": "Որքա՞ն է արժե Shopify զարգացումը 2026",
+        "shopify-vs-woocommerce": "Shopify vs WooCommerce՝ platform համեմատություն",
+        "best-shopify-apps": "Լավագույն Shopify apps growing խանութների համար",
+        "shopify-plus-vs-standard": "Shopify Plus vs Standard Shopify՝ scaling decision guide",
+        "headless-commerce-guide": "Headless commerce guide ժամանակակից storefront-ների համար",
+        "technical-seo-for-ecommerce": "Technical SEO ecommerce-ի համար՝ 2026 growth framework",
+        "saas-development-guide": "SaaS development guide 2026՝ architecture և go-to-market",
+        "mvp-development-cost-guide": "MVP development cost guide product թիմերի համար"
+      }
+    }
   }
 }

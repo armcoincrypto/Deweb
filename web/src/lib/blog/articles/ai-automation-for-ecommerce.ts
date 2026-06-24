@@ -151,9 +151,10 @@ export const aiAutomationForEcommerce: BlogArticle = {
     "headless-commerce-guide",
   ],
   internalLinks: blogInternalLinks([
+    { href: "/marketplace/hire-ai-automation-specialists", label: "Hire AI Automation Specialists on DEWEB Marketplace" },
     { href: "/services/ai-business-automation", label: "AI Automation Services" },
     { href: "/services/ai-chatbot-development", label: "AI Chatbot Development Services" },
-    { href: "/services/ecommerce-development", label: "Ecommerce Development Services" },
+    { href: "/services/shopify-development", label: "Ecommerce Development Services" },
   ]),
   cta: {
     title: "Turn AI Automation into Ecommerce Growth",

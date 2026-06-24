@@ -8,6 +8,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { heroReveal3D, motion3DStyle, transition3D, PERSPECTIVE } from "@/lib/motion-3d";
 import type { ServiceLandingPage } from "@/lib/service-landing/types";
+import type { ResolvedRelatedGuide } from "@/lib/service-landing/resolve-related-guides";
 import { ServiceConversionBlocks } from "@/components/conversion/ServiceConversionBlocks";
 import { getServiceOffer } from "@/lib/conversion-data";
 import type { BreadcrumbItem } from "@/lib/schema";
@@ -15,9 +16,20 @@ import type { BreadcrumbItem } from "@/lib/schema";
 type ServiceLandingViewProps = {
   page: ServiceLandingPage;
   breadcrumbs: BreadcrumbItem[];
+  relatedGuides?: ResolvedRelatedGuide[];
+  relatedGuidesCopy?: {
+    title: string;
+    intro: string;
+    readGuide: string;
+  };
 };
 
-export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProps) {
+export function ServiceLandingView({
+  page,
+  breadcrumbs,
+  relatedGuides = [],
+  relatedGuidesCopy,
+}: ServiceLandingViewProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const reduceMotion = useReducedMotion();
   const offer = getServiceOffer(page.slug);
@@ -176,6 +188,34 @@ export function ServiceLandingView({ page, breadcrumbs }: ServiceLandingViewProp
             ))}
           </div>
         </section>
+
+        {/* Related guides — service → blog mesh */}
+        {relatedGuides.length > 0 && relatedGuidesCopy && (
+          <section className="mt-20" aria-labelledby="related-guides-heading">
+            <div className="text-center">
+              <h2 id="related-guides-heading" className="text-3xl font-bold text-white">
+                {relatedGuidesCopy.title}
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-white/50">{relatedGuidesCopy.intro}</p>
+            </div>
+            <ul className="mx-auto mt-10 grid max-w-3xl gap-4">
+              {relatedGuides.map((guide) => (
+                <li key={guide.href}>
+                  <Link href={guide.href} className="group block">
+                    <GlassCard className="p-5 transition-all hover:border-deweb-cyan/40 hover:shadow-glow-sm">
+                      <span className="font-semibold text-white group-hover:text-deweb-cyan">
+                        {guide.label}
+                      </span>
+                      <span className="mt-2 block text-sm font-semibold text-deweb-cyan">
+                        {relatedGuidesCopy.readGuide} →
+                      </span>
+                    </GlassCard>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* FAQ */}
         <section className="mt-20" aria-labelledby="faq-heading">

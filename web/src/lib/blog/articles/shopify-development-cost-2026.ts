@@ -151,8 +151,8 @@ export const shopifyDevelopmentCost2026: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/shopify-development", label: "Shopify Development Services" },
-    { href: "/services/ecommerce-development", label: "Ecommerce Development Services" },
-    { href: "/services/technical-seo", label: "Technical SEO Services" },
+    { href: "/services/shopify-development", label: "Ecommerce Development Services" },
+    { href: "/services/seo", label: "Technical SEO Services" },
   ]),
   cta: {
     title: "Plan a Shopify Budget That Matches Growth",

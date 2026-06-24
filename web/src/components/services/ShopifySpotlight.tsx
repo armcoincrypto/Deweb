@@ -108,7 +108,7 @@ export function ShopifySpotlight() {
               {t("getConsultation")}
             </GlowButton>
             <Link
-              href="/services/ecommerce"
+              href="/services/shopify-development"
               className="text-sm font-semibold text-[#95BF47] hover:underline"
             >
               {t("cta")} →

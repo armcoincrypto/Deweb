@@ -214,6 +214,12 @@ export const aiChatbotDevelopment: ServiceLandingPage = {
         "Build Telegram bots, Mini Apps, and payment flows with secure API architecture and CRM integrations.",
     },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-ai-automation-specialists",
+    label: "Hire AI Automation Specialists",
+    description:
+      "Publish your automation or chatbot project on DEWEB Marketplace, review specialist proposals, and staff AI workflow delivery with clear milestones.",
+  },
   cta: {
     title: "Want an AI Chatbot That Actually Solves Problems?",
     description:

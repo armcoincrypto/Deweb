@@ -1071,5 +1071,33 @@
       "title": "Contratar especialistas en automatización con IA | Publica proyectos y compara propuestas | DEWEB",
       "description": "Contrata especialistas en automatización con IA a través de DEWEB Marketplace — publica proyectos de workflow, integración y operaciones inteligentes; compara propuestas de ingenieros de automatización verificados."
     }
+  },
+  "serviceLanding": {
+    "relatedGuides": {
+      "title": "Guías relacionadas",
+      "intro": "Explora artículos DEWEB que te ayudan a planificar, presupuestar y ejecutar proyectos en esta área de servicio.",
+      "readGuide": "Leer guía",
+      "labels": {
+        "telegram-bot-development-guide": "Guía de desarrollo de bots de Telegram: patrones de automatización con IA 2026",
+        "ai-automation-for-ecommerce": "Automatización con IA para ecommerce",
+        "future-of-ai-in-business": "El futuro de la IA en los negocios: estrategia práctica y ventaja competitiva",
+        "ai-chatbots-for-business": "Chatbots de IA para empresas",
+        "how-to-build-a-marketplace-website": "Cómo crear un marketplace web en 2026",
+        "marketplace-monetization-strategies": "Estrategias de monetización de marketplaces 2026",
+        "competitive-bidding-it-projects": "Licitación competitiva en proyectos IT: modelos de marketplace y buenas prácticas",
+        "custom-web-application-development": "Desarrollo de aplicaciones web a medida: del caso de negocio al producto escalable",
+        "nextjs-vs-wordpress": "Next.js vs WordPress para sitios web empresariales modernos",
+        "how-to-hire-software-developers": "Cómo contratar desarrolladores de software: guía práctica para equipos en crecimiento",
+        "outsourcing-software-development-2026": "Externalización de desarrollo de software en 2026: guía estratégica",
+        "shopify-development-cost-2026": "Cuánto cuesta el desarrollo Shopify en 2026",
+        "shopify-vs-woocommerce": "Shopify vs WooCommerce: comparación de plataformas",
+        "best-shopify-apps": "Mejores apps de Shopify para tiendas en crecimiento",
+        "shopify-plus-vs-standard": "Shopify Plus vs Shopify Standard: guía de escalado",
+        "headless-commerce-guide": "Guía de headless commerce para vitrinas modernas",
+        "technical-seo-for-ecommerce": "SEO técnico para ecommerce: framework de crecimiento 2026",
+        "saas-development-guide": "Guía de desarrollo SaaS 2026: arquitectura y go-to-market",
+        "mvp-development-cost-guide": "Guía de costes de MVP para equipos de producto"
+      }
+    }
   }
 }
