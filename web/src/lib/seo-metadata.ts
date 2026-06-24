@@ -251,6 +251,11 @@ export const LANDING_SEO: Record<string, SeoEntry> = {
     description:
       "Conversion-focused landing pages for ads, launches, and lead generation — mobile-first, fast, and built by DEWEB.",
   },
+  "telegram-bot-development": {
+    title: "Telegram Bot Development Services | Mini Apps, Payments & Automation | DEWEB",
+    description:
+      "Build Telegram bots, Mini Apps, payment flows, CRM integrations, AI assistants, and automation tools with DEWEB's Telegram bot development services.",
+  },
 };
 
 export const BLOG_CATEGORY_SEO: Record<string, SeoEntry> = {

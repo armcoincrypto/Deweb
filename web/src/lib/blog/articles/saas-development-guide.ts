@@ -154,7 +154,7 @@ export const saasDevelopmentGuide: BlogArticle = {
     { href: "/services/saas-development", label: "SaaS Development Services" },
     { href: "/services/web-application-development", label: "Custom Web App Development" },
     { href: "/services/marketplace-development", label: "Marketplace Engineering" },
-    { href: "/services/ai-automation", label: "AI-Powered Product Automation" },
+    { href: "/services/ai-business-automation", label: "AI-Powered Product Automation" },
     { href: "/services/shopify-development", label: "E-commerce Platform Development" },
   ]),
   cta: {

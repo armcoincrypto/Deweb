@@ -142,9 +142,9 @@ export const telegramBotDevelopmentGuide: BlogArticle = {
     "ai-automation-for-ecommerce",
   ],
   internalLinks: blogInternalLinks([
-    { href: "/services/ai-chatbot-development", label: "AI Chatbot Development Services" },
-    { href: "/services/automation", label: "Business Automation Services" },
-    { href: "/services/custom-web-development", label: "Custom Backend Integration" },
+    { href: "/services/telegram-bot-development", label: "Telegram Bot Development Services" },
+    { href: "/services/ai-business-automation", label: "Business Automation Services" },
+    { href: "/services/web-application-development", label: "Custom Backend Integration" },
   ]),
   cta: {
     title: "Planning an AI-powered Telegram bot for your business?",

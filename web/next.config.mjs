@@ -18,6 +18,8 @@ const SUPERSEDED_SERVICE_REDIRECTS = {
   ai: "ai-chatbot-development",
   saas: "saas-development",
   websites: "web-application-development",
+  bots: "telegram-bot-development",
+  "ai-automation": "ai-business-automation",
 };
 
 function localeRedirects(sourceSuffix, destinationSuffix) {

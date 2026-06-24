@@ -155,7 +155,7 @@ export const customWebApplicationDevelopment: BlogArticle = {
     { href: "/services/marketplace-development", label: "Marketplace Platform Development" },
     { href: "/services/saas-development", label: "SaaS Product Development" },
     { href: "/services/shopify-development", label: "Shopify Engineering Services" },
-    { href: "/services/ai-automation", label: "AI Automation for Operations" },
+    { href: "/services/ai-business-automation", label: "AI Automation for Operations" },
   ]),
   cta: {
     title: "Build a Custom Web App That Delivers ROI",

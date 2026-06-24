@@ -155,7 +155,7 @@ export const bestEcommercePlatforms: BlogArticle = {
     { href: "/services/web-application-development", label: "Custom E-commerce Web Applications" },
     { href: "/services/marketplace-development", label: "Marketplace Commerce Development" },
     { href: "/services/saas-development", label: "Subscription Platform Development" },
-    { href: "/services/ai-automation", label: "AI for E-commerce Automation" },
+    { href: "/services/ai-business-automation", label: "AI for E-commerce Automation" },
   ]),
   cta: {
     title: "Choose and Scale the Right E-commerce Platform",

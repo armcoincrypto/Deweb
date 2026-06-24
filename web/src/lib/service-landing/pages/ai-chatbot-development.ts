@@ -208,10 +208,10 @@ export const aiChatbotDevelopment: ServiceLandingPage = {
         "Create scalable SaaS products with embedded AI capabilities and multi-tenant operational architecture.",
     },
     {
-      slug: "shopify-custom-apps",
-      title: "Shopify Custom Apps",
+      slug: "telegram-bot-development",
+      title: "Telegram Bot Development",
       description:
-        "Develop commerce-focused custom apps and automation tools tailored to Shopify operations.",
+        "Build Telegram bots, Mini Apps, and payment flows with secure API architecture and CRM integrations.",
     },
   ]),
   cta: {

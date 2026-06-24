@@ -35,6 +35,7 @@ export function PlatformFooter() {
             <li><Link href="/services/shopify-custom-apps" className="hover:text-deweb-cyan">{t("shopifyCustomApps")}</Link></li>
             <li><Link href="/services/ai-chatbot-development" className="hover:text-deweb-cyan">{t("aiChatbot")}</Link></li>
             <li><Link href="/services/ai-business-automation" className="hover:text-deweb-cyan">{t("aiAutomation")}</Link></li>
+            <li><Link href="/services/telegram-bot-development" className="hover:text-deweb-cyan">{t("telegramBots")}</Link></li>
             <li><Link href="/services/web-application-development" className="hover:text-deweb-cyan">{t("webApps")}</Link></li>
             <li><Link href="/services/marketplace-development" className="hover:text-deweb-cyan">{t("marketplaceDev")}</Link></li>
             <li><Link href="/services/saas-development" className="hover:text-deweb-cyan">{t("saasDev")}</Link></li>

@@ -151,7 +151,7 @@ export const aiAutomationForEcommerce: BlogArticle = {
     "headless-commerce-guide",
   ],
   internalLinks: blogInternalLinks([
-    { href: "/services/ai-automation", label: "AI Automation Services" },
+    { href: "/services/ai-business-automation", label: "AI Automation Services" },
     { href: "/services/ai-chatbot-development", label: "AI Chatbot Development Services" },
     { href: "/services/ecommerce-development", label: "Ecommerce Development Services" },
   ]),

@@ -4,15 +4,7 @@ import { homeServices } from "./home-services";
 import { banners } from "./banners";
 import { about } from "./about";
 import { services } from "./services";
-import { aiBusinessAutomation } from "./landings/ai-business-automation";
-import { aiChatbotDevelopment } from "./landings/ai-chatbot-development";
-import { landingPageDevelopment } from "./landings/landing-page-development";
-import { marketplaceDevelopment } from "./landings/marketplace-development";
-import { saasDevelopment } from "./landings/saas-development";
-import { shopifyCustomApps } from "./landings/shopify-custom-apps";
-import { shopifyDevelopment } from "./landings/shopify-development";
-import { shopifyStoreDesign } from "./landings/shopify-store-design";
-import { webApplicationDevelopment } from "./landings/web-application-development";
+import { landings } from "./landings";
 
 const content: LocaleContentModule = {
   legal,
@@ -20,17 +12,7 @@ const content: LocaleContentModule = {
   banners,
   services,
   about,
-  landings: {
-    "shopify-development": shopifyDevelopment,
-    "shopify-store-design": shopifyStoreDesign,
-    "shopify-custom-apps": shopifyCustomApps,
-    "ai-chatbot-development": aiChatbotDevelopment,
-    "ai-business-automation": aiBusinessAutomation,
-    "web-application-development": webApplicationDevelopment,
-    "marketplace-development": marketplaceDevelopment,
-    "saas-development": saasDevelopment,
-    "landing-page-development": landingPageDevelopment,
-  },
+  landings,
 };
 
 export default content;

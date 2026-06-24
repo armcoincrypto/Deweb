@@ -151,8 +151,8 @@ export const aiChatbotsForBusiness: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/ai-chatbot-development", label: "AI Chatbot Development Services" },
-    { href: "/services/custom-web-development", label: "Custom Web Development Services" },
-    { href: "/services/ai-automation", label: "AI Automation Services" },
+    { href: "/services/web-application-development", label: "Custom Web Development Services" },
+    { href: "/services/ai-business-automation", label: "AI Automation Services" },
   ]),
   cta: {
     title: "Deploy AI Chatbots That Drive Real Outcomes",

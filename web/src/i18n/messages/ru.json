@@ -238,6 +238,10 @@
       "categoryShopifyDesc": "создание магазинов, миграции, оптимизация checkout и кастомные интеграции",
       "categoryAiLink": "Разработка AI-чатботов",
       "categoryAiDesc": "ассистенты, базы знаний, автоматизация с CRM и workflow-боты",
+      "categoryAutomationLink": "AI-автоматизация бизнеса",
+      "categoryAutomationDesc": "оркестрация процессов, обработка документов и интеллектуальные операции",
+      "categoryTelegramLink": "Разработка Telegram-ботов",
+      "categoryTelegramDesc": "боты поддержки, Mini Apps, платежи, CRM-интеграции и AI-ассистенты",
       "categoryWebLink": "Разработка веб-приложений",
       "categoryWebDesc": "SaaS-платформы, клиентские порталы, API и масштабируемая продуктовая разработка",
       "categoryMarketplaceLink": "Разработка маркетплейсов",
@@ -538,6 +542,7 @@
     "webApps": "Разработка веб-приложений",
     "marketplaceDev": "Разработка маркетплейсов",
     "saasDev": "Разработка SaaS",
+    "telegramBots": "Разработка Telegram-ботов",
     "privacyPolicy": "Политика конфиденциальности",
     "cookiePolicy": "Политика cookie",
     "termsOfUse": "Условия использования"
@@ -809,6 +814,10 @@
       "landing-page-development": {
         "title": "Разработка лендингов | Высококонверсионные страницы | DEWEB",
         "description": "Лендинги для рекламы, запусков и лидогенерации — mobile-first, быстрые, от DEWEB."
+      },
+      "telegram-bot-development": {
+        "title": "Разработка Telegram-ботов | Mini Apps, платежи и автоматизация | DEWEB",
+        "description": "Создавайте Telegram-ботов, Mini Apps, платёжные потоки, CRM-интеграции, AI-ассистентов и инструменты автоматизации с услугами разработки Telegram-ботов DEWEB."
       }
     },
     "blogCategories": {

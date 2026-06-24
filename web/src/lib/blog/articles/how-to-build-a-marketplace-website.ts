@@ -155,7 +155,7 @@ export const howToBuildMarketplaceWebsite: BlogArticle = {
     { href: "/services/web-application-development", label: "Custom Web Application Development" },
     { href: "/services/saas-development", label: "SaaS Development Services" },
     { href: "/services/shopify-development", label: "Shopify Development Services" },
-    { href: "/services/ai-automation", label: "AI Automation Solutions" },
+    { href: "/services/ai-business-automation", label: "AI Automation Solutions" },
   ]),
   cta: {
     title: "Launch a Marketplace That Scales",

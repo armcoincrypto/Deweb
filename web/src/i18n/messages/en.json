@@ -238,6 +238,10 @@
       "categoryShopifyDesc": "store builds, migrations, checkout optimization, and custom integrations",
       "categoryAiLink": "AI chatbot development",
       "categoryAiDesc": "assistants, knowledge bases, CRM-connected automation, and workflow bots",
+      "categoryAutomationLink": "AI business automation",
+      "categoryAutomationDesc": "workflow orchestration, document processing, and intelligent operations",
+      "categoryTelegramLink": "Telegram bot development",
+      "categoryTelegramDesc": "support bots, Mini Apps, payments, CRM integrations, and AI assistants",
       "categoryWebLink": "Web application development",
       "categoryWebDesc": "SaaS platforms, customer portals, APIs, and scalable product engineering",
       "categoryMarketplaceLink": "Marketplace development",
@@ -538,6 +542,7 @@
     "webApps": "Web Application Development",
     "marketplaceDev": "Marketplace Development",
     "saasDev": "SaaS Development",
+    "telegramBots": "Telegram Bot Development",
     "privacyPolicy": "Privacy Policy",
     "cookiePolicy": "Cookie Policy",
     "termsOfUse": "Terms of Use"
@@ -809,6 +814,10 @@
       "landing-page-development": {
         "title": "Landing Page Development | High-Conversion Campaign Pages | DEWEB",
         "description": "Conversion-focused landing pages for ads, launches, and lead generation — mobile-first, fast, and built by DEWEB."
+      },
+      "telegram-bot-development": {
+        "title": "Telegram Bot Development Services | Mini Apps, Payments & Automation | DEWEB",
+        "description": "Build Telegram bots, Mini Apps, payment flows, CRM integrations, AI assistants, and automation tools with DEWEB’s Telegram bot development services."
       }
     },
     "blogCategories": {

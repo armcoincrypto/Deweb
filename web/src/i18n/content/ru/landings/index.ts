@@ -8,6 +8,7 @@ import { saasDevelopment } from "./saas-development";
 import { shopifyCustomApps } from "./shopify-custom-apps";
 import { shopifyDevelopment } from "./shopify-development";
 import { shopifyStoreDesign } from "./shopify-store-design";
+import { telegramBotDevelopment } from "./telegram-bot-development";
 import { webApplicationDevelopment } from "./web-application-development";
 
 export const landings: Partial<Record<ServiceLandingSlug, LandingTexts>> = {
@@ -20,4 +21,5 @@ export const landings: Partial<Record<ServiceLandingSlug, LandingTexts>> = {
   "marketplace-development": marketplaceDevelopment,
   "saas-development": saasDevelopment,
   "landing-page-development": landingPageDevelopment,
+  "telegram-bot-development": telegramBotDevelopment,
 };

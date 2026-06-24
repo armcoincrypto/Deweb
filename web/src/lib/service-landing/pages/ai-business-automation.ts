@@ -220,7 +220,7 @@ export const aiBusinessAutomation: ServiceLandingPage = {
       "Let us design and deploy AI automation workflows that improve speed, consistency, and business performance.",
     primaryLabel: DEFAULT_CTA.primaryLabel,
     primaryHref: "/contact",
-    secondaryLabel: DEFAULT_CTA.secondaryLabel,
-    secondaryHref: DEFAULT_CTA.secondaryHref,
+    secondaryLabel: "Post a Project on DEWEB Marketplace",
+    secondaryHref: "/marketplace",
   },
 };

@@ -151,7 +151,7 @@ export const futureOfAiInBusiness: BlogArticle = {
     "custom-web-application-development",
   ],
   internalLinks: blogInternalLinks([
-    { href: "/services/ai-automation", label: "AI Automation Services" },
+    { href: "/services/ai-business-automation", label: "AI Automation Services" },
     { href: "/services/web-application-development", label: "AI-Enabled Web Applications" },
     { href: "/services/saas-development", label: "AI SaaS Product Development" },
     { href: "/services/marketplace-development", label: "AI for Marketplace Platforms" },

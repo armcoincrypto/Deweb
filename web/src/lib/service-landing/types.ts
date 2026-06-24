@@ -31,6 +31,7 @@ export const SERVICE_LANDING_SLUGS = [
   "marketplace-development",
   "saas-development",
   "landing-page-development",
+  "telegram-bot-development",
 ] as const;
 
 export type ServiceLandingSlug = (typeof SERVICE_LANDING_SLUGS)[number];

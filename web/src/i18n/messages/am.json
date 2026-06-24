@@ -238,6 +238,10 @@
       "categoryShopifyDesc": "խանութների կառուցում, միգրացիաներ, checkout օպտիմիզացիա և հատուկ ինտեգրացիաներ",
       "categoryAiLink": "AI չատբոտերի զարգացում",
       "categoryAiDesc": "օգնականներ, գիտելիքների բազաներ, CRM-կապված ավտոմատացում և workflow բոտեր",
+      "categoryAutomationLink": "AI բիզնես ավտոմատացում",
+      "categoryAutomationDesc": "workflow օրկեստրացիա, փաստաթղթերի մշակում և ինտելեկտուալ գործառնություններ",
+      "categoryTelegramLink": "Telegram բոտերի զարգացում",
+      "categoryTelegramDesc": "աջակցության բոտեր, Mini Apps, վճարումներ, CRM ինտեգրացիաներ և AI օգնականներ",
       "categoryWebLink": "Վեբ հավելվածների զարգացում",
       "categoryWebDesc": "SaaS հարթակներ, հաճախորդական պորտալներ, API-ներ և մասշտաբավորելի արտադրանքի ինժեներիա",
       "categoryMarketplaceLink": "Marketplace զարգացում",
@@ -538,6 +542,7 @@
     "webApps": "Վեբ հավելվածների զարգացում",
     "marketplaceDev": "Շուկայի զարգացում",
     "saasDev": "SaaS զարգացում",
+    "telegramBots": "Telegram բոտերի զարգացում",
     "privacyPolicy": "Գաղտնիության քաղաքականություն",
     "cookiePolicy": "Cookie քաղաքականություն",
     "termsOfUse": "Օգտագործման պայմաններ"
@@ -811,6 +816,10 @@
       "landing-page-development": {
         "title": "Landing էջի զարգացում | Բարձր կոնվերսիայի արշավային էջեր | DEWEB",
         "description": "Կոնվերսիային landing էջեր գովազդի, գործարկումների և լիդերի ստացման համար — mobile-first, արագ և DEWEB-ի կողմից կառուցված։"
+      },
+      "telegram-bot-development": {
+        "title": "Telegram բոտերի զարգացման ծառայություններ | Mini Apps, վճարումներ և ավտոմատացում | DEWEB",
+        "description": "Կառուցեք Telegram բոտեր, Mini Apps, վճարային հոսքեր, CRM ինտեգրացիաներ, AI օգնականներ և ավտոմատացման գործիքներ DEWEB-ի Telegram բոտերի զարգացման ծառայություններով։"
       }
     },
     "blogCategories": {

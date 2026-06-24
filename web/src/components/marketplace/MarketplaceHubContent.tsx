@@ -69,6 +69,20 @@ export async function MarketplaceHubContent() {
               {t("categoryAiDesc")}
             </li>
             <li>
+              <Link href="/services/ai-business-automation" className="font-semibold text-deweb-cyan hover:underline">
+                {t("categoryAutomationLink")}
+              </Link>
+              {" — "}
+              {t("categoryAutomationDesc")}
+            </li>
+            <li>
+              <Link href="/services/telegram-bot-development" className="font-semibold text-deweb-cyan hover:underline">
+                {t("categoryTelegramLink")}
+              </Link>
+              {" — "}
+              {t("categoryTelegramDesc")}
+            </li>
+            <li>
               <Link href="/services/web-application-development" className="font-semibold text-deweb-cyan hover:underline">
                 {t("categoryWebLink")}
               </Link>

@@ -43,6 +43,7 @@ export const SUPERSEDED_LEGACY_SERVICE_IDS = [
   "ai",
   "saas",
   "websites",
+  "bots",
 ] as const;
 
 export const LEGACY_TO_LANDING_SLUG: Record<string, string> = {
@@ -50,6 +51,7 @@ export const LEGACY_TO_LANDING_SLUG: Record<string, string> = {
   ai: "ai-chatbot-development",
   saas: "saas-development",
   websites: "web-application-development",
+  bots: "telegram-bot-development",
 };
 
 /** Legacy service category paths (indexable; excludes superseded duplicates). */
