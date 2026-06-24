@@ -12,13 +12,12 @@ import {
   isServiceLandingSlug,
   SERVICE_LANDING_SLUGS,
 } from "@/lib/service-landing";
-import { SUPERSEDED_LEGACY_SERVICE_IDS } from "@/lib/seo";
-import { metadataFromEntry, absoluteUrl } from "@/lib/seo";
+import { SUPERSEDED_LEGACY_SERVICE_IDS, absoluteUrl } from "@/lib/seo";
 import {
   localizedLandingMetadata,
   localizedServiceMetadata,
 } from "@/lib/i18n/page-metadata";
-import { getLocalizedLandingSeo, getLocalizedServiceSeo } from "@/lib/i18n/locale-seo";
+import { getLocalizedServiceSeo } from "@/lib/i18n/locale-seo";
 import type { Locale } from "@/i18n/routing";
 import {
   breadcrumbSchema,

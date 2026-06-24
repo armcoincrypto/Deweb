@@ -1,6 +1,5 @@
 import { MarketplaceView } from "@/components/marketplace/MarketplaceView";
 import { PageSchemas } from "@/components/seo/PageSchemas";
-import { metadataFromEntry } from "@/lib/seo";
 import { getLocalizedPageSeo } from "@/lib/i18n/locale-seo";
 import { localizedPageMetadata } from "@/lib/i18n/page-metadata";
 

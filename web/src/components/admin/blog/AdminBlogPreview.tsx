@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
 import { dewebApi, type BlogPostDetail, type BlogPostTranslation } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -25,8 +25,10 @@ export function AdminBlogPreview({ postId }: AdminBlogPreviewProps) {
   const [translationMsg, setTranslationMsg] = useState("");
   const [generating, setGenerating] = useState(false);
 
-  const loadTranslations = () =>
-    dewebApi.admin.blog.translations.list(postId).then((r) => setTranslations(r.translations));
+  const loadTranslations = useCallback(
+    () => dewebApi.admin.blog.translations.list(postId).then((r) => setTranslations(r.translations)),
+    [postId]
+  );
 
   useEffect(() => {
     dewebApi.admin.blog
@@ -34,7 +36,7 @@ export function AdminBlogPreview({ postId }: AdminBlogPreviewProps) {
       .then(({ post: p }) => setPost(p))
       .catch((e) => setError(e instanceof Error ? e.message : "Failed to load"));
     loadTranslations().catch(() => setTranslations([]));
-  }, [postId]);
+  }, [postId, loadTranslations]);
 
   async function handleGenerateTranslations() {
     setGenerating(true);

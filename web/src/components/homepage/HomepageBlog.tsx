@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
 import { ScrollReveal, StaggerContainer, FadeIn } from "@/components/animations";
 import { BlogListingCard } from "@/components/blog/BlogListingCard";
 import { GlowButton } from "@/components/ui/GlowButton";

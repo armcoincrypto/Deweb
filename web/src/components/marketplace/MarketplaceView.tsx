@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -27,7 +27,7 @@ export function MarketplaceView() {
     product?: Product;
   }>({ open: false, type: "contact" });
 
-  function load() {
+  const load = useCallback(() => {
     setLoading(true);
     if (filter === "products") {
       dewebApi.products
@@ -42,11 +42,11 @@ export function MarketplaceView() {
         .catch(() => setListings([]))
         .finally(() => setLoading(false));
     }
-  }
+  }, [filter]);
 
   useEffect(() => {
     load();
-  }, [filter]);
+  }, [load]);
 
   const filteredListings = listings.filter((l) => {
     const q = search.toLowerCase();
