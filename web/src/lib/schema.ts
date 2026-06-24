@@ -1,5 +1,6 @@
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { defaultSocialLinks } from "@/lib/social-links";
+import { LEGAL_CONTACT_EMAIL } from "@/lib/legal-content";
 
 export type BreadcrumbItem = { name: string; path: string };
 
@@ -9,18 +10,29 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: "DEWEB",
-    alternateName: "DEWEB Marketplace",
+    alternateName: ["DEWEB Marketplace", "DeWeb"],
     url: SITE_URL,
-    logo: `${SITE_URL}/android-chrome-512x512.png`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/android-chrome-512x512.png`,
+      width: 512,
+      height: 512,
+    },
+    image: DEFAULT_OG_IMAGE,
     description:
       "DEWEB is an IT marketplace connecting businesses with verified developers for Shopify, AI, web and digital services.",
+    email: LEGAL_CONTACT_EMAIL,
     sameAs: Object.values(defaultSocialLinks).map((s) => s.href),
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer support",
-      url: `${SITE_URL}/en/contact`,
-      availableLanguage: ["English", "Spanish", "Russian", "Armenian"],
-    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: LEGAL_CONTACT_EMAIL,
+        url: `${SITE_URL}/en/contact`,
+        areaServed: "Worldwide",
+        availableLanguage: ["English", "Spanish", "Russian", "Armenian"],
+      },
+    ],
   };
 }
 
@@ -34,15 +46,8 @@ export function websiteSchema() {
     description:
       "IT marketplace for Shopify development, AI automation, web applications and verified digital services.",
     publisher: { "@id": `${SITE_URL}/#organization` },
+    copyrightHolder: { "@id": `${SITE_URL}/#organization` },
     inLanguage: ["en", "es", "ru", "am"],
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE_URL}/en/marketplace?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
@@ -65,19 +70,23 @@ export function serviceSchema({
   url,
   priceRange,
   areaServed = "Worldwide",
+  serviceType = "ProfessionalService",
 }: {
   name: string;
   description: string;
   url: string;
   priceRange?: string;
   areaServed?: string;
+  serviceType?: string;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${url}#service`,
     name,
     description,
     url,
+    serviceType,
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed,
     ...(priceRange
@@ -86,24 +95,34 @@ export function serviceSchema({
             "@type": "Offer",
             priceCurrency: "USD",
             description: priceRange,
+            availability: "https://schema.org/InStock",
+            url,
           },
         }
       : {}),
   };
 }
 
-export function faqPageSchema(faqs: { question: string; answer: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+export function faqPageSchema(
+  faqs: { question: string; answer: string }[]
+): Record<string, unknown> | null {
+  const mainEntity = faqs
+    .filter((faq) => faq.question?.trim() && faq.answer?.trim())
+    .map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
         text: faq.answer,
       },
-    })),
+    }));
+
+  if (!mainEntity.length) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity,
   };
 }
 

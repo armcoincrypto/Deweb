@@ -57,7 +57,8 @@ export function PageSchemas({
   }
 
   if (faqs?.length) {
-    schemas.push(faqPageSchema(faqs));
+    const faq = faqPageSchema(faqs);
+    if (faq) schemas.push(faq);
   }
 
   return <JsonLd data={schemas} />;

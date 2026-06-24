@@ -1,8 +1,15 @@
 import type { MetadataRoute } from "next";
 import { getBlogPost } from "@/lib/blog-data";
 import { getServiceLandingPaths } from "@/lib/service-landing";
+import { LEGAL_LAST_UPDATED } from "@/lib/legal-content";
 
 const LANDING_PATHS = new Set(getServiceLandingPaths());
+const LEGAL_LAST_MOD = new Date(LEGAL_LAST_UPDATED);
+
+/** Stable lastmod dates for static marketing pages (avoid sitemap-wide `now`). */
+const MARKETING_LAST_MOD = new Date("2026-06-23");
+const SERVICE_LAST_MOD = new Date("2026-06-15");
+const BLOG_CATEGORY_LAST_MOD = new Date("2026-06-20");
 
 export function pathPriority(path: string): number {
   if (path === "/") return 1;
@@ -27,6 +34,25 @@ export function pathChangeFrequency(
   if (path.startsWith("/blog/")) return "monthly";
   if (LANDING_PATHS.has(path)) return "weekly";
   return "weekly";
+}
+
+export function pathLastModified(path: string, fallback = MARKETING_LAST_MOD): Date {
+  if (path === "/privacy-policy" || path === "/cookie-policy" || path === "/terms") {
+    return LEGAL_LAST_MOD;
+  }
+  if (path.startsWith("/blog/category/")) return BLOG_CATEGORY_LAST_MOD;
+  if (path.startsWith("/services/")) return SERVICE_LAST_MOD;
+  if (
+    path === "/" ||
+    path === "/about" ||
+    path === "/contact" ||
+    path === "/services" ||
+    path === "/marketplace" ||
+    path === "/blog"
+  ) {
+    return MARKETING_LAST_MOD;
+  }
+  return fallback;
 }
 
 export function blogPathLastModified(

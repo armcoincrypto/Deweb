@@ -9,6 +9,11 @@ import { getServiceLandingPaths } from "@/lib/service-landing";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://dewebam.com";
 
+export const DEFAULT_OG_IMAGE_PATH = "/og/deweb-og-1200x630.png";
+export const DEFAULT_OG_WIDTH = 1200;
+export const DEFAULT_OG_HEIGHT = 630;
+export const DEFAULT_OG_IMAGE = `${SITE_URL}${DEFAULT_OG_IMAGE_PATH}`;
+
 /** All supported locales are indexable now that pages are fully translated. */
 export const INDEXABLE_LOCALES: readonly Locale[] = locales;
 
@@ -142,7 +147,9 @@ export function buildPageMetadata({
 }): Metadata {
   const indexable = !noIndex && isIndexableLocale(locale);
   const canonical = canonicalUrl(path, locale);
-  const ogImage = image || `${SITE_URL}/android-chrome-512x512.png`;
+  const ogImage = image || DEFAULT_OG_IMAGE;
+  const ogWidth = image ? 1200 : DEFAULT_OG_WIDTH;
+  const ogHeight = image ? 630 : DEFAULT_OG_HEIGHT;
 
   return {
     title: { absolute: title },
@@ -162,8 +169,8 @@ export function buildPageMetadata({
       images: [
         {
           url: ogImage,
-          width: 1200,
-          height: 630,
+          width: ogWidth,
+          height: ogHeight,
           alt: title,
         },
       ],
