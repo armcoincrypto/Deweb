@@ -153,9 +153,11 @@ function ServiceRow({ banner, index }: { banner: ServiceBanner; index: number })
 export function ServiceBanners({
   pageTitle,
   hideTitle = false,
+  banners = serviceBanners,
 }: {
   pageTitle?: string;
   hideTitle?: boolean;
+  banners?: ServiceBanner[];
 }) {
   const t = useTranslations("services");
 
@@ -174,7 +176,7 @@ export function ServiceBanners({
         )}
 
         <div className="flex w-full flex-col">
-          {serviceBanners.map((banner, i) => (
+          {banners.map((banner, i) => (
             <ServiceRow key={banner.id} banner={banner} index={i} />
           ))}
         </div>

@@ -1,46 +1,19 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useMemo } from "react";
+import { SparkleField } from "@/components/ui/SparkleField";
 
+/** Site-wide luminous sparkle background — all pages */
 export function ParticlesBackground() {
-  const reduceMotion = useReducedMotion();
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 10 }, (_, i) => ({
-        id: i,
-        x: (i * 23 + 7) % 100,
-        y: (i * 31 + 11) % 100,
-        size: (i % 3) + 1,
-        duration: 12 + (i % 6),
-        delay: i * 0.3,
-      })),
-    []
-  );
-
   return (
     <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-hero-mesh opacity-60 md:opacity-80" />
-      {!reduceMotion &&
-        particles.map((p) => (
-          <motion.div
-            key={p.id}
-            className="absolute hidden rounded-full bg-deweb-cyan/20 md:block"
-            style={{
-              left: `${p.x}%`,
-              top: `${p.y}%`,
-              width: p.size,
-              height: p.size,
-            }}
-            animate={{ opacity: [0.15, 0.5, 0.15] }}
-            transition={{
-              duration: p.duration,
-              delay: p.delay,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+      <div className="absolute inset-0 bg-[#0b1424]" />
+      <div className="absolute inset-0 bg-hero-mesh opacity-70 sm:opacity-80 md:opacity-90" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_140%_90%_at_50%_-10%,rgba(0,242,255,0.14),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_85%_20%,rgba(124,58,237,0.1),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_10%_70%,rgba(56,189,248,0.08),transparent_50%)]" />
+      <SparkleField density="high" className="hidden md:block opacity-90" />
+      <SparkleField density="medium" className="hidden sm:block md:hidden opacity-85" />
+      <SparkleField density="low" className="sm:hidden opacity-80" />
     </div>
   );
 }

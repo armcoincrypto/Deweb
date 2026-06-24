@@ -35,6 +35,14 @@ export function websiteSchema() {
       "IT marketplace for Shopify development, AI automation, web applications and verified digital services.",
     publisher: { "@id": `${SITE_URL}/#organization` },
     inLanguage: ["en", "es", "ru", "am"],
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/en/marketplace?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,7 @@ type Props = {
   categories: Category[];
   articleCount: number;
   compact?: boolean;
+  pageHeading?: string;
 };
 
 export function BlogListingFilters({
@@ -23,7 +25,11 @@ export function BlogListingFilters({
   categories,
   articleCount,
   compact = false,
+  pageHeading,
 }: Props) {
+  const t = useTranslations("blogUi");
+  const heading = pageHeading ?? t("readArticle");
+
   return (
     <div
       className={cn(
@@ -32,17 +38,18 @@ export function BlogListingFilters({
       )}
     >
       <div className="container-narrow px-4 py-4 sm:px-6 lg:px-8">
+        <h1 className="sr-only">{heading}</h1>
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="relative max-w-sm flex-1">
             <label htmlFor="blog-search" className="sr-only">
-              Search articles
+              {t("searchPlaceholder")}
             </label>
             <input
               id="blog-search"
               type="search"
               value={query}
               onChange={(e) => onQueryChange(e.target.value)}
-              placeholder="Search articles…"
+              placeholder={t("searchPlaceholder")}
               className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-2.5 pl-10 text-sm text-white placeholder:text-white/40 focus:border-deweb-cyan/50 focus:outline-none"
             />
             <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-white/40">
@@ -51,13 +58,13 @@ export function BlogListingFilters({
           </div>
 
           <p className="shrink-0 text-xs text-white/45">
-            {articleCount} article{articleCount !== 1 ? "s" : ""}
+            {t("articlesCount", { count: articleCount })}
           </p>
         </div>
 
         <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <CategoryPill
-            label="All"
+            label={t("allCategories")}
             active={activeCategory === "all"}
             href="/blog"
             onClick={() => onCategoryChange("all")}

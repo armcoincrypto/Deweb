@@ -2,24 +2,23 @@
 
 import { PinnedServiceExperience } from "./PinnedServiceExperience";
 import { SocialProof } from "@/components/home/SocialProof";
-import { WhyChoose } from "@/components/home/WhyChoose";
 import { HomePortfolio } from "@/components/home/HomePortfolio";
-import { HomeContact } from "@/components/home/HomeContact";
+import { TicTacToeFloating } from "@/components/home/TicTacToeFloating";
+import type { PinnedHomeSlide } from "@/lib/home-pinned-services-data";
+import { pinnedHomeSlides } from "@/lib/home-pinned-services-data";
 
 type CinematicHomeProps = {
-  blogSection: React.ReactNode;
+  pinnedSlides?: PinnedHomeSlide[];
 };
 
-export function CinematicHome({ blogSection }: CinematicHomeProps) {
+/** Homepage — hero + services scroll story, trust, and portfolio only */
+export function CinematicHome({ pinnedSlides = pinnedHomeSlides }: CinematicHomeProps) {
   return (
     <div className="cinematic-home">
-      <PinnedServiceExperience />
-
+      <TicTacToeFloating />
+      <PinnedServiceExperience slides={pinnedSlides} />
       <SocialProof />
-      <WhyChoose />
       <HomePortfolio />
-      {blogSection}
-      <HomeContact />
     </div>
   );
 }

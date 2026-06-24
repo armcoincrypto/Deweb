@@ -6,11 +6,15 @@ import { blogCategories } from "@/lib/blog/categories";
 import { PinnedBlogListingExperience } from "@/components/blog/PinnedBlogListingExperience";
 import type { BlogArticle } from "@/lib/blog/types";
 
+import type { BlogCategory } from "@/lib/blog/types";
+
 type BlogListingViewProps = {
   categorySlug?: string;
   initialQuery?: string;
   articles?: BlogArticle[];
   extraCategories?: { slug: string; name: string; description: string }[];
+  categories?: BlogCategory[];
+  pageHeading?: string;
 };
 
 export function BlogListingView({
@@ -18,18 +22,21 @@ export function BlogListingView({
   initialQuery = "",
   articles: articlesProp,
   extraCategories = [],
+  categories: categoriesProp,
+  pageHeading,
 }: BlogListingViewProps) {
   const [query, setQuery] = useState(initialQuery);
   const [activeCategory, setActiveCategory] = useState(categorySlug ?? "all");
 
   const allCategories = useMemo(() => {
-    const seen = new Set(blogCategories.map((c) => c.slug));
-    const merged = [...blogCategories];
+    const base = categoriesProp ?? blogCategories;
+    const seen = new Set(base.map((c) => c.slug));
+    const merged = [...base];
     for (const c of extraCategories) {
       if (!seen.has(c.slug)) merged.push(c);
     }
     return merged;
-  }, [extraCategories]);
+  }, [extraCategories, categoriesProp]);
 
   const articles = useMemo(() => {
     const base = articlesProp ?? getAllArticles();
@@ -49,6 +56,7 @@ export function BlogListingView({
       onCategoryChange={setActiveCategory}
       query={query}
       onQueryChange={setQuery}
+      pageHeading={pageHeading}
     />
   );
 }

@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/lib/auth-context";
 import { dewebApi } from "@/lib/api";
+import { PhoneInput } from "@/components/ui/PhoneInput";
+
+const inputClass =
+  "mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white disabled:opacity-50 focus:border-deweb-cyan/50 focus:outline-none";
 
 export function ProfileView() {
   const t = useTranslations("account");
@@ -14,7 +18,6 @@ export function ProfileView() {
     phone: "",
     address: "",
     company: "",
-    currency: "USD",
   });
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
@@ -31,7 +34,6 @@ export function ProfileView() {
         phone: user.phone || "",
         address: user.address || "",
         company: user.company || "",
-        currency: user.currency || "USD",
       });
     }
   }, [user]);
@@ -95,9 +97,6 @@ export function ProfileView() {
           { key: "username", label: t("nickname") },
           { key: "name", label: t("fullName") },
           { key: "email", label: t("email"), disabled: true, value: user?.email },
-          { key: "phone", label: t("phone") },
-          { key: "address", label: t("address") },
-          { key: "company", label: t("organization") },
         ].map((field) => (
           <label key={field.key} className="block text-xs font-bold uppercase text-white/40">
             {field.label}
@@ -111,22 +110,35 @@ export function ProfileView() {
               onChange={(e) =>
                 setForm((f) => ({ ...f, [field.key]: e.target.value }))
               }
-              className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white disabled:opacity-50 focus:border-deweb-cyan/50 focus:outline-none"
+              className={inputClass}
             />
           </label>
         ))}
-        <label className="block text-xs font-bold uppercase text-white/40">
-          {t("currency")}
-          <select
-            value={form.currency}
-            onChange={(e) => setForm((f) => ({ ...f, currency: e.target.value }))}
-            className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white focus:outline-none"
-          >
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="AMD">AMD</option>
-          </select>
-        </label>
+
+        <PhoneInput
+          label={t("phone")}
+          value={form.phone}
+          onChange={(phone) => setForm((f) => ({ ...f, phone }))}
+          placeholder={t("phonePlaceholder")}
+          searchPlaceholder={t("phoneSearchCountry")}
+        />
+
+        {[
+          { key: "address", label: t("address") },
+          { key: "company", label: t("organization") },
+        ].map((field) => (
+          <label key={field.key} className="block text-xs font-bold uppercase text-white/40">
+            {field.label}
+            <input
+              value={form[field.key as keyof typeof form]}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, [field.key]: e.target.value }))
+              }
+              className={inputClass}
+            />
+          </label>
+        ))}
+
         {msg && <p className="text-sm text-emerald-400">{msg}</p>}
         {error && <p className="text-sm text-red-400">{error}</p>}
         <button

@@ -10,7 +10,7 @@ export function SmoothScrollProvider({ children }: Props) {
   useEffect(() => {
     const prefersReduced =
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.matchMedia("(max-width: 1023px)").matches;
     if (prefersReduced || isMobile) return;
 
     registerGsap();

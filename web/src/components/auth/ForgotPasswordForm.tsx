@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { dewebApi } from "@/lib/api";
 import { AuthField } from "./PasswordField";
 
 export function ForgotPasswordForm() {
   const t = useTranslations("auth");
+  const locale = useLocale();
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [resetUrl, setResetUrl] = useState("");
@@ -19,7 +20,7 @@ export function ForgotPasswordForm() {
     setError("");
     setLoading(true);
     try {
-      const data = await dewebApi.auth.forgotPassword(email);
+      const data = await dewebApi.auth.forgotPassword(email, locale);
       setSent(true);
       if (data.resetUrl) setResetUrl(data.resetUrl);
     } catch (err) {

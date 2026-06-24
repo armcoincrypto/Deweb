@@ -17,16 +17,5 @@
     "paths": { "@/*": ["./src/*"] }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": [
-    "node_modules",
-    "src/components/3d/**",
-    "src/components/homepage/**",
-    "src/components/premium/**",
-    "src/components/animations/**",
-    "src/components/ui/accordion.tsx",
-    "src/components/ui/badge.tsx",
-    "src/components/ui/button.tsx",
-    "src/components/ui/card.tsx",
-    "src/lib/design-system/motion.ts"
-  ]
+  "exclude": ["node_modules"]
 }

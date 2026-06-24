@@ -31,8 +31,6 @@ type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   const legacy = serviceCategories
     .filter((s) => !(SUPERSEDED_LEGACY_SERVICE_IDS as readonly string[]).includes(s.id))
@@ -46,12 +44,12 @@ export async function generateMetadata({ params }: Props) {
   const loc = locale as Locale;
   if (isServiceLandingSlug(slug)) {
     const page = await getLocalizedLandingPage(slug, loc);
-    if (!page) notFound();
+    if (!page) return {};
     return localizedLandingMetadata(loc, slug, page.path);
   }
 
   const service = await getServiceByIdLocalized(slug, loc);
-  if (!service) notFound();
+  if (!service) return {};
   return localizedServiceMetadata(
     loc,
     slug,

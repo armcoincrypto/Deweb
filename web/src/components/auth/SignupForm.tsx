@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link, useRouter } from "@/i18n/routing";
 import { dewebApi } from "@/lib/api";
 import { AuthField, PasswordField } from "./PasswordField";
 
 export function SignupForm() {
   const t = useTranslations("auth");
+  const locale = useLocale();
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -30,6 +31,7 @@ export function SignupForm() {
         email: email.trim(),
         password,
         accountMode: "customer",
+        locale,
       });
       router.push(`/account/login?registered=1&email=${encodeURIComponent(email.trim())}`);
     } catch (err) {

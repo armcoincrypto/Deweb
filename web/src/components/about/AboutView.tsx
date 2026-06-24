@@ -15,7 +15,11 @@ import {
   heroFloatIcons,
 } from "@/lib/about-data";
 
-function WorldMapHero() {
+function WorldMapHero({
+  icons = heroFloatIcons,
+}: {
+  icons?: typeof heroFloatIcons;
+}) {
   const dots = Array.from({ length: 48 }, (_, i) => ({
     id: i,
     left: `${8 + (i % 12) * 7.5}%`,
@@ -55,7 +59,7 @@ function WorldMapHero() {
           transition={{ duration: 2.5, repeat: Infinity, delay: d.delay }}
         />
       ))}
-      {heroFloatIcons.map((item) => (
+      {icons.map((item) => (
         <motion.div
           key={item.label}
           className="absolute flex flex-col items-center gap-1"
@@ -75,7 +79,11 @@ function WorldMapHero() {
   );
 }
 
-function PlatformHubIllustration() {
+function PlatformHubIllustration({
+  modules = platformModules,
+}: {
+  modules?: typeof platformModules;
+}) {
   return (
     <div className="relative mx-auto mt-12 aspect-[16/10] max-w-2xl">
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-deweb-cyan/[0.08] via-transparent to-purple-500/[0.06]" />
@@ -90,7 +98,7 @@ function PlatformHubIllustration() {
           <div className="absolute -bottom-2 left-[20%] right-[20%] h-4 rounded-full bg-deweb-cyan/20 blur-md" />
         </div>
       </div>
-      {platformModules.map((mod, i) => (
+      {modules.map((mod, i) => (
         <motion.div
           key={mod.label}
           initial={{ opacity: 0, scale: 0.9 }}
@@ -116,10 +124,27 @@ function LinkedInIcon() {
   );
 }
 
-export function AboutView() {
+export type AboutViewContent = {
+  stats: typeof aboutStats;
+  services: typeof aboutServices;
+  process: typeof aboutProcess;
+  platformModules: typeof platformModules;
+  heroFloatIcons: typeof heroFloatIcons;
+};
+
+type AboutViewProps = {
+  content?: AboutViewContent;
+};
+
+export function AboutView({ content }: AboutViewProps) {
   const t = useTranslations("about");
-  const featured = aboutServices.find((s) => s.featured)!;
-  const gridServices = aboutServices.filter((s) => !s.featured);
+  const stats = content?.stats ?? aboutStats;
+  const aboutServicesData = content?.services ?? aboutServices;
+  const processSteps = content?.process ?? aboutProcess;
+  const modules = content?.platformModules ?? platformModules;
+  const floatIcons = content?.heroFloatIcons ?? heroFloatIcons;
+  const featured = aboutServicesData.find((s) => s.featured)!;
+  const gridServices = aboutServicesData.filter((s) => !s.featured);
 
   return (
     <div className="pb-24">
@@ -156,7 +181,7 @@ export function AboutView() {
               {t("startProject")}
             </GlowButton>
           </motion.div>
-          <WorldMapHero />
+          <WorldMapHero icons={floatIcons} />
         </div>
       </section>
 
@@ -169,7 +194,7 @@ export function AboutView() {
             {t("whoText")}
           </p>
         </div>
-        <PlatformHubIllustration />
+        <PlatformHubIllustration modules={modules} />
       </section>
 
       {/* 3. Stats */}
@@ -179,7 +204,7 @@ export function AboutView() {
             {t("statsTitle")}
           </h2>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {aboutStats.map((stat, i) => (
+            {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 12 }}
@@ -278,7 +303,7 @@ export function AboutView() {
         <div className="relative mt-14">
           <div className="absolute left-0 right-0 top-10 hidden h-px bg-gradient-to-r from-transparent via-deweb-cyan/50 to-transparent lg:block" />
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-6">
-            {aboutProcess.map((step, i) => (
+            {processSteps.map((step, i) => (
               <motion.div
                 key={step.title}
                 initial={{ opacity: 0, y: 16 }}
@@ -290,7 +315,7 @@ export function AboutView() {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-deweb-cyan/30 bg-deweb-cyan/10 text-xl shadow-glow-sm">
                   {step.icon}
                 </div>
-                {i < aboutProcess.length - 1 && (
+                {i < processSteps.length - 1 && (
                   <span className="absolute right-0 top-7 hidden translate-x-1/2 text-deweb-cyan/40 lg:inline">
                     →
                   </span>

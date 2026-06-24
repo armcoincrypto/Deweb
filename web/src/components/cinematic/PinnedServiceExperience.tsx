@@ -6,9 +6,24 @@ import { gsap, registerGsap } from "@/lib/gsap-client";
 import { pinnedContainerHeight } from "@/lib/pinned-scroll-config";
 import { setupPinnedTimeline } from "@/lib/pinned-scroll-timeline";
 import { setupMobileStackedReveal } from "@/lib/mobile-scroll-reveal";
-import { pinnedHomeSlides } from "@/lib/home-pinned-services-data";
+import { pinnedHomeSlides, type PinnedHomeSlide } from "@/lib/home-pinned-services-data";
+import { setGlobeAccent, globeScrollState } from "@/lib/globe-scroll-state";
 import { PinnedServiceSlide } from "./PinnedServiceSlide";
+import { ScrollUniverseLayer } from "./ScrollUniverseLayer";
 import { cn } from "@/lib/utils";
+
+type UniverseMode = "full" | "lite" | "css";
+
+function getUniverseMode(): UniverseMode {
+  if (typeof window === "undefined") return "full";
+  if (window.matchMedia("(max-width: 639px)").matches) return "css";
+  if (window.matchMedia("(max-width: 1023px)").matches) return "lite";
+  return "full";
+}
+
+function accentForSlide(slide: PinnedHomeSlide) {
+  return slide.kind === "hero" ? "#00f2ff" : slide.accent;
+}
 
 function shouldUsePin(reduceMotion: boolean | null) {
   if (typeof window === "undefined") return false;
@@ -17,33 +32,51 @@ function shouldUsePin(reduceMotion: boolean | null) {
   return !prefersReduced && !isMobile && !reduceMotion;
 }
 
-export function PinnedServiceExperience() {
+export function PinnedServiceExperience({
+  slides = pinnedHomeSlides,
+}: {
+  slides?: PinnedHomeSlide[];
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const globeRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const reduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const [usePin, setUsePin] = useState(false);
+  const [universeMode, setUniverseMode] = useState<UniverseMode>("full");
   const [ready, setReady] = useState(false);
 
-  const slides = pinnedHomeSlides;
   const total = slides.length;
 
   useEffect(() => {
-    const update = () => setUsePin(shouldUsePin(reduceMotion));
+    const update = () => {
+      setUsePin(shouldUsePin(reduceMotion));
+      setUniverseMode(getUniverseMode());
+    };
     update();
     setReady(true);
 
-    const mq = window.matchMedia("(max-width: 1023px)");
-    const onMotionChange = () => update();
-    mq.addEventListener("change", onMotionChange);
-    window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", onMotionChange);
+    const mqPin = window.matchMedia("(max-width: 1023px)");
+    const mqMobile = window.matchMedia("(max-width: 639px)");
+    const onChange = () => update();
+    mqPin.addEventListener("change", onChange);
+    mqMobile.addEventListener("change", onChange);
+    window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", onChange);
 
     return () => {
-      mq.removeEventListener("change", onMotionChange);
-      window.matchMedia("(prefers-reduced-motion: reduce)").removeEventListener("change", onMotionChange);
+      mqPin.removeEventListener("change", onChange);
+      mqMobile.removeEventListener("change", onChange);
+      window.matchMedia("(prefers-reduced-motion: reduce)").removeEventListener("change", onChange);
     };
   }, [reduceMotion]);
+
+  useEffect(() => {
+    const slide = slides[activeIndex];
+    if (!slide) return;
+    setGlobeAccent(accentForSlide(slide));
+    globeScrollState.activeIndex = activeIndex;
+  }, [activeIndex, slides]);
 
   useEffect(() => {
     if (!ready || !usePin || !containerRef.current || !stageRef.current) return;
@@ -59,6 +92,7 @@ export function PinnedServiceExperience() {
         container: containerRef.current!,
         stage: stageRef.current!,
         slides: slideEls,
+        globeLayer: globeRef.current,
         onActiveChange: setActiveIndex,
       });
     }, containerRef);
@@ -75,14 +109,26 @@ export function PinnedServiceExperience() {
     const slideEls = slideRefs.current.filter(Boolean) as HTMLDivElement[];
     if (slideEls.length !== total) return;
 
-    const ctx = setupMobileStackedReveal(slideEls);
+    const ctx = setupMobileStackedReveal(slideEls, (index) => {
+      setActiveIndex(index);
+      const slide = slides[index];
+      if (slide) setGlobeAccent(accentForSlide(slide));
+    });
     return () => ctx.revert();
-  }, [ready, usePin, total]);
+  }, [ready, usePin, total, slides]);
 
   if (!ready) {
     return (
       <section id="services" className="min-h-screen">
-        <PinnedServiceSlide slide={slides[0]} index={0} total={total} active stacked />
+        <PinnedServiceSlide
+          slide={slides[0]}
+          index={0}
+          total={total}
+          active
+          stacked
+          useSharedUniverse
+          universeMode={universeMode}
+        />
       </section>
     );
   }
@@ -101,6 +147,8 @@ export function PinnedServiceExperience() {
             total={total}
             active
             stacked
+            useSharedUniverse
+            universeMode={i === 0 ? universeMode : "css"}
           />
         ))}
       </section>
@@ -116,6 +164,7 @@ export function PinnedServiceExperience() {
       aria-label="DeWeb services"
     >
       <div ref={stageRef} className="pinned-stage perspective-3d">
+        <ScrollUniverseLayer ref={globeRef} mode={universeMode} />
         {slides.map((slide, i) => (
           <PinnedServiceSlide
             key={slide.id}
@@ -126,6 +175,7 @@ export function PinnedServiceExperience() {
             index={i}
             total={total}
             active={activeIndex === i}
+            useSharedUniverse
           />
         ))}
 

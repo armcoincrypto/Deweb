@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         deweb: {
-          bg: "#05070a",
-          surface: "#0a0e14",
+          bg: "#0b1424",
+          surface: "#101c30",
           card: "rgba(12, 18, 28, 0.72)",
           cyan: "#00f2ff",
           "cyan-dim": "#00b8c4",
@@ -38,7 +38,7 @@ module.exports = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "hero-mesh":
-          "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 242, 255, 0.15), transparent), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(124, 58, 237, 0.12), transparent), radial-gradient(ellipse 50% 30% at 0% 50%, rgba(192, 38, 211, 0.08), transparent)",
+          "radial-gradient(ellipse 90% 55% at 50% -15%, rgba(0, 242, 255, 0.22), transparent), radial-gradient(ellipse 70% 45% at 100% 0%, rgba(124, 58, 237, 0.16), transparent), radial-gradient(ellipse 55% 35% at 0% 55%, rgba(56, 189, 248, 0.12), transparent), radial-gradient(ellipse 40% 30% at 50% 100%, rgba(0, 242, 255, 0.08), transparent)",
       },
       animation: {
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",

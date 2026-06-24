@@ -9,11 +9,6 @@ import { getServiceLandingPaths } from "@/lib/service-landing";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://dewebam.com";
 
-export const DEFAULT_OG_IMAGE_PATH = "/og/deweb-og-1200x630.png";
-export const DEFAULT_OG_WIDTH = 1200;
-export const DEFAULT_OG_HEIGHT = 630;
-export const DEFAULT_OG_IMAGE = `${SITE_URL}${DEFAULT_OG_IMAGE_PATH}`;
-
 /** All supported locales are indexable now that pages are fully translated. */
 export const INDEXABLE_LOCALES: readonly Locale[] = locales;
 
@@ -130,21 +125,6 @@ export function buildLanguageAlternates(path: string): Record<string, string> {
   return languages;
 }
 
-/** Strip locale prefix from a pathname for hreflang path building. */
-export function pathnameToSeoPath(pathname: string): string {
-  const match = pathname.match(/^\/(en|es|ru|am)(\/.*)?$/);
-  if (!match) return pathname === "" || pathname === "/" ? "/" : pathname;
-  return match[2] || "/";
-}
-
-/** HTTP Link header value matching HTML hreflang alternates (x-default → /en). */
-export function buildAlternateLinkHeader(path: string): string {
-  const alternates = buildLanguageAlternates(path);
-  return Object.entries(alternates)
-    .map(([lang, href]) => `<${href}>; rel="alternate"; hreflang="${lang}"`)
-    .join(", ");
-}
-
 export function buildPageMetadata({
   title,
   description,
@@ -162,9 +142,7 @@ export function buildPageMetadata({
 }): Metadata {
   const indexable = !noIndex && isIndexableLocale(locale);
   const canonical = canonicalUrl(path, locale);
-  const ogImage = image || DEFAULT_OG_IMAGE;
-  const ogWidth = image ? 1200 : DEFAULT_OG_WIDTH;
-  const ogHeight = image ? 630 : DEFAULT_OG_HEIGHT;
+  const ogImage = image || `${SITE_URL}/android-chrome-512x512.png`;
 
   return {
     title: { absolute: title },
@@ -184,8 +162,8 @@ export function buildPageMetadata({
       images: [
         {
           url: ogImage,
-          width: ogWidth,
-          height: ogHeight,
+          width: 1200,
+          height: 630,
           alt: title,
         },
       ],

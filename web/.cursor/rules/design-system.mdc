@@ -1,0 +1,51 @@
+---
+description: Premium UI/UX, motion, and 3D standards for DeWeb (2026)
+alwaysApply: true
+---
+
+# DeWeb Design System — Creative Director Rules
+
+## Stack (curated — do NOT add competing UI frameworks)
+
+| Layer | Tool | Why |
+|-------|------|-----|
+| Components | **shadcn/ui** + **Radix UI** | Accessible primitives, Tailwind-native, zero runtime bloat |
+| Motion (React) | **Framer Motion** | Page transitions, gestures, layout |
+| Motion (DOM) | **Motion One** | Lightweight stagger / scroll micro-interactions |
+| Scroll | **GSAP** + **Lenis** | Cinematic pinned scroll (home only) |
+| 3D | **React Three Fiber** + **Drei** | Lazy-loaded hero scenes only |
+| Styling | **Tailwind** + `dewebTokens` | Brand consistency |
+
+### Do NOT install or use together
+- **NextUI**, **Mantine** — conflicts with shadcn; doubles bundle size
+- **Aceternity/Magic/Origin UI** as npm packages — copy patterns into `@/components/premium/` instead
+- **Theatre.js**, **OGL**, **Spline** on every page — use only when a brief requires it; always lazy-load
+
+## Visual identity
+- Dark premium SaaS: `#05070a` bg, `#00f2ff` accent, glass panels, subtle purple/magenta mesh
+- Reference quality: Apple clarity, Stripe trust, Linear motion, Framer polish
+- Never: generic purple-gradient AI templates, stock card grids, flat Bootstrap layouts
+
+## Motion rules
+1. Respect `prefers-reduced-motion` — always use `useReducedMotion()`
+2. No animation without purpose (conversion, orientation, delight)
+3. Hero/cinematic: GSAP pin + Lenis on desktop only; mobile = stacked reveal
+4. 3D: `dynamic(() => import(...), { ssr: false })` — never block LCP
+5. Target: LCP < 2.5s, CLS < 0.1, INP < 200ms
+
+## Component locations
+- `@/components/ui/` — shadcn + core primitives (Button, Card, Badge)
+- `@/components/premium/` — DeWeb signature effects (MagneticButton, SpotlightCard, BorderBeam, LazyScene3D)
+- `@/lib/design-system/` — tokens, motion presets
+
+## Every new section must define
+- **Purpose** — what conversion goal it serves
+- **Mobile layout** — designed first, not shrunk desktop
+- **SEO** — semantic HTML, one h1 per page, no content in client-only canvas
+
+## Implementation workflow
+1. Audit existing section
+2. Check `@/components/premium/` for reusable solution
+3. Implement with tokens + motion presets
+4. Test mobile + reduced motion
+5. Run `npm run build` + `npm run lighthouse:audit` before deploy

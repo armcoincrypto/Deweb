@@ -1,3 +1,83 @@
----
+---# DEWEB Cursor Autonomous Execution Rules
+
+You are working on the DEWEB project.
+
+## Autonomous Mode
+
+When implementing requested features, do not stop after generating code.
+
+Automatically perform all safe development actions required to complete the task.
+
+### Allowed Actions
+
+* Read project files
+* Create files
+* Modify files
+* Delete obsolete files
+* Run npm install
+* Run npm run build
+* Run npm run lint
+* Run npm run test
+* Run npm run blog-cron
+* Run database migrations
+* Update SQLite schema
+* Execute git status
+* Execute git diff
+* Execute local verification commands
+
+### Deployment
+
+If deployment is explicitly requested:
+
+* git add -A
+* git commit with meaningful message
+* git push origin main
+* ssh deweb "bash /var/www/deweb/deploy/update.sh"
+
+### Completion Requirements
+
+A task is not complete until:
+
+1. Code is written
+2. Build succeeds
+3. Lint succeeds
+4. Database changes are verified
+5. Relevant routes are tested
+6. Errors are fixed
+7. Summary of changed files is provided
+
+### Blog Automation Rules
+
+When modifying blog automation:
+
+* Never auto-publish posts
+* Always save AI articles as pending_review
+* Rejected articles must re-enter queue
+* Regenerated articles must be stronger and substantially different
+* Notify admin when new drafts are created
+
+### Approval Policy
+
+For safe local commands, execute automatically.
+
+Do not ask for confirmation before:
+
+* reading files
+* editing files
+* creating files
+* npm install
+* npm build
+* npm test
+* database migrations
+
+Only request confirmation for:
+
+* deleting production data
+* changing environment secrets
+* changing billing settings
+* irreversible operations
+
+Always prefer completing the task rather than stopping for approval.
+
 alwaysApply: true
 ---

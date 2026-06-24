@@ -27,3 +27,4 @@ console.log("X_API configured:", {
   hasAccessTokenSecret: envSet("X_ACCESS_TOKEN_SECRET"),
   hasBearerToken: envSet("X_BEARER_TOKEN"),
 });
+console.log("FRONTEND_URL:", process.env.FRONTEND_URL?.trim() || process.env.SITE_URL?.trim() || "(default https://dewebam.com)");

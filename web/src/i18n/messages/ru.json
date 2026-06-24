@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "DeWeb | Сайты, магазины Shopify и AI-системы для роста бизнеса",
-    "description": "DeWeb создаёт современные сайты, конверсионные магазины Shopify, AI-чатботы и системы автоматизации для бизнеса, которому нужно больше клиентов и продаж."
+    "title": "DEWEB — Поставщики соревнуются. Клиенты выигрывают.",
+    "description": "Просматривайте IT-услуги и объявления маркетплейса, предлагайте свою цену и связывайтесь с DEWEB для согласования проектов — прозрачные цены, без онлайн-оплаты."
   },
   "nav": {
     "home": "Главная",
@@ -21,160 +21,251 @@
   },
   "home": {
     "badge": "Премиальная технологическая компания",
-    "seoH1": "Строим Будущее Цифрового Бизнеса",
+    "seoH1": "Строим будущее цифрового бизнеса",
     "taglineAria": "Shopify, AI, SaaS и индивидуальные цифровые решения",
-    "title": "Строим Будущее Цифрового Бизнеса",
+    "title": "Строим будущее цифрового бизнеса",
     "titleAccent": "Технологии, которые конвертируют и масштабируются.",
     "subtitle": "Мы создаём магазины Shopify, AI-системы, платформы автоматизации, сайты и масштабируемые цифровые решения.",
     "ctaPrimary": "Начать проект",
     "ctaSecondary": "Изучить услуги",
     "trusted": "Создано на технологиях, которым доверяют растущие компании",
-    "testimonialsKicker": "Отзывы клиентов",
+    "testimonialsKicker": "Истории клиентов",
     "testimonialsTitle": "Что говорят наши клиенты",
     "testimonialsSubtitle": "Реальные результаты: магазины Shopify, AI-чатботы, сайты и проекты автоматизации.",
     "howKicker": "Как это работает",
     "howTitle": "От брифа до сдачи в три шага",
-    "howSubtitle": "Конкуренция поставщиков, прозрачные цены и эскроу-платежи для IT-закупок.",
+    "howSubtitle": "Конкуренция поставщиков, прозрачные цены и эскроу-платежи — для IT-закупок в масштабе.",
     "step1Title": "Опубликуйте проект",
-    "step1Desc": "Опишите объём, бюджет и сроки. DEWEB мгновенно направляет бриф проверенным поставщикам.",
+    "step1Desc": "Опишите объём, бюджет и сроки. DEWEB мгновенно направляет бриф проверенным IT-поставщикам.",
     "step2Title": "Получите конкурентные ставки",
-    "step2Desc": "Поставщики подают цену, сроки и портфолио — вы сравниваете предложения рядом.",
+    "step2Desc": "Несколько поставщиков подают цену, сроки и портфолио — вы сравниваете предложения рядом.",
     "step3Title": "Выберите и запустите",
-    "step3Desc": "Выберите лучшее, оплатите DEWEB и отслеживайте этапы до сдачи с защитой эскроу.",
+    "step3Desc": "Выберите лучшее, оплатите DEWEB coins и отслеживайте этапы до сдачи с защитой эскроу.",
     "marketKicker": "Маркетплейс",
-    "marketTitle": "Все IT-категории на одной платформе",
-    "marketSubtitle": "Проверенные поставщики в AI, веб, мобайл, дизайне и софте.",
+    "marketTitle": "Все IT-категории на одной конкурентной платформе.",
+    "marketSubtitle": "Проверенные поставщики в AI, веб, мобайл, дизайне и индивидуальном софте.",
     "activityKicker": "Активность в реальном времени",
     "activityTitle": "Пульс маркетплейса",
     "activitySubtitle": "Ставки, снижение цен и закрытие сделок — прозрачность на каждом шаге.",
     "aiKicker": "AI-автоматизация",
     "aiTitle": "Интеллект на каждом уровне",
-    "aiSubtitle": "От подбора поставщиков до workflow-ботов — маркетплейс и AI в одном.",
+    "aiSubtitle": "От подбора поставщиков до workflow-ботов — DEWEB объединяет маркетплейс и AI-native delivery.",
     "featuredKicker": "Лучшие поставщики",
-    "featuredTitle": "Топ-рейтинг для ваших проектов",
+    "featuredTitle": "Топ-рейтинг, соревнующийся за ваши проекты",
     "pricingKicker": "Тарифы",
-    "pricingTitle": "Планы под ваш рост",
-    "ctaFinalTitle": "Готовы строить будущее?",
-    "ctaFinalSubtitle": "Опубликуйте проект сегодня. Пусть поставщики соревнуются. Выберите лучшее предложение.",
+    "pricingTitle": "Планы под ваши амбиции",
+    "ctaFinalTitle": "Готовы расти с премиальными технологиями?",
+    "ctaFinalSubtitle": "Расскажите о магазине Shopify, AI-автоматизации, SaaS-продукте или идее маркетплейса. DEWEB ответит в течение 24 часов.",
     "ctaFinalPrimary": "Начать проект",
-    "ctaFinalSecondary": "Смотреть поставщиков"
+    "ctaFinalSecondary": "Изучить услуги"
   },
   "services": {
     "title": "Услуги",
-    "subtitle": "Премиум IT: веб, AI, мобайл и рост — прозрачные пакеты и конкурентные ставки поставщиков.",
-    "categoriesTitle": "Категории услуг",
-    "processTitle": "Как мы доставляем",
-    "process1": "Исследование и объём",
-    "process2": "Подбор и ставки",
-    "process3": "Разработка и этапы",
-    "process4": "Запуск и поддержка",
+    "subtitle": "Премиальная IT-разработка: веб, AI, мобайл и рост — прозрачные пакеты и конкурентные ставки поставщиков.",
+    "heroTitle": "Создавайте, автоматизируйте и масштабируйте бизнес с элитными цифровыми решениями",
+    "heroSubtitle": "Магазины Shopify, AI-чатботы, индивидуальные веб-приложения, мобильные продукты и enterprise-автоматизация — от проверенных поставщиков DEWEB.",
+    "consultation": "Бесплатная консультация",
+    "requestBids": "Запросить ставки поставщиков",
+    "whyChoose": "Почему компании выбирают DEWEB",
+    "categoriesTitle": "Наши услуги",
+    "featuredTitle": "Избранные решения",
+    "processTitle": "Процесс",
+    "process1": "Бесплатная консультация",
+    "process2": "Ставки поставщиков",
+    "process3": "Планирование проекта",
+    "process4": "Разработка",
+    "process5": "Запуск и рост",
+    "ctaTitle": "Готовы создать следующий цифровой продукт?",
+    "ctaSubtitle": "Опубликуйте проект и позвольте проверенным поставщикам соревноваться с прозрачными ценами и защитой эскроу.",
+    "getProposal": "Получить предложение",
+    "startProject": "Начать проект",
     "cta": "Запросить индивидуальное предложение",
-    "learnMore": "Learn more",
-    "timeline": "Timeline",
-    "priceRange": "Price range",
+    "learnMore": "Подробнее",
+    "timeline": "Сроки",
+    "priceRange": "Диапазон цен",
+    "deliverables": "Результаты",
+    "benefits": "Преимущества",
+    "techStack": "Технологический стек",
+    "formTitle": "Бесплатная консультация",
+    "formSubtitle": "Расскажите о проекте — мы подберём нужных специалистов.",
+    "formName": "Ваше имя",
+    "formEmail": "Email",
+    "formBudget": "Бюджет (необязательно)",
+    "formDeadline": "Срок (необязательно)",
+    "formCategory": "Категория услуги",
+    "formMessage": "Детали проекта",
+    "formSubmit": "Отправить запрос",
+    "formSuccess": "Запрос отправлен! Мы ответим в течение 24 часов.",
+    "formError": "Не удалось отправить. Попробуйте снова.",
+    "estimateHint": "Рекомендуемые сроки",
     "shopifySpotlight": {
-      "partner": "Official Shopify Partner",
-      "title": "Shopify Development",
-      "pricingLabel": "Real pricing",
-      "offerLabel": "What we deliver",
-      "opportunityLabel": "The Shopify opportunity",
-      "opportunityText": "Shopify powers 4.5M+ stores worldwide. Ecommerce sales exceed $6 trillion globally — brands that launch on Shopify reach 175+ countries with built-in payments, inventory, and marketing tools from day one.",
-      "stat1": "10%+ of all US ecommerce runs on Shopify",
-      "stat2": "Average 36% conversion lift after CRO optimization",
-      "stat3": "Shopify Plus for $1M+ brands — we build & migrate",
-      "timeline": "Typical delivery",
-      "cta": "Get Shopify Quote",
-      "consult": "Free consultation",
-      "getConsultation": "Get Free Consultation",
-      "ctaHint": "Launch your Shopify store with verified DEWEB experts — transparent pricing and supplier bidding."
+      "partner": "Официальный партнёр Shopify",
+      "title": "Разработка на Shopify",
+      "pricingLabel": "Реальные цены",
+      "offerLabel": "Что мы делаем",
+      "opportunityLabel": "Возможности Shopify",
+      "opportunityText": "Shopify поддерживает более 4,5 млн магазинов по всему миру. Объём ecommerce превышает $6 трлн — бренды на Shopify выходят в 175+ стран с встроенными платежами, складом и маркетингом с первого дня.",
+      "stat1": "10%+ всего ecommerce США работает на Shopify",
+      "stat2": "В среднем +36% к конверсии после CRO-оптимизации",
+      "stat3": "Shopify Plus для брендов $1M+ — мы создаём и мигрируем",
+      "timeline": "Типичные сроки",
+      "cta": "Получить расчёт Shopify",
+      "consult": "Бесплатная консультация",
+      "getConsultation": "Бесплатная консультация",
+      "ctaHint": "Запустите магазин Shopify с проверенными экспертами DEWEB — прозрачные цены и конкуренция поставщиков."
+    }
+  },
+  "serviceDetail": {
+    "pageTitle": "{service} — что мы предлагаем",
+    "whatWeOffer": "Что мы предлагаем",
+    "whatItMeans": "Что это значит",
+    "whatsIncluded": "Что входит",
+    "deliverables": "Результаты",
+    "yourExpert": "Ваш эксперт",
+    "timeline": "Сроки",
+    "priceRange": "Диапазон цен",
+    "technologies": "Технологии",
+    "getQuote": "Получить расчёт",
+    "backToServices": "Назад к услугам"
+  },
+  "blog": {
+    "kicker": "Инсайты",
+    "title": "Блог",
+    "subtitle": "Советы по маркетплейсу, технические гиды и стратегии роста от команды DEWEB.",
+    "readMore": "Читать статью",
+    "backToBlog": "Назад в блог",
+    "exploreMarketplace": "Изучить маркетплейс",
+    "posts": {
+      "how-competitive-bidding-saves-it-budgets": {
+        "title": "Как конкурентные ставки экономят IT-бюджет",
+        "excerpt": "Почему публикация проектов для нескольких поставщиков даёт лучшие цены и более быструю сдачу.",
+        "body1": "Традиционные IT-закупки часто означают переговоры с одним подрядчиком — деньги и варианты остаются на столе. Конкурентные ставки меняют это: проверенные поставщики подают предложения рядом.",
+        "body2": "На DEWEB клиенты публикуют бриф с бюджетом и сроками. Поставщики соревнуются с прозрачными ценами, портфолио и планами сдачи. Вы сравниваете всё в одной панели перед выбором.",
+        "body3": "Результат: экономия 15–30% на стоимости проекта, более быстрые сроки и больше уверенности в выборе поставщика."
+      },
+      "choosing-the-right-web-stack": {
+        "title": "Как выбрать веб-стек в 2026 году",
+        "excerpt": "Next.js, WordPress или custom — как выбрать лучшую основу для проекта.",
+        "body1": "Веб-стек влияет на скорость, масштабируемость и долгосрочные затраты на поддержку. Next.js отлично подходит для современных приложений и SEO; WordPress — для контентных сайтов с простой админкой.",
+        "body2": "Мы помогаем оценить компромиссы: навыки команды, контент, интеграции и бюджет. Правильный выбор зависит от целей, а не только от трендов.",
+        "body3": "Поставщики DEWEB специализируются на разных стеках — опубликуйте проект и получите рекомендации с конкурентными ставками."
+      },
+      "ai-automation-for-small-business": {
+        "title": "AI-автоматизация для малого бизнеса",
+        "excerpt": "Практичные AI-workflow, которые экономят часы без enterprise-бюджета.",
+        "body1": "AI — не только для big tech. Малый бизнес использует чатботы, email-автоматизацию и синхронизацию CRM для поддержки и операций круглосуточно.",
+        "body2": "Начните с повторяющихся задач: квалификация лидов, запись на встречи, напоминания по счетам. Custom-агенты интегрируются с инструментами, которые вы уже используете.",
+        "body3": "DEWEB связывает вас с AI-специалистами, которые оценивают, создают и внедряют автоматизацию — с поэтапной сдачей и защитой эскроу."
+      },
+      "escrow-payments-why-they-matter": {
+        "title": "Почему эскроу-платежи важны для IT-проектов",
+        "excerpt": "Защитите клиентов и поставщиков с поэтапным эскроу DEWEB coins.",
+        "body1": "IT-проекты требуют доверия с обеих сторон. Клиенты беспокоятся о сдаче; поставщики — об оплате. Эскроу удерживает средства до утверждения этапов.",
+        "body2": "DEWEB использует DEWEB coins (1:1 USDT), заблокированные в эскроу при принятии предложения. Средства освобождаются по мере выполнения работ — меньше споров и мошенничества.",
+        "body3": "Прозрачные этапы, модерация чата и проверенные поставщики делают удалённые IT-сделки безопаснее для всех."
+      },
+      "building-trust-with-verified-suppliers": {
+        "title": "Доверие через проверенных поставщиков",
+        "excerpt": "Как DEWEB проверяет специалистов и поддерживает качество маркетплейса.",
+        "body1": "Не все фрилансеры одинаковы. DEWEB проверяет профили, портфолио и track record поставщиков до того, как они подают ставки.",
+        "body2": "Клиенты видят рейтинги, прошлые работы и навыки заранее. Поставщики строят репутацию через успешные сдачи и отзывы.",
+        "body3": "Верификация плюс конкурентные ставки создают маркетплейс, где качество растёт, а недобросовестные участники отсеиваются."
+      },
+      "ecommerce-trends-2026": {
+        "title": "Тренды ecommerce в 2026 году",
+        "excerpt": "Headless commerce, mobile-first checkout и AI-персонализация.",
+        "body1": "Ecommerce постоянно развивается. Headless даёт гибкость; оптимизация mobile checkout повышает конверсию; AI персонализирует рекомендации.",
+        "body2": "Разнообразие платежей — карты, кошельки, crypto — важно для глобальной аудитории. Быстрая загрузка и Core Web Vitals влияют и на SEO, и на продажи.",
+        "body3": "Shopify, WooCommerce или custom — поставщики DEWEB соревнуются, создавая магазины, которые конвертируют и масштабируются."
+      }
     }
   },
   "marketplace": {
     "title": "Маркетплейс",
-    "subtitle": "Поставщики соревнуются по цене и срокам. Вы сравниваете и выбираете лучшее.",
-    "search": "Поиск поставщиков, навыков или проектов…",
-    "filterAll": "Все категории",
+    "subtitle": "Запросы клиентов и услуги исполнителей в одном месте. Фильтруйте, откликайтесь и начинайте защищённый чат проекта.",
+    "search": "Поиск проектов, услуг или имён…",
+    "filterCustomer": "Запросы клиентов (бюджет и срок)",
+    "filterWorker": "Услуги и предложения исполнителей",
+    "customerNeed": "Запрос клиента",
+    "workerOffer": "Предложение услуги",
+    "deadline": "Срок",
+    "postYours": "Опубликовать",
+    "noListings": "Пока нет объявлений. Будьте первым.",
+    "loginToApply": "Войдите, чтобы отправить запрос",
+    "applicationSent": "Запрос отправлен владельцу объявления",
+    "yourProposal": "Ваше сообщение / предложение…",
+    "yourPrice": "Ваша цена (USD)",
+    "timeline": "Срок (напр. 2 недели)",
+    "sendRequest": "Отправить запрос",
+    "close": "Закрыть",
+    "loading": "Загрузка…",
+    "error": "Что-то пошло не так",
     "verified": "Проверен",
     "from": "от",
     "perProject": "за проект",
-    "viewProfile": "Профиль",
+    "viewProfile": "Смотреть профиль",
     "submitProposal": "Подать предложение",
-    "liveActivity": "Активность",
+    "liveActivity": "Активность в реальном времени",
     "openProjects": "Открытые проекты",
     "suppliersOnline": "поставщиков онлайн",
-    "filterCustomer": "Запросы клиентов",
-    "filterWorker": "Услуги исполнителей",
-    "customerNeed": "Запрос клиента",
-    "workerOffer": "Услуга",
-    "deadline": "Срок",
-    "postYours": "Опубликовать",
-    "noListings": "Пока нет объявлений",
-    "loginToApply": "Войдите, чтобы отправить заявку",
-    "applicationSent": "Заявка отправлена",
-    "yourProposal": "Ваше предложение…",
-    "yourPrice": "Цена (USD)",
-    "timeline": "Срок",
-    "sendRequest": "Отправить",
-    "close": "Закрыть",
-    "loading": "Загрузка…",
-    "error": "Ошибка"
+    "filterAll": "Все категории"
   },
   "about": {
-    "heroTitle": "Building The Future Of Digital Business",
-    "heroSubtitle": "DEWEB connects businesses with elite developers, AI specialists, Shopify experts, and technology suppliers through one powerful ecosystem.",
-    "consultation": "Get Free Consultation",
-    "startProject": "Start Your Project",
-    "whoKicker": "Who We Are",
-    "whoTitle": "More Than An Agency",
-    "whoText": "DEWEB combines a technology marketplace, Shopify development team, AI automation studio, software agency, and supplier bidding platform into one ecosystem.",
-    "statsTitle": "Why Clients Choose DEWEB",
-    "servicesTitle": "Our Core Services",
-    "servicesSubtitle": "From Shopify stores to AI automation — elite delivery with transparent pricing and competitive supplier bidding.",
-    "processTitle": "Our Process",
-    "teamTitle": "Leadership Team",
-    "teamSubtitle": "Experienced leaders driving marketplace innovation, web excellence, and AI-native delivery.",
-    "yearsExperience": "{years}+ years of experience",
-    "techTitle": "Technologies We Use",
-    "techSubtitle": "Modern stacks trusted by enterprise teams worldwide.",
-    "ctaTitle": "Ready To Build Your Next Digital Product?",
-    "ctaSubtitle": "Receive multiple supplier offers, compare expertise, and launch your project with confidence.",
-    "requestProposal": "Request Proposal",
-    "bookCall": "Book Strategy Call",
-    "learnMore": "Learn more",
+    "heroTitle": "Строим будущее цифрового бизнеса",
+    "heroSubtitle": "DEWEB связывает бизнес с элитными разработчиками, AI-специалистами, экспертами Shopify и технологическими поставщиками в одной мощной экосистеме.",
+    "consultation": "Бесплатная консультация",
+    "startProject": "Начать проект",
+    "whoKicker": "Кто мы",
+    "whoTitle": "Больше, чем агентство",
+    "whoText": "DEWEB объединяет технологический маркетплейс, команду Shopify-разработки, AI automation studio, software agency и платформу конкурентных ставок в одной экосистеме.",
+    "statsTitle": "Почему клиенты выбирают DEWEB",
+    "servicesTitle": "Наши ключевые услуги",
+    "servicesSubtitle": "От магазинов Shopify до AI-автоматизации — элитная delivery с прозрачными ценами и конкурентными ставками.",
+    "processTitle": "Наш процесс",
+    "teamTitle": "Команда руководства",
+    "teamSubtitle": "Опытные лидеры, развивающие инновации маркетплейса, веб-экспертизу и AI-native delivery.",
+    "yearsExperience": "{years}+ лет опыта",
+    "techTitle": "Технологии, которые мы используем",
+    "techSubtitle": "Современные стеки, которым доверяют enterprise-команды по всему миру.",
+    "ctaTitle": "Готовы создать следующий цифровой продукт?",
+    "ctaSubtitle": "Получите несколько предложений поставщиков, сравните экспертизу и запустите проект с уверенностью.",
+    "requestProposal": "Запросить предложение",
+    "bookCall": "Записаться на стратегический звонок",
+    "learnMore": "Подробнее",
     "title": "О DEWEB",
-    "subtitle": "Глобальная IT-экосистема: поставщики соревнуются, клиент побеждает.",
-    "mission": "Миссия",
-    "missionText": "Сделать IT-закупки прозрачными, быстрыми и честными через конкурентные ставки.",
-    "vision": "Видение",
-    "visionText": "Стать платформой №1 для AI-маркетплейсов IT по всему миру."
+    "subtitle": "Глобальная IT-экосистема, где поставщики соревнуются, а клиенты выигрывают — маркетплейс, агентство и AI-автоматизация на одной платформе.",
+    "mission": "Наша миссия",
+    "missionText": "Сделать IT-закупки прозрачными, быстрыми и честными через конкурентные ставки и проверенных специалистов.",
+    "vision": "Наше видение",
+    "visionText": "Стать платформой по умолчанию для AI-powered IT-маркетплейсов по всему миру."
   },
   "pricing": {
-    "title": "Тарифы",
-    "subtitle": "Начните бесплатно. Масштабируйтесь с приоритетом и поддержкой."
+    "title": "Цены",
+    "subtitle": "Начните бесплатно. Масштабируйтесь с приоритетным подбором, AI-инструментами и выделенной поддержкой."
   },
   "contact": {
     "title": "Контакты",
-    "subtitle": "Вопросы о проектах, поставщиках или корпоративных планах.",
+    "subtitle": "Расскажите о проекте — мы ответим с понятным планом, сроками и начальной оценкой.",
     "followUs": "Подписывайтесь на DEWEB",
     "connectWithUs": "Свяжитесь с нами",
     "name": "Имя",
     "email": "Email",
     "phone": "WhatsApp / Telegram",
     "service": "Нужная услуга",
-    "budget": "Бюджет",
+    "budget": "Диапазон бюджета",
     "deadline": "Срок",
     "message": "Описание проекта",
-    "send": "Отправить заявку",
+    "send": "Отправить заявку на проект",
     "sending": "Отправка…",
-    "success": "Спасибо! Ваше сообщение получено.",
+    "success": "Спасибо! Ваша заявка получена. Мы ответим в течение 24 часов.",
     "error": "Что-то пошло не так. Попробуйте снова."
   },
   "auth": {
-    "platformTagline": "Поставщики соревнуются. Вы побеждаете.",
+    "platformTagline": "Поставщики соревнуются. Клиенты выигрывают.",
     "loginTitle": "С возвращением",
     "loginSubtitle": "Войдите в аккаунт DEWEB",
     "signupTitle": "Создать аккаунт",
-    "signupSubtitle": "Create your DEWEB account in one step",
+    "signupSubtitle": "Создайте аккаунт DEWEB за один шаг",
     "email": "Email",
     "password": "Пароль",
     "nickname": "Никнейм",
@@ -182,28 +273,28 @@
     "roleCustomer": "Клиент",
     "roleSupplier": "Поставщик",
     "loginBtn": "Войти",
-    "signupBtn": "Регистрация",
+    "signupBtn": "Зарегистрироваться",
     "noAccount": "Нет аккаунта?",
     "hasAccount": "Уже есть аккаунт?",
     "forgotPassword": "Забыли пароль?",
     "forgotTitle": "Сброс пароля",
-    "forgotSubtitle": "Введите email",
-    "forgotSent": "Если email зарегистрирован, проверьте почту",
+    "forgotSubtitle": "Введите email — мы отправим инструкции по сбросу.",
+    "forgotSent": "Если этот email зарегистрирован, проверьте почту для ссылки сброса.",
     "sendReset": "Отправить ссылку",
-    "backToLogin": "Назад к входу",
+    "backToLogin": "Назад ко входу",
     "resetTitle": "Новый пароль",
-    "resetSubtitle": "Выберите надёжный пароль",
+    "resetSubtitle": "Выберите надёжный новый пароль.",
     "newPassword": "Новый пароль",
-    "resetBtn": "Обновить",
-    "resetSuccess": "Пароль обновлён",
-    "resetLink": "Открыть",
-    "registeredSuccess": "Аккаунт создан. Войдите в систему",
-    "passwordRules": "8+ символов, заглавная, цифра, символ",
+    "resetBtn": "Обновить пароль",
+    "resetSuccess": "Пароль обновлён. Перенаправление на вход…",
+    "resetLink": "Открыть страницу сброса",
+    "registeredSuccess": "Аккаунт создан. Войдите с email и паролем.",
+    "passwordRules": "8+ символов, 1 заглавная, 1 цифра, 1 символ (!@#$%^&*())",
     "loading": "Загрузка…",
     "error": "Ошибка",
     "loginFailed": "Ошибка входа",
     "signupFailed": "Ошибка регистрации",
-    "invalidToken": "Неверная ссылка",
+    "invalidToken": "Недействительная ссылка сброса",
     "termsAgreePrefix": "Я принимаю",
     "termsLink": "Условия использования",
     "termsAgreeAnd": "и",
@@ -214,114 +305,122 @@
     "welcome": "Добро пожаловать",
     "hello": "Привет",
     "overview": "Обзор",
-    "overviewSubtitle": "Проекты, кошелёк и профиль",
+    "overviewSubtitle": "Управляйте проектами, предложениями и профилем в одном месте.",
     "profile": "Профиль",
-    "profileSubtitle": "Заполните все данные аккаунта",
-    "wallet": "Кошелёк",
-    "walletSubtitle": "1 DEWEB = 1 USDT = $1",
+    "profileSubtitle": "Заполните данные аккаунта для доверия и быстрого подбора.",
+    "wallet": "Контакты",
+    "walletSubtitle": "Свяжитесь с нами для обсуждения цен и условий.",
     "myProjects": "Мои проекты",
-    "projectsSubtitle": "Публикуйте проекты — поставщики соревнуются",
+    "projectsSubtitle": "Публикуйте проекты с бюджетом. Поставщики соревнуются с предложениями.",
     "proposals": "Предложения",
-    "proposalsSubtitle": "Откликайтесь на проекты клиентов",
-    "products": "Товары",
+    "proposalsSubtitle": "Просматривайте открытые проекты клиентов и подавайте свою цену.",
+    "products": "Продукты",
     "customer": "Клиент",
     "supplier": "Поставщик",
     "logout": "Выход",
     "loading": "Загрузка…",
-    "save": "Сохранить",
-    "saved": "Сохранено",
-    "error": "Ошибка",
+    "save": "Сохранить профиль",
+    "saved": "Профиль сохранён",
+    "error": "Что-то пошло не так",
+    "submitOfferTitle": "Отправить предложение / запрос",
     "nickname": "Никнейм",
     "fullName": "Полное имя",
     "email": "Email",
     "phone": "Телефон",
+    "phonePlaceholder": "Номер телефона",
+    "phoneSearchCountry": "Поиск страны…",
     "address": "Адрес",
     "organization": "Организация",
-    "currency": "Валюта",
+    "currency": "Валюта по умолчанию",
     "dewebBalance": "Баланс DEWEB",
     "getDeweb": "Получить DEWEB",
-    "usdtOnly": "Только USDT",
+    "usdtOnly": "Только USDT через MetaMask или Ronin",
     "connectMetaMask": "Подключить MetaMask",
     "connectRonin": "Подключить Ronin",
     "notConnected": "Не подключено",
-    "connected": "Подключено",
-    "postProject": "Новый проект",
+    "connected": "Кошелёк подключён",
+    "postProject": "Опубликовать проект",
     "newProject": "Новый проект",
-    "projectTitle": "Название",
-    "projectDetails": "Описание",
-    "budgetDeweb": "Бюджет (DEWEB)",
-    "deadline": "Срок",
-    "publishProject": "Опубликовать",
-    "noProjects": "Пока нет проектов",
-    "selectProjectBids": "Выберите проект",
+    "projectTitle": "Название проекта",
+    "projectDetails": "Опишите, что вам нужно…",
+    "budgetDeweb": "Бюджет (USD)",
+    "deadline": "Срок (напр. 4 недели)",
+    "publishProject": "Опубликовать проект",
+    "noProjects": "Пока нет проектов. Опубликуйте первый.",
+    "selectProjectBids": "Выберите проект для просмотра предложений поставщиков.",
     "proposalsFor": "Предложения для",
-    "noBidsYet": "Пока нет предложений",
-    "chooseSupplier": "Выбрать поставщика",
+    "noBidsYet": "Пока нет предложений — поставщики изучают ваш проект.",
+    "chooseSupplier": "Выбрать этого поставщика",
     "decline": "Отклонить",
     "supplierSelected": "Поставщик выбран",
     "untitled": "Без названия",
-    "openProjects": "Открытые проекты",
-    "noOpenProjects": "Нет открытых проектов",
-    "selectToBid": "Выберите проект",
+    "openProjects": "Открытые проекты клиентов",
+    "noOpenProjects": "Сейчас нет открытых проектов.",
+    "selectToBid": "Выберите проект для подачи предложения.",
     "submitProposal": "Подать предложение",
-    "yourPrice": "Ваша цена",
-    "timeline": "Сроки",
-    "proposalMessage": "Сообщение",
-    "sendProposal": "Отправить",
-    "proposalSent": "Отправлено",
-    "postProjectHint": "Получите конкурентные ставки",
-    "proposalsHint": "Откликайтесь на проекты",
-    "walletHint": "DEWEB и USDT",
-    "profileHint": "Заполните профиль",
-    "walletLoadError": "Не загружен",
-    "installMetaMask": "Установите MetaMask",
-    "installRonin": "Установите Ronin",
-    "walletNotFound": "Кошелёк не найден",
-    "topupSuccess": "DEWEB зачислены",
+    "yourPrice": "Ваша цена (USD)",
+    "timeline": "Срок сдачи",
+    "proposalMessage": "Почему вы лучший выбор…",
+    "sendProposal": "Отправить предложение",
+    "proposalSent": "Предложение отправлено клиенту",
+    "postProjectHint": "Укажите бюджет и получите конкурентные ставки",
+    "proposalsHint": "Подавайте ставки на проекты клиентов",
+    "walletHint": "Свяжитесь с нами для переговоров",
+    "profileHint": "Заполните все данные аккаунта",
+    "walletLoadError": "Не удалось загрузить кошелёк",
+    "installMetaMask": "Установите расширение MetaMask",
+    "installRonin": "Установите расширение Ronin",
+    "walletNotFound": "Расширение кошелька не найдено",
+    "topupSuccess": "DEWEB зачислены на баланс",
+    "topupPending": "Отправлено на проверку администратором. DEWEB будут зачислены после подтверждения USDT.",
     "topupFailed": "Ошибка пополнения",
-    "emailVerifyRequired": "Подтвердите email",
-    "emailVerifyHint": "MetaMask/Ronin доступны после подтверждения email.",
-    "sendVerificationEmail": "Отправить письмо",
+    "escrowOnAccept": "Принятие предложения блокирует DEWEB в эскроу до завершения работы.",
+    "emailVerifyRequired": "Подтвердите email для защищённых функций",
+    "emailVerifyHint": "Подтвердите email, чтобы публиковать объявления, подавать предложения и сохранять продукты.",
+    "sendVerificationEmail": "Отправить письмо подтверждения",
     "verifyEmailFirst": "Сначала подтвердите email.",
     "verifyEmailTitle": "Подтверждение email",
-    "verifyTokenMissing": "Нет токена",
-    "emailVerified": "Email подтверждён",
-    "treasury": "USDT адрес",
-    "yourSendTo": "Отправьте USDT сюда",
-    "autoCreditHint": "DEWEB начисляется автоматически после подтверждения в блокчейне.",
-    "sendUsdtTo": "Отправить USDT",
-    "topupVerifying": "Проверка блокчейна…",
-    "checkingBlockchain": "Проверка…",
+    "verifyFailed": "Недействительная или просроченная ссылка подтверждения.",
+    "verifyResendPrompt": "Введите email для получения новой ссылки подтверждения.",
+    "verifyResendBtn": "Отправить повторно",
+    "verifyResent": "Если email зарегистрирован, новая ссылка подтверждения отправлена.",
+    "signIn": "Войти",
+    "verifyTokenMissing": "Отсутствует токен подтверждения.",
+    "emailVerified": "Email успешно подтверждён!",
+    "treasury": "USDT-адрес DEWEB",
+    "yourSendTo": "Отправьте USDT на этот адрес",
+    "autoCreditHint": "После подтверждения в MetaMask/Ronin DEWEB зачисляются автоматически, когда блокчейн подтвердит USDT.",
+    "sendUsdtTo": "Подтвердить перевод USDT на",
+    "topupVerifying": "Проверка блокчейна… DEWEB будут добавлены автоматически.",
+    "checkingBlockchain": "Проверка блокчейна…",
     "myListings": "Мои объявления",
-    "listingsSubtitle": "Добавляйте запросы или услуги",
+    "listingsSubtitle": "Добавляйте запросы клиентов или услуги поставщиков на маркетплейсе.",
     "addRequirement": "Добавить запрос",
     "addService": "Добавить услугу",
-    "listingTitle": "Заголовок",
-    "listingDescription": "Описание",
-    "budgetUsd": "Бюджет USD",
+    "listingTitle": "Заголовок (напр. Сайт для моего бренда)",
+    "listingDescription": "Опишите работу…",
+    "budgetUsd": "Бюджет в USD",
     "deadlineExample": "Срок (напр. 2 недели)",
     "publish": "Опубликовать",
-    "listingCreated": "Опубликовано",
+    "listingCreated": "Опубликовано на маркетплейсе",
     "requirement": "Запрос",
     "service": "Услуга",
     "viewRequests": "Заявки",
     "delete": "Удалить",
     "incomingRequests": "Входящие заявки",
     "acceptAndChat": "Принять и открыть чат",
-    "dealStarted": "Сделка начата",
+    "dealStarted": "Сделка начата — открываем чат",
     "viewMarketplace": "На маркетплейс",
     "messages": "Сообщения",
     "projectChat": "Чат проекта",
-    "chatSubtitle": "Общайтесь только здесь. Контакты блокируются AI.",
-    "noChats": "Нет чатов",
-    "selectChat": "Выберите чат",
-    "typeMessage": "Сообщение…",
+    "chatSubtitle": "Обсуждайте работу только здесь. Контакты блокируются AI. Файлы отправляются на email обеим сторонам.",
+    "noChats": "Пока нет активных чатов. Примите заявку из объявлений.",
+    "selectChat": "Выберите диалог",
+    "typeMessage": "Введите сообщение…",
     "send": "Отправить",
-    "moderated": "Контакт удалён",
-    "fileShared": "Файл",
-    "fileEmailed": "Файл отправлен на email",
-    "topupPending": "Submitted for admin verification. DEWEB will be credited after USDT is confirmed.",
-    "escrowOnAccept": "Accepting a proposal locks DEWEB in escrow until the job is completed."
+    "moderated": "Контактные данные удалены",
+    "fileShared": "Файл отправлен через DEWEB",
+    "fileEmailed": "Файл отправлен на email обеим сторонам"
   },
   "dashboard": {
     "dashboard": "Панель",
@@ -334,19 +433,19 @@
     "payments": "Платежи",
     "reviews": "Отзывы",
     "profile": "Профиль",
-    "products": "Товары и услуги",
+    "products": "Продукты и услуги",
     "proposals": "Предложения",
     "orders": "Заказы",
     "analytics": "Аналитика",
     "notifications": "Уведомления",
     "settings": "Настройки",
     "welcome": "С возвращением",
-    "postProject": "Новый проект",
+    "postProject": "Опубликовать проект",
     "activeProjects": "Активные проекты",
     "pendingOffers": "Ожидающие предложения",
     "revenue": "Доход",
     "activeProposals": "Активные предложения",
-    "legacyAccount": "Кошелёк и полный профиль"
+    "legacyAccount": "Устаревший аккаунт"
   },
   "common": {
     "learnMore": "Подробнее",
@@ -356,68 +455,315 @@
     "save": "Сохранить",
     "cancel": "Отмена"
   },
-  "serviceDetail": {
-    "pageTitle": "{service} — What We Offer",
-    "whatWeOffer": "What we offer",
-    "whatItMeans": "What it means",
-    "whatsIncluded": "What's included",
-    "deliverables": "Deliverables",
-    "yourExpert": "Your expert",
-    "timeline": "Timeline",
-    "priceRange": "Price range",
-    "technologies": "Technologies",
-    "getQuote": "Get a quote",
-    "backToServices": "Back to services"
+  "footer": {
+    "tagline": "Поставщики соревнуются. Клиенты выигрывают. Глобальный IT-маркетплейс.",
+    "platform": "Платформа",
+    "solutions": "Решения",
+    "company": "Компания",
+    "legal": "Правовая информация",
+    "account": "Аккаунт",
+    "copyright": "© {year} DEWEB — IT-маркетплейс и конкурентные ставки",
+    "shopifyDevelopment": "Разработка Shopify",
+    "shopifyStoreDesign": "Дизайн магазина Shopify",
+    "shopifyCustomApps": "Custom-приложения Shopify",
+    "aiChatbot": "Разработка AI-чатботов",
+    "aiAutomation": "AI-автоматизация бизнеса",
+    "webApps": "Разработка веб-приложений",
+    "marketplaceDev": "Разработка маркетплейсов",
+    "saasDev": "Разработка SaaS",
+    "privacyPolicy": "Политика конфиденциальности",
+    "cookiePolicy": "Политика cookie",
+    "termsOfUse": "Условия использования"
   },
-  "blog": {
-    "kicker": "Insights",
-    "title": "Blog",
-    "subtitle": "Marketplace tips, tech guides, and growth strategies from the DEWEB team.",
-    "readMore": "Read article",
-    "backToBlog": "Back to blog",
-    "exploreMarketplace": "Explore marketplace",
-    "posts": {
-      "how-competitive-bidding-saves-it-budgets": {
-        "title": "How competitive bidding saves IT budgets",
-        "excerpt": "Why posting projects to multiple suppliers drives better pricing and faster delivery.",
-        "body1": "Traditional IT procurement often means negotiating with a single vendor — leaving money and options on the table. Competitive bidding changes that by inviting verified suppliers to submit offers side by side.",
-        "body2": "On DEWEB, clients post a brief with budget and timeline. Suppliers compete with transparent pricing, portfolios, and delivery plans. You compare everything in one dashboard before choosing.",
-        "body3": "The result: average savings of 15–30% on project costs, faster turnaround, and higher confidence in your supplier choice."
+  "cookies": {
+    "title": "Мы ценим вашу конфиденциальность",
+    "requiredTitle": "Требуются cookie",
+    "requiredBody": "DEWEB использует обязательные cookie и local storage для входа и защиты аккаунта. Без принятия обязательных cookie сайт не может работать корректно.",
+    "acceptRequired": "Принять обязательные cookie",
+    "acceptAll": "Принять все cookie",
+    "decline": "Отклонить",
+    "bodyPrefix": "DEWEB использует ",
+    "bodyRequired": "обязательные cookie",
+    "bodySuffix": " для входа, безопасности и основных функций. Необязательные cookie помогают улучшать сервис. Ознакомьтесь с нашей Политикой конфиденциальности и Политикой cookie."
+  },
+  "legal": {
+    "privacyTitle": "Политика конфиденциальности",
+    "privacySubtitle": "Как DEWEB собирает, использует и защищает ваши персональные данные на dewebam.com.",
+    "cookieTitle": "Политика cookie",
+    "cookieSubtitle": "Как DEWEB использует cookie и local storage для входа, безопасности и настроек сайта.",
+    "termsTitle": "Условия использования",
+    "termsSubtitle": "Условия использования IT-маркетплейса DEWEB, аккаунтов и проектных услуг.",
+    "lastUpdated": "Последнее обновление: {date} · DEWEB (dewebam.com)"
+  },
+  "blogUi": {
+    "searchPlaceholder": "Поиск статей…",
+    "allCategories": "Все",
+    "articlesCount": "{count, plural, one {# статья} few {# статьи} many {# статей} other {# статей}}",
+    "noResults": "Статьи не найдены. Попробуйте другой запрос или категорию.",
+    "moreArticles": "Ещё статьи",
+    "relatedArticles": "Похожие статьи",
+    "faqTitle": "Частые вопросы",
+    "readArticle": "Читать статью",
+    "categoryLabel": "Категория",
+    "categories": {
+      "shopify": {
+        "name": "Shopify и электронная коммерция",
+        "description": "Разработка Shopify, дизайн магазинов, приложения и стратегии ecommerce."
       },
-      "choosing-the-right-web-stack": {
-        "title": "Choosing the right web stack in 2026",
-        "excerpt": "Next.js, WordPress, or custom — how to pick the best foundation for your project.",
-        "body1": "Your web stack affects speed, scalability, and long-term maintenance costs. Next.js excels for modern apps and SEO; WordPress fits content-heavy sites with easy admin access.",
-        "body2": "We help clients evaluate trade-offs: team skills, content needs, integrations, and budget. The right choice depends on your goals, not trends alone.",
-        "body3": "DEWEB suppliers specialize across stacks — post your project and receive tailored recommendations with competitive bids."
+      "ai": {
+        "name": "ИИ и автоматизация",
+        "description": "AI-чатботы, бизнес-автоматизация и интеллектуальные ecommerce-процессы."
       },
-      "ai-automation-for-small-business": {
-        "title": "AI automation for small business",
-        "excerpt": "Practical AI workflows that save hours without enterprise budgets.",
-        "body1": "AI isn't just for big tech. Small businesses use chatbots, email automation, and CRM sync to handle support and operations around the clock.",
-        "body2": "Start with high-repetition tasks: lead qualification, appointment booking, invoice reminders. Custom agents can integrate with tools you already use.",
-        "body3": "DEWEB connects you with AI specialists who scope, build, and deploy automation — with milestone-based delivery and escrow protection."
+      "web-development": {
+        "name": "Веб-разработка",
+        "description": "Кастомные веб-приложения, технологические стеки и современные практики разработки."
       },
-      "escrow-payments-why-they-matter": {
-        "title": "Why escrow payments matter for IT projects",
-        "excerpt": "Protect both clients and suppliers with milestone-based DEWEB coin escrow.",
-        "body1": "IT projects involve trust on both sides. Clients worry about delivery; suppliers worry about payment. Escrow holds funds until milestones are approved.",
-        "body2": "DEWEB uses DEWEB coins (1:1 USDT) locked in escrow when you accept a proposal. Funds release as work completes — reducing disputes and fraud.",
-        "body3": "Transparent milestones, chat moderation, and verified suppliers make remote IT deals safer for everyone."
+      "marketplace": {
+        "name": "Маркетплейс",
+        "description": "Двусторонние платформы, конкурентные торги и рост маркетплейсов."
       },
-      "building-trust-with-verified-suppliers": {
-        "title": "Building trust with verified suppliers",
-        "excerpt": "How DEWEB vets talent and keeps marketplace quality high.",
-        "body1": "Not every freelancer is equal. DEWEB verifies supplier profiles, portfolios, and track records before they bid on projects.",
-        "body2": "Customers see ratings, past work, and skills upfront. Suppliers build reputation through successful deliveries and client reviews.",
-        "body3": "Verification plus competitive bidding creates a marketplace where quality rises and bad actors get filtered out."
+      "saas": {
+        "name": "SaaS",
+        "description": "Разработка SaaS-продуктов, MVP и модели подписочного бизнеса."
+      }
+    }
+  },
+  "pinned": {
+    "whatLabel": "Что: ",
+    "whoLabel": "Кому: ",
+    "resultLabel": "Результат: "
+  },
+  "seo": {
+    "home": {
+      "title": "DeWeb | Строим будущее цифрового бизнеса",
+      "description": "Создаём магазины Shopify, AI-системы, платформы автоматизации, сайты и масштабируемые цифровые решения. Премиальная технологическая компания для растущего бизнеса."
+    },
+    "about": {
+      "title": "О DEWEB | Премиальное IT-агентство",
+      "description": "DEWEB — премиальное агентство по разработке Shopify, AI-автоматизации, SaaS-продуктов, маркетплейсов и индивидуальных веб-приложений."
+    },
+    "contact": {
+      "title": "Контакты DEWEB | Начните проект Shopify, AI или SaaS",
+      "description": "Бесплатная консультация по Shopify, AI-автоматизации, SaaS MVP или маркетплейсам. DEWEB ответит в течение 24 часов."
+    },
+    "services": {
+      "title": "Цифровые услуги | Shopify, AI-автоматизация, SaaS и веб-приложения | DEWEB",
+      "description": "Услуги DEWEB: разработка Shopify, AI-чатботы, автоматизация бизнеса, SaaS-платформы, маркетплейсы и индивидуальные веб-приложения.",
+      "websites": {
+        "title": "Разработка индивидуальных сайтов | DEWEB",
+        "description": "Профессиональные сайты, лендинги и веб-приложения на Next.js, React и современных стеках."
       },
-      "ecommerce-trends-2026": {
-        "title": "E-commerce trends to watch in 2026",
-        "excerpt": "Headless commerce, mobile-first checkout, and AI-powered personalization.",
-        "body1": "E-commerce keeps evolving. Headless setups offer flexibility; mobile checkout optimization drives conversion; AI personalizes product recommendations.",
-        "body2": "Payment diversity — cards, wallets, crypto — matters for global audiences. Fast load times and Core Web Vitals affect both SEO and sales.",
-        "body3": "Whether Shopify, WooCommerce, or custom — DEWEB suppliers compete to build stores that convert and scale."
+      "ecommerce": {
+        "title": "Услуги разработки Shopify | DEWEB",
+        "description": "Индивидуальные магазины Shopify, темы, интеграции и ecommerce-решения для растущего бизнеса."
+      },
+      "ai": {
+        "title": "AI-автоматизация и разработка чатботов | DEWEB",
+        "description": "AI-чатботы, системы автоматизации и интеллектуальные бизнес-решения от DEWEB."
+      },
+      "bots": {
+        "title": "Разработка Telegram и Discord ботов | DEWEB",
+        "description": "Custom-боты для Telegram, Discord и поддержки с API-интеграциями и админ-панелями."
+      },
+      "saas": {
+        "title": "Разработка SaaS-платформ | DEWEB",
+        "description": "Multi-tenant SaaS с авторизацией, подписками, панелями и масштабируемой архитектурой."
+      },
+      "mobile": {
+        "title": "Разработка мобильных приложений | DEWEB",
+        "description": "iOS, Android и кроссплатформенные приложения с продуманным UX и backend-интеграцией."
+      },
+      "uiux": {
+        "title": "UI/UX-дизайн | DEWEB",
+        "description": "User-centered дизайн продуктов, wireframes, прототипы и design systems для цифровых продуктов."
+      },
+      "branding": {
+        "title": "Брендинг и фирменный стиль | DEWEB",
+        "description": "Логотипы, фирменный стиль, визуальные гайдлайны и маркетинговые материалы для цифрового бизнеса."
+      },
+      "seo": {
+        "title": "SEO и growth-маркетинг | DEWEB",
+        "description": "Технические SEO-аудиты, keyword-стратегия, on-page оптимизация и органический рост."
+      },
+      "marketing": {
+        "title": "Цифровой маркетинг | DEWEB",
+        "description": "Платная реклама, воронки конверсии, email-маркетинг и performance-кампании с измеримым ROI."
+      }
+    },
+    "marketplace": {
+      "title": "IT-маркетплейс | Найти разработчиков и цифровые услуги | DEWEB",
+      "description": "Публикуйте проекты, сравнивайте предложения и связывайтесь с проверенными разработчиками и поставщиками цифровых услуг."
+    },
+    "blog": {
+      "title": "Блог DEWEB | Гиды по Shopify, AI-автоматизации и росту SaaS",
+      "description": "Экспертные материалы о разработке Shopify, AI-автоматизации, росте SaaS, стратегии маркетплейсов и веб-разработке."
+    },
+    "privacy-policy": {
+      "title": "Политика конфиденциальности | DEWEB",
+      "description": "Как DEWEB собирает, использует, хранит и защищает ваши персональные данные на dewebam.com."
+    },
+    "cookie-policy": {
+      "title": "Политика cookie | DEWEB",
+      "description": "Узнайте, как DEWEB использует cookie и local storage для входа, безопасности и настроек сайта."
+    },
+    "terms": {
+      "title": "Условия использования | DEWEB",
+      "description": "Условия использования IT-маркетплейса DEWEB, аккаунтов и проектных услуг."
+    },
+    "login": {
+      "title": "Вход | Аккаунт DEWEB",
+      "description": "Войдите в аккаунт DEWEB для управления проектами, объявлениями и сообщениями."
+    },
+    "signup": {
+      "title": "Создать аккаунт | Присоединиться к маркетплейсу DEWEB",
+      "description": "Создайте аккаунт DEWEB как клиент или поставщик. Публикуйте проекты, подавайте предложения и связывайтесь с проверенными разработчиками."
+    },
+    "forgot-password": {
+      "title": "Сброс пароля | DEWEB",
+      "description": "Безопасно сбросьте пароль аккаунта DEWEB по email."
+    },
+    "reset-password": {
+      "title": "Новый пароль | DEWEB",
+      "description": "Выберите новый пароль для аккаунта DEWEB."
+    },
+    "verify-email": {
+      "title": "Подтверждение email | DEWEB",
+      "description": "Подтвердите email, чтобы разблокировать все функции платформы DEWEB."
+    },
+    "account": {
+      "title": "Мой аккаунт | Панель DEWEB",
+      "description": "Управляйте профилем, объявлениями, сообщениями и активностью проектов в DEWEB."
+    },
+    "profile": {
+      "title": "Мой профиль | Настройки аккаунта DEWEB",
+      "description": "Обновите профиль DEWEB, контактные данные и настройки аккаунта."
+    },
+    "listings": {
+      "title": "Мои объявления | Маркетплейс DEWEB",
+      "description": "Создавайте и управляйте объявлениями проектов и предложениями услуг на DEWEB."
+    },
+    "messages": {
+      "title": "Сообщения | Чат проекта DEWEB",
+      "description": "Просматривайте и отвечайте в диалогах проектов и сделок на DEWEB."
+    },
+    "proposals": {
+      "title": "Мои предложения | Панель поставщика DEWEB",
+      "description": "Просматривайте открытые проекты и подавайте конкурентные предложения клиентам DEWEB."
+    },
+    "projects": {
+      "title": "Мои проекты | Панель клиента DEWEB",
+      "description": "Публикуйте проекты, просматривайте предложения поставщиков и отслеживайте сдачу на DEWEB."
+    },
+    "submit-offer": {
+      "title": "Отправить предложение | DEWEB",
+      "description": "Отправьте предложение услуги или запрос на проект. Команда DEWEB свяжется с вами для согласования условий."
+    },
+    "admin": {
+      "title": "Панель администратора | DEWEB",
+      "description": "Административная панель DEWEB для лидов, пользователей и управления платформой."
+    },
+    "dashboard": {
+      "title": "Панель | DEWEB",
+      "description": "Обзор панели клиента и поставщика DEWEB."
+    },
+    "pricing": {
+      "title": "Цены и расчёты проектов | Маркетплейс DEWEB",
+      "description": "Получите конкурентные расчёты от проверенных разработчиков. Опубликуйте проект на DEWEB и сравните предложения по цене и срокам."
+    },
+    "dashboard-customer": {
+      "title": "Панель клиента | DEWEB",
+      "description": "Управляйте аккаунтом клиента DEWEB, проектами, предложениями и сообщениями."
+    },
+    "dashboard-supplier": {
+      "title": "Панель поставщика | DEWEB",
+      "description": "Управляйте аккаунтом поставщика DEWEB, продуктами, предложениями и заказами."
+    },
+    "dashboard-customer-projects": {
+      "title": "Проекты клиента | Панель DEWEB",
+      "description": "Просматривайте и управляйте опубликованными проектами на панели клиента DEWEB."
+    },
+    "dashboard-customer-offers": {
+      "title": "Предложения клиента | Панель DEWEB",
+      "description": "Просматривайте предложения и ставки поставщиков на панели клиента DEWEB."
+    },
+    "dashboard-customer-messages": {
+      "title": "Сообщения клиента | Панель DEWEB",
+      "description": "Диалоги проектов и сообщения по сделкам на панели клиента DEWEB."
+    },
+    "dashboard-supplier-products": {
+      "title": "Продукты поставщика | Панель DEWEB",
+      "description": "Управляйте листингами продуктов и каталогом услуг на DEWEB."
+    },
+    "dashboard-supplier-proposals": {
+      "title": "Предложения поставщика | Панель DEWEB",
+      "description": "Подавайте и отслеживайте конкурентные предложения на панели поставщика DEWEB."
+    },
+    "dashboard-supplier-orders": {
+      "title": "Заказы поставщика | Панель DEWEB",
+      "description": "Отслеживайте статус заказов и этапы сдачи на панели поставщика DEWEB."
+    },
+    "dashboard-supplier-analytics": {
+      "title": "Аналитика поставщика | Панель DEWEB",
+      "description": "Метрики производительности, конверсии и аналитика для поставщиков DEWEB."
+    },
+    "landings": {
+      "shopify-development": {
+        "title": "Разработка Shopify | Custom-магазины и интеграции | DEWEB",
+        "description": "Экспертная разработка Shopify — custom-темы, Shopify Plus, интеграции приложений и оптимизация ecommerce от проверенных разработчиков DEWEB."
+      },
+      "shopify-store-design": {
+        "title": "Дизайн магазина Shopify | Ecommerce UX и брендинг | DEWEB",
+        "description": "Высококонверсионный дизайн магазина Shopify — mobile-first UX, фирменный стиль и Figma-to-theme от дизайнеров DEWEB."
+      },
+      "shopify-custom-apps": {
+        "title": "Custom-приложения Shopify | Private и public apps | DEWEB",
+        "description": "Custom-приложения Shopify — checkout extensions, admin-инструменты, ERP-коннекторы и публикация в Shopify App Store от инженеров DEWEB."
+      },
+      "ai-chatbot-development": {
+        "title": "Разработка AI-чатботов | GPT-ассистенты и автоматизация | DEWEB",
+        "description": "Custom AI-чатботы, RAG knowledge bases, CRM-интеграции и workflow-автоматизация от AI-инженеров DEWEB."
+      },
+      "ai-business-automation": {
+        "title": "AI-автоматизация бизнеса | Workflow и intelligent ops | DEWEB",
+        "description": "AI-автоматизация бизнеса — оркестрация workflow, обработка документов, CRM-синхронизация и intelligent operations от DEWEB."
+      },
+      "web-application-development": {
+        "title": "Разработка веб-приложений | SaaS и custom apps | DEWEB",
+        "description": "Custom веб-приложения и SaaS-платформы на Next.js, React, API и cloud deployment от разработчиков DEWEB."
+      },
+      "marketplace-development": {
+        "title": "Разработка маркетплейсов | Двусторонние платформы | DEWEB",
+        "description": "Создайте custom-маркетплейс с onboarding продавцов, конкурентными ставками, сообщениями и платежами — от DEWEB."
+      },
+      "saas-development": {
+        "title": "Разработка SaaS | Multi-tenant платформы | DEWEB",
+        "description": "Полная разработка SaaS — auth, подписки, admin-панели и масштабируемая cloud-архитектура от DEWEB."
+      },
+      "landing-page-development": {
+        "title": "Разработка лендингов | Высококонверсионные страницы | DEWEB",
+        "description": "Лендинги для рекламы, запусков и лидогенерации — mobile-first, быстрые, от DEWEB."
+      }
+    },
+    "blogCategories": {
+      "shopify": {
+        "title": "Статьи о Shopify и ecommerce | Блог DEWEB",
+        "description": "Стоимость разработки Shopify, сравнение платформ, приложения и стратегии ecommerce от DEWEB."
+      },
+      "ai": {
+        "title": "Статьи об AI и автоматизации | Блог DEWEB",
+        "description": "AI-чатботы, автоматизация бизнеса и intelligent ecommerce от экспертов DEWEB."
+      },
+      "web-development": {
+        "title": "Статьи о веб-разработке | Блог DEWEB",
+        "description": "Custom веб-приложения, гиды по стекам и инсайты разработки от DEWEB."
+      },
+      "marketplace": {
+        "title": "Статьи о маркетплейсах | Блог DEWEB",
+        "description": "Создание маркетплейсов, монетизация и конкурентные ставки от DEWEB."
+      },
+      "saas": {
+        "title": "Статьи о SaaS-разработке | Блог DEWEB",
+        "description": "Разработка SaaS-продуктов, стоимость MVP и гиды по subscription-бизнесу от DEWEB."
       }
     }
   }

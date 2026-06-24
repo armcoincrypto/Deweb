@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "DeWeb | Կայքեր, Shopify խանութներ և AI համակարգեր բիզնեսի աճի համար",
-    "description": "DeWeb-ը ստեղծում է ժամանակակից կայքեր, բարձր կոնվերսիայի Shopify խանութներ, AI չատբոտներ և ավտոմատացման համակարգեր ավելի շատ հաճախորդներ և վաճառք ուզող բիզնեսների համար։"
+    "title": "DEWEB — Մատակարարները մրցում են։ Հաճախորդը հաղթում է։",
+    "description": "Դիտեք IT ծառայություններ և շուկայի հայտարարություններ, առաջարկեք ձեր գինը և կապվեք DEWEB-ի հետ նախագծերը բանակցելու համար — թափանցիկ գներ, առցանց վճարում չկա։"
   },
   "nav": {
     "home": "Գլխավոր",
@@ -34,66 +34,172 @@
     "testimonialsSubtitle": "Իրական արդյունքներ Shopify խանութներից, AI չատբոտներից, կայքերից և ավտոմատացման նախագծերից։",
     "howKicker": "Ինչպես է աշխատում",
     "howTitle": "Բրիֆից մինչև առաքում՝ երեք քայլով",
-    "howSubtitle": "Մատակարարների մրցակցություն, թափանցիկ գներ և էսկրո վճարումներ։",
+    "howSubtitle": "Մատակարարների մրցակցություն, թափանցիկ գներ և էսկրո վճարումներ — IT գնումների համար մասշտաբային լուծում։",
     "step1Title": "Հրապարակեք նախագիծ",
-    "step1Desc": "Նկարագրեք ծավալը, բյուջեն և ժամկետը։ DEWEB-ը ուղարկում է բրիֆը ստուգված մատակարարներին։",
+    "step1Desc": "Նկարագրեք ծավալը, բյուջեն և ժամկետը։ DEWEB-ը անմիջապես ուղարկում է բրիֆը ստուգված IT մատակարարներին։",
     "step2Title": "Ստացեք մրցային առաջարկներ",
-    "step2Desc": "Մատակարարները ներկայացնում են գին, ժամկետ և պորտֆել — դուք համեմատում եք կող կողի։",
+    "step2Desc": "Մատակարարները ներկայացնում են գին, առաքման ժամկետ և պորտֆել — դուք համեմատում եք կող կողի։",
     "step3Title": "Ընտրեք և գործարկեք",
-    "step3Desc": "Ընտրեք լավագույնը, վճարեք DEWEB-ով և հետևեք մայլերին մինչև առաքում։",
+    "step3Desc": "Ընտրեք լավագույնը, վճարեք DEWEB մետաղադրամներով և հետևեք մայլերին մինչև առաքում — էսկրո պաշտպանությամբ։",
     "marketKicker": "Շուկա",
-    "marketTitle": "Բոլոր IT կատեգորիաները մեկ հարթակում",
-    "marketSubtitle": "Դիտեք ստուգված մատակարարներ AI, վեբ, մոբայլ և դիզայնում։",
+    "marketTitle": "Բոլոր IT կատեգորիաները։ Մեկ մրցակցային հարթակ։",
+    "marketSubtitle": "Դիտեք ստուգված մատակարարներ AI, վեբ, մոբայլ, դիզայն և անհատական ծրագրային ապահովման ոլորտներում։",
     "activityKicker": "Կենդանի ակտիվություն",
     "activityTitle": "Շուկայի պուլսը իրական ժամանակում",
-    "activitySubtitle": "Դիտեք սակագնումները, գնի մրցակցությունը և գործարքների փակումը։",
+    "activitySubtitle": "Դիտեք մրցակցային առաջարկները, գնի մրցակցությունը և գործարքների փակումը — թափանցիկություն յուրաքանչյուր քայլում։",
     "aiKicker": "AI ավտոմատացում",
     "aiTitle": "Ինտելեկտ յուրաքանչյուր շերտում",
-    "aiSubtitle": "Մատակարարների համապատասխանեցումից մինչև workflow բոտեր։",
+    "aiSubtitle": "Մատակարարների համապատասխանեցումից մինչև workflow բոտեր — DEWEB-ը միավորում է շուկայի մրցակցությունը AI-նատիվ առաքման հետ։",
     "featuredKicker": "Լավագույն մատակարարներ",
     "featuredTitle": "Գնահատված մասնագետներ՝ ձեր նախագծերի համար",
     "pricingKicker": "Գնացուցակ",
     "pricingTitle": "Պլաններ ձեր նպատակներին համապատասխան",
-    "ctaFinalTitle": "Պատրա՞ստ եք ապագան կառուցելու",
-    "ctaFinalSubtitle": "Հրապարակեք նախագիծը այսօր։ Թող մատակարարները մրցեն։ Ընտրեք լավագույն առաջարկը։",
-    "ctaFinalPrimary": "Սկսել նախագիծ",
-    "ctaFinalSecondary": "Դիտել մատակարարներ"
+    "ctaFinalTitle": "Պատրա՞ստ եք աճելու պրեմիում տեխնոլոգիայով",
+    "ctaFinalSubtitle": "Պատմեք մեզ ձեր Shopify խանութի, AI ավտոմատացման, SaaS արտադրանքի կամ շուկայի գաղափարի մասին։ DEWEB-ը պատասխանում է 24 ժամվա ընթացքում։",
+    "ctaFinalPrimary": "Սկսել նախագիծը",
+    "ctaFinalSecondary": "Ծանոթանալ ծառայություններին"
   },
   "services": {
     "title": "Ծառայություններ",
-    "subtitle": "Պրեմիում IT լուծումներ վեբ, AI, մոբայլ և աճի համար — թափանցիկ փաթեթներ և մրցային սակագնում։",
-    "categoriesTitle": "Ծառայության կատեգորիաներ",
-    "processTitle": "Ինչպես ենք առաքում",
-    "process1": "Հետազոտություն և ծավալ",
-    "process2": "Համապատասխանեցում և սակագնում",
-    "process3": "Կառուցում և մայլեր",
-    "process4": "Գործարկում և աջակցություն",
-    "cta": "Պատվիրել անհատական գնառաջարկ",
-    "learnMore": "Learn more",
-    "timeline": "Timeline",
-    "priceRange": "Price range",
+    "subtitle": "Պրեմիում IT առաքում վեբ, AI, մոբայլ և աճի ոլորտներում — թափանցիկ փաթեթներ և մրցակցային մատակարարների սակագնում։",
+    "heroTitle": "Կառուցեք, ավտոմատացրեք և մասշտաբացրեք բիզնեսը էլիտար թվային լուծումներով",
+    "heroSubtitle": "Shopify խանութներ, AI չատբոտներ, անհատական վեբ հավելվածներ, մոբայլ արտադրանք և ընկերության ավտոմատացում — ստուգված DEWEB մատակարարների կողմից։",
+    "consultation": "Ստանալ անվճար խորհրդատվություն",
+    "requestBids": "Պահանջել մատակարարների առաջարկներ",
+    "whyChoose": "Ինչու են բիզնեսները ընտրում DEWEB-ը",
+    "categoriesTitle": "Մեր ծառայությունները",
+    "featuredTitle": "Լավագույն լուծումներ",
+    "processTitle": "Գործընթաց",
+    "process1": "Անվճար խորհրդատվություն",
+    "process2": "Մատակարարների մրցակցություն",
+    "process3": "Նախագծի պլանավորում",
+    "process4": "Զարգացում",
+    "process5": "Գործարկում և աճ",
+    "ctaTitle": "Պատրա՞ստ եք կառուցելու ձեր հաջորդ թվային արտադրանքը",
+    "ctaSubtitle": "Հրապարակեք նախագիծը և թողեք ստուգված մատակարարները մրցեն թափանցիկ գներով և էսկրո պաշտպանությամբ։",
+    "getProposal": "Ստանալ առաջարկ",
+    "startProject": "Սկսել նախագիծ",
+    "cta": "Պահանջել անհատական գնառաջարկ",
+    "learnMore": "Իմանալ ավելին",
+    "timeline": "Ժամկետ",
+    "priceRange": "Գնային միջակայք",
+    "deliverables": "Արդյունքներ",
+    "benefits": "Առավելություններ",
+    "techStack": "Տեխնոլոգիական stack",
+    "formTitle": "Ստանալ անվճար խորհրդատվություն",
+    "formSubtitle": "Պատմեք մեզ ձեր նախագծի մասին — մենք կհամապատասխանեցնենք ճիշտ մասնագետներին։",
+    "formName": "Ձեր անունը",
+    "formEmail": "Էլ. փոստ",
+    "formBudget": "Բյուջե (ըստ ցանկության)",
+    "formDeadline": "Ժամկետ (ըստ ցանկության)",
+    "formCategory": "Ծառայության կատեգորիա",
+    "formMessage": "Նախագծի մանրամասներ",
+    "formSubmit": "Ուղարկել հայտ",
+    "formSuccess": "Հայտը ուղարկված է։ Կպատասխանենք 24 ժամվա ընթացքում։",
+    "formError": "Չհաջողվեց ուղարկել։ Խնդրում ենք կրկին փորձել։",
+    "estimateHint": "Առաջարկվող ժամկետ",
     "shopifySpotlight": {
-      "partner": "Official Shopify Partner",
-      "title": "Shopify Development",
-      "pricingLabel": "Real pricing",
-      "offerLabel": "What we deliver",
-      "opportunityLabel": "The Shopify opportunity",
-      "opportunityText": "Shopify powers 4.5M+ stores worldwide. Ecommerce sales exceed $6 trillion globally — brands that launch on Shopify reach 175+ countries with built-in payments, inventory, and marketing tools from day one.",
-      "stat1": "10%+ of all US ecommerce runs on Shopify",
-      "stat2": "Average 36% conversion lift after CRO optimization",
-      "stat3": "Shopify Plus for $1M+ brands — we build & migrate",
-      "timeline": "Typical delivery",
-      "cta": "Get Shopify Quote",
-      "consult": "Free consultation",
-      "getConsultation": "Get Free Consultation",
-      "ctaHint": "Launch your Shopify store with verified DEWEB experts — transparent pricing and supplier bidding."
+      "partner": "Shopify-ի պաշտոնական գործընկեր",
+      "title": "Shopify զարգացում",
+      "pricingLabel": "Իրական գներ",
+      "offerLabel": "Ինչ ենք առաքում",
+      "opportunityLabel": "Shopify-ի հնարավորությունները",
+      "opportunityText": "Shopify-ը սպասարկում է 4.5 միլիոն+ խանութ աշխարհում։ Էլեկտրոնային առևտրի վաճառքը գլոբալ մակարդակով գերազանցում է 6 տրիլիոն դոլարը — Shopify-ում գործարկվող ապրանքանիշերը հասնում են 175+ երկրների՝ վճարումների, պաշարի և մարքեթինգի գործիքներով առաջին օրից։",
+      "stat1": "ԱՄՆ էլեկտրոնային առևտրի 10%+‑ը Shopify-ում է",
+      "stat2": "CRO օպտիմիզացիայից հետո միջին 36% կոնվերսիայի աճ",
+      "stat3": "Shopify Plus $1M+ ապրանքանիշերի համար — մենք կառուցում և միգրացիա ենք անում",
+      "timeline": "Տիպիկ առաքում",
+      "cta": "Ստանալ Shopify գնառաջարկ",
+      "consult": "Անվճար խորհրդատվություն",
+      "getConsultation": "Ստանալ անվճար խորհրդատվություն",
+      "ctaHint": "Գործարկեք Shopify խանութը ստուգված DEWEB մասնագետների հետ — թափանցիկ գներ և մատակարարների մրցակցություն։"
+    }
+  },
+  "serviceDetail": {
+    "pageTitle": "{service} — Ինչ ենք առաջարկում",
+    "whatWeOffer": "Ինչ ենք առաջարկում",
+    "whatItMeans": "Ինչ է նշանակում",
+    "whatsIncluded": "Ինչ է ներառված",
+    "deliverables": "Արդյունքներ",
+    "yourExpert": "Ձեր մասնագետը",
+    "timeline": "Ժամկետ",
+    "priceRange": "Գնային միջակայք",
+    "technologies": "Տեխնոլոգիաներ",
+    "getQuote": "Ստանալ գնառաջարկ",
+    "backToServices": "Վերադառնալ ծառայություններ"
+  },
+  "blog": {
+    "kicker": "Ինսայթներ",
+    "title": "Բլոգ",
+    "subtitle": "Շուկայի խորհուրդներ, տեխնոլոգիական ուղեցույցներ և աճի ռազմավարություններ DEWEB թիմից։",
+    "readMore": "Կարդալ հոդվածը",
+    "backToBlog": "Վերադառնալ բլոգ",
+    "exploreMarketplace": "Դիտել շուկան",
+    "posts": {
+      "how-competitive-bidding-saves-it-budgets": {
+        "title": "Ինչպես է մրցակցային սակագնումը խնայում IT բյուջեն",
+        "excerpt": "Ինչու է նախագիծը մի քանի մատակարարների ուղարկելը ապահովում ավելի լավ գներ և արագ առաքում։",
+        "body1": "Ավանդական IT գնումները հաճախ նշանակում են բանակցություններ մեկ վաճառողի հետ — դրամ և ընտրանքներ մնում են սեղանի վրա։ Մրցակցային սակագնումը փոխում է դա՝ հրավիրելով ստուգված մատակարարներին կող կողի առաջարկներ ներկայացնելու։",
+        "body2": "DEWEB-ում հաճախորդները հրապարակում են բրիֆ բյուջեով և ժամկետով։ Մատակարարները մրցում են թափանցիկ գներով, պորտֆելով և առաքման պլաններով։ Դուք ամեն ինչ համեմատում եք մեկ վահանակում՝ ընտրությունից առաջ։",
+        "body3": "Արդյունքը՝ նախագծի ծախսերի 15–30% միջին խնայողություն, ավելի արագ իրականացում և ավելի մեծ վստահություն մատակարարի ընտրության հարցում։"
+      },
+      "choosing-the-right-web-stack": {
+        "title": "Ճիշտ վեբ stack-ի ընտրություն 2026 թվականին",
+        "excerpt": "Next.js, WordPress կամ անհատական — ինչպես ընտրել նախագծի լավագույն հիմքը։",
+        "body1": "Ձեր վեբ stack-ը ազդում է արագության, մասշտաբայնության և երկարաժամկետ սպասարկման ծախսերի վրա։ Next.js-ը գերազանց է ժամանակակից հավելվածների և SEO-ի համար; WordPress-ը հարմար է բովանդակությամբ հարուստ կայքերի համար հեշտ ադմին մուտքով։",
+        "body2": "Մենք օգնում ենք հաճախորդներին գնահատել փոխզիջումները՝ թիմի հմտություններ, բովանդակության կարիքներ, ինտեգրացիաներ և բյուջե։ Ճիշտ ընտրությունը կախված է ձեր նպատակներից, ոչ թե միայն միտումներից։",
+        "body3": "DEWEB մատակարարները մասնագիտացած են տարբեր stack-երում — հրապարակեք նախագիծը և ստացեք անհատականացված խորհուրդներ մրցակցային առաջարկներով։"
+      },
+      "ai-automation-for-small-business": {
+        "title": "AI ավտոմատացում փոքր բիզնեսի համար",
+        "excerpt": "Գործնական AI workflow-ներ, որոնք խնայում են ժամեր՝ առանց ընկերության բյուջեի։",
+        "body1": "AI-ը միայն մեծ տեխնոլոգիական ընկերությունների համար չէ։ Փոքր բիզնեսները օգտագործում են չատբոտներ, էլ. փոստի ավտոմատացում և CRM սինխրոնիզացիա՝ 24/7 աջակցություն և գործառնություններ իրականացնելու համար։",
+        "body2": "Սկսեք բարձր կրկնվող առաջադրանքներից՝ լիդերի որակավորում, հանդիպումների ամրագրում, հաշիվ-ապրանքագրերի հիշեցումներ։ Անհատական ագենտները կարող են ինտեգրվել արդեն օգտագործվող գործիքների հետ։",
+        "body3": "DEWEB-ը կապում է ձեզ AI մասնագետների հետ, ովքեր սահմանում, կառուցում և գործարկում են ավտոմատացում՝ մայլային առաքմամբ և էսկրո պաշտպանությամբ։"
+      },
+      "escrow-payments-why-they-matter": {
+        "title": "Ինչու են էսկրո վճարումները կարևոր IT նախագծերի համար",
+        "excerpt": "Պաշտպանեք և՛ հաճախորդներին, և՛ մատակարարներին մայլային DEWEB մետաղադրամի էսկրոյով։",
+        "body1": "IT նախագծերը վստահություն են պահանջում երկու կողմից։ Հաճախորդները անհանգստանում են առաքման համար; մատակարարները՝ վճարման։ Էսկրոն պահում է միջոցները մինչև մայլերի հաստատումը։",
+        "body2": "DEWEB-ը օգտագործում է DEWEB մետաղադրամներ (1:1 USDT), որոնք արգելափակվում են էսկրոյում առաջարկն ընդունելիս։ Միջոցները ազատվում են աշխատանքի ավարտին համապատասխան — նվազեցնելով վեճերն ու խարդախությունը։",
+        "body3": "Թափանցիկ մայլեր, չատի մոդերացիա և ստուգված մատակարարներ հեռավոր IT գործարքները ավելի անվտանգ են դարձնում բոլորի համար։"
+      },
+      "building-trust-with-verified-suppliers": {
+        "title": "Վստահություն ստուգված մատակարարների հետ",
+        "excerpt": "Ինչպես է DEWEB-ը ստուգում մասնագետներին և պահպանում շուկայի բարձր որակը։",
+        "body1": "Ոչ բոլոր ֆրիլանսերները հավասար են։ DEWEB-ը ստուգում է մատակարարների պրոֆիլները, պորտֆելները և աշխատանքային պատմությունը նախագծերին մրցելուց առաջ։",
+        "body2": "Հաճախորդները տեսնում են վարկանիշները, նախկին աշխատանքները և հմտությունները սկզբից։ Մատակարարները կառուցում են հեղինակություն հաջող առաքումներով և հաճախորդների կարծիքներով։",
+        "body3": "Ստուգումը և մրցակցային սակագնումը ստեղծում են շուկա, որտեղ որակը բարձրանում է, իսկ վատ մասնակիցները զտվում են։"
+      },
+      "ecommerce-trends-2026": {
+        "title": "Էլեկտրոնային առևտրի միտումներ 2026 թվականին",
+        "excerpt": "Headless առևտուր, mobile-first checkout և AI-ով անհատականացում։",
+        "body1": "Էլեկտրոնային առևտուրը շարունակում է զարգանալ։ Headless կառուցվածքները տալիս են ճկունություն; մոբայլ checkout-ի օպտիմիզացիան բարձրացնում է կոնվերսիան; AI-ն անհատականացնում է ապրանքների առաջարկները։",
+        "body2": "Վճարման բազմազանությունը՝ քարտեր, դրամապանակներ, կրիպտո — կարևոր է գլոբալ լսարանի համար։ Արագ բեռնումը և Core Web Vitals-ը ազդում են և՛ SEO-ի, և՛ վաճառքի վրա։",
+        "body3": "Անկախ Shopify-ից, WooCommerce-ից կամ անհատական լուծումից — DEWEB մատակարարները մրցում են կառուցելու փոխարկող և մասշտաբային խանութներ։"
+      }
     }
   },
   "marketplace": {
     "title": "Շուկա",
-    "subtitle": "Մատակարարները մրցում են գնով և ժամկետով։ Դուք համեմատում և ընտրում եք լավագույնը։",
-    "search": "Փնտրել մատակարար, հմտություն կամ նախագիծ…",
-    "filterAll": "Բոլոր կատեգորիաները",
+    "subtitle": "Հաճախորդի պահանջներ և աշխատողների ծառայություններ մեկ տեղում։ Զտեք, դիմեք և սկսեք պաշտպանված նախագծի չատ։",
+    "search": "Փնտրել նախագծեր, ծառայություններ կամ անուններ…",
+    "filterCustomer": "Հաճախորդի պահանջներ (բյուջե և ժամկետ)",
+    "filterWorker": "Աշխատողի ծառայություններ և առաջարկներ",
+    "customerNeed": "Հաճախորդի պահանջ",
+    "workerOffer": "Ծառայության առաջարկ",
+    "deadline": "Ժամկետ",
+    "postYours": "Հրապարակել ձերը",
+    "noListings": "Դեռ հայտարարություններ չկան։ Լինեք առաջինը։",
+    "loginToApply": "Մուտք գործեք հայտ ուղարկելու համար",
+    "applicationSent": "Հայտը ուղարկված է հայտարարության տիրոջը",
+    "yourProposal": "Ձեր հաղորդագրությունը / առաջարկը…",
+    "yourPrice": "Ձեր գինը (USD)",
+    "timeline": "Ժամկետ (օր. 2 շաբաթ)",
+    "sendRequest": "Ուղարկել հայտ",
+    "close": "Փակել",
+    "loading": "Բեռնվում է…",
+    "error": "Ինչ-որ բան սխալ է գնացել",
     "verified": "Ստուգված",
     "from": "սկսած",
     "perProject": "նախագծի համար",
@@ -102,79 +208,64 @@
     "liveActivity": "Կենդանի ակտիվություն",
     "openProjects": "Բաց նախագծեր",
     "suppliersOnline": "մատակարար առցանց",
-    "filterCustomer": "Հաճախորդի պահանջներ",
-    "filterWorker": "Մատակարարի ծառայություններ",
-    "customerNeed": "Հաճախորդի պահանջ",
-    "workerOffer": "Ծառայության առաջարկ",
-    "deadline": "Ժամկետ",
-    "postYours": "Հրապարակել",
-    "noListings": "Դեռ գրառումներ չկան",
-    "loginToApply": "Մուտք գործեք հայտ ուղարկելու համար",
-    "applicationSent": "Հայտը ուղարկված է",
-    "yourProposal": "Ձեր առաջարկը…",
-    "yourPrice": "Գին (USD)",
-    "timeline": "Ժամկետ",
-    "sendRequest": "Ուղարկել",
-    "close": "Փակել",
-    "loading": "Բեռնվում է…",
-    "error": "Սխալ"
+    "filterAll": "Բոլոր կատեգորիաները"
   },
   "about": {
-    "heroTitle": "Building The Future Of Digital Business",
-    "heroSubtitle": "DEWEB connects businesses with elite developers, AI specialists, Shopify experts, and technology suppliers through one powerful ecosystem.",
-    "consultation": "Get Free Consultation",
-    "startProject": "Start Your Project",
-    "whoKicker": "Who We Are",
-    "whoTitle": "More Than An Agency",
-    "whoText": "DEWEB combines a technology marketplace, Shopify development team, AI automation studio, software agency, and supplier bidding platform into one ecosystem.",
-    "statsTitle": "Why Clients Choose DEWEB",
-    "servicesTitle": "Our Core Services",
-    "servicesSubtitle": "From Shopify stores to AI automation — elite delivery with transparent pricing and competitive supplier bidding.",
-    "processTitle": "Our Process",
-    "teamTitle": "Leadership Team",
-    "teamSubtitle": "Experienced leaders driving marketplace innovation, web excellence, and AI-native delivery.",
-    "yearsExperience": "{years}+ years of experience",
-    "techTitle": "Technologies We Use",
-    "techSubtitle": "Modern stacks trusted by enterprise teams worldwide.",
-    "ctaTitle": "Ready To Build Your Next Digital Product?",
-    "ctaSubtitle": "Receive multiple supplier offers, compare expertise, and launch your project with confidence.",
-    "requestProposal": "Request Proposal",
-    "bookCall": "Book Strategy Call",
-    "learnMore": "Learn more",
+    "heroTitle": "Կառուցում ենք Թվային Բիզնեսի Ապագան",
+    "heroSubtitle": "DEWEB-ը միավորում է բիզնեսները էլիտար մշակողների, AI մասնագետների, Shopify փորձագետների և տեխնոլոգիական մատակարարների հետ մեկ հզոր էկոհամակարգում։",
+    "consultation": "Ստանալ անվճար խորհրդատվություն",
+    "startProject": "Սկսել նախագիծ",
+    "whoKicker": "Ով ենք մենք",
+    "whoTitle": "Ավելի քան գործակալություն",
+    "whoText": "DEWEB-ը միավորում է տեխնոլոգիական շուկա, Shopify զարգացման թիմ, AI ավտոմատացման ստուդիա, ծրագրային գործակալություն և մատակարարների մրցակցության հարթակ մեկ էկոհամակարգում։",
+    "statsTitle": "Ինչու են հաճախորդները ընտրում DEWEB-ը",
+    "servicesTitle": "Մեր հիմնական ծառայությունները",
+    "servicesSubtitle": "Shopify խանութներից մինչև AI ավտոմատացում — էլիտար առաքում թափանցիկ գներով և մրցակցային մատակարարների սակագնումով։",
+    "processTitle": "Մեր գործընթացը",
+    "teamTitle": "Ղեկավար թիմ",
+    "teamSubtitle": "Փորձառու ղեկավարներ՝ շուկայի նորարարություն, վեբ գերազանցություն և AI-նատիվ առաքում։",
+    "yearsExperience": "{years}+ տարվա փորձ",
+    "techTitle": "Օգտագործվող տեխնոլոգիաներ",
+    "techSubtitle": "Ժամանակակից stack-եր, որոնց վստահում են ընկերության թիմեր աշխարհում։",
+    "ctaTitle": "Պատրա՞ստ եք կառուցելու ձեր հաջորդ թվային արտադրանքը",
+    "ctaSubtitle": "Ստացեք մի քանի մատակարարների առաջարկներ, համեմատեք փորձը և գործարկեք նախագիծը վստահությամբ։",
+    "requestProposal": "Պահանջել առաջարկ",
+    "bookCall": "Ամրագրել ռազմավարական զանգ",
+    "learnMore": "Իմանալ ավելին",
     "title": "DEWEB-ի մասին",
-    "subtitle": "Գլոբալ IT էկոհամակարգ, որտեղ մատակարարները մրցում են, հաճախորդը հաղթում է։",
+    "subtitle": "Գլոբալ IT էկոհամակարգ, որտեղ մատակարարները մրցում են, հաճախորդը հաղթում է — շուկա, գործակալություն և AI ավտոմատացում մեկ հարթակում։",
     "mission": "Մեր առաքելությունը",
-    "missionText": "IT գնումները դարձնել թափանցիկ, արագ և արդար մրցակցական սակագնումով։",
+    "missionText": "IT գնումները դարձնել թափանցիկ, արագ և արդար մրցակցային սակագնումով և ստուգված մասնագետներով։",
     "vision": "Մեր տեսլականը",
     "visionText": "Դառնալ AI-ով շարժվող IT շուկաների հիմնական հարթակը աշխարհում։"
   },
   "pricing": {
     "title": "Գնացուցակ",
-    "subtitle": "Սկսեք անվճար։ Մասշտաբացեք առաջնահերթ համապատասխանեցմամբ և աջակցությամբ։"
+    "subtitle": "Սկսեք անվճար։ Մասշտաբացեք առաջնահերթ համապատասխանեցմամբ, AI գործիքներով և նվիրված աջակցությամբ։"
   },
   "contact": {
     "title": "Կապ",
-    "subtitle": "Հարցեր նախագծերի, մատակարարների կամ ընկերության պլանների մասին։",
+    "subtitle": "Պատմեք մեզ ձեր նախագծի մասին, և մենք կպատասխանենք պարզ պլանով, ժամկետով և սկզբնական գնահատականով։",
     "followUs": "Հետևեք DEWEB-ին",
     "connectWithUs": "Կապվեք մեզ հետ",
     "name": "Անուն",
     "email": "Էլ. փոստ",
     "phone": "WhatsApp / Telegram",
-    "service": "Ծառայություն",
-    "budget": "Բյուջե",
+    "service": "Անհրաժեշտ ծառայություն",
+    "budget": "Բյուջեի միջակայք",
     "deadline": "Ժամկետ",
     "message": "Նախագծի նկարագրություն",
-    "send": "Ուղարկել հայտ",
+    "send": "Ուղարկել նախագծի հայտ",
     "sending": "Ուղարկվում է…",
-    "success": "Շնորհակալություն։ Ձեր հաղորդագրությունը ստացվել է։",
-    "error": "Սխալ։ Խնդրում ենք կրկին փորձել։"
+    "success": "Շնորհակալություն։ Ձեր նախագծի հայտը ստացվել է։ Կպատասխանենք 24 ժամվա ընթացքում։",
+    "error": "Ինչ-որ բան սխալ է գնացել։ Խնդրում ենք կրկին փորձել։"
   },
   "auth": {
     "platformTagline": "Մատակարարները մրցում են։ Հաճախորդը հաղթում է։",
     "loginTitle": "Բարի վերադարձ",
-    "loginSubtitle": "Մուտք գործեք DEWEB հաշիվ",
+    "loginSubtitle": "Մուտք գործեք ձեր DEWEB հաշիվ",
     "signupTitle": "Ստեղծել հաշիվ",
-    "signupSubtitle": "Create your DEWEB account in one step",
+    "signupSubtitle": "Ստեղծեք DEWEB հաշիվը մեկ քայլով",
     "email": "Էլ. փոստ",
     "password": "Գաղտնաբառ",
     "nickname": "Մականուն",
@@ -187,23 +278,23 @@
     "hasAccount": "Արդեն ունե՞ք հաշիվ",
     "forgotPassword": "Մոռացե՞լ եք գաղտնաբառը",
     "forgotTitle": "Վերականգնել գաղտնաբառը",
-    "forgotSubtitle": "Մուտքագրեք էլ. փոստը",
-    "forgotSent": "Եթե հաշիվ կա, կստանաք հղում",
-    "sendReset": "Ուղարկել հղում",
+    "forgotSubtitle": "Մուտքագրեք էլ. փոստը, և մենք կուղարկենք վերականգնման հրահանգներ։",
+    "forgotSent": "Եթե այս էլ. փոստը գրանցված է, ստուգեք նամակարկղը վերականգնման հղման համար։",
+    "sendReset": "Ուղարկել վերականգնման հղում",
     "backToLogin": "Վերադառնալ մուտք",
     "resetTitle": "Նոր գաղտնաբառ",
-    "resetSubtitle": "Ընտրեք ուժեղ գաղտնաբառ",
+    "resetSubtitle": "Ընտրեք ուժեղ նոր գաղտնաբառ։",
     "newPassword": "Նոր գաղտնաբառ",
-    "resetBtn": "Թարմացնել",
-    "resetSuccess": "Գաղտնաբառը թարմացվեց",
-    "resetLink": "Բացել",
-    "registeredSuccess": "Հաշիվը ստեղծվեց։ Մուտք գործեք",
-    "passwordRules": "8+ նիշ, մեծատառ, թիվ, նշան",
+    "resetBtn": "Թարմացնել գաղտնաբառը",
+    "resetSuccess": "Գաղտնաբառը թարմացվեց։ Վերահղում մուտք…",
+    "resetLink": "Բացել վերականգնման էջը",
+    "registeredSuccess": "Հաշիվը ստեղծվեց։ Մուտք գործեք էլ. փոստով և գաղտնաբառով։",
+    "passwordRules": "8+ նիշ, 1 մեծատառ, 1 թիվ, 1 նշան (!@#$%^&*())",
     "loading": "Բեռնվում է…",
     "error": "Սխալ",
     "loginFailed": "Մուտքը ձախողվեց",
     "signupFailed": "Գրանցումը ձախողվեց",
-    "invalidToken": "Անվավեր հղում",
+    "invalidToken": "Անվավեր վերականգնման հղում",
     "termsAgreePrefix": "Ես համաձայն եմ",
     "termsLink": "Օգտագործման պայմաններին",
     "termsAgreeAnd": "և",
@@ -214,114 +305,122 @@
     "welcome": "Բարի վերադարձ",
     "hello": "Բարև",
     "overview": "Ամփոփում",
-    "overviewSubtitle": "Նախագծեր, դրամապանակ, պրոֆիլ",
+    "overviewSubtitle": "Կառավարեք նախագծերը, առաջարկները և պրոֆիլը մեկ տեղում։",
     "profile": "Պրոֆիլ",
-    "profileSubtitle": "Լրացրեք բոլոր տվյալները",
-    "wallet": "Դրամապանակ",
-    "walletSubtitle": "1 DEWEB = 1 USDT = $1",
+    "profileSubtitle": "Լրացրեք հաշվի տվյալները վստահության և ավելի արագ համապատասխանեցման համար։",
+    "wallet": "Կապ",
+    "walletSubtitle": "Կապվեք մեզ հետ գներն ու պայմանները քննարկելու համար։",
     "myProjects": "Իմ նախագծերը",
-    "projectsSubtitle": "Հրապարակեք նախագիծ և ստացեք առաջարկներ",
+    "projectsSubtitle": "Հրապարակեք նախագծեր ձեր բյուջեով։ Մատակարարները մրցում են առաջարկներով։",
     "proposals": "Առաջարկներ",
-    "proposalsSubtitle": "Գնահատեք բաց նախագծերը",
+    "proposalsSubtitle": "Դիտեք բաց հաճախորդական նախագծերը և ներկայացրեք ձեր գինը։",
     "products": "Ապրանքներ",
     "customer": "Հաճախորդ",
     "supplier": "Մատակարար",
     "logout": "Ելք",
     "loading": "Բեռնվում է…",
-    "save": "Պահպանել",
-    "saved": "Պահպանված",
-    "error": "Սխալ",
+    "save": "Պահպանել պրոֆիլը",
+    "saved": "Պրոֆիլը պահպանված է",
+    "error": "Ինչ-որ բան սխալ է գնացել",
+    "submitOfferTitle": "Ներկայացնել առաջարկ / հայտ",
     "nickname": "Մականուն",
-    "fullName": "Անուն",
+    "fullName": "Ամբողջական անուն",
     "email": "Էլ. փոստ",
     "phone": "Հեռախոս",
+    "phonePlaceholder": "Հեռախոսահամար",
+    "phoneSearchCountry": "Փնտրել երկիր…",
     "address": "Հասցե",
     "organization": "Կազմակերպություն",
-    "currency": "Արժույթ",
+    "currency": "Լռելյայն արժույթ",
     "dewebBalance": "DEWEB մնացորդ",
     "getDeweb": "Ստանալ DEWEB",
-    "usdtOnly": "Միայն USDT",
+    "usdtOnly": "Միայն USDT MetaMask-ով կամ Ronin-ով",
     "connectMetaMask": "Միացնել MetaMask",
     "connectRonin": "Միացնել Ronin",
     "notConnected": "Չի միացված",
-    "connected": "Միացված",
-    "postProject": "Նոր նախագիծ",
+    "connected": "Դրամապանակը միացված է",
+    "postProject": "Հրապարակել նախագիծ",
     "newProject": "Նոր նախագիծ",
-    "projectTitle": "Վերնագիր",
-    "projectDetails": "Նկարագրություն",
-    "budgetDeweb": "Բյուջե (DEWEB)",
-    "deadline": "Ժամկետ",
-    "publishProject": "Հրապարակել",
-    "noProjects": "Դեռ նախագծեր չկան",
-    "selectProjectBids": "Ընտրեք նախագիծ",
-    "proposalsFor": "Առաջարկներ",
-    "noBidsYet": "Դեռ առաջարկներ չկան",
-    "chooseSupplier": "Ընտրել մատակարար",
+    "projectTitle": "Նախագծի վերնագիր",
+    "projectDetails": "Նկարագրեք, թե ինչ է ձեզ անհրաժեշտ…",
+    "budgetDeweb": "Բյուջե (USD)",
+    "deadline": "Ժամկետ (օր. 4 շաբաթ)",
+    "publishProject": "Հրապարակել նախագիծ",
+    "noProjects": "Դեռ նախագծեր չկան։ Հրապարակեք առաջին նախագիծը։",
+    "selectProjectBids": "Ընտրեք նախագիծ՝ մատակարարների առաջարկները դիտելու համար։",
+    "proposalsFor": "Առաջարկներ՝",
+    "noBidsYet": "Դեռ առաջարկներ չկան — մատակարարները ուսումնասիրում են ձեր նախագիծը։",
+    "chooseSupplier": "Ընտրել այս մատակարարին",
     "decline": "Մերժել",
-    "supplierSelected": "Ընտրված",
+    "supplierSelected": "Մատակարարը ընտրված է",
     "untitled": "Անվերնագիր",
-    "openProjects": "Բաց նախագծեր",
-    "noOpenProjects": "Բաց նախագծեր չկան",
-    "selectToBid": "Ընտրեք նախագիծ",
+    "openProjects": "Բաց հաճախորդական նախագծեր",
+    "noOpenProjects": "Այս պահին բաց նախագծեր չկան։",
+    "selectToBid": "Ընտրեք նախագիծ՝ առաջարկ ներկայացնելու համար։",
     "submitProposal": "Ուղարկել առաջարկ",
-    "yourPrice": "Ձեր գինը",
-    "timeline": "Ժամկետ",
-    "proposalMessage": "Հաղորդագրություն",
-    "sendProposal": "Ուղարկել",
-    "proposalSent": "Ուղարկված",
-    "postProjectHint": "Ստացեք մրցային սակագնում",
-    "proposalsHint": "Գնահատեք նախագծերը",
-    "walletHint": "DEWEB և USDT",
-    "profileHint": "Լրացրեք պրոֆիլը",
-    "walletLoadError": "Չբեռնվեց",
-    "installMetaMask": "Տեղադրեք MetaMask",
-    "installRonin": "Տեղադրեք Ronin",
-    "walletNotFound": "Դրամապանակ չկա",
-    "topupSuccess": "DEWEB ավելացվեց",
-    "topupFailed": "Ձախողվեց",
-    "emailVerifyRequired": "Հաստատեք էլ. փոստը",
-    "emailVerifyHint": "MetaMask/Ronin միացումը հասանելի է միայն հաստատումից հետո։",
+    "yourPrice": "Ձեր գինը (USD)",
+    "timeline": "Առաքման ժամկետ",
+    "proposalMessage": "Ինչու դուք լավագույն տարբերակն եք…",
+    "sendProposal": "Ուղարկել առաջարկ",
+    "proposalSent": "Առաջարկը ուղարկված է հաճախորդին",
+    "postProjectHint": "Սահմանեք բյուջեն և ստացեք մրցակցային առաջարկներ",
+    "proposalsHint": "Մրցեք հաճախորդական նախագծերի համար",
+    "walletHint": "Կապվեք մեզ հետ բանակցելու համար",
+    "profileHint": "Լրացրեք բոլոր հաշվի տվյալները",
+    "walletLoadError": "Չհաջողվեց բեռնել դրամապանակը",
+    "installMetaMask": "Տեղադրեք MetaMask ընդլայնումը",
+    "installRonin": "Տեղադրեք Ronin ընդլայնումը",
+    "walletNotFound": "Դրամապանակի ընդլայնում չի գտնվել",
+    "topupSuccess": "DEWEB-ը ավելացվել է ձեր մնացորդին",
+    "topupPending": "Ուղարկված է ադմինի ստուգման։ DEWEB-ը կմուտքագրվի USDT-ի հաստատումից հետո։",
+    "topupFailed": "Լիցքավորումը ձախողվեց",
+    "escrowOnAccept": "Առաջարկն ընդունելիս DEWEB-ը արգելափակվում է էսկրոյում մինչև աշխատանքի ավարտը։",
+    "emailVerifyRequired": "Հաստատեք էլ. փոստը պաշտպանված գործառույթներն օգտագործելու համար",
+    "emailVerifyHint": "Հաստատեք էլ. փոստը՝ հայտարարություններ հրապարակելու, առաջարկներ ուղարկելու և ապրանքներ պահելու համար։",
     "sendVerificationEmail": "Ուղարկել հաստատման նամակ",
     "verifyEmailFirst": "Նախ հաստատեք էլ. փոստը։",
     "verifyEmailTitle": "Էլ. փոստի հաստատում",
-    "verifyTokenMissing": "Թոքեն չկա",
-    "emailVerified": "Էլ. փոստը հաստատված է",
-    "treasury": "USDT հասցե",
-    "yourSendTo": "Ուղարկեք USDT այստեղ",
-    "autoCreditHint": "DEWEB ավտոմատ ավելանում է blockchain հաստատումից հետո։",
-    "sendUsdtTo": "Ուղարկել USDT",
-    "topupVerifying": "Ստուգվում է blockchain…",
-    "checkingBlockchain": "Ստուգվում է…",
-    "myListings": "Իմ գրառումները",
-    "listingsSubtitle": "Ավելացրեք պահանջներ կամ ծառայություններ",
+    "verifyFailed": "Անվավեր կամ ժամկետանց հաստատման հղում։",
+    "verifyResendPrompt": "Մուտքագրեք էլ. փոստը՝ նոր հաստատման հղում ստանալու համար։",
+    "verifyResendBtn": "Կրկին ուղարկել հաստատման նամակ",
+    "verifyResent": "Եթե էլ. փոստը գրանցված է, նոր հաստատման հղում է ուղարկվել։",
+    "signIn": "Մուտք",
+    "verifyTokenMissing": "Հաստատման թոքենը բացակայում է։",
+    "emailVerified": "Էլ. փոստը հաջողությամբ հաստատված է։",
+    "treasury": "DEWEB USDT հասցե",
+    "yourSendTo": "Ուղարկեք USDT այս հասցեին",
+    "autoCreditHint": "MetaMask/Ronin-ում հաստատելուց հետո DEWEB-ը ավտոմատ մուտքագրվում է, երբ blockchain-ը հաստատում է ձեր USDT-ը։",
+    "sendUsdtTo": "Հաստատել USDT փոխանցումը՝",
+    "topupVerifying": "Ստուգվում է blockchain… DEWEB-ը ավտոմատ կավելանա։",
+    "checkingBlockchain": "Ստուգվում է blockchain…",
+    "myListings": "Իմ հայտարարությունները",
+    "listingsSubtitle": "Ավելացրեք հաճախորդի պահանջներ կամ մատակարարի ծառայություններ շուկայում։",
     "addRequirement": "Ավելացնել պահանջ",
     "addService": "Ավելացնել ծառայություն",
-    "listingTitle": "Վերնագիր",
-    "listingDescription": "Նկարագրություն",
-    "budgetUsd": "Բյուջետ USD",
+    "listingTitle": "Վերնագիր (օր. Կայք իմ ապրանքանիշի համար)",
+    "listingDescription": "Նկարագրեք աշխատանքը…",
+    "budgetUsd": "Բյուջե USD-ով",
     "deadlineExample": "Ժամկետ (օր. 2 շաբաթ)",
     "publish": "Հրապարակել",
-    "listingCreated": "Հրապարակված է",
+    "listingCreated": "Հրապարակված է շուկայում",
     "requirement": "Պահանջ",
     "service": "Ծառայություն",
     "viewRequests": "Հայտեր",
     "delete": "Ջնջել",
     "incomingRequests": "Մուտքային հայտեր",
-    "acceptAndChat": "Ընդունել և chat",
-    "dealStarted": "Գործարքը սկսված է",
+    "acceptAndChat": "Ընդունել և բացել չատ",
+    "dealStarted": "Գործարքը սկսված է — բացվում է չատը",
     "viewMarketplace": "Դիտել շուկան",
     "messages": "Հաղորդագրություններ",
-    "projectChat": "Նախագծի chat",
-    "chatSubtitle": "Խոսացեք միայն այստեղ։ Կոնտակտները արգելված են։",
-    "noChats": "Chat չկա",
+    "projectChat": "Նախագծի չատ",
+    "chatSubtitle": "Քննարկեք աշխատանքը միայն այստեղ։ Կոնտակտային տվյալները արգելափակված են AI-ով։ Ֆայլերը ուղարկվում են երկու կողմերի էլ. փոստով։",
+    "noChats": "Դեռ ակտիվ չատեր չկան։ Ընդունեք հայտ ձեր հայտարարություններից։",
     "selectChat": "Ընտրեք զրույց",
-    "typeMessage": "Գրել…",
+    "typeMessage": "Գրեք հաղորդագրություն…",
     "send": "Ուղարկել",
-    "moderated": "Կոնտակտը հեռացված է",
-    "fileShared": "Ֆայլ",
-    "fileEmailed": "Ֆայլը ուղարկված է email-ով",
-    "topupPending": "Submitted for admin verification. DEWEB will be credited after USDT is confirmed.",
-    "escrowOnAccept": "Accepting a proposal locks DEWEB in escrow until the job is completed."
+    "moderated": "Կոնտակտային տվյալները հեռացված են",
+    "fileShared": "Ֆայլը կիսվել է DEWEB-ի միջոցով",
+    "fileEmailed": "Ֆայլը ուղարկված է երկու էլ. փոստերով"
   },
   "dashboard": {
     "dashboard": "Վահանակ",
@@ -341,83 +440,358 @@
     "notifications": "Ծանուցումներ",
     "settings": "Կարգավորումներ",
     "welcome": "Բարի վերադարձ",
-    "postProject": "Նոր նախագիծ",
+    "postProject": "Հրապարակել նոր նախագիծ",
     "activeProjects": "Ակտիվ նախագծեր",
     "pendingOffers": "Սպասող առաջարկներ",
     "revenue": "Եկամուտ",
     "activeProposals": "Ակտիվ առաջարկներ",
-    "legacyAccount": "Դրամապանակ և ամբողջական պրոֆիլ"
+    "legacyAccount": "Հին հաշիվ"
   },
   "common": {
     "learnMore": "Իմանալ ավելին",
     "viewAll": "Դիտել բոլորը",
     "loading": "Բեռնվում է…",
-    "error": "Սխալ է տեղի ունեցել",
+    "error": "Ինչ-որ բան սխալ է գնացել",
     "save": "Պահպանել",
     "cancel": "Չեղարկել"
   },
-  "serviceDetail": {
-    "pageTitle": "{service} — What We Offer",
-    "whatWeOffer": "What we offer",
-    "whatItMeans": "What it means",
-    "whatsIncluded": "What's included",
-    "deliverables": "Deliverables",
-    "yourExpert": "Your expert",
-    "timeline": "Timeline",
-    "priceRange": "Price range",
-    "technologies": "Technologies",
-    "getQuote": "Get a quote",
-    "backToServices": "Back to services"
+  "footer": {
+    "tagline": "Մատակարարները մրցում են։ Հաճախորդը հաղթում է։ Գլոբալ IT շուկա։",
+    "platform": "Հարթակ",
+    "solutions": "Լուծումներ",
+    "company": "Ընկերություն",
+    "legal": "Իրավական",
+    "account": "Հաշիվ",
+    "copyright": "© {year} DEWEB — IT շուկա և մրցակցային սակագնում",
+    "shopifyDevelopment": "Shopify զարգացում",
+    "shopifyStoreDesign": "Shopify խանութի դիզայն",
+    "shopifyCustomApps": "Shopify անհատական հավելվածներ",
+    "aiChatbot": "AI չատբոտի զարգացում",
+    "aiAutomation": "AI բիզնես ավտոմատացում",
+    "webApps": "Վեբ հավելվածների զարգացում",
+    "marketplaceDev": "Շուկայի զարգացում",
+    "saasDev": "SaaS զարգացում",
+    "privacyPolicy": "Գաղտնիության քաղաքականություն",
+    "cookiePolicy": "Cookie քաղաքականություն",
+    "termsOfUse": "Օգտագործման պայմաններ"
   },
-  "blog": {
-    "kicker": "Insights",
-    "title": "Blog",
-    "subtitle": "Marketplace tips, tech guides, and growth strategies from the DEWEB team.",
-    "readMore": "Read article",
-    "backToBlog": "Back to blog",
-    "exploreMarketplace": "Explore marketplace",
-    "posts": {
+  "cookies": {
+    "title": "Մենք գնահատում ենք ձեր գաղտնիությունը",
+    "requiredTitle": "Cookie-ներն անհրաժեշտ են",
+    "requiredBody": "DEWEB-ը օգտագործում է անհրաժեշտ cookie-ներ և local storage՝ ձեզ մուտք գործած պահելու և հաշիվը պաշտպանելու համար։ Անհրաժեշտ cookie-ներն ընդունելուց առանց կայքը ճիշտ չի աշխատի։",
+    "acceptRequired": "Ընդունել անհրաժեշտ cookie-ները",
+    "acceptAll": "Ընդունել բոլոր cookie-ները",
+    "decline": "Մերժել",
+    "bodyPrefix": "DEWEB-ը օգտագործում է",
+    "bodyRequired": "անհրաժեշտ cookie-ներ",
+    "bodySuffix": "մուտքի, անվտանգության և հիմնական գործառույթների համար։ Ընտրովի cookie-ները օգնում են բարելավել փորձը։ Կարդացեք մեր"
+  },
+  "legal": {
+    "privacyTitle": "Գաղտնիության քաղաքականություն",
+    "privacySubtitle": "Ինչպես է DEWEB-ը հավաքում, օգտագործում և պաշտպանում ձեր անձնական տվյալները dewebam.com-ում։",
+    "cookieTitle": "Cookie քաղաքականություն",
+    "cookieSubtitle": "Ինչպես է DEWEB-ը օգտագործում cookie-ներն ու local storage-ը dewebam.com-ում։",
+    "termsTitle": "Օգտագործման պայմաններ",
+    "termsSubtitle": "DEWEB IT շուկան, հաշիվները և նախագծային ծառայություններն օգտագործելու պայմաններն ու դրույթները։",
+    "lastUpdated": "Վերջին թարմացում՝ {date}"
+  },
+  "blogUi": {
+    "searchPlaceholder": "Փնտրել հոդվածներ…",
+    "allCategories": "Բոլոր կատեգորիաները",
+    "articlesCount": "{count} հոդված",
+    "noResults": "Հոդվածներ չեն գտնվել։ Փորձեք այլ որոնում կամ կատեգորիա։",
+    "moreArticles": "Ավելի շատ հոդվածներ",
+    "relatedArticles": "Նման հոդվածներ",
+    "faqTitle": "Հաճախ տրվող հարցեր",
+    "readArticle": "Կարդալ հոդվածը",
+    "categoryLabel": "Կատեգորիա",
+    "categories": {
+      "shopify": {
+        "name": "Shopify և էլեկտրոնային առևտուր",
+        "description": "Shopify զարգացում, խանութի դիզայն, հավելվածներ և ecommerce стратегիաներ։"
+      },
+      "ai": {
+        "name": "ԱԲ և ավտոմատացում",
+        "description": "ԱԲ չատբոտներ, բիզնես ավտոմատացում և ինտելեկտուալ ecommerce հոսքեր։"
+      },
+      "web-development": {
+        "name": "Վեբ զարգացում",
+        "description": "Պատվերով վեբ հավելվածներ, տեխնոլոգիական stack-եր և ժամանակակից զարգացման практикաներ։"
+      },
+      "marketplace": {
+        "name": "Marketplace",
+        "description": "Երկկողմ հարթակներ, մրցակցային tender-ներ և marketplace աճ։"
+      },
+      "saas": {
+        "name": "SaaS",
+        "description": "SaaS արտադրանքի զարգացում, MVP-ներ և բաժանորդագրության բիզնես մոդելներ։"
+      }
+    }
+  },
+  "pinned": {
+    "whatLabel": "Ինչ՝ ",
+    "whoLabel": "Ով՝ ",
+    "resultLabel": "Արդյունք՝ ",
+    "scrollHint": "Ոլորեք՝ լուծումներն ուսումնասիրելու համար",
+    "featured": "Լավագույն"
+  },
+  "seo": {
+    "home": {
+      "title": "DeWeb | Կառուցում ենք Թվային Բիզնեսի Ապագան",
+      "description": "Մենք ստեղծում ենք Shopify խանութներ, AI համակարգեր, ավտոմատացման հարթակներ, կայքեր և մասշտաբային թվային լուծումներ։ Պրեմիում տեխնոլոգիական ընկերություն աճող բիզնեսների համար։"
+    },
+    "about": {
+      "title": "DEWEB-ի մասին | Պրեմիում IT զարգացման գործակալություն",
+      "description": "Ծանոթացեք DEWEB-ին — պրեմիում գործակալություն Shopify զարգացման, AI ավտոմատացման, SaaS արտադրանքների, շուկաների և անհատական վեբ հավելվածների համար։"
+    },
+    "contact": {
+      "title": "Կապ DEWEB-ի հետ | Սկսեք Shopify, AI կամ SaaS նախագիծ",
+      "description": "Ստացեք անվճար խորհրդատվություն Shopify զարգացման, AI ավտոմատացման, SaaS MVP-ների կամ շուկայի կառուցման համար։ DEWEB-ը պատասխանում է 24 ժամվա ընթացքում։"
+    },
+    "services": {
+      "title": "Թվային ծառայություններ | Shopify, AI ավտոմատացում, SaaS և վեբ հավելվածներ | DEWEB",
+      "description": "Ծանոթացեք DEWEB ծառայություններին՝ Shopify զարգացում, AI չատբոտներ, բիզնես ավտոմատացում, SaaS հարթակներ, շուկաների կառուցում և անհատական վեբ հավելվածներ։",
+      "websites": {
+        "title": "Անհատական կայքերի զարգացման ծառայություններ | DEWEB",
+        "description": "Պրոֆեսիոնալ կայքեր, landing էջեր և վեբ հավելվածներ Next.js, React և ժամանակակից stack-երով։"
+      },
+      "ecommerce": {
+        "title": "Shopify զարգացման ծառայություններ | DEWEB",
+        "description": "Անհատական Shopify խանութներ, թեմաներ, ինտեգրացիաներ և էլեկտրոնային առևտրի լուծումներ աճող բիզնեսների համար։"
+      },
+      "ai": {
+        "title": "AI ավտոմատացում և չատբոտի զարգացում | DEWEB",
+        "description": "AI չատբոտներ, ավտոմատացման համակարգեր և ինտելեկտուալ բիզնես լուծումներ DEWEB-ի կողմից։"
+      },
+      "bots": {
+        "title": "Telegram և Discord բոտերի զարգացում | DEWEB",
+        "description": "Անհատական Telegram, Discord և աջակցության բոտեր API ինտեգրացիաներով և ադմին վահանակներով։"
+      },
+      "saas": {
+        "title": "SaaS հարթակի զարգացում | DEWEB",
+        "description": "Multi-tenant SaaS արտադրանքներ՝ auth, բաժանորդագրության վճարում, վահանակներ և մասշտաբային ճարտարապետություն։"
+      },
+      "mobile": {
+        "title": "Մոբայլ հավելվածների զարգացման ծառայություններ | DEWEB",
+        "description": "iOS, Android և cross-platform մոբայլ հավելվածներ՝ լեզվակալ UX-ով և backend ինտեգրացիայով։"
+      },
+      "uiux": {
+        "title": "UI/UX դիզայնի ծառայություններ | DEWEB",
+        "description": "Օգտատիրոջ կենտրոնացված արտադրանքի դիզայն, wireframe-ներ, պրոտոտիպներ և դիզայն համակարգեր թվային արտադրանքների համար։"
+      },
+      "branding": {
+        "title": "Բրենդինգ և իդենտիկության դիզայն | DEWEB",
+        "description": "Լոգոյի դիզայն, բրենդային իդենտիկություն, վիզուալ ուղեցույցներ և մարքեթինգային նյութեր թվային բիզնեսների համար։"
+      },
+      "seo": {
+        "title": "SEO և աճի մարքեթինգի ծառայություններ | DEWEB",
+        "description": "Տեխնիկական SEO աուդիտներ, բանալի բառերի ռազմավարություն, on-page օպտիմիզացիա և օրգանական աճի արշավներ։"
+      },
+      "marketing": {
+        "title": "Թվային մարքեթինգի ծառայություններ | DEWEB",
+        "description": "Վճարովի գովազդ, կոնվերսիայի վահանակներ, էլ. փոստի մարքեթինգ և արդյունավետության արշավներ՝ ROI ապահովելու համար։"
+      }
+    },
+    "marketplace": {
+      "title": "IT շուկա | Գտեք մշակողներ և թվային ծառայություններ | DEWEB",
+      "description": "Հրապարակեք նախագծեր, համեմատեք առաջարկներ և կապվեք ստուգված ծրագրային մշակողների և թվային ծառայությունների մատակարարների հետ։"
+    },
+    "blog": {
+      "title": "DEWEB բլոգ | Shopify, AI ավտոմատացում և SaaS աճի ուղեցույցներ",
+      "description": "Փորձագիտական ուղեցույցներ Shopify զարգացման, AI ավտոմատացման, SaaS աճի, շուկայի ռազմավարության և վեբ հավելվածների զարգացման մասին։"
+    },
+    "privacy-policy": {
+      "title": "Գաղտնիության քաղաքականություն | DEWEB",
+      "description": "Ինչպես է DEWEB-ը հավաքում, օգտագործում, պահում և պաշտպանում ձեր անձնական տվյալները dewebam.com-ում։"
+    },
+    "cookie-policy": {
+      "title": "Cookie քաղաքականություն | DEWEB",
+      "description": "Իմացեք, թե ինչպես է DEWEB-ը օգտագործում cookie-ներն ու local storage-ը մուտքի, անվտանգության և կայքի նախընտրությունների համար։"
+    },
+    "terms": {
+      "title": "Օգտագործման պայմաններ | DEWEB",
+      "description": "DEWEB IT շուկան, հաշիվները և նախագծային ծառայություններն օգտագործելու պայմաններն ու դրույթները։"
+    },
+    "login": {
+      "title": "Մուտք | DEWEB հաշիվ",
+      "description": "Մուտք գործեք DEWEB հաշիվ՝ նախագծերը, հայտարարությունները և հաղորդագրությունները կառավարելու համար։"
+    },
+    "signup": {
+      "title": "Ստեղծել հաշիվ | Միացեք DEWEB շուկային",
+      "description": "Ստեղծեք DEWEB հաշիվ հաճախորդի կամ մատակարարի կարգավիճակով։ Հրապարակեք նախագծեր, ուղարկեք առաջարկներ և կապվեք ստուգված մշակողների հետ։"
+    },
+    "forgot-password": {
+      "title": "Վերականգնել գաղտնաբառը | DEWEB",
+      "description": "Անվտանգ վերականգնեք DEWEB հաշվի գաղտնաբառը էլ. փոստի միջոցով։"
+    },
+    "reset-password": {
+      "title": "Նոր գաղտնաբառ | DEWEB",
+      "description": "Ընտրեք նոր գաղտնաբառ ձեր DEWEB հաշվի համար։"
+    },
+    "verify-email": {
+      "title": "Հաստատել էլ. փոստը | DEWEB",
+      "description": "Հաստատեք էլ. փոստի հասցեն՝ DEWEB հարթակի բոլոր գործառույթները բացելու համար։"
+    },
+    "account": {
+      "title": "Իմ հաշիվ | DEWEB վահանակ",
+      "description": "Կառավարեք DEWEB պրոֆիլը, հայտարարությունները, հաղորդագրությունները և նախագծային ակտիվությունը։"
+    },
+    "profile": {
+      "title": "Իմ պրոֆիլ | DEWEB հաշվի կարգավորումներ",
+      "description": "Թարմացրեք DEWEB պրոֆիլը, կոնտակտային տվյալներն ու հաշվի նախընտրությունները։"
+    },
+    "listings": {
+      "title": "Իմ հայտարարությունները | DEWEB շուկա",
+      "description": "Ստեղծեք և կառավարեք նախագծային հայտարարություններն ու ծառայության առաջարկները DEWEB-ում։"
+    },
+    "messages": {
+      "title": "Հաղորդագրություններ | DEWEB նախագծի չատ",
+      "description": "Դիտեք և պատասխանեք նախագծային զրույցներին և գործարքային չատերին DEWEB-ում։"
+    },
+    "proposals": {
+      "title": "Իմ առաջարկները | DEWEB մատակարարի վահանակ",
+      "description": "Դիտեք բաց նախագծերը և ներկայացրեք մրցակցային առաջարկներ DEWEB հաճախորդներին։"
+    },
+    "projects": {
+      "title": "Իմ նախագծերը | DEWEB հաճախորդի վահանակ",
+      "description": "Հրապարակեք նախագծեր, վերանայեք մատակարարների առաջարկները և հետևեք առաքմանը DEWEB-ում։"
+    },
+    "submit-offer": {
+      "title": "Ներկայացնել առաջարկ | DEWEB",
+      "description": "Ներկայացրեք ծառայության առաջարկ կամ նախագծի հայտ։ DEWEB թիմը կկապվի ձեզ հետ պայմանները քննարկելու համար։"
+    },
+    "admin": {
+      "title": "Ադմին վահանակ | DEWEB",
+      "description": "DEWEB ադմինիստրացիոն վահանակ լիդերի, օգտատերերի և հարթակի կառավարման համար։"
+    },
+    "dashboard": {
+      "title": "Վահանակ | DEWEB",
+      "description": "DEWEB հաճախորդի և մատակարարի վահանակի ամփոփում։"
+    },
+    "pricing": {
+      "title": "Գնացուցակ և նախագծային գնառաջարկներ | DEWEB շուկա",
+      "description": "Ստացեք մրցակցային գնառաջարկներ ստուգված մշակողներից։ Հրապարակեք նախագիծը DEWEB-ում և համեմատեք առաջարկները գնով և ժամկետով։"
+    },
+    "dashboard-customer": {
+      "title": "Հաճախորդի վահանակ | DEWEB",
+      "description": "Կառավարեք DEWEB հաճախորդական հաշիվը, նախագծերը, առաջարկներն ու հաղորդագրությունները։"
+    },
+    "dashboard-supplier": {
+      "title": "Մատակարարի վահանակ | DEWEB",
+      "description": "Կառավարեք DEWEB մատակարարական հաշիվը, ապրանքները, առաջարկներն ու պատվերները։"
+    },
+    "dashboard-customer-projects": {
+      "title": "Հաճախորդի նախագծեր | DEWEB վահանակ",
+      "description": "Դիտեք և կառավարեք հրապարակված նախագծերը DEWEB հաճախորդի վահանակում։"
+    },
+    "dashboard-customer-offers": {
+      "title": "Հաճախորդի առաջարկներ | DEWEB վահանակ",
+      "description": "Վերանայեք մատակարարների առաջարկներն ու առաջարկները DEWEB հաճախորդի վահանակում։"
+    },
+    "dashboard-customer-messages": {
+      "title": "Հաճախորդի հաղորդագրություններ | DEWEB վահանակ",
+      "description": "Նախագծային զրույցներ և գործարքային հաղորդագրություններ DEWEB հաճախորդի վահանակում։"
+    },
+    "dashboard-supplier-products": {
+      "title": "Մատակարարի ապրանքներ | DEWEB վահանակ",
+      "description": "Կառավարեք ապրանքների հայտարարություններն ու ծառայությունների կատալոգը DEWEB-ում։"
+    },
+    "dashboard-supplier-proposals": {
+      "title": "Մատակարարի առաջարկներ | DEWEB վահանակ",
+      "description": "Ուղարկեք և հետևեք մրցակցային առաջարկներին DEWEB մատակարարի վահանակում։"
+    },
+    "dashboard-supplier-orders": {
+      "title": "Մատակարարի պատվերներ | DEWEB վահանակ",
+      "description": "Հետևեք պատվերի կարգավիճակին և առաքման մայլերին DEWEB մատակարարի վահանակում։"
+    },
+    "dashboard-supplier-analytics": {
+      "title": "Մատակարարի անալիտիկա | DEWEB վահանակ",
+      "description": "Արդյունավետության ցուցանիշներ, կոնվերսիայի տվյալներ և անալիտիկա DEWEB մատակարարների համար։"
+    },
+    "landings": {
+      "shopify-development": {
+        "title": "Shopify զարգացման ծառայություններ | Անհատական խանութներ և ինտեգրացիաներ | DEWEB",
+        "description": "Shopify փորձագիտական զարգացում — անհատական թեմաներ, Shopify Plus, հավելվածների ինտեգրացիա և էլեկտրոնային առևտրի օպտիմիզացիա ստուգված DEWEB մշակողների կողմից։"
+      },
+      "shopify-store-design": {
+        "title": "Shopify խանութի դիզայնի ծառայություններ | Ecommerce UX և բրենդինգ | DEWEB",
+        "description": "Բարձր կոնվերսիայի Shopify խանութի դիզայն — mobile-first UX, բրենդային իդենտիկություն և Figma-ից թեմայի փոխանցում DEWEB դիզայներների կողմից։"
+      },
+      "shopify-custom-apps": {
+        "title": "Shopify անհատական հավելվածների զարգացում | Private և Public հավելվածներ | DEWEB",
+        "description": "Անհատական Shopify հավելվածներ — checkout ընդլայնումներ, ադմին գործիքներ, ERP միացումներ և Shopify App Store հրապարակում DEWEB ինժեներների կողմից։"
+      },
+      "ai-chatbot-development": {
+        "title": "AI չատբոտի զարգացման ծառայություններ | GPT ասիստենտներ և ավտոմատացում | DEWEB",
+        "description": "Անհատական AI չատբոտներ, RAG գիտելիքի բազաներ, CRM ինտեգրացիաներ և workflow ավտոմատացում DEWEB AI ինժեներների կողմից։"
+      },
+      "ai-business-automation": {
+        "title": "AI բիզնես ավտոմատացման ծառայություններ | Workflow-ներ և ինտելեկտուալ գործառնություններ | DEWEB",
+        "description": "AI-ով շարժվող բիզնես ավտոմատացում — workflow օրկեստրացիա, փաստաթղթերի մշակում, CRM սինխրոնիզացիա և ինտելեկտուալ գործառնություններ DEWEB-ի կողմից։"
+      },
+      "web-application-development": {
+        "title": "Վեբ հավելվածների զարգացման ծառայություններ | SaaS և անհատական հավելվածներ | DEWEB",
+        "description": "Անհատական վեբ հավելվածներ և SaaS հարթակներ Next.js, React, API-ներով և cloud տեղակայմամբ DEWEB մշակողների կողմից։"
+      },
+      "marketplace-development": {
+        "title": "Շուկայի զարգացման ծառայություններ | Երկկողմ հարթակներ | DEWEB",
+        "description": "Կառուցեք անհատական շուկա վաճառողների onboarding-ով, մրցակցային սակագնումով, հաղորդագրություններով և վճարումներով — DEWEB ինժեներների կողմից։"
+      },
+      "saas-development": {
+        "title": "SaaS զարգացման ծառայություններ | Multi-tenant հարթակներ | DEWEB",
+        "description": "Ամբողջական SaaS արտադրանքի զարգացում — auth, բաժանորդագրության վճարում, ադմին վահանակներ և մասշտաբային cloud ճարտարապետություն DEWEB-ի կողմից։"
+      },
+      "landing-page-development": {
+        "title": "Landing էջի զարգացում | Բարձր կոնվերսիայի արշավային էջեր | DEWEB",
+        "description": "Կոնվերսիային landing էջեր գովազդի, գործարկումների և լիդերի ստացման համար — mobile-first, արագ և DEWEB-ի կողմից կառուցված։"
+      }
+    },
+    "blogCategories": {
+      "shopify": {
+        "title": "Shopify և էլեկտրոնային առևտրի հոդվածներ | DEWEB բլոգ",
+        "description": "Shopify զարգացման ծախսեր, հարթակների համեմատություն, հավելվածներ և էլեկտրոնային առևտրի ռազմավարության ուղեցույցներ DEWEB-ից։"
+      },
+      "ai": {
+        "title": "AI և ավտոմատացման հոդվածներ | DEWEB բլոգ",
+        "description": "AI չատբոտներ, բիզնես ավտոմատացում և ինտելեկտուալ էլեկտրոնային առևտրի ուղեցույցներ DEWEB փորձագետներից։"
+      },
+      "web-development": {
+        "title": "Վեբ զարգացման հոդվածներ | DEWEB բլոգ",
+        "description": "Անհատական վեբ հավելվածներ, տեխնոլոգիական stack ուղեցույցներ և ծրագրային զարգացման ինսայթներ DEWEB-ից։"
+      },
+      "marketplace": {
+        "title": "Շուկայի հոդվածներ | DEWEB բլոգ",
+        "description": "Շուկայի կառուցում, մոնետիզացիա և մրցակցային սակագնման ուղեցույցներ DEWEB-ից։"
+      },
+      "saas": {
+        "title": "SaaS զարգացման հոդվածներ | DEWEB բլոգ",
+        "description": "SaaS արտադրանքի զարգացում, MVP ծախսերի գնահատում և բաժանորդագրության բիզնեսի ուղեցույցներ DEWEB-ից։"
+      }
+    },
+    "blogArticles": {
       "how-competitive-bidding-saves-it-budgets": {
-        "title": "How competitive bidding saves IT budgets",
-        "excerpt": "Why posting projects to multiple suppliers drives better pricing and faster delivery.",
-        "body1": "Traditional IT procurement often means negotiating with a single vendor — leaving money and options on the table. Competitive bidding changes that by inviting verified suppliers to submit offers side by side.",
-        "body2": "On DEWEB, clients post a brief with budget and timeline. Suppliers compete with transparent pricing, portfolios, and delivery plans. You compare everything in one dashboard before choosing.",
-        "body3": "The result: average savings of 15–30% on project costs, faster turnaround, and higher confidence in your supplier choice."
+        "title": "Ինչպես է մրցակցային սակագնումը խնայում IT բյուջեն | DEWEB բլոգ",
+        "description": "Ինչու է նախագիծը մի քանի մատակարարների ուղարկելը ապահովում ավելի լավ գներ և արագ առաքում։ Գործնական ուղեցույց DEWEB-ից։"
       },
       "choosing-the-right-web-stack": {
-        "title": "Choosing the right web stack in 2026",
-        "excerpt": "Next.js, WordPress, or custom — how to pick the best foundation for your project.",
-        "body1": "Your web stack affects speed, scalability, and long-term maintenance costs. Next.js excels for modern apps and SEO; WordPress fits content-heavy sites with easy admin access.",
-        "body2": "We help clients evaluate trade-offs: team skills, content needs, integrations, and budget. The right choice depends on your goals, not trends alone.",
-        "body3": "DEWEB suppliers specialize across stacks — post your project and receive tailored recommendations with competitive bids."
+        "title": "Ճիշտ վեբ stack-ի ընտրություն 2026 թվականին | DEWEB բլոգ",
+        "description": "Next.js, WordPress կամ անհատական — ինչպես ընտրել նախագծի լավագույն հիմքը։ Գործնական զարգացման ինսայթներ DEWEB-ից։"
       },
       "ai-automation-for-small-business": {
-        "title": "AI automation for small business",
-        "excerpt": "Practical AI workflows that save hours without enterprise budgets.",
-        "body1": "AI isn't just for big tech. Small businesses use chatbots, email automation, and CRM sync to handle support and operations around the clock.",
-        "body2": "Start with high-repetition tasks: lead qualification, appointment booking, invoice reminders. Custom agents can integrate with tools you already use.",
-        "body3": "DEWEB connects you with AI specialists who scope, build, and deploy automation — with milestone-based delivery and escrow protection."
+        "title": "AI ավտոմատացում փոքր բիզնեսի համար | DEWEB բլոգ",
+        "description": "Գործնական AI workflow-ներ, որոնք խնայում են ժամեր՝ առանց ընկերության բյուջեի։ Խորհուրդներ DEWEB փորձագետներից։"
       },
       "escrow-payments-why-they-matter": {
-        "title": "Why escrow payments matter for IT projects",
-        "excerpt": "Protect both clients and suppliers with milestone-based DEWEB coin escrow.",
-        "body1": "IT projects involve trust on both sides. Clients worry about delivery; suppliers worry about payment. Escrow holds funds until milestones are approved.",
-        "body2": "DEWEB uses DEWEB coins (1:1 USDT) locked in escrow when you accept a proposal. Funds release as work completes — reducing disputes and fraud.",
-        "body3": "Transparent milestones, chat moderation, and verified suppliers make remote IT deals safer for everyone."
+        "title": "Ինչու են էսկրո վճարումները կարևոր IT նախագծերի համար | DEWEB բլոգ",
+        "description": "Պաշտպանեք և՛ հաճախորդներին, և՛ մատակարարներին մայլային DEWEB մետաղադրամի էսկրոյով։"
       },
       "building-trust-with-verified-suppliers": {
-        "title": "Building trust with verified suppliers",
-        "excerpt": "How DEWEB vets talent and keeps marketplace quality high.",
-        "body1": "Not every freelancer is equal. DEWEB verifies supplier profiles, portfolios, and track records before they bid on projects.",
-        "body2": "Customers see ratings, past work, and skills upfront. Suppliers build reputation through successful deliveries and client reviews.",
-        "body3": "Verification plus competitive bidding creates a marketplace where quality rises and bad actors get filtered out."
+        "title": "Վստահություն ստուգված մատակարարների հետ | DEWEB բլոգ",
+        "description": "Ինչպես է DEWEB-ը ստուգում մասնագետներին և պահպանում շուկայի բարձր որակը։"
       },
       "ecommerce-trends-2026": {
-        "title": "E-commerce trends to watch in 2026",
-        "excerpt": "Headless commerce, mobile-first checkout, and AI-powered personalization.",
-        "body1": "E-commerce keeps evolving. Headless setups offer flexibility; mobile checkout optimization drives conversion; AI personalizes product recommendations.",
-        "body2": "Payment diversity — cards, wallets, crypto — matters for global audiences. Fast load times and Core Web Vitals affect both SEO and sales.",
-        "body3": "Whether Shopify, WooCommerce, or custom — DEWEB suppliers compete to build stores that convert and scale."
+        "title": "Էլեկտրոնային առևտրի միտումներ 2026 թվականին | DEWEB բլոգ",
+        "description": "Headless առևտուր, mobile-first checkout և AI-ով անհատականացում։ Էլեկտրոնային առևտրի միտումներ DEWEB-ից։"
       }
     }
   }

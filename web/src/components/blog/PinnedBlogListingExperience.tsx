@@ -21,6 +21,7 @@ type Props = {
   onCategoryChange: (slug: string) => void;
   query: string;
   onQueryChange: (value: string) => void;
+  pageHeading?: string;
 };
 
 export function PinnedBlogListingExperience({
@@ -30,6 +31,7 @@ export function PinnedBlogListingExperience({
   onCategoryChange,
   query,
   onQueryChange,
+  pageHeading,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -81,6 +83,7 @@ export function PinnedBlogListingExperience({
       categories={categories}
       articleCount={articles.length}
       compact={!usePin}
+      pageHeading={pageHeading}
     />
   );
 

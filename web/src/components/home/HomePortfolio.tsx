@@ -89,7 +89,7 @@ export function HomePortfolio() {
                   >
                     View Project
                   </Link>
-                  <GlowButton href="#contact" variant="secondary" className="!px-4 !py-2 !text-sm">
+                  <GlowButton href="/contact" variant="secondary" className="!px-4 !py-2 !text-sm">
                     Request Similar Project
                   </GlowButton>
                 </div>
@@ -99,7 +99,7 @@ export function HomePortfolio() {
         </div>
 
         <div className="mt-12 text-center">
-          <GlowButton href="#contact" variant="primary">
+          <GlowButton href="/contact" variant="primary">
             Start Your Project
           </GlowButton>
         </div>

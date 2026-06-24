@@ -5,6 +5,9 @@ import { useTranslations } from "next-intl";
 import { forwardRef } from "react";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { ServiceBannerVisual } from "@/components/services/ServiceBannerVisual";
+import { ServiceStoryCard } from "@/components/cinematic/ServiceStoryCard";
+import { ScrollUniverseLayer } from "@/components/cinematic/ScrollUniverseLayer";
+import { CssGlobe, SparkleField } from "@/components/ui/SparkleField";
 import type { PinnedHomeSlide } from "@/lib/home-pinned-services-data";
 import { PERSPECTIVE } from "@/lib/motion-3d";
 import { cn } from "@/lib/utils";
@@ -45,16 +48,28 @@ type Props = {
   total: number;
   active?: boolean;
   stacked?: boolean;
+  /** Single shared WebGL universe behind pinned stage (desktop) */
+  useSharedUniverse?: boolean;
+  /** CSS-only universe for mobile / reduced GPU */
+  universeMode?: "full" | "lite" | "css";
+  /** @deprecated use universeMode */
+  liteUniverse?: boolean;
 };
 
 export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
-  function PinnedServiceSlide({ slide, index, total, active, stacked }, ref) {
+  function PinnedServiceSlide(
+    { slide, index, total, active, stacked, useSharedUniverse, universeMode, liteUniverse },
+    ref
+  ) {
     const tHome = useTranslations("home");
     const tServices = useTranslations("services");
+    const tPinned = useTranslations("pinned");
 
     const Scene =
-      slide.sceneKey !== "none" ? sceneComponents[slide.sceneKey] : null;
+      !useSharedUniverse && slide.sceneKey !== "none" ? sceneComponents[slide.sceneKey] : null;
     const isHero = slide.kind === "hero";
+    const resolvedMode = universeMode ?? (liteUniverse ? "css" : undefined);
+    const showInlineUniverse = stacked && isHero && resolvedMode;
 
     return (
       <div
@@ -73,6 +88,18 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
         style={{ perspective: PERSPECTIVE }}
         aria-hidden={!stacked && !active && index > 0 ? true : undefined}
       >
+        {showInlineUniverse && <ScrollUniverseLayer mode={resolvedMode} className="opacity-85" />}
+
+        {stacked && !isHero && slide.kind === "service" && (
+          <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-40 sm:opacity-50">
+            <CssGlobe
+              className="!left-[68%] !top-[42%] scale-[0.55] sm:scale-[0.65]"
+              accent={slide.accent}
+            />
+            <SparkleField density="low" focal className="opacity-60" />
+          </div>
+        )}
+
         {Scene && (
           <div className="pointer-events-none absolute inset-0 overflow-hidden" data-parallax-scene>
             <div
@@ -105,7 +132,7 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
           className="mobile-reveal-target container-narrow relative z-10 w-full px-4 sm:px-6 lg:px-8"
         >
           {isHero ? (
-            <div className="mx-auto max-w-4xl text-center">
+            <div data-hero-content className="mx-auto max-w-4xl text-center">
               <span className="inline-flex rounded-full border border-deweb-cyan/25 bg-deweb-cyan/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-deweb-cyan sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-[0.2em]">
                 {tHome("badge")}
               </span>
@@ -117,7 +144,7 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
               </p>
               <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4">
                 <GlowButton
-                  href="#contact"
+                  href="/contact"
                   variant="primary"
                   className="w-full !px-6 !py-3.5 !text-sm sm:w-auto sm:!px-8 sm:!py-4 sm:!text-base"
                   trackCta={{
@@ -144,7 +171,7 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
             </div>
           ) : (
             <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
-              <div className="hero-glass-panel glow-border preserve-3d rounded-2xl p-6 sm:p-8 lg:p-10">
+              <ServiceStoryCard active={stacked || active} accent={slide.accent}>
                 <div className="mb-5 flex items-center justify-between gap-4">
                   <span
                     className="inline-flex rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wider"
@@ -173,16 +200,16 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
 
                 <div className="mt-5 space-y-3 text-sm leading-relaxed sm:text-base">
                   <p className="text-white/85">
-                    <span className="font-semibold text-white">What: </span>
+                    <span className="font-semibold text-white">{tPinned("whatLabel")}</span>
                     {slide.category.what}
                   </p>
                   <p className="text-white/75">
-                    <span className="font-semibold text-white/90">Who: </span>
+                    <span className="font-semibold text-white/90">{tPinned("whoLabel")}</span>
                     {slide.category.who}
                   </p>
                   <p className="text-white/80">
                     <span className="font-semibold" style={{ color: slide.accent }}>
-                      Result:{" "}
+                      {tPinned("resultLabel")}
                     </span>
                     {slide.category.result}
                   </p>
@@ -241,7 +268,7 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
                     {tServices("learnMore")}
                   </GlowButton>
                   <GlowButton
-                    href="#contact"
+                    href="/contact"
                     variant="secondary"
                     trackCta={{
                       eventType: "contact_click",
@@ -252,9 +279,12 @@ export const PinnedServiceSlide = forwardRef<HTMLDivElement, Props>(
                     {tHome("ctaPrimary")}
                   </GlowButton>
                 </div>
-              </div>
+              </ServiceStoryCard>
 
-              <div className="preserve-3d relative min-h-[220px] sm:min-h-[300px] md:min-h-[360px] lg:min-h-[480px]">
+              <div
+                data-service-visual
+                className="preserve-3d relative min-h-[220px] sm:min-h-[300px] md:min-h-[360px] lg:min-h-[480px]"
+              >
                 <div
                   className="absolute -inset-4 rounded-3xl opacity-60 blur-2xl"
                   style={{ background: slide.banner.glow || `${slide.accent}33` }}

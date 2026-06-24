@@ -13,7 +13,7 @@ import { dewebApi, type ServicesPageData } from "@/lib/api";
 import { servicesPageFallback } from "@/lib/services-data";
 import { serviceBanners } from "@/lib/service-banners-data";
 
-export function ServicesView() {
+export function ServicesView({ banners = serviceBanners }: { banners?: typeof serviceBanners }) {
   const t = useTranslations("services");
   const reduceMotion = useReducedMotion();
   const [data, setData] = useState<ServicesPageData>(servicesPageFallback);
@@ -22,7 +22,7 @@ export function ServicesView() {
     dewebApi.services.page().then(setData).catch(() => {});
   }, []);
 
-  const categories = serviceBanners.map((b) => ({ id: b.slug, title: b.title }));
+  const categories = banners.map((b) => ({ id: b.slug, title: b.title }));
 
   return (
     <div className="pb-20">
@@ -49,7 +49,7 @@ export function ServicesView() {
         </div>
       </section>
 
-      <ServiceBanners pageTitle={data.hero.title} hideTitle />
+      <ServiceBanners pageTitle={data.hero.title} hideTitle banners={banners} />
 
       {/* Stats */}
       <section className="border-y border-white/[0.06] bg-white/[0.02] py-16">

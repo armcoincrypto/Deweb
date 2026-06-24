@@ -1,0 +1,11 @@
+export { MagneticButton } from "./MagneticButton";
+export { SpotlightCard } from "./SpotlightCard";
+export { BorderBeam } from "./BorderBeam";
+export { TextReveal } from "@/components/animations/TextReveal";
+export { ParallaxLayer } from "./ParallaxLayer";
+export { LazyScene3D } from "./LazyScene3D";
+export { FaqAccordion } from "./FaqAccordion";
+export { TestimonialSlider } from "./TestimonialSlider";
+export { AnimatedCTA } from "./AnimatedCTA";
+export { PricingCards } from "./PricingCards";
+export { ServiceShowcase } from "./ServiceShowcase";

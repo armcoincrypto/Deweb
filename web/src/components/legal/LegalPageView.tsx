@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -12,12 +13,17 @@ type LegalPageViewProps = {
 };
 
 export function LegalPageView({ title, subtitle, sections, relatedLinks = [] }: LegalPageViewProps) {
+  const t = useTranslations("legal");
+  const tFooter = useTranslations("footer");
+
   return (
     <>
-      <PageHeader kicker="Legal" title={title} subtitle={subtitle} />
+      <PageHeader kicker={tFooter("legal")} title={title} subtitle={subtitle} />
 
       <div className="container-narrow px-4 pb-20 sm:px-6 lg:px-8">
-        <p className="mb-8 text-sm text-white/45">Last updated: {LEGAL_LAST_UPDATED} · DEWEB (dewebam.com)</p>
+        <p className="mb-8 text-sm text-white/45">
+          {t("lastUpdated")}: {LEGAL_LAST_UPDATED} · DEWEB (dewebam.com)
+        </p>
 
         {relatedLinks.length > 0 && (
           <div className="mb-8 flex flex-wrap gap-3">
