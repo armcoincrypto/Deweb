@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { PageHeader } from "@/components/layout/PageHeader";
 import { LeadFormModal } from "@/components/leads/LeadFormModal";
 import { dewebApi, getToken, type MarketplaceListing, type Product, type LeadSubmissionType } from "@/lib/api";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -88,8 +87,6 @@ export function MarketplaceView() {
 
   return (
     <>
-      <PageHeader title={t("title")} subtitle={t("subtitle")} />
-
       <div className="container-narrow px-4 py-10 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-wrap gap-3">
           {(["customer_request", "worker_offer", "products"] as Filter[]).map((f) => (

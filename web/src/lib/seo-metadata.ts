@@ -27,9 +27,9 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
       "Explore DEWEB services: Shopify development, AI chatbots, business automation, SaaS platforms, marketplace builds, and custom web applications.",
   },
   marketplace: {
-    title: "IT Marketplace | Find Developers & Digital Services | DEWEB",
+    title: "Software Development Marketplace | Hire Developers & Technical Experts | DEWEB",
     description:
-      "Post projects, compare offers and connect with verified software developers and digital service providers.",
+      "Post your software project, compare technical specialists, and connect with developers, designers, AI automation experts, and digital teams through DEWEB Marketplace.",
   },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
