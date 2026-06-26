@@ -13,6 +13,7 @@ import { webApplicationDevelopment } from "./landings/web-application-developmen
 import { marketplaceDevelopment } from "./landings/marketplace-development";
 import { saasDevelopment } from "./landings/saas-development";
 import { landingPageDevelopment } from "./landings/landing-page-development";
+import { blog } from "./blog";
 
 const content: LocaleContentModule = {
   legal,
@@ -31,6 +32,7 @@ const content: LocaleContentModule = {
     "saas-development": saasDevelopment,
     "landing-page-development": landingPageDevelopment,
   },
+  blog,
 };
 
 export default content;

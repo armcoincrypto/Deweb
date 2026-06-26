@@ -1,3 +1,6 @@
+import type { Locale } from "@/i18n/routing";
+import type { BlogArticleSlug } from "@/lib/blog/article-slugs";
+import { getLocalizedBlogArticle } from "@/lib/i18n/content";
 import type { BlogArticle } from "./types";
 import { normalizeArticleImage } from "./images";
 import { getAllArticles as getStaticArticles, getArticle as getStaticArticle } from "./index";
@@ -37,8 +40,19 @@ function cmsListToArticle(item: CmsBlogListItem): BlogArticle {
   };
 }
 
-export async function getAllArticlesMerged(): Promise<BlogArticle[]> {
-  const staticList = getStaticArticles();
+async function localizeStaticArticle(
+  article: BlogArticle,
+  locale?: Locale
+): Promise<BlogArticle> {
+  if (!locale || locale === "en") return article;
+  const localized = await getLocalizedBlogArticle(article.slug as BlogArticleSlug, locale);
+  return localized ?? article;
+}
+
+export async function getAllArticlesMerged(locale?: Locale): Promise<BlogArticle[]> {
+  const staticList = await Promise.all(
+    getStaticArticles().map((a) => localizeStaticArticle(a, locale))
+  );
   const cmsItems = await fetchPublishedCmsPosts();
   const staticSlugs = new Set(staticList.map((a) => a.slug));
   const cmsArticles = cmsItems
@@ -49,9 +63,14 @@ export async function getAllArticlesMerged(): Promise<BlogArticle[]> {
   );
 }
 
-export async function getArticleMerged(slug: string): Promise<BlogArticle | undefined> {
+export async function getArticleMerged(
+  slug: string,
+  locale?: Locale
+): Promise<BlogArticle | undefined> {
   const staticArticle = getStaticArticle(slug);
-  if (staticArticle) return staticArticle;
+  if (staticArticle) {
+    return localizeStaticArticle(staticArticle, locale);
+  }
 
   const cmsPost = await fetchCmsPostBySlug(slug);
   if (cmsPost) return cmsPostToArticle(cmsPost);

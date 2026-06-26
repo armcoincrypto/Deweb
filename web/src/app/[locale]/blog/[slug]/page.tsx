@@ -34,12 +34,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const article = await getArticleMerged(slug);
-  if (!article) {
-    notFound();
-  }
-
   const loc = locale as Locale;
+  const article = await getArticleMerged(slug, loc);
+  if (!article) notFound();
   const seo = article.seoTitle
     ? {
         title: article.seoTitle.includes("|") ? article.seoTitle : `${article.seoTitle} | DEWEB Blog`,
@@ -51,7 +48,8 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
-  const article = await getArticleMerged(slug);
+  const loc = locale as Locale;
+  const article = await getArticleMerged(slug, loc);
   if (!article) notFound();
 
   const author = getAuthor(article.authorId);

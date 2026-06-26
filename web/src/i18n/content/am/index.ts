@@ -5,6 +5,7 @@ import { banners } from "./banners";
 import { about } from "./about";
 import { services } from "./services";
 import { landings } from "./landings";
+import { blog } from "./blog";
 
 const content: LocaleContentModule = {
   legal,
@@ -13,6 +14,7 @@ const content: LocaleContentModule = {
   services,
   about,
   landings,
+  blog,
 };
 
 export default content;

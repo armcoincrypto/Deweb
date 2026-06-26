@@ -23,13 +23,15 @@ import {
   type ServiceLandingPage,
   type ServiceLandingSlug,
 } from "@/lib/service-landing";
+import { getArticle, type BlogArticle } from "@/lib/blog";
+import type { BlogArticleSlug } from "@/lib/blog/article-slugs";
 import { buildPinnedHomeSlides, type PinnedHomeSlide } from "@/lib/home-pinned-services-data";
 import type { ServiceCategory as HomeServiceCategory } from "@/lib/home-services-data";
 import type { ServiceBanner } from "@/lib/service-banners-data";
 import type { AboutService } from "@/lib/about-data";
 import type { LegalSection } from "@/lib/legal-content";
 import type { LegalContentPack, LocaleContentModule } from "./types";
-import { mergeLandingPage } from "./merge";
+import { mergeBlogArticle, mergeLandingPage } from "./merge";
 
 function mergeLegalSections(
   translated: LegalSection[],
@@ -188,6 +190,30 @@ export async function getLocalizedLandingPage(
   const pack = await loadLocaleContent(locale);
   if (!pack) return base;
   return mergeLandingPage(base, pack.landings[slug]);
+}
+
+export async function getLocalizedBlogArticle(
+  slug: BlogArticleSlug,
+  locale: Locale
+): Promise<BlogArticle | undefined> {
+  const base = getArticle(slug);
+  if (!base) return undefined;
+  if (locale === "en") return base;
+  const pack = await loadLocaleContent(locale);
+  const translated = pack?.blog?.[slug];
+  if (!translated) return base;
+  return mergeBlogArticle(base, translated);
+}
+
+export function isBlogArticleFullyLocalized(
+  slug: BlogArticleSlug,
+  pack: LocaleContentModule | null
+): boolean {
+  const translated = pack?.blog?.[slug];
+  if (!translated?.title || !translated.intro?.length || !translated.sections?.length) {
+    return false;
+  }
+  return translated.sections.every((s) => s.title && s.paragraphs?.length);
 }
 
 export async function getPinnedHomeSlides(locale: Locale): Promise<PinnedHomeSlide[]> {

@@ -45,7 +45,7 @@ export default async function BlogCategoryPage({ params }: Props) {
   const cat = staticCat ?? (cmsCat ? { slug: cmsCat.slug, name: cmsCat.name, description: cmsCat.description } : null);
   if (!cat) notFound();
 
-  const articles = await getAllArticlesMerged();
+  const articles = await getAllArticlesMerged(loc);
   const blogCategories = await getLocalizedBlogCategories(loc);
   const seo = staticCat
     ? await getLocalizedBlogCategorySeo(loc, category)

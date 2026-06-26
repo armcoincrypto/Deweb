@@ -1,3 +1,5 @@
+import type { BlogArticle } from "@/lib/blog/types";
+import type { BlogArticleSlug } from "@/lib/blog/article-slugs";
 import type { LegalSection } from "@/lib/legal-content";
 import type { ServiceCategory as HomeServiceCategory } from "@/lib/home-services-data";
 import type { ServiceBanner } from "@/lib/service-banners-data";
@@ -48,6 +50,23 @@ export type AboutContentPack = {
 
 export type LandingTexts = Omit<ServiceLandingPage, "slug" | "path">;
 
+/** Localized blog overlay — EN base keeps slug, dates, images, relatedSlugs. */
+export type BlogTexts = Pick<
+  BlogArticle,
+  | "title"
+  | "excerpt"
+  | "seoTitle"
+  | "metaDescription"
+  | "category"
+  | "readTime"
+  | "tags"
+  | "intro"
+  | "sections"
+  | "faqs"
+  | "internalLinks"
+  | "cta"
+>;
+
 export type LocaleContentModule = {
   legal: LegalContentPack;
   homeServices: Record<string, HomeServiceTexts>;
@@ -55,4 +74,5 @@ export type LocaleContentModule = {
   services: Record<string, DetailServiceTexts>;
   about: AboutContentPack;
   landings: Partial<Record<ServiceLandingSlug, LandingTexts>>;
+  blog?: Partial<Record<BlogArticleSlug, BlogTexts>>;
 };

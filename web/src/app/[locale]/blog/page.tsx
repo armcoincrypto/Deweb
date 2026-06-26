@@ -21,7 +21,7 @@ export default async function BlogPage({ params }: Props) {
   const loc = locale as Locale;
   const seo = await getLocalizedPageSeo(loc, "blog");
   const [articles, cmsCategories, blogCategories] = await Promise.all([
-    getAllArticlesMerged(),
+    getAllArticlesMerged(loc),
     fetchCmsCategories(),
     getLocalizedBlogCategories(loc),
   ]);

@@ -1,5 +1,6 @@
+import type { BlogArticle } from "@/lib/blog/types";
 import type { ServiceLandingPage } from "@/lib/service-landing/types";
-import type { LandingTexts } from "./types";
+import type { BlogTexts, LandingTexts } from "./types";
 
 export function mergeLandingPage(
   base: ServiceLandingPage,
@@ -21,6 +22,11 @@ export function mergeLandingPage(
     relatedServices: translated.relatedServices ?? base.relatedServices,
     cta: translated.cta ?? base.cta,
   };
+}
+
+export function mergeBlogArticle(base: BlogArticle, translated?: BlogTexts): BlogArticle {
+  if (!translated) return base;
+  return { ...base, ...translated };
 }
 
 export function applyRecordOverrides<T extends { id?: string; href?: string }>(
