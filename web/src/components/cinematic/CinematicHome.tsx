@@ -1,11 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { PinnedServiceExperience } from "./PinnedServiceExperience";
 import { SocialProof } from "@/components/home/SocialProof";
 import { HomePortfolio } from "@/components/home/HomePortfolio";
-import { TicTacToeFloating } from "@/components/home/TicTacToeFloating";
 import type { PinnedHomeSlide } from "@/lib/home-pinned-services-data";
 import { pinnedHomeSlides } from "@/lib/home-pinned-services-data";
+
+const TicTacToeFloating = dynamic(
+  () => import("@/components/home/TicTacToeFloating").then((m) => ({ default: m.TicTacToeFloating })),
+  { ssr: false }
+);
 
 type CinematicHomeProps = {
   pinnedSlides?: PinnedHomeSlide[];

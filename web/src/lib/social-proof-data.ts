@@ -7,26 +7,5 @@ export const clientLogos = [
   { name: "AWS", accent: "#FF9900" },
 ];
 
-export const clientTestimonials = [
-  {
-    quote:
-      "DeWeb built our Shopify store in 4 weeks. Sales went up 34% in the first month.",
-    author: "Sarah Mitchell",
-    role: "Founder, Bloom & Co",
-    rating: 5,
-  },
-  {
-    quote:
-      "Our AI chatbot now handles 80% of customer questions. We saved hours every week.",
-    author: "James Okonkwo",
-    role: "Operations Manager, TechFlow",
-    rating: 5,
-  },
-  {
-    quote:
-      "Clear communication, fast delivery, and a website that actually brings us leads.",
-    author: "Elena Vasquez",
-    role: "Marketing Director, Nova Retail",
-    rating: 5,
-  },
-];
+/** Stable ids for homepage illustrative scenario cards (copy lives in i18n). */
+export const exampleScenarioIds = ["1", "2", "3"] as const;

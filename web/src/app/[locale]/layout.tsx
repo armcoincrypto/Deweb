@@ -9,6 +9,7 @@ import { ParticlesBackground } from "@/components/ui/ParticlesBackground";
 import { AuthProvider } from "@/lib/auth-context";
 import { GlobalSchema } from "@/components/seo/GlobalSchema";
 import { SmoothScrollProvider } from "@/components/cinematic/SmoothScrollProvider";
+import { ChunkLoadRecovery } from "@/components/cinematic/ChunkLoadRecovery";
 import { CookieConsent } from "@/components/cookies/CookieConsent";
 import { siteMetadata, siteViewport } from "@/lib/site-metadata";
 import "../globals.css";
@@ -56,6 +57,7 @@ export default async function LocaleLayout({
         <GlobalSchema />
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
+            <ChunkLoadRecovery />
             <SmoothScrollProvider>
               <ParticlesBackground />
               <div className="relative z-10 flex min-h-screen flex-col">

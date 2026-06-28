@@ -8,10 +8,10 @@ import { useMotionSafe } from "@/lib/animations/hooks";
 import { cn } from "@/lib/utils";
 
 export type Testimonial = {
+  id: string;
   quote: string;
-  author: string;
-  role: string;
-  rating?: number;
+  label: string;
+  type: string;
 };
 
 type TestimonialSliderProps = {
@@ -35,8 +35,8 @@ export function TestimonialSlider({ items, className }: TestimonialSliderProps) 
     <section className={cn("relative", className)} aria-roledescription="carousel">
       <div className="hidden gap-6 md:grid md:grid-cols-3">
         <StaggerContainer stagger={0.08}>
-          {items.map((t) => (
-            <TestimonialCard key={t.author} item={t} inherit />
+          {items.map((item) => (
+            <TestimonialCard key={item.id} item={item} inherit />
           ))}
         </StaggerContainer>
       </div>
@@ -44,7 +44,7 @@ export function TestimonialSlider({ items, className }: TestimonialSliderProps) 
       <div className="md:hidden">
         <AnimatePresence mode="wait">
           <motion.div
-            key={current.author}
+            key={current.id}
             initial={reduceMotion ? false : { opacity: 0, x: 20 }}
             animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, x: -20 }}
@@ -58,7 +58,7 @@ export function TestimonialSlider({ items, className }: TestimonialSliderProps) 
             type="button"
             onClick={prev}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white"
-            aria-label="Previous testimonial"
+            aria-label="Previous example scenario"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -69,7 +69,7 @@ export function TestimonialSlider({ items, className }: TestimonialSliderProps) 
             type="button"
             onClick={next}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white"
-            aria-label="Next testimonial"
+            aria-label="Next example scenario"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -80,24 +80,12 @@ export function TestimonialSlider({ items, className }: TestimonialSliderProps) 
 }
 
 function TestimonialCard({ item, inherit }: { item: Testimonial; inherit?: boolean }) {
-  const rating = item.rating ?? 5;
-
   return (
     <AnimatedCard inherit={inherit} className="flex h-full flex-col p-8 glass-panel-glow" hover>
-      <div className="mb-4 flex gap-1 text-amber-400" aria-label={`${rating} stars`}>
-        {Array.from({ length: rating }).map((_, j) => (
-          <span key={j}>★</span>
-        ))}
-      </div>
-      <p className="flex-1 text-sm leading-relaxed text-white/75">&ldquo;{item.quote}&rdquo;</p>
-      <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-6">
-        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-deweb-cyan/40 to-purple-500/40 text-sm font-bold">
-          {item.author[0]}
-        </div>
-        <div>
-          <p className="font-semibold text-white">{item.author}</p>
-          <p className="text-xs text-white/45">{item.role}</p>
-        </div>
+      <p className="flex-1 text-sm leading-relaxed text-white/75">{item.quote}</p>
+      <div className="mt-6 border-t border-white/10 pt-6">
+        <p className="font-semibold text-white">{item.label}</p>
+        <p className="text-xs text-white/45">{item.type}</p>
       </div>
     </AnimatedCard>
   );

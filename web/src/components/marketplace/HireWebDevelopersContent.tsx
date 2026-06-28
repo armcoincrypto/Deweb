@@ -53,7 +53,7 @@ export async function HireWebDevelopersContent() {
             </li>
             <li>
               <strong className="text-white/85">{t("engagement3Title")}</strong> — {t("engagement3Desc")}{" "}
-              <Link href="/marketplace" className="text-deweb-cyan hover:underline">
+              <Link href="/dedicated-development-team" className="text-deweb-cyan hover:underline">
                 {t("engagement3Link")}
               </Link>
             </li>
@@ -61,6 +61,10 @@ export async function HireWebDevelopersContent() {
               <strong className="text-white/85">{t("engagement4Title")}</strong> — {t("engagement4Desc")}{" "}
               <Link href="/services/marketplace-development" className="text-deweb-cyan hover:underline">
                 {t("engagement4Link")}
+              </Link>
+              {" · "}
+              <Link href="/marketplace/hire-marketplace-developers" className="text-deweb-cyan hover:underline">
+                {t("engagement4HireLink")}
               </Link>
             </li>
           </ul>

@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/animations";
 import { TestimonialSlider } from "@/components/premium/TestimonialSlider";
-import { clientTestimonials } from "@/lib/social-proof-data";
+import { exampleScenarioIds } from "@/lib/social-proof-data";
 
 export function HomepageTestimonials() {
   const t = useTranslations("home");
@@ -20,11 +20,11 @@ export function HomepageTestimonials() {
         </ScrollReveal>
         <TestimonialSlider
           className="mt-12"
-          items={clientTestimonials.map((item) => ({
-            quote: item.quote,
-            author: item.author,
-            role: item.role,
-            rating: item.rating,
+          items={exampleScenarioIds.map((id) => ({
+            id,
+            quote: t(`exampleScenario${id}Quote` as "exampleScenario1Quote"),
+            label: t(`exampleScenario${id}Label` as "exampleScenario1Label"),
+            type: t("exampleScenarioType"),
           }))}
         />
       </div>

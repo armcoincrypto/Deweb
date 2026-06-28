@@ -39,6 +39,10 @@ export function PlatformFooter() {
             <li><Link href="/services/web-application-development" className="hover:text-deweb-cyan">{t("webApps")}</Link></li>
             <li><Link href="/services/marketplace-development" className="hover:text-deweb-cyan">{t("marketplaceDev")}</Link></li>
             <li><Link href="/services/saas-development" className="hover:text-deweb-cyan">{t("saasDev")}</Link></li>
+            <li><Link href="/services/landing-page-development" className="hover:text-deweb-cyan">{t("landingPageDev")}</Link></li>
+            <li><Link href="/services/seo" className="hover:text-deweb-cyan">{t("seoServices")}</Link></li>
+            <li><Link href="/services/mobile" className="hover:text-deweb-cyan">{t("mobileDev")}</Link></li>
+            <li><Link href="/dedicated-development-team" className="hover:text-deweb-cyan">{t("dedicatedTeam")}</Link></li>
           </ul>
         </div>
         <div>

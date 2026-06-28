@@ -69,6 +69,20 @@ export async function MarketplaceHubContent() {
               {t("categoryHireAiDesc")}
             </li>
             <li>
+              <Link href="/dedicated-development-team" className="font-semibold text-deweb-cyan hover:underline">
+                {t("categoryDedicatedTeamLink")}
+              </Link>
+              {" — "}
+              {t("categoryDedicatedTeamDesc")}
+            </li>
+            <li>
+              <Link href="/marketplace/hire-marketplace-developers" className="font-semibold text-deweb-cyan hover:underline">
+                {t("categoryHireMarketplaceLink")}
+              </Link>
+              {" — "}
+              {t("categoryHireMarketplaceDesc")}
+            </li>
+            <li>
               <Link href="/marketplace/hire-web-developers" className="font-semibold text-deweb-cyan hover:underline">
                 {t("categoryHireWebLink")}
               </Link>
@@ -153,10 +167,12 @@ export async function MarketplaceHubContent() {
             <Link href="/blog/category/marketplace" className="text-deweb-cyan hover:underline">
               {t("resourcesBlogLink")}
             </Link>
+            {" "}
             {t("resourcesP2")}{" "}
             <Link href="/contact" className="text-deweb-cyan hover:underline">
               {t("resourcesContactLink")}
             </Link>
+            {" "}
             {t("resourcesP3")}
           </p>
         </div>

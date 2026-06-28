@@ -213,7 +213,19 @@ export const saasDevelopment: ServiceLandingPage = {
       description:
         "Expand platform strategy with multi-party marketplace models and transaction infrastructure.",
     },
+    {
+      slug: "mobile",
+      title: "Mobile App Development",
+      description:
+        "Launch SaaS companion apps with notifications, mobile workflows, and shared backend architecture.",
+    },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-web-developers",
+    label: "Hire Web Developers",
+    description:
+      "Accelerate SaaS MVP or feature delivery by hiring vetted web developers through DEWEB Marketplace with competitive proposals and clear milestones.",
+  },
   cta: {
     title: "Need a SaaS Platform Built for Long-Term Growth?",
     description:

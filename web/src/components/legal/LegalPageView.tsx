@@ -22,7 +22,7 @@ export function LegalPageView({ title, subtitle, sections, relatedLinks = [] }: 
 
       <div className="container-narrow px-4 pb-20 sm:px-6 lg:px-8">
         <p className="mb-8 text-sm text-white/45">
-          {t("lastUpdated")}: {LEGAL_LAST_UPDATED} · DEWEB (dewebam.com)
+          {t("lastUpdated", { date: LEGAL_LAST_UPDATED })}
         </p>
 
         {relatedLinks.length > 0 && (

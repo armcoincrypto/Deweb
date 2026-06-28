@@ -155,6 +155,8 @@ export const howToHireSoftwareDevelopers: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
+    { href: "/marketplace/hire-marketplace-developers", label: "Hire Marketplace Developers on DEWEB Marketplace" },
+    { href: "/dedicated-development-team", label: "Dedicated Development Team at DEWEB" },
     { href: "/services/web-application-development", label: "Build with Dedicated Engineering Teams" },
     { href: "/services", label: "Explore Product Development Services" },
     { href: "/contact", label: "Discuss Your Hiring and Delivery Needs" },

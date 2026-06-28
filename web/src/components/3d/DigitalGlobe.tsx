@@ -1,11 +1,13 @@
 "use client";
 
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef, type ReactNode } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import type { Group, Points } from "three";
 import * as THREE from "three";
 import { globeScrollState } from "@/lib/globe-scroll-state";
+import { useWebGLSupported } from "@/hooks/useWebGLSupported";
+import { VisualSectionErrorBoundary } from "@/components/ui/VisualSectionErrorBoundary";
 
 const GLOBE_RADIUS = 1.35;
 
@@ -145,24 +147,35 @@ type DigitalGlobeProps = {
   variant?: DigitalGlobeVariant;
 };
 
-export function DigitalGlobe({ className, variant = "full" }: DigitalGlobeProps) {
+export function DigitalGlobe({
+  className,
+  variant = "full",
+  fallback = null,
+}: DigitalGlobeProps & { fallback?: ReactNode }) {
   const lite = variant === "lite";
+  const webglSupported = useWebGLSupported();
+
+  if (!webglSupported) {
+    return <>{fallback}</>;
+  }
 
   return (
-    <div className={className} aria-hidden>
-      <Canvas
-        camera={{ position: [0, 0.1, 4.6], fov: 42 }}
-        dpr={lite ? [1, 1.15] : [1, 1.4]}
-        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
-      >
-        <ambientLight intensity={0.28} />
-        <directionalLight position={[5, 3, 5]} intensity={0.85} color="#7dd3fc" />
-        <directionalLight position={[-4, -2, 2]} intensity={0.3} color="#1e40af" />
-        {!lite && <Stars radius={55} depth={30} count={500} factor={2.2} saturation={0} fade speed={0.25} />}
-        <Suspense fallback={null}>
-          <PerfectGlobe lite={lite} />
-        </Suspense>
-      </Canvas>
-    </div>
+    <VisualSectionErrorBoundary label="digital-globe" fallback={fallback}>
+      <div className={className} aria-hidden>
+        <Canvas
+          camera={{ position: [0, 0.1, 4.6], fov: 42 }}
+          dpr={lite ? [1, 1.15] : [1, 1.4]}
+          gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        >
+          <ambientLight intensity={0.28} />
+          <directionalLight position={[5, 3, 5]} intensity={0.85} color="#7dd3fc" />
+          <directionalLight position={[-4, -2, 2]} intensity={0.3} color="#1e40af" />
+          {!lite && <Stars radius={55} depth={30} count={500} factor={2.2} saturation={0} fade speed={0.25} />}
+          <Suspense fallback={null}>
+            <PerfectGlobe lite={lite} />
+          </Suspense>
+        </Canvas>
+      </div>
+    </VisualSectionErrorBoundary>
   );
 }

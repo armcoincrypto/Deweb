@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { CinematicSection } from "@/components/cinematic/CinematicSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { clientLogos, clientTestimonials } from "@/lib/social-proof-data";
+import { clientLogos, exampleScenarioIds } from "@/lib/social-proof-data";
 import { cardReveal3D, transitionFast } from "@/lib/motion-3d";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -42,9 +42,9 @@ export function SocialProof() {
           />
 
           <div className="grid gap-5 md:grid-cols-3">
-            {clientTestimonials.map((item, i) => (
+            {exampleScenarioIds.map((id, i) => (
               <motion.div
-                key={item.author}
+                key={id}
                 initial={reduceMotion ? false : "hidden"}
                 whileInView={reduceMotion ? undefined : "visible"}
                 viewport={{ once: true, margin: "-40px" }}
@@ -52,19 +52,17 @@ export function SocialProof() {
                 transition={{ ...transitionFast, delay: i * 0.04 }}
                 className="content-panel flex flex-col rounded-2xl p-6 sm:p-7"
               >
-                <div className="mb-3 flex gap-0.5 text-amber-400">
-                  {Array.from({ length: item.rating }).map((_, j) => (
-                    <span key={j} className="text-sm">
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <p className="flex-1 text-sm leading-relaxed text-white/80">
-                  &ldquo;{item.quote}&rdquo;
+                <p className="text-xs font-bold uppercase tracking-wider text-deweb-cyan/80">
+                  {t("testimonialsKicker")}
+                </p>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-white/80">
+                  {t(`exampleScenario${id}Quote` as "exampleScenario1Quote")}
                 </p>
                 <div className="mt-5 border-t border-white/10 pt-5">
-                  <p className="font-semibold text-white">{item.author}</p>
-                  <p className="text-xs text-white/55">{item.role}</p>
+                  <p className="font-semibold text-white">
+                    {t(`exampleScenario${id}Label` as "exampleScenario1Label")}
+                  </p>
+                  <p className="text-xs text-white/55">{t("exampleScenarioType")}</p>
                 </div>
               </motion.div>
             ))}

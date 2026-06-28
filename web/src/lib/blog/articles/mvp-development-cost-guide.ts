@@ -157,6 +157,10 @@ export const mvpDevelopmentCostGuide: BlogArticle = {
   internalLinks: blogInternalLinks([
     { href: "/services/saas-development", label: "SaaS Product Development Services" },
     { href: "/services/web-application-development", label: "MVP Web App Development" },
+    { href: "/services/mobile", label: "Mobile App Development Services" },
+    { href: "/services/seo", label: "SEO for SaaS and Product Pages" },
+    { href: "/dedicated-development-team", label: "Dedicated Development Team at DEWEB" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
     { href: "/contact", label: "Estimate Your MVP Roadmap" },
   ]),
   cta: {

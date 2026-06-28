@@ -1,5 +1,7 @@
 import type { LocaleContentModule } from "@/lib/i18n/content/types";
 import { landingPageDevelopment } from "./landing-page-development";
+import { seoServices } from "./seo";
+import { mobileDevelopment } from "./mobile";
 import { shopifyDevelopment } from "./shopify-development";
 import { shopifyStoreDesign } from "./shopify-store-design";
 import { shopifyCustomApps } from "./shopify-custom-apps";
@@ -12,6 +14,8 @@ import { telegramBotDevelopment } from "./telegram-bot-development";
 
 export const landings: LocaleContentModule["landings"] = {
   "landing-page-development": landingPageDevelopment,
+  seo: seoServices,
+  mobile: mobileDevelopment,
   "shopify-development": shopifyDevelopment,
   "shopify-store-design": shopifyStoreDesign,
   "shopify-custom-apps": shopifyCustomApps,

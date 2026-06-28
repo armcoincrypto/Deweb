@@ -214,6 +214,12 @@ export const shopifyCustomApps: ServiceLandingPage = {
         "Develop custom web platforms that support internal tools, integrations, and complex workflows.",
     },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-web-developers",
+    label: "Hire Web Developers",
+    description:
+      "Staff Shopify app and integration work through DEWEB Marketplace with scoped proposals from developers experienced in custom Shopify extensions.",
+  },
   cta: {
     title: "Need Shopify Features Public Apps Cannot Deliver?",
     description:

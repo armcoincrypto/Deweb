@@ -213,7 +213,19 @@ export const marketplaceDevelopment: ServiceLandingPage = {
       description:
         "Improve commerce UX patterns that inform buyer confidence and conversion within marketplace contexts.",
     },
+    {
+      slug: "mobile",
+      title: "Mobile App Development",
+      description:
+        "Build buyer and seller mobile experiences connected to marketplace workflows and transaction systems.",
+    },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-marketplace-developers",
+    label: "Hire Marketplace Developers",
+    description:
+      "Post your marketplace build or MVP scope on DEWEB Marketplace and compare proposals from engineers who understand multi-vendor platforms, payments, and admin operations.",
+  },
   cta: {
     title: "Building a Marketplace Platform?",
     description:

@@ -218,7 +218,19 @@ export const shopifyDevelopment: ServiceLandingPage = {
       description:
         "Build integrated web platforms that support ecommerce operations, internal tools, and customer-facing workflows.",
     },
+    {
+      slug: "seo",
+      title: "SEO Services",
+      description:
+        "Strengthen organic visibility with technical SEO, content architecture, and performance optimization for Shopify stores.",
+    },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-web-developers",
+    label: "Hire Web Developers",
+    description:
+      "Post your Shopify project on DEWEB Marketplace, compare developer proposals, and staff theme, app, or integration work with transparent scope and budget.",
+  },
   cta: {
     title: "Ready to Build a Better Shopify Store?",
     description:

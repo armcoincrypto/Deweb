@@ -152,6 +152,11 @@ export const customWebApplicationDevelopment: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/web-application-development", label: "Web Application Development Services" },
+    { href: "/services/mobile", label: "Mobile App Development Services" },
+    { href: "/services/seo", label: "Technical SEO for Web Applications" },
+    { href: "/dedicated-development-team", label: "Dedicated Development Team at DEWEB" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
+    { href: "/marketplace/hire-marketplace-developers", label: "Hire Marketplace Developers on DEWEB Marketplace" },
     { href: "/services/marketplace-development", label: "Marketplace Platform Development" },
     { href: "/services/saas-development", label: "SaaS Product Development" },
     { href: "/services/shopify-development", label: "Shopify Engineering Services" },

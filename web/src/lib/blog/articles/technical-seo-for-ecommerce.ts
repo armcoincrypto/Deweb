@@ -143,8 +143,9 @@ export const technicalSeoForEcommerce: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/shopify-development", label: "Shopify Development Services" },
-    { href: "/services/shopify-development", label: "Ecommerce Website Development" },
+    { href: "/services/landing-page-development", label: "Conversion-Focused Landing Page Development" },
     { href: "/services/seo", label: "Technical SEO and Growth Support" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
   ]),
   cta: {
     title: "Need technical SEO execution for your ecommerce store?",

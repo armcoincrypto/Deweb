@@ -213,6 +213,18 @@ export const webApplicationDevelopment: ServiceLandingPage = {
       description:
         "Launch conversational assistants that integrate with your web application workflows and support stack.",
     },
+    {
+      slug: "mobile",
+      title: "Mobile App Development",
+      description:
+        "Extend web platforms with iOS, Android, and cross-platform apps connected to shared APIs and user accounts.",
+    },
+    {
+      slug: "seo",
+      title: "SEO Services",
+      description:
+        "Improve discoverability for product pages, docs, and commercial URLs with technical and content SEO.",
+    },
   ]),
   marketplaceHire: {
     href: "/marketplace/hire-web-developers",

@@ -1,0 +1,3185 @@
+{
+  "generatedAt": "2026-06-28T07:41:31.403Z",
+  "urlCount": 54,
+  "edgeCount": 535,
+  "funnelMatrix": {
+    "blog→service": true,
+    "blog→hire": true,
+    "service→marketplace": true,
+    "service→hire": true,
+    "hire→marketplace": true,
+    "marketplace→service": true,
+    "marketplace→hire": true
+  },
+  "servicesMissingMarketplaceHire": [],
+  "orphans": [
+    "/cookie-policy",
+    "/privacy-policy",
+    "/terms"
+  ],
+  "deadEnds": [
+    "/blog",
+    "/contact",
+    "/services/branding",
+    "/services/marketing",
+    "/services/uiux"
+  ],
+  "isolated": [
+    {
+      "path": "/",
+      "score": 20
+    },
+    {
+      "path": "/about",
+      "score": 6
+    },
+    {
+      "path": "/blog",
+      "score": 4
+    },
+    {
+      "path": "/blog/category/saas",
+      "score": 14
+    },
+    {
+      "path": "/cookie-policy",
+      "score": 0
+    },
+    {
+      "path": "/privacy-policy",
+      "score": 0
+    },
+    {
+      "path": "/services/branding",
+      "score": 0
+    },
+    {
+      "path": "/services/marketing",
+      "score": 0
+    },
+    {
+      "path": "/services/uiux",
+      "score": 8
+    },
+    {
+      "path": "/terms",
+      "score": 0
+    }
+  ],
+  "rankedCommercial": [
+    {
+      "path": "/dedicated-development-team",
+      "type": "pillar",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 12,
+      "outbound": 10,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/marketplace",
+      "type": "marketplace",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 13,
+      "outbound": 22,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/ai-business-automation",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 25,
+      "outbound": 10,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/ai-chatbot-development",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 15,
+      "outbound": 10,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/landing-page-development",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 15,
+      "outbound": 12,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/marketplace-development",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 25,
+      "outbound": 11,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/mobile",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 17,
+      "outbound": 14,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/saas-development",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 21,
+      "outbound": 10,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/seo",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 21,
+      "outbound": 14,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/shopify-custom-apps",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 10,
+      "outbound": 10,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/shopify-development",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 29,
+      "outbound": 12,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/web-application-development",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 76,
+      "inbound": 38,
+      "outbound": 13,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/custom-web-application-development",
+      "type": "blog-article",
+      "classification": "HIGH",
+      "authorityScore": 72,
+      "inbound": 11,
+      "outbound": 21,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/headless-commerce-guide",
+      "type": "blog-article",
+      "classification": "HIGH",
+      "authorityScore": 72,
+      "inbound": 12,
+      "outbound": 16,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/shopify-development-cost-2026",
+      "type": "blog-article",
+      "classification": "HIGH",
+      "authorityScore": 72,
+      "inbound": 10,
+      "outbound": 14,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/marketplace/hire-marketplace-developers",
+      "type": "hire",
+      "classification": "HIGH",
+      "authorityScore": 72,
+      "inbound": 9,
+      "outbound": 10,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/shopify-store-design",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 72,
+      "inbound": 9,
+      "outbound": 10,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/telegram-bot-development",
+      "type": "service-landing",
+      "classification": "HIGH",
+      "authorityScore": 72,
+      "inbound": 9,
+      "outbound": 8,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/marketplace/hire-web-developers",
+      "type": "hire",
+      "classification": "MEDIUM",
+      "authorityScore": 67,
+      "inbound": 23,
+      "outbound": 5,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/how-to-hire-software-developers",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 64,
+      "inbound": 8,
+      "outbound": 14,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/mvp-development-cost-guide",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 64,
+      "inbound": 8,
+      "outbound": 17,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/outsourcing-software-development-2026",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 64,
+      "inbound": 8,
+      "outbound": 13,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/saas-development-guide",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 64,
+      "inbound": 8,
+      "outbound": 18,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/shopify-plus-vs-standard",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 64,
+      "inbound": 8,
+      "outbound": 10,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services",
+      "type": "static",
+      "classification": "MEDIUM",
+      "authorityScore": 64,
+      "inbound": 33,
+      "outbound": 18,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/future-of-ai-in-business",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 60,
+      "inbound": 7,
+      "outbound": 17,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/nextjs-vs-wordpress",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 60,
+      "inbound": 7,
+      "outbound": 15,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/technical-seo-for-ecommerce",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 60,
+      "inbound": 7,
+      "outbound": 13,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/ai-chatbots-for-business",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 56,
+      "inbound": 6,
+      "outbound": 13,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/best-shopify-apps",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 56,
+      "inbound": 6,
+      "outbound": 12,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/shopify-vs-woocommerce",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 56,
+      "inbound": 6,
+      "outbound": 11,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/ai-automation-for-ecommerce",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 52,
+      "inbound": 5,
+      "outbound": 12,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/best-ecommerce-platforms",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 52,
+      "inbound": 5,
+      "outbound": 14,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/competitive-bidding-it-projects",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 52,
+      "inbound": 5,
+      "outbound": 13,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/how-to-build-a-marketplace-website",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 52,
+      "inbound": 5,
+      "outbound": 17,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/category/shopify",
+      "type": "blog-category",
+      "classification": "MEDIUM",
+      "authorityScore": 49,
+      "inbound": 7,
+      "outbound": 7,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/marketplace-monetization-strategies",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 48,
+      "inbound": 4,
+      "outbound": 11,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/telegram-bot-development-guide",
+      "type": "blog-article",
+      "classification": "MEDIUM",
+      "authorityScore": 48,
+      "inbound": 4,
+      "outbound": 12,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/marketplace/hire-ai-automation-specialists",
+      "type": "hire",
+      "classification": "MEDIUM",
+      "authorityScore": 48,
+      "inbound": 6,
+      "outbound": 4,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/marketplace/hire-telegram-bot-developers",
+      "type": "hire",
+      "classification": "LOW",
+      "authorityScore": 36,
+      "inbound": 3,
+      "outbound": 4,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/category/ai",
+      "type": "blog-category",
+      "classification": "LOW",
+      "authorityScore": 28,
+      "inbound": 4,
+      "outbound": 4,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/category/web-development",
+      "type": "blog-category",
+      "classification": "LOW",
+      "authorityScore": 28,
+      "inbound": 4,
+      "outbound": 4,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/category/marketplace",
+      "type": "blog-category",
+      "classification": "LOW",
+      "authorityScore": 25,
+      "inbound": 4,
+      "outbound": 3,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/blog/category/saas",
+      "type": "blog-category",
+      "classification": "ISOLATED",
+      "authorityScore": 14,
+      "inbound": 2,
+      "outbound": 2,
+      "missingFunnelPaths": []
+    },
+    {
+      "path": "/services/uiux",
+      "type": "legacy-service",
+      "classification": "ISOLATED",
+      "authorityScore": 8,
+      "inbound": 3,
+      "outbound": 0,
+      "missingFunnelPaths": [
+        "lead-gen"
+      ]
+    },
+    {
+      "path": "/services/branding",
+      "type": "legacy-service",
+      "classification": "ISOLATED",
+      "authorityScore": 0,
+      "inbound": 1,
+      "outbound": 0,
+      "missingFunnelPaths": [
+        "lead-gen"
+      ]
+    },
+    {
+      "path": "/services/marketing",
+      "type": "legacy-service",
+      "classification": "ISOLATED",
+      "authorityScore": 0,
+      "inbound": 1,
+      "outbound": 0,
+      "missingFunnelPaths": [
+        "lead-gen"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "/services/shopify-development",
+      "to": "/services/shopify-store-design",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/services/shopify-custom-apps",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/services/marketplace-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/services/seo",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/marketplace/hire-web-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/services",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/services/shopify-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/blog/shopify-vs-woocommerce",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/services/shopify-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/blog/best-shopify-apps",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/services/shopify-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-development",
+      "to": "/blog/shopify-plus-vs-standard",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/services/shopify-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/services/shopify-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/services/shopify-custom-apps",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/services/marketplace-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/marketplace/hire-web-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/services",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/services/shopify-store-design",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/blog/headless-commerce-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services/shopify-store-design",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-store-design",
+      "to": "/blog/technical-seo-for-ecommerce",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/services/shopify-store-design",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/services/shopify-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/services/shopify-store-design",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/services/ai-business-automation",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/marketplace/hire-web-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/services",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/blog/best-shopify-apps",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/services/shopify-custom-apps",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/services/shopify-custom-apps",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/shopify-custom-apps",
+      "to": "/blog/headless-commerce-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services/shopify-custom-apps",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/services/ai-business-automation",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/services/saas-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/services/telegram-bot-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/marketplace/hire-ai-automation-specialists",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/services",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/blog/ai-chatbots-for-business",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/services/ai-chatbot-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/blog/future-of-ai-in-business",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/services/ai-chatbot-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/ai-chatbot-development",
+      "to": "/blog/telegram-bot-development-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/services/ai-chatbot-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/services/ai-chatbot-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/services/saas-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/services/shopify-custom-apps",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/marketplace/hire-ai-automation-specialists",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/marketplace",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/blog/ai-automation-for-ecommerce",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/services/ai-business-automation",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/blog/future-of-ai-in-business",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/services/ai-business-automation",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/ai-business-automation",
+      "to": "/blog/ai-chatbots-for-business",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/services/ai-business-automation",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/services/saas-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/services/marketplace-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/services/ai-business-automation",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/services/ai-chatbot-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/services/mobile",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/services/seo",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/marketplace/hire-web-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/services",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/blog/custom-web-application-development",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/web-application-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/blog/nextjs-vs-wordpress",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/services/web-application-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/blog/how-to-hire-software-developers",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/services/web-application-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/web-application-development",
+      "to": "/blog/outsourcing-software-development-2026",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/services/web-application-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/services/saas-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/services/shopify-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/services/shopify-store-design",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/services/mobile",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/services",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/blog/how-to-build-a-marketplace-website",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/services/marketplace-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/blog/marketplace-monetization-strategies",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/services/marketplace-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/marketplace-development",
+      "to": "/blog/competitive-bidding-it-projects",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/services/marketplace-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/services/ai-business-automation",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/services/ai-chatbot-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/services/marketplace-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/services/mobile",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/marketplace/hire-web-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/services",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/blog/saas-development-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services/saas-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/saas-development",
+      "to": "/blog/mvp-development-cost-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services/saas-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/services/shopify-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/services/ai-business-automation",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/services/uiux",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/services/seo",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/marketplace/hire-web-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/marketplace",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/blog/headless-commerce-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services/landing-page-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/blog/technical-seo-for-ecommerce",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/services/landing-page-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/blog/mvp-development-cost-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services/landing-page-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/landing-page-development",
+      "to": "/blog/nextjs-vs-wordpress",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/services/landing-page-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/telegram-bot-development",
+      "to": "/services/ai-chatbot-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/telegram-bot-development",
+      "to": "/services/ai-business-automation",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/telegram-bot-development",
+      "to": "/services/marketplace-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/telegram-bot-development",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/telegram-bot-development",
+      "to": "/marketplace/hire-telegram-bot-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/telegram-bot-development",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/telegram-bot-development",
+      "to": "/marketplace",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/telegram-bot-development",
+      "to": "/blog/telegram-bot-development-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/services/telegram-bot-development",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/services/landing-page-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/services/shopify-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/services/marketplace-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/services/saas-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/services/uiux",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/marketplace/hire-web-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/marketplace",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/blog/technical-seo-for-ecommerce",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/services/seo",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/blog/nextjs-vs-wordpress",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/services/seo",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/blog/headless-commerce-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services/seo",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/services/seo",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/seo",
+      "to": "/blog/mvp-development-cost-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services/seo",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/services/web-application-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/services/marketplace-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/services/saas-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/services/ai-business-automation",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/services/landing-page-development",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/services/seo",
+      "source": "service-relatedServices"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/marketplace/hire-web-developers",
+      "source": "service-marketplaceHire"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/contact",
+      "source": "service-cta-primary"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/marketplace",
+      "source": "service-cta-secondary"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/blog/custom-web-application-development",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/mobile",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/blog/mvp-development-cost-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services/mobile",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/blog/saas-development-guide",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services/mobile",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/blog/how-to-hire-software-developers",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/services/mobile",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/services/mobile",
+      "to": "/blog/outsourcing-software-development-2026",
+      "source": "service-relatedGuides"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/services/mobile",
+      "source": "blog-reverse-guide"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Shopify Development Services"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/services/seo",
+      "source": "blog-internalLinks",
+      "label": "Technical SEO Services"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/blog/shopify-vs-woocommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/blog/best-shopify-apps",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/blog/shopify-plus-vs-standard",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/blog/best-ecommerce-platforms",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-development-cost-2026",
+      "to": "/blog/category/shopify",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Shopify Development Services"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "WooCommerce Development Services"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Ecommerce Development Services"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/blog/best-shopify-apps",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/blog/shopify-plus-vs-standard",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/blog/best-ecommerce-platforms",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-vs-woocommerce",
+      "to": "/blog/category/shopify",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Shopify Development Services"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Ecommerce Development Services"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/services/ai-chatbot-development",
+      "source": "blog-internalLinks",
+      "label": "AI Chatbot Development Services"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/blog/shopify-vs-woocommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/blog/shopify-plus-vs-standard",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/blog/technical-seo-for-ecommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-shopify-apps",
+      "to": "/blog/category/shopify",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/marketplace/hire-ai-automation-specialists",
+      "source": "blog-internalLinks",
+      "label": "Hire AI Automation Specialists on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/services/ai-chatbot-development",
+      "source": "blog-internalLinks",
+      "label": "AI Chatbot Development Services"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom Web Development Services"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/services/ai-business-automation",
+      "source": "blog-internalLinks",
+      "label": "AI Automation Services"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/blog/ai-automation-for-ecommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/blog/future-of-ai-in-business",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/blog/technical-seo-for-ecommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/ai-chatbots-for-business",
+      "to": "/blog/category/ai",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/marketplace/hire-ai-automation-specialists",
+      "source": "blog-internalLinks",
+      "label": "Hire AI Automation Specialists on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/services/ai-business-automation",
+      "source": "blog-internalLinks",
+      "label": "AI Automation Services"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/services/ai-chatbot-development",
+      "source": "blog-internalLinks",
+      "label": "AI Chatbot Development Services"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Ecommerce Development Services"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/blog/ai-chatbots-for-business",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/blog/future-of-ai-in-business",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/blog/best-ecommerce-platforms",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/blog/headless-commerce-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/ai-automation-for-ecommerce",
+      "to": "/blog/category/ai",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/services/marketplace-development",
+      "source": "blog-internalLinks",
+      "label": "Marketplace Development Services"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Marketplace Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom Web Application Development"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/services/saas-development",
+      "source": "blog-internalLinks",
+      "label": "SaaS Development Services"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Shopify Development Services"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/services/ai-business-automation",
+      "source": "blog-internalLinks",
+      "label": "AI Automation Solutions"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/blog/marketplace-monetization-strategies",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/blog/competitive-bidding-it-projects",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/blog/headless-commerce-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/blog/how-to-hire-software-developers",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/blog/outsourcing-software-development-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-build-a-marketplace-website",
+      "to": "/blog/category/marketplace",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Web Application Development Services"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/mobile",
+      "source": "blog-internalLinks",
+      "label": "Mobile App Development Services"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/seo",
+      "source": "blog-internalLinks",
+      "label": "Technical SEO for Web Applications"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/dedicated-development-team",
+      "source": "blog-internalLinks",
+      "label": "Dedicated Development Team at DEWEB"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Marketplace Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/marketplace-development",
+      "source": "blog-internalLinks",
+      "label": "Marketplace Platform Development"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/saas-development",
+      "source": "blog-internalLinks",
+      "label": "SaaS Product Development"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Shopify Engineering Services"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services/ai-business-automation",
+      "source": "blog-internalLinks",
+      "label": "AI Automation for Operations"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/blog/how-to-hire-software-developers",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/blog/outsourcing-software-development-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/blog/mvp-development-cost-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/blog/saas-development-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/blog/nextjs-vs-wordpress",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/blog/how-to-build-a-marketplace-website",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/custom-web-application-development",
+      "to": "/blog/category/web-development",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services/saas-development",
+      "source": "blog-internalLinks",
+      "label": "SaaS Development Services"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services/mobile",
+      "source": "blog-internalLinks",
+      "label": "Mobile App Development for SaaS Products"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom Web App Development"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services/marketplace-development",
+      "source": "blog-internalLinks",
+      "label": "Marketplace Engineering"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services/ai-business-automation",
+      "source": "blog-internalLinks",
+      "label": "AI-Powered Product Automation"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "E-commerce Platform Development"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/blog/mvp-development-cost-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/blog/how-to-hire-software-developers",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/blog/outsourcing-software-development-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/blog/future-of-ai-in-business",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/blog/headless-commerce-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/saas-development-guide",
+      "to": "/blog/category/saas",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Shopify Development Services"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom E-commerce Web Applications"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/services/marketplace-development",
+      "source": "blog-internalLinks",
+      "label": "Marketplace Commerce Development"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/services/saas-development",
+      "source": "blog-internalLinks",
+      "label": "Subscription Platform Development"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/services/ai-business-automation",
+      "source": "blog-internalLinks",
+      "label": "AI for E-commerce Automation"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/blog/shopify-vs-woocommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/blog/shopify-plus-vs-standard",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/blog/best-shopify-apps",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/blog/headless-commerce-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/blog/technical-seo-for-ecommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/best-ecommerce-platforms",
+      "to": "/blog/category/shopify",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/marketplace/hire-ai-automation-specialists",
+      "source": "blog-internalLinks",
+      "label": "Hire AI Automation Specialists on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/services/ai-business-automation",
+      "source": "blog-internalLinks",
+      "label": "AI Automation Services"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "AI-Enabled Web Applications"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/services/saas-development",
+      "source": "blog-internalLinks",
+      "label": "AI SaaS Product Development"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/services/marketplace-development",
+      "source": "blog-internalLinks",
+      "label": "AI for Marketplace Platforms"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "AI for E-commerce Stores"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/blog/ai-chatbots-for-business",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/blog/ai-automation-for-ecommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/blog/telegram-bot-development-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/blog/saas-development-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/blog/nextjs-vs-wordpress",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/future-of-ai-in-business",
+      "to": "/blog/category/ai",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Web Application Development Services"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/services/landing-page-development",
+      "source": "blog-internalLinks",
+      "label": "Landing Page Development Services"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/services/seo",
+      "source": "blog-internalLinks",
+      "label": "Technical SEO Services"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/services",
+      "source": "blog-internalLinks",
+      "label": "All DEWEB Services"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/contact",
+      "source": "blog-internalLinks",
+      "label": "Book a Technical Consultation"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/blog/saas-development-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/blog/headless-commerce-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/nextjs-vs-wordpress",
+      "to": "/blog/category/web-development",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Shopify Development Services"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/services/shopify-custom-apps",
+      "source": "blog-internalLinks",
+      "label": "Shopify Custom App Development"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/contact",
+      "source": "blog-internalLinks",
+      "label": "Talk to a Shopify Expert"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/blog/shopify-vs-woocommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/blog/headless-commerce-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/shopify-plus-vs-standard",
+      "to": "/blog/category/shopify",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Marketplace Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/dedicated-development-team",
+      "source": "blog-internalLinks",
+      "label": "Dedicated Development Team at DEWEB"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Build with Dedicated Engineering Teams"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/services",
+      "source": "blog-internalLinks",
+      "label": "Explore Product Development Services"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/contact",
+      "source": "blog-internalLinks",
+      "label": "Discuss Your Hiring and Delivery Needs"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/blog/outsourcing-software-development-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/blog/competitive-bidding-it-projects",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/how-to-hire-software-developers",
+      "to": "/blog/category/web-development",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services/saas-development",
+      "source": "blog-internalLinks",
+      "label": "SaaS Product Development Services"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "MVP Web App Development"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services/mobile",
+      "source": "blog-internalLinks",
+      "label": "Mobile App Development Services"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services/seo",
+      "source": "blog-internalLinks",
+      "label": "SEO for SaaS and Product Pages"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/dedicated-development-team",
+      "source": "blog-internalLinks",
+      "label": "Dedicated Development Team at DEWEB"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/contact",
+      "source": "blog-internalLinks",
+      "label": "Estimate Your MVP Roadmap"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/blog/saas-development-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/blog/outsourcing-software-development-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/mvp-development-cost-guide",
+      "to": "/blog/category/saas",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Headless Shopify Development"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services/landing-page-development",
+      "source": "blog-internalLinks",
+      "label": "Landing Page Development Services"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services/seo",
+      "source": "blog-internalLinks",
+      "label": "Technical SEO and Ecommerce SEO"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom Frontend Engineering"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/contact",
+      "source": "blog-internalLinks",
+      "label": "Plan a Headless Commerce Roadmap"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/blog/nextjs-vs-wordpress",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/blog/shopify-plus-vs-standard",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/blog/best-ecommerce-platforms",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/headless-commerce-guide",
+      "to": "/blog/category/shopify",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/services/shopify-development",
+      "source": "blog-internalLinks",
+      "label": "Shopify Development Services"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/services/landing-page-development",
+      "source": "blog-internalLinks",
+      "label": "Conversion-Focused Landing Page Development"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/services/seo",
+      "source": "blog-internalLinks",
+      "label": "Technical SEO and Growth Support"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/blog/headless-commerce-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/blog/shopify-plus-vs-standard",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/technical-seo-for-ecommerce",
+      "to": "/blog/category/shopify",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/marketplace/hire-telegram-bot-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Telegram Bot Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/services/telegram-bot-development",
+      "source": "blog-internalLinks",
+      "label": "Telegram Bot Development Services"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/services/ai-business-automation",
+      "source": "blog-internalLinks",
+      "label": "Business Automation Services"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom Backend Integration"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/blog/ai-chatbots-for-business",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/blog/future-of-ai-in-business",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/blog/ai-automation-for-ecommerce",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/telegram-bot-development-guide",
+      "to": "/blog/category/ai",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/services/marketplace-development",
+      "source": "blog-internalLinks",
+      "label": "Marketplace Platform Development"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Marketplace Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom Marketplace Engineering"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/blog/how-to-build-a-marketplace-website",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/blog/competitive-bidding-it-projects",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/blog/saas-development-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/marketplace-monetization-strategies",
+      "to": "/blog/category/marketplace",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers Through DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Marketplace Developers Through DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/dedicated-development-team",
+      "source": "blog-internalLinks",
+      "label": "Dedicated Development Team at DEWEB"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom Web Development"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/services/saas-development",
+      "source": "blog-internalLinks",
+      "label": "MVP Development Services"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/blog/how-to-hire-software-developers",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/blog/mvp-development-cost-guide",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/outsourcing-software-development-2026",
+      "to": "/blog/category/web-development",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/services/marketplace-development",
+      "source": "blog-internalLinks",
+      "label": "Marketplace Platform Development"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Marketplace Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/dedicated-development-team",
+      "source": "blog-internalLinks",
+      "label": "Dedicated Development Team at DEWEB"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/marketplace/hire-web-developers",
+      "source": "blog-internalLinks",
+      "label": "Hire Web Developers on DEWEB Marketplace"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/services/web-application-development",
+      "source": "blog-internalLinks",
+      "label": "Custom Marketplace Engineering"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/contact",
+      "source": "blog-internalLinks",
+      "label": "Discuss Your IT Bidding Platform Idea"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/contact",
+      "source": "blog-cta-primary"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/services",
+      "source": "blog-cta-secondary"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/blog/how-to-build-a-marketplace-website",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/blog/marketplace-monetization-strategies",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/blog/how-to-hire-software-developers",
+      "source": "blog-relatedSlugs"
+    },
+    {
+      "from": "/blog/competitive-bidding-it-projects",
+      "to": "/blog/category/marketplace",
+      "source": "blog-category"
+    },
+    {
+      "from": "/blog/category/shopify",
+      "to": "/blog/shopify-development-cost-2026",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/shopify",
+      "to": "/blog/shopify-vs-woocommerce",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/shopify",
+      "to": "/blog/best-shopify-apps",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/shopify",
+      "to": "/blog/best-ecommerce-platforms",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/shopify",
+      "to": "/blog/shopify-plus-vs-standard",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/shopify",
+      "to": "/blog/headless-commerce-guide",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/shopify",
+      "to": "/blog/technical-seo-for-ecommerce",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/ai",
+      "to": "/blog/ai-chatbots-for-business",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/ai",
+      "to": "/blog/ai-automation-for-ecommerce",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/ai",
+      "to": "/blog/future-of-ai-in-business",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/ai",
+      "to": "/blog/telegram-bot-development-guide",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/web-development",
+      "to": "/blog/custom-web-application-development",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/web-development",
+      "to": "/blog/nextjs-vs-wordpress",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/web-development",
+      "to": "/blog/how-to-hire-software-developers",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/web-development",
+      "to": "/blog/outsourcing-software-development-2026",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/marketplace",
+      "to": "/blog/how-to-build-a-marketplace-website",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/marketplace",
+      "to": "/blog/marketplace-monetization-strategies",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/marketplace",
+      "to": "/blog/competitive-bidding-it-projects",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/saas",
+      "to": "/blog/saas-development-guide",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/blog/category/saas",
+      "to": "/blog/mvp-development-cost-guide",
+      "source": "blog-category-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/contact",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/dedicated-development-team",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/marketplace/hire-telegram-bot-developers",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/marketplace/hire-ai-automation-specialists",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/marketplace/hire-web-developers",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/shopify-development",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/ai-chatbot-development",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/ai-business-automation",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/telegram-bot-development",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/web-application-development",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/marketplace-development",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/landing-page-development",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/blog/category/marketplace",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/contact",
+      "source": "marketplace-hub"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/telegram-bot-development",
+      "source": "marketplace-empty-state"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/ai-business-automation",
+      "source": "marketplace-empty-state"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/shopify-development",
+      "source": "marketplace-empty-state"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/saas-development",
+      "source": "marketplace-empty-state"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/marketplace-development",
+      "source": "marketplace-empty-state"
+    },
+    {
+      "from": "/marketplace",
+      "to": "/services/web-application-development",
+      "source": "marketplace-empty-state"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/marketplace",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/services/marketplace-development",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/services/web-application-development",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/services/mobile",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/services/saas-development",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/services/seo",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/services/landing-page-development",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/marketplace/hire-web-developers",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/account/listings",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-web-developers",
+      "to": "/marketplace",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-web-developers",
+      "to": "/services/web-application-development",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-web-developers",
+      "to": "/services/marketplace-development",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-web-developers",
+      "to": "/contact",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-ai-automation-specialists",
+      "to": "/marketplace",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-ai-automation-specialists",
+      "to": "/services/ai-business-automation",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-ai-automation-specialists",
+      "to": "/services/ai-chatbot-development",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-ai-automation-specialists",
+      "to": "/contact",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-telegram-bot-developers",
+      "to": "/marketplace",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-telegram-bot-developers",
+      "to": "/services/telegram-bot-development",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-telegram-bot-developers",
+      "to": "/services/ai-business-automation",
+      "source": "hire-content"
+    },
+    {
+      "from": "/marketplace/hire-telegram-bot-developers",
+      "to": "/contact",
+      "source": "hire-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/services/marketplace-development",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/services/web-application-development",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/services/saas-development",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/services/mobile",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/services/seo",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/services/landing-page-development",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/marketplace",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/marketplace/hire-web-developers",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/marketplace/hire-marketplace-developers",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/dedicated-development-team",
+      "to": "/contact",
+      "source": "pillar-content"
+    },
+    {
+      "from": "/services",
+      "to": "/contact",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/shopify-development",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/shopify-store-design",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/shopify-custom-apps",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/ai-chatbot-development",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/ai-business-automation",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/web-application-development",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/marketplace-development",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/saas-development",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/landing-page-development",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/telegram-bot-development",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/seo",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/mobile",
+      "source": "services-index"
+    },
+    {
+      "from": "/services",
+      "to": "/services/mobile",
+      "source": "services-index-legacy"
+    },
+    {
+      "from": "/services",
+      "to": "/services/uiux",
+      "source": "services-index-legacy"
+    },
+    {
+      "from": "/services",
+      "to": "/services/branding",
+      "source": "services-index-legacy"
+    },
+    {
+      "from": "/services",
+      "to": "/services/seo",
+      "source": "services-index-legacy"
+    },
+    {
+      "from": "/services",
+      "to": "/services/marketing",
+      "source": "services-index-legacy"
+    },
+    {
+      "from": "/",
+      "to": "/services",
+      "source": "homepage"
+    },
+    {
+      "from": "/",
+      "to": "/marketplace",
+      "source": "homepage"
+    },
+    {
+      "from": "/",
+      "to": "/blog",
+      "source": "homepage"
+    },
+    {
+      "from": "/",
+      "to": "/dedicated-development-team",
+      "source": "homepage"
+    },
+    {
+      "from": "/about",
+      "to": "/services/web-application-development",
+      "source": "about-featured"
+    },
+    {
+      "from": "/about",
+      "to": "/dedicated-development-team",
+      "source": "about-featured"
+    },
+    {
+      "from": "/marketplace/hire-web-developers",
+      "to": "/dedicated-development-team",
+      "source": "hire-crosslink"
+    },
+    {
+      "from": "/marketplace/hire-marketplace-developers",
+      "to": "/dedicated-development-team",
+      "source": "hire-crosslink"
+    }
+  ]
+}

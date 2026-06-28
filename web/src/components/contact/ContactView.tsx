@@ -23,7 +23,6 @@ export function ContactView() {
             { label: "Shopify", href: "/services/shopify-development" },
             { label: "AI Chatbots", href: "/services/ai-chatbot-development" },
             { label: "SaaS", href: "/services/saas-development" },
-            { label: "Telegram Bots", href: "/services/telegram-bot-development" },
             { label: "Automation", href: "/services/ai-business-automation" },
             { label: "Web Apps", href: "/services/web-application-development" },
             { label: "Landing Pages", href: "/services/landing-page-development" },

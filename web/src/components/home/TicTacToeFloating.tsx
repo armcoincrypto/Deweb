@@ -408,7 +408,8 @@ export function TicTacToeFloating() {
   const visible = mounted && isDesktop && nearTop;
   const showWinBanner = phase === "won" && winner;
 
-  if (!mounted) return null;
+  if (!mounted || typeof document === "undefined") return null;
+  if (!isDesktop) return null;
 
   return createPortal(
     <AnimatePresence>

@@ -1,0 +1,466 @@
+[
+  {
+    "slug": "shopify-development-cost-2026",
+    "title": "How Much Does Shopify Development Cost in 2026",
+    "wordCount": 2370,
+    "internalLinks": [
+      {
+        "href": "/services/shopify-development",
+        "label": "Shopify Development Services"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "Ecommerce Development Services"
+      },
+      {
+        "href": "/services/seo",
+        "label": "Technical SEO Services"
+      }
+    ],
+    "categorySlug": "shopify"
+  },
+  {
+    "slug": "shopify-vs-woocommerce",
+    "title": "Shopify vs WooCommerce",
+    "wordCount": 2279,
+    "internalLinks": [
+      {
+        "href": "/services/shopify-development",
+        "label": "Shopify Development Services"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "WooCommerce Development Services"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "Ecommerce Development Services"
+      }
+    ],
+    "categorySlug": "shopify"
+  },
+  {
+    "slug": "best-shopify-apps",
+    "title": "Best Shopify Apps",
+    "wordCount": 2299,
+    "internalLinks": [
+      {
+        "href": "/services/shopify-development",
+        "label": "Shopify Development Services"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "Ecommerce Development Services"
+      },
+      {
+        "href": "/services/ai-chatbot-development",
+        "label": "AI Chatbot Development Services"
+      }
+    ],
+    "categorySlug": "shopify"
+  },
+  {
+    "slug": "ai-chatbots-for-business",
+    "title": "AI Chatbots for Business",
+    "wordCount": 2287,
+    "internalLinks": [
+      {
+        "href": "/marketplace/hire-ai-automation-specialists",
+        "label": "Hire AI Automation Specialists on DEWEB Marketplace"
+      },
+      {
+        "href": "/services/ai-chatbot-development",
+        "label": "AI Chatbot Development Services"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom Web Development Services"
+      },
+      {
+        "href": "/services/ai-business-automation",
+        "label": "AI Automation Services"
+      }
+    ],
+    "categorySlug": "ai"
+  },
+  {
+    "slug": "ai-automation-for-ecommerce",
+    "title": "AI Automation for Ecommerce",
+    "wordCount": 2273,
+    "internalLinks": [
+      {
+        "href": "/marketplace/hire-ai-automation-specialists",
+        "label": "Hire AI Automation Specialists on DEWEB Marketplace"
+      },
+      {
+        "href": "/services/ai-business-automation",
+        "label": "AI Automation Services"
+      },
+      {
+        "href": "/services/ai-chatbot-development",
+        "label": "AI Chatbot Development Services"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "Ecommerce Development Services"
+      }
+    ],
+    "categorySlug": "ai"
+  },
+  {
+    "slug": "how-to-build-a-marketplace-website",
+    "title": "How to Build a Marketplace Website in 2026: Strategy, Tech Stack, and Launch Plan",
+    "wordCount": 2276,
+    "internalLinks": [
+      {
+        "href": "/services/marketplace-development",
+        "label": "Marketplace Development Services"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom Web Application Development"
+      },
+      {
+        "href": "/services/saas-development",
+        "label": "SaaS Development Services"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "Shopify Development Services"
+      },
+      {
+        "href": "/services/ai-business-automation",
+        "label": "AI Automation Solutions"
+      }
+    ],
+    "categorySlug": "marketplace"
+  },
+  {
+    "slug": "custom-web-application-development",
+    "title": "Custom Web Application Development in 2026: From Business Case to Scalable Product",
+    "wordCount": 2055,
+    "internalLinks": [
+      {
+        "href": "/services/web-application-development",
+        "label": "Web Application Development Services"
+      },
+      {
+        "href": "/services/marketplace-development",
+        "label": "Marketplace Platform Development"
+      },
+      {
+        "href": "/services/saas-development",
+        "label": "SaaS Product Development"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "Shopify Engineering Services"
+      },
+      {
+        "href": "/services/ai-business-automation",
+        "label": "AI Automation for Operations"
+      }
+    ],
+    "categorySlug": "web-development"
+  },
+  {
+    "slug": "saas-development-guide",
+    "title": "SaaS Development Guide 2026: Product Architecture, Go-to-Market, and Scale",
+    "wordCount": 1976,
+    "internalLinks": [
+      {
+        "href": "/services/saas-development",
+        "label": "SaaS Development Services"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom Web App Development"
+      },
+      {
+        "href": "/services/marketplace-development",
+        "label": "Marketplace Engineering"
+      },
+      {
+        "href": "/services/ai-business-automation",
+        "label": "AI-Powered Product Automation"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "E-commerce Platform Development"
+      }
+    ],
+    "categorySlug": "saas"
+  },
+  {
+    "slug": "best-ecommerce-platforms",
+    "title": "Best Ecommerce Platforms in 2026: Shopify, WooCommerce, Headless, and Beyond",
+    "wordCount": 1873,
+    "internalLinks": [
+      {
+        "href": "/services/shopify-development",
+        "label": "Shopify Development Services"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom E-commerce Web Applications"
+      },
+      {
+        "href": "/services/marketplace-development",
+        "label": "Marketplace Commerce Development"
+      },
+      {
+        "href": "/services/saas-development",
+        "label": "Subscription Platform Development"
+      },
+      {
+        "href": "/services/ai-business-automation",
+        "label": "AI for E-commerce Automation"
+      }
+    ],
+    "categorySlug": "shopify"
+  },
+  {
+    "slug": "future-of-ai-in-business",
+    "title": "The Future of AI in Business: Practical Strategy, Risks, and Competitive Advantage",
+    "wordCount": 1881,
+    "internalLinks": [
+      {
+        "href": "/marketplace/hire-ai-automation-specialists",
+        "label": "Hire AI Automation Specialists on DEWEB Marketplace"
+      },
+      {
+        "href": "/services/ai-business-automation",
+        "label": "AI Automation Services"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "AI-Enabled Web Applications"
+      },
+      {
+        "href": "/services/saas-development",
+        "label": "AI SaaS Product Development"
+      },
+      {
+        "href": "/services/marketplace-development",
+        "label": "AI for Marketplace Platforms"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "AI for E-commerce Stores"
+      }
+    ],
+    "categorySlug": "ai"
+  },
+  {
+    "slug": "nextjs-vs-wordpress",
+    "title": "Next.js vs WordPress: Which Platform Wins for Modern Business Websites?",
+    "wordCount": 1871,
+    "internalLinks": [
+      {
+        "href": "/services/web-application-development",
+        "label": "Web Application Development Services"
+      },
+      {
+        "href": "/services",
+        "label": "All DEWEB Services"
+      },
+      {
+        "href": "/contact",
+        "label": "Book a Technical Consultation"
+      }
+    ],
+    "categorySlug": "web-development"
+  },
+  {
+    "slug": "shopify-plus-vs-standard",
+    "title": "Shopify Plus vs Standard Shopify: A Decision Guide for Scaling Brands",
+    "wordCount": 1892,
+    "internalLinks": [
+      {
+        "href": "/services/shopify-development",
+        "label": "Shopify Development Services"
+      },
+      {
+        "href": "/services/shopify-custom-apps",
+        "label": "Shopify Custom App Development"
+      },
+      {
+        "href": "/contact",
+        "label": "Talk to a Shopify Expert"
+      }
+    ],
+    "categorySlug": "shopify"
+  },
+  {
+    "slug": "how-to-hire-software-developers",
+    "title": "How to Hire Software Developers: A Practical Guide for Founders and Growing Teams",
+    "wordCount": 1870,
+    "internalLinks": [
+      {
+        "href": "/marketplace/hire-web-developers",
+        "label": "Hire Web Developers on DEWEB Marketplace"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Build with Dedicated Engineering Teams"
+      },
+      {
+        "href": "/services",
+        "label": "Explore Product Development Services"
+      },
+      {
+        "href": "/contact",
+        "label": "Discuss Your Hiring and Delivery Needs"
+      }
+    ],
+    "categorySlug": "web-development"
+  },
+  {
+    "slug": "mvp-development-cost-guide",
+    "title": "MVP Development Cost Guide: How to Budget Smartly Without Killing Product Momentum",
+    "wordCount": 1871,
+    "internalLinks": [
+      {
+        "href": "/services/saas-development",
+        "label": "SaaS Product Development Services"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "MVP Web App Development"
+      },
+      {
+        "href": "/contact",
+        "label": "Estimate Your MVP Roadmap"
+      }
+    ],
+    "categorySlug": "saas"
+  },
+  {
+    "slug": "headless-commerce-guide",
+    "title": "Headless Commerce Guide: When and How to Move Beyond Traditional Storefronts",
+    "wordCount": 1881,
+    "internalLinks": [
+      {
+        "href": "/services/shopify-development",
+        "label": "Headless Shopify Development"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom Frontend Engineering"
+      },
+      {
+        "href": "/contact",
+        "label": "Plan a Headless Commerce Roadmap"
+      }
+    ],
+    "categorySlug": "shopify"
+  },
+  {
+    "slug": "technical-seo-for-ecommerce",
+    "title": "Technical SEO for Ecommerce: A 2026 Growth Framework for High-Converting Stores",
+    "wordCount": 4781,
+    "internalLinks": [
+      {
+        "href": "/services/shopify-development",
+        "label": "Shopify Development Services"
+      },
+      {
+        "href": "/services/shopify-development",
+        "label": "Ecommerce Website Development"
+      },
+      {
+        "href": "/services/seo",
+        "label": "Technical SEO and Growth Support"
+      }
+    ],
+    "categorySlug": "shopify"
+  },
+  {
+    "slug": "telegram-bot-development-guide",
+    "title": "Telegram Bot Development Guide: AI Automation Patterns for 2026",
+    "wordCount": 4780,
+    "internalLinks": [
+      {
+        "href": "/marketplace/hire-telegram-bot-developers",
+        "label": "Hire Telegram Bot Developers on DEWEB Marketplace"
+      },
+      {
+        "href": "/services/telegram-bot-development",
+        "label": "Telegram Bot Development Services"
+      },
+      {
+        "href": "/services/ai-business-automation",
+        "label": "Business Automation Services"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom Backend Integration"
+      }
+    ],
+    "categorySlug": "ai"
+  },
+  {
+    "slug": "marketplace-monetization-strategies",
+    "title": "Marketplace Monetization Strategies: Revenue Models That Scale in 2026",
+    "wordCount": 4799,
+    "internalLinks": [
+      {
+        "href": "/services/marketplace-development",
+        "label": "Marketplace Platform Development"
+      },
+      {
+        "href": "/services/marketplace-development",
+        "label": "Product Strategy and Monetization Consulting"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom Marketplace Engineering"
+      }
+    ],
+    "categorySlug": "marketplace"
+  },
+  {
+    "slug": "outsourcing-software-development-2026",
+    "title": "Outsourcing Software Development in 2026: A Strategic Guide for Product Teams",
+    "wordCount": 4732,
+    "internalLinks": [
+      {
+        "href": "/marketplace/hire-web-developers",
+        "label": "Hire Web Developers Through DEWEB Marketplace"
+      },
+      {
+        "href": "/marketplace",
+        "label": "Dedicated Development Team Services"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom Web Development"
+      },
+      {
+        "href": "/services/saas-development",
+        "label": "MVP Development Services"
+      }
+    ],
+    "categorySlug": "web-development"
+  },
+  {
+    "slug": "competitive-bidding-it-projects",
+    "title": "Competitive Bidding in IT Projects: Marketplace Models, Risks, and Best Practices",
+    "wordCount": 4841,
+    "internalLinks": [
+      {
+        "href": "/services/marketplace-development",
+        "label": "Marketplace Development for Procurement"
+      },
+      {
+        "href": "/services/web-application-development",
+        "label": "Custom Workflow Platform Development"
+      },
+      {
+        "href": "/contact",
+        "label": "Discuss Your IT Bidding Platform Idea"
+      }
+    ],
+    "categorySlug": "marketplace"
+  }
+]

@@ -158,7 +158,10 @@ export const headlessCommerceGuide: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/shopify-development", label: "Headless Shopify Development" },
+    { href: "/services/landing-page-development", label: "Landing Page Development Services" },
+    { href: "/services/seo", label: "Technical SEO and Ecommerce SEO" },
     { href: "/services/web-application-development", label: "Custom Frontend Engineering" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
     { href: "/contact", label: "Plan a Headless Commerce Roadmap" },
   ]),
   cta: {

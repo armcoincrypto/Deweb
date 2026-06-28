@@ -142,8 +142,11 @@ export const competitiveBiddingItProjects: BlogArticle = {
     "how-to-hire-software-developers",
   ],
   internalLinks: blogInternalLinks([
-    { href: "/services/marketplace-development", label: "Marketplace Development for Procurement" },
-    { href: "/services/web-application-development", label: "Custom Workflow Platform Development" },
+    { href: "/services/marketplace-development", label: "Marketplace Platform Development" },
+    { href: "/marketplace/hire-marketplace-developers", label: "Hire Marketplace Developers on DEWEB Marketplace" },
+    { href: "/dedicated-development-team", label: "Dedicated Development Team at DEWEB" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
+    { href: "/services/web-application-development", label: "Custom Marketplace Engineering" },
     { href: "/contact", label: "Discuss Your IT Bidding Platform Idea" },
   ]),
   cta: {

@@ -20,6 +20,7 @@ export function mergeLandingPage(
     process: translated.process ?? base.process,
     faqs: translated.faqs ?? base.faqs,
     relatedServices: translated.relatedServices ?? base.relatedServices,
+    marketplaceHire: translated.marketplaceHire ?? base.marketplaceHire,
     cta: translated.cta ?? base.cta,
   };
 }

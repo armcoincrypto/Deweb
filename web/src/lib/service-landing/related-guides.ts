@@ -44,6 +44,26 @@ export const SERVICE_RELATED_GUIDES: Partial<
     "headless-commerce-guide",
   ],
   "saas-development": ["saas-development-guide", "mvp-development-cost-guide"],
+  "landing-page-development": [
+    "headless-commerce-guide",
+    "technical-seo-for-ecommerce",
+    "mvp-development-cost-guide",
+    "nextjs-vs-wordpress",
+  ],
+  seo: [
+    "technical-seo-for-ecommerce",
+    "nextjs-vs-wordpress",
+    "headless-commerce-guide",
+    "shopify-development-cost-2026",
+    "mvp-development-cost-guide",
+  ],
+  mobile: [
+    "custom-web-application-development",
+    "mvp-development-cost-guide",
+    "saas-development-guide",
+    "how-to-hire-software-developers",
+    "outsourcing-software-development-2026",
+  ],
 };
 
 export function getRelatedGuideSlugs(slug: ServiceLandingSlug): BlogArticleSlug[] {

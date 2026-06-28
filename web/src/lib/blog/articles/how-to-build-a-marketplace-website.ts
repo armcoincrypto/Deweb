@@ -152,6 +152,8 @@ export const howToBuildMarketplaceWebsite: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/marketplace-development", label: "Marketplace Development Services" },
+    { href: "/marketplace/hire-marketplace-developers", label: "Hire Marketplace Developers on DEWEB Marketplace" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
     { href: "/services/web-application-development", label: "Custom Web Application Development" },
     { href: "/services/saas-development", label: "SaaS Development Services" },
     { href: "/services/shopify-development", label: "Shopify Development Services" },

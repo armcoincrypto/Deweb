@@ -85,24 +85,21 @@ export const aiShowcase = [
 export const testimonials = [
   {
     quote:
-      "We received 6 competitive offers in under 24 hours. Saved 30% vs our previous agency.",
-    author: "David Chen",
-    role: "CTO, FinFlow",
-    rating: 5,
+      "Illustrative marketplace scenario: a buyer posts a scoped brief, compares supplier proposals side by side, and selects delivery terms that match timeline and budget.",
+    label: "Marketplace bidding workflow",
+    type: "Illustrative client scenario",
   },
   {
     quote:
-      "The bidding dashboard made supplier comparison effortless. Delivery was on time.",
-    author: "Maria Santos",
-    role: "Product Lead, ScaleUp",
-    rating: 5,
+      "Illustrative supplier scenario: specialists respond with clear scope, milestones, and pricing so buyers can evaluate fit before committing.",
+    label: "Supplier proposal comparison",
+    type: "Illustrative client scenario",
   },
   {
     quote:
-      "DEWEB's AI automation team built our internal bots in two weeks. Exceptional quality.",
-    author: "Alex Kim",
-    role: "Founder, AutoStack",
-    rating: 5,
+      "Illustrative automation scenario: internal workflows are mapped first, then bots handle repeatable steps while humans keep approval and exception handling.",
+    label: "AI automation delivery",
+    type: "Illustrative client scenario",
   },
 ];
 

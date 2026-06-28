@@ -10,6 +10,8 @@ import { marketplaceDevelopment } from "./pages/marketplace-development";
 import { saasDevelopment } from "./pages/saas-development";
 import { landingPageDevelopment } from "./pages/landing-page-development";
 import { telegramBotDevelopment } from "./pages/telegram-bot-development";
+import { seoServices } from "./pages/seo";
+import { mobileDevelopment } from "./pages/mobile";
 
 const pages: Record<ServiceLandingSlug, ServiceLandingPage> = {
   "shopify-development": shopifyDevelopment,
@@ -22,6 +24,8 @@ const pages: Record<ServiceLandingSlug, ServiceLandingPage> = {
   "saas-development": saasDevelopment,
   "landing-page-development": landingPageDevelopment,
   "telegram-bot-development": telegramBotDevelopment,
+  seo: seoServices,
+  mobile: mobileDevelopment,
 };
 
 export { SERVICE_LANDING_SLUGS };

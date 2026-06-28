@@ -19,6 +19,7 @@ if [[ -f "$APP_DIR/web/package.json" ]]; then
   unset NODE_ENV
   npm install
   npm run favicons
+  rm -rf .next
   npm run build
   systemctl restart deweb-next
 fi

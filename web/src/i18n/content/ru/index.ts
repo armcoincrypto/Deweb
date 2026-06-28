@@ -13,6 +13,8 @@ import { webApplicationDevelopment } from "./landings/web-application-developmen
 import { marketplaceDevelopment } from "./landings/marketplace-development";
 import { saasDevelopment } from "./landings/saas-development";
 import { landingPageDevelopment } from "./landings/landing-page-development";
+import { seoServices } from "./landings/seo";
+import { mobileDevelopment } from "./landings/mobile";
 import { blog } from "./blog";
 
 const content: LocaleContentModule = {
@@ -31,6 +33,8 @@ const content: LocaleContentModule = {
     "marketplace-development": marketplaceDevelopment,
     "saas-development": saasDevelopment,
     "landing-page-development": landingPageDevelopment,
+    seo: seoServices,
+    mobile: mobileDevelopment,
   },
   blog,
 };

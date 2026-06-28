@@ -143,7 +143,8 @@ export const marketplaceMonetizationStrategies: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/marketplace-development", label: "Marketplace Platform Development" },
-    { href: "/services/marketplace-development", label: "Product Strategy and Monetization Consulting" },
+    { href: "/marketplace/hire-marketplace-developers", label: "Hire Marketplace Developers on DEWEB Marketplace" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
     { href: "/services/web-application-development", label: "Custom Marketplace Engineering" },
   ]),
   cta: {

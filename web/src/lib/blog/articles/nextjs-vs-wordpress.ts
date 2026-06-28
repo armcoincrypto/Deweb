@@ -152,7 +152,10 @@ export const nextjsVsWordpress: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/web-application-development", label: "Web Application Development Services" },
+    { href: "/services/landing-page-development", label: "Landing Page Development Services" },
+    { href: "/services/seo", label: "Technical SEO Services" },
     { href: "/services", label: "All DEWEB Services" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
     { href: "/contact", label: "Book a Technical Consultation" },
   ]),
   cta: {

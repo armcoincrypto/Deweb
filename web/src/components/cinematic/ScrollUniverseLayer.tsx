@@ -51,12 +51,20 @@ export const ScrollUniverseLayer = forwardRef<HTMLDivElement, ScrollUniverseLaye
 
         {resolved === "full" && (
           <div className="absolute inset-0 opacity-95">
-            <DigitalGlobe className="h-full w-full" variant="full" />
+            <DigitalGlobe
+              className="h-full w-full"
+              variant="full"
+              fallback={<UniverseFallback mode="css" />}
+            />
           </div>
         )}
         {resolved === "lite" && (
           <div className="absolute inset-0 opacity-90">
-            <DigitalGlobe className="h-full w-full" variant="lite" />
+            <DigitalGlobe
+              className="h-full w-full"
+              variant="lite"
+              fallback={<UniverseFallback mode="css" />}
+            />
           </div>
         )}
         {resolved === "css" && <UniverseFallback mode="css" />}

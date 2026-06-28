@@ -1,5 +1,4 @@
 import { getArticle } from "@/lib/blog";
-import type { BlogArticleSlug } from "@/lib/blog/article-slugs";
 import { getMessages, getNested } from "@/lib/i18n/locale-messages";
 import type { Locale } from "@/i18n/routing";
 import type { ServiceLandingSlug } from "./types";

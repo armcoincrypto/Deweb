@@ -151,7 +151,7 @@ export const shopifyDevelopmentCost2026: BlogArticle = {
   ],
   internalLinks: blogInternalLinks([
     { href: "/services/shopify-development", label: "Shopify Development Services" },
-    { href: "/services/shopify-development", label: "Ecommerce Development Services" },
+    { href: "/marketplace/hire-web-developers", label: "Hire Web Developers on DEWEB Marketplace" },
     { href: "/services/seo", label: "Technical SEO Services" },
   ]),
   cta: {

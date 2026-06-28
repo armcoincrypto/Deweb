@@ -38,6 +38,7 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   const legacy = serviceCategories
     .filter((s) => !(SUPERSEDED_LEGACY_SERVICE_IDS as readonly string[]).includes(s.id))
+    .filter((s) => !isServiceLandingSlug(s.id))
     .map((s) => ({ slug: s.id }));
   const landings = SERVICE_LANDING_SLUGS.map((slug) => ({ slug }));
   return [...legacy, ...landings];

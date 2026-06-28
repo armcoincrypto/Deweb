@@ -10,12 +10,24 @@ import { pinnedHomeSlides, type PinnedHomeSlide } from "@/lib/home-pinned-servic
 import { setGlobeAccent, globeScrollState } from "@/lib/globe-scroll-state";
 import { PinnedServiceSlide } from "./PinnedServiceSlide";
 import { ScrollUniverseLayer } from "./ScrollUniverseLayer";
+import { VisualSectionErrorBoundary } from "@/components/ui/VisualSectionErrorBoundary";
+import { SparkleField, CssGlobe } from "@/components/ui/SparkleField";
 import { cn } from "@/lib/utils";
+
+function UniverseCssFallback() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 bg-hero-mesh opacity-90" />
+      <SparkleField density="medium" focal className="opacity-70" />
+      <CssGlobe accent="#00f2ff" />
+    </div>
+  );
+}
 
 type UniverseMode = "full" | "lite" | "css";
 
 function getUniverseMode(): UniverseMode {
-  if (typeof window === "undefined") return "full";
+  if (typeof window === "undefined") return "css";
   if (window.matchMedia("(max-width: 639px)").matches) return "css";
   if (window.matchMedia("(max-width: 1023px)").matches) return "lite";
   return "full";
@@ -44,7 +56,7 @@ export function PinnedServiceExperience({
   const reduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const [usePin, setUsePin] = useState(false);
-  const [universeMode, setUniverseMode] = useState<UniverseMode>("full");
+  const [universeMode, setUniverseMode] = useState<UniverseMode>("css");
   const [ready, setReady] = useState(false);
 
   const total = slides.length;
@@ -164,7 +176,9 @@ export function PinnedServiceExperience({
       aria-label="DeWeb services"
     >
       <div ref={stageRef} className="pinned-stage perspective-3d">
-        <ScrollUniverseLayer ref={globeRef} mode={universeMode} />
+        <VisualSectionErrorBoundary label="scroll-universe" fallback={<UniverseCssFallback />}>
+          <ScrollUniverseLayer ref={globeRef} mode={universeMode} />
+        </VisualSectionErrorBoundary>
         {slides.map((slide, i) => (
           <PinnedServiceSlide
             key={slide.id}

@@ -3,6 +3,8 @@ import type { ServiceLandingSlug } from "@/lib/service-landing/types";
 import { aiBusinessAutomation } from "./ai-business-automation";
 import { aiChatbotDevelopment } from "./ai-chatbot-development";
 import { landingPageDevelopment } from "./landing-page-development";
+import { seoServices } from "./seo";
+import { mobileDevelopment } from "./mobile";
 import { marketplaceDevelopment } from "./marketplace-development";
 import { saasDevelopment } from "./saas-development";
 import { shopifyCustomApps } from "./shopify-custom-apps";
@@ -21,5 +23,7 @@ export const landings: Partial<Record<ServiceLandingSlug, LandingTexts>> = {
   "marketplace-development": marketplaceDevelopment,
   "saas-development": saasDevelopment,
   "landing-page-development": landingPageDevelopment,
+  seo: seoServices,
+  mobile: mobileDevelopment,
   "telegram-bot-development": telegramBotDevelopment,
 };

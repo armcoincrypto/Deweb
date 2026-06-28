@@ -214,6 +214,12 @@ export const shopifyStoreDesign: ServiceLandingPage = {
         "Design and build scalable commerce marketplaces with vendor management and transaction workflows.",
     },
   ]),
+  marketplaceHire: {
+    href: "/marketplace/hire-web-developers",
+    label: "Hire Web Developers",
+    description:
+      "Find Shopify designers and front-end developers on DEWEB Marketplace to refresh your storefront UX, theme structure, and conversion-focused page layouts.",
+  },
   cta: {
     title: "Need a Shopify Store That Looks and Converts Better?",
     description:

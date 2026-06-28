@@ -9,6 +9,8 @@ import { webApplicationDevelopment } from "./web-application-development";
 import { marketplaceDevelopment } from "./marketplace-development";
 import { saasDevelopment } from "./saas-development";
 import { telegramBotDevelopment } from "./telegram-bot-development";
+import { seoServices } from "./seo";
+import { mobileDevelopment } from "./mobile";
 
 export const landings: LocaleContentModule["landings"] = {
   "landing-page-development": landingPageDevelopment,
@@ -21,4 +23,6 @@ export const landings: LocaleContentModule["landings"] = {
   "marketplace-development": marketplaceDevelopment,
   "saas-development": saasDevelopment,
   "telegram-bot-development": telegramBotDevelopment,
+  "seo": seoServices,
+  "mobile": mobileDevelopment,
 };

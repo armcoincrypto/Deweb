@@ -46,6 +46,16 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "Hire AI automation specialists through DEWEB Marketplace — post workflow, integration, and intelligent operations projects; compare proposals from vetted automation engineers.",
   },
+  "hire-marketplace-developers": {
+    title: "Hire Marketplace Developers | Post Projects & Compare Proposals | DEWEB",
+    description:
+      "Hire marketplace developers through DEWEB — post multi-vendor platform projects, compare proposals, and staff engineers for payments, commissions, admin panels, and scalable marketplace architecture.",
+  },
+  "dedicated-development-team": {
+    title: "Dedicated Development Team | Hire Dedicated Software Engineers | DEWEB",
+    description:
+      "Build a dedicated software development team with DEWEB — long-term engineering capacity for startups, SaaS, marketplaces, mobile apps, and ecommerce with transparent scoped discovery.",
+  },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
     description:
@@ -270,6 +280,16 @@ export const LANDING_SEO: Record<string, SeoEntry> = {
     title: "Telegram Bot Development Services | Mini Apps, Payments & Automation | DEWEB",
     description:
       "Build Telegram bots, Mini Apps, payment flows, CRM integrations, AI assistants, and automation tools with DEWEB's Telegram bot development services.",
+  },
+  seo: {
+    title: "SEO Services | Technical SEO, Content Strategy & International SEO | DEWEB",
+    description:
+      "Technical SEO audits, on-page optimization, multilingual SEO, ecommerce SEO, and organic growth strategy for SaaS, Shopify, marketplaces, and lead-generation sites.",
+  },
+  mobile: {
+    title: "Mobile App Development Services | iOS, Android & Cross-Platform | DEWEB",
+    description:
+      "Custom mobile app development for iOS, Android, React Native, and Flutter — MVP launches, SaaS companion apps, ecommerce, and marketplace mobile products by DEWEB.",
   },
 };
 
