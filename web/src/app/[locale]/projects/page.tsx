@@ -1,8 +1,11 @@
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PageSchemas } from "@/components/seo/PageSchemas";
 import { ProjectsIndexView } from "@/components/projects/ProjectsIndexView";
 import { getLocalizedPageSeo } from "@/lib/i18n/locale-seo";
 import { localizedPageMetadata } from "@/lib/i18n/page-metadata";
 import { getAllProjects } from "@/lib/projects";
+import { portfolioItemListSchema } from "@/lib/schema";
+import { absoluteUrl } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -17,6 +20,7 @@ export default async function ProjectsIndexPage({ params }: Props) {
   const loc = locale as Locale;
   const seo = await getLocalizedPageSeo(loc, "portfolio");
   const projects = getAllProjects();
+  const pageUrl = absoluteUrl(loc, "/projects");
 
   return (
     <>
@@ -28,6 +32,19 @@ export default async function ProjectsIndexPage({ params }: Props) {
         breadcrumbs={[
           { name: "Home", path: "/" },
           { name: "Projects", path: "/projects" },
+        ]}
+      />
+      <JsonLd
+        data={[
+          portfolioItemListSchema({
+            name: seo.title,
+            url: pageUrl,
+            items: projects.map((project) => ({
+              name: project.title,
+              url: absoluteUrl(loc, project.path),
+              description: project.summary,
+            })),
+          }),
         ]}
       />
       <ProjectsIndexView projects={projects} />

@@ -30,6 +30,10 @@ export async function ProjectsIndexView({ projects }: ProjectsIndexViewProps) {
       <PageHeader kicker={t("indexKicker")} title={t("indexTitle")} subtitle={t("indexSubtitle")} />
 
       <section className="container-narrow border-b border-white/[0.06] px-4 py-12 sm:px-6 lg:px-8">
+        <div className="content-panel mb-10 rounded-2xl p-6 sm:p-8">
+          <p className="max-w-3xl text-base leading-relaxed text-white/65">{t("indexIntro")}</p>
+        </div>
+
         <div className="grid gap-6 md:grid-cols-2">
           {projects.map((project) => (
             <article

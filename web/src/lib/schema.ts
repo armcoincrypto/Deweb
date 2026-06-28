@@ -8,6 +8,13 @@ export const DEWEB_ORG_ID = `${SITE_URL}/#organization`;
 export const DEWEB_WEBSITE_ID = `${SITE_URL}/#website`;
 export const DEWEB_GITHUB_URL = "https://github.com/armcoincrypto/Deweb";
 
+export const DEWEB_PORTFOLIO_URLS = [
+  `${SITE_URL}/en/projects/kobbopay`,
+  `${SITE_URL}/en/projects/exswaping`,
+  `${SITE_URL}/en/projects/changetext`,
+  `${SITE_URL}/en/projects/dex-kobbex`,
+] as const;
+
 export const DEWEB_KNOWS_ABOUT = [
   "Crypto payment gateways",
   "Web application development",
@@ -23,8 +30,7 @@ export const websiteRef = { "@id": DEWEB_WEBSITE_ID };
 function buildEntitySameAs(): string[] {
   const links = [
     DEWEB_GITHUB_URL,
-    `${SITE_URL}/en/projects/kobbopay`,
-    `${SITE_URL}/en/projects/exswaping`,
+    ...DEWEB_PORTFOLIO_URLS,
     ...Object.values(defaultSocialLinks).map((s) => s.href),
   ];
   return [...new Set(links)];
@@ -193,6 +199,44 @@ export function authorPersonSchema({
     jobTitle: role,
     url,
     worksFor: organizationRef,
+  };
+}
+
+export type PortfolioListItem = {
+  name: string;
+  url: string;
+  description: string;
+};
+
+export function portfolioItemListSchema({
+  name,
+  url,
+  items,
+}: {
+  name: string;
+  url: string;
+  items: PortfolioListItem[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${url}#itemlist`,
+    name,
+    url,
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: item.url,
+      item: {
+        "@type": "CreativeWork",
+        name: item.name,
+        url: item.url,
+        description: item.description,
+        creator: organizationRef,
+      },
+    })),
   };
 }
 

@@ -1427,6 +1427,7 @@
     "indexKicker": "Production case studies",
     "indexTitle": "Real projects built by DEWEB",
     "indexSubtitle": "Production engineering case studies covering fintech payments, crypto exchange platforms, AI Telegram automation, and Web3 DEX architecture — documented with real stack choices and operational detail.",
+    "indexIntro": "A portfolio of production-focused software, payment, automation, and exchange projects built around practical engineering experience.",
     "viewCaseStudy": "View case study",
     "techStack": "Tech stack",
     "relatedServicesTitle": "Related services",
