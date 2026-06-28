@@ -46,6 +46,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             description: project.summary,
             url,
             keywords: project.tags,
+            about: project.schemaAbout ?? project.trust?.industry ?? project.projectType,
           }),
           breadcrumbSchema(breadcrumbs, locale),
         ]}

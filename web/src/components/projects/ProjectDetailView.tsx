@@ -2,6 +2,8 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { GlowButton } from "@/components/ui/GlowButton";
+import { ProjectEnhancementSections } from "@/components/projects/ProjectEnhancementSections";
+import { ProjectTrustPanel } from "@/components/projects/ProjectTrustPanel";
 import type { ProjectPage } from "@/lib/projects/types";
 
 type ProjectDetailViewProps = {
@@ -10,6 +12,25 @@ type ProjectDetailViewProps = {
 
 export async function ProjectDetailView({ project }: ProjectDetailViewProps) {
   const t = await getTranslations("projects");
+
+  const enhancementLabels = {
+    systemArchitecture: t("systemArchitectureTitle"),
+    supportedNetworks: t("supportedNetworksTitle"),
+    coreCapabilities: t("coreCapabilitiesTitle"),
+    securityReliability: t("securityReliabilityTitle"),
+    developmentStack: t("developmentStackTitle"),
+    exchangeWorkflow: t("exchangeWorkflowTitle"),
+    platformComponents: t("platformComponentsTitle"),
+    seoEngineering: t("seoEngineeringTitle"),
+    operations: t("operationsTitle"),
+    challengesSolved: t("challengesSolvedTitle"),
+    engineeringLessons: t("engineeringLessonsTitle"),
+  };
+
+  const primaryHref = project.cta.primaryHref ?? "/contact";
+  const secondaryHref = project.cta.secondaryHref ?? "/marketplace";
+  const primaryLabel = project.cta.primaryLabel ?? t("ctaContact");
+  const secondaryLabel = project.cta.secondaryLabel ?? t("ctaMarketplace");
 
   return (
     <>
@@ -40,6 +61,18 @@ export async function ProjectDetailView({ project }: ProjectDetailViewProps) {
         aria-labelledby="project-detail-main"
       >
         <div className="space-y-10">
+          {project.trust && (
+            <ProjectTrustPanel
+              trust={project.trust}
+              labels={{
+                projectType: t("trustProjectType"),
+                industry: t("trustIndustry"),
+                technology: t("trustTechnology"),
+                deploymentModel: t("trustDeploymentModel"),
+              }}
+            />
+          )}
+
           <div>
             <h2 id="project-detail-main" className="text-sm font-bold uppercase tracking-wider text-white/45">
               {t("techStack")}
@@ -55,6 +88,8 @@ export async function ProjectDetailView({ project }: ProjectDetailViewProps) {
               ))}
             </div>
           </div>
+
+          <ProjectEnhancementSections project={project} labels={enhancementLabels} />
 
           {project.sections.map((section) => (
             <div key={section.title}>
@@ -77,6 +112,11 @@ export async function ProjectDetailView({ project }: ProjectDetailViewProps) {
           <div>
             <h2 className="text-2xl font-bold text-white">{t("relatedServicesTitle")}</h2>
             <ul className="mt-4 space-y-3 text-white/65">
+              <li>
+                <Link href="/services" className="font-semibold text-deweb-cyan hover:underline">
+                  {t("servicesLink")}
+                </Link>
+              </li>
               {project.relatedServices.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="font-semibold text-deweb-cyan hover:underline">
@@ -91,11 +131,11 @@ export async function ProjectDetailView({ project }: ProjectDetailViewProps) {
             <h2 className="text-2xl font-bold text-white sm:text-3xl">{project.cta.title}</h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-white/60">{project.cta.description}</p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <GlowButton href="/contact" variant="primary">
-                {t("ctaContact")}
+              <GlowButton href={primaryHref} variant="primary">
+                {primaryLabel}
               </GlowButton>
-              <GlowButton href="/marketplace" variant="ghost">
-                {t("ctaMarketplace")}
+              <GlowButton href={secondaryHref} variant="ghost">
+                {secondaryLabel}
               </GlowButton>
             </div>
           </section>

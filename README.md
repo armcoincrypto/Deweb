@@ -1,9 +1,51 @@
-# Deweb
+# DEWEB
 
-DeWeb community marketplace — full-stack SaaS platform (Next.js + legacy UI + Node API + SQLite).
+**DEWEB** is an IT marketplace and engineering agency for Shopify, AI automation, SaaS, marketplaces, fintech-style payment systems, and custom web applications.
 
-**GitHub:** https://github.com/armcoincrypto/Deweb  
-**Live site:** https://dewebam.com (redirects to `/en`)
+- **Live site:** [dewebam.com](https://dewebam.com) (default locale: `/en`)
+- **GitHub:** [github.com/armcoincrypto/Deweb](https://github.com/armcoincrypto/Deweb)
+
+## Multilingual site
+
+| Locale | URL |
+|--------|-----|
+| English | [dewebam.com/en](https://dewebam.com/en) |
+| Spanish | [dewebam.com/es](https://dewebam.com/es) |
+| Russian | [dewebam.com/ru](https://dewebam.com/ru) |
+| Armenian | [dewebam.com/am](https://dewebam.com/am) |
+
+## Production portfolio
+
+Real project case studies (architecture, stack, operations — no fabricated metrics):
+
+| Project | Portfolio | GitHub doc |
+|---------|-----------|------------|
+| Kobbopay — multi-rail crypto payments | [/en/projects/kobbopay](https://dewebam.com/en/projects/kobbopay) | [docs/projects/kobbopay-architecture.md](docs/projects/kobbopay-architecture.md) |
+| Exswaping — cryptocurrency exchange | [/en/projects/exswaping](https://dewebam.com/en/projects/exswaping) | [docs/projects/exswaping-architecture.md](docs/projects/exswaping-architecture.md) |
+| Changetext — AI Telegram automation | [/en/projects/changetext](https://dewebam.com/en/projects/changetext) | [docs/projects/changetext-case-study.md](docs/projects/changetext-case-study.md) |
+| DEX Kobbex — decentralized swap UI | [/en/projects/dex-kobbex](https://dewebam.com/en/projects/dex-kobbex) | [docs/projects/dex-kobbex-architecture.md](docs/projects/dex-kobbex-architecture.md) |
+
+Full index: [dewebam.com/en/projects](https://dewebam.com/en/projects)
+
+## Engineering documentation
+
+Architecture notes and engineering references for production systems:
+
+- [Engineering docs index](docs/engineering/README.md)
+- [Crypto payment gateway architecture](docs/engineering/crypto-payment-gateway-architecture.md)
+- [Multi-rail settlement system](docs/engineering/multi-rail-settlement-system.md)
+
+## Repository structure
+
+| Path | Description |
+|------|-------------|
+| **web/** | Next.js marketing site, marketplace UI, portfolio, SEO (port 3001 production) |
+| **backend/** | Express API, SQLite, seed data |
+| **deweb-community/** | Legacy frontend (HTML/CSS/JS) |
+| **docs/** | Engineering docs, runbooks, audit history |
+| **deploy/** | Deployment scripts |
+
+---
 
 ## GitHub — connect & sync
 
@@ -101,12 +143,6 @@ After starting the API (seed runs automatically):
 - `gor@deweb.demo` / `demo1234`
 
 Switch to **Seller** in My Profile to add products; they appear on the main marketplace.
-
-## Project structure
-
-- **web/** — Premium Next.js homepage (Tailwind, Framer Motion) — `cd web && npm run dev`
-- **deweb-community/** — Legacy frontend (HTML/CSS/JS), `api.js` client
-- **backend/** — Express API, SQLite, seed data
 
 ## Troubleshooting
 

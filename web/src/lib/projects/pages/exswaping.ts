@@ -11,7 +11,82 @@ export const exswaping: ProjectPage = {
     "A cryptocurrency exchange platform with trading workflows, admin operations, compliance-oriented processes, liquidity tooling, and SEO engineering for recoverable organic visibility.",
   projectType: "Crypto exchange",
   accent: "#c026d3",
-  tags: ["Exchange engine", "Admin ops", "AML/KYC", "Liquidity", "SEO", "Monitoring"],
+  schemaAbout: "Cryptocurrency exchange platform with SEO engineering and operational tooling",
+  tags: ["Laravel", "Exchange engine", "Admin ops", "AML/KYC", "SEO", "Monitoring"],
+  trust: {
+    projectType: "Cryptocurrency exchange platform",
+    industry: "Fintech · Digital assets",
+    technology: "Laravel · MySQL · Redis · SEO infrastructure",
+    deploymentModel: "Production web platform · Admin operations portal",
+  },
+  exchangeWorkflow: {
+    title: "Typical exchange request path from user action to settlement",
+    steps: [
+      { label: "User", description: "Account, deposit, or exchange request initiation" },
+      { label: "Exchange Request", description: "Order validation and state assignment" },
+      { label: "Verification", description: "AML/KYC and limit checks where required" },
+      { label: "Processing", description: "Engine execution and balance updates" },
+      { label: "Settlement", description: "Final status, notifications, and audit log" },
+    ],
+  },
+  platformComponentCards: [
+    {
+      title: "Frontend",
+      description: "User-facing trading and account flows with clear transaction status communication.",
+    },
+    {
+      title: "Admin Portal",
+      description: "Operations console for review queues, limits, configuration, and support actions.",
+    },
+    {
+      title: "Exchange Engine",
+      description: "Integration layer coordinating order states, balances, and guarded transitions.",
+    },
+    {
+      title: "Monitoring",
+      description: "Alerting-friendly logs and dashboards for stuck jobs and integration failures.",
+    },
+    {
+      title: "SEO Infrastructure",
+      description: "Crawlable architecture, metadata, schema, sitemap, and performance-oriented templates.",
+    },
+  ],
+  seoEngineeringDetail: {
+    title: "SEO engineering",
+    items: [
+      "Technical SEO — crawl paths, canonicals, indexation blockers, and redirect hygiene",
+      "Multilingual SEO — locale-aware metadata and hreflang-aligned structure",
+      "Schema markup — structured data for key landing and content templates",
+      "Sitemap management — clean inclusion rules for indexable exchange pages",
+      "Performance optimization — render and asset considerations for critical landing URLs",
+    ],
+  },
+  operationsDetail: {
+    title: "Operations",
+    paragraphs: [
+      "Exchange uptime depends on ops tooling as much as trading code. Admin flows were designed for repeatable support actions with audit-friendly logs.",
+    ],
+    items: [
+      "Monitoring for failed jobs, stuck transactions, and integration errors",
+      "Auditing of admin actions and configuration changes",
+      "Operational workflows for exceptions, reconciliation, and manual review",
+      "Platform maintenance cadence for dependencies, SEO assets, and release checks",
+    ],
+  },
+  techStackGrid: ["Laravel", "PHP", "MySQL", "Nginx", "Redis", "SEO Infrastructure"],
+  challengesSolved: [
+    "Exchange transaction workflows with explicit states instead of ambiguous balance updates",
+    "Admin operations for compliance review without blocking all trading paths",
+    "SEO technical debt remediation without claiming guaranteed ranking outcomes",
+    "Monitoring and retry pathways for integration failures in production",
+    "Separation of support, configuration, and trading-critical admin capabilities",
+  ],
+  engineeringLessons: [
+    "Exchange products need ops-first admin design — trading code alone does not reduce support load",
+    "SEO recovery is an engineering discipline: URLs, schema, and performance affect indexation readiness",
+    "Liquidity and compliance touchpoints should be integration boundaries, not scattered conditionals",
+    "Monitoring hooks belong in the initial architecture, not as a post-launch patch",
+  ],
   sections: [
     {
       title: "Overview",
@@ -34,52 +109,6 @@ export const exswaping: ProjectPage = {
       ],
     },
     {
-      title: "Solution",
-      paragraphs: [
-        "DEWEB implemented modular exchange services, admin dashboards, and an SEO remediation track aligned with crawlable architecture and clean indexation signals.",
-      ],
-      list: [
-        "Exchange workflow services with explicit order and balance states",
-        "Admin panels for operations, review queues, and configuration",
-        "Monitoring hooks for failed jobs, stuck transactions, and integration errors",
-        "SEO engineering pass — URL structure, metadata, internal linking, and technical fixes",
-      ],
-    },
-    {
-      title: "Platform Components",
-      paragraphs: ["Core platform surfaces delivered for trading and operations:"],
-      list: [
-        "User transaction workflows — deposits, trading actions, history, notifications",
-        "Exchange engine integration layer with guarded state transitions",
-        "Admin operations console for support and compliance review",
-        "Liquidity operations views and manual override pathways where required",
-        "Monitoring dashboards and alerting-friendly event logs",
-      ],
-    },
-    {
-      title: "SEO Engineering",
-      paragraphs: [
-        "SEO recovery focused on technical foundations — not inflated traffic claims. Work included crawl path cleanup, canonical consistency, and indexable landing structure for key exchange pages.",
-      ],
-      list: [
-        "Audit of indexation blockers and duplicate URL patterns",
-        "Metadata and heading structure aligned to search intent pages",
-        "Internal linking between educational, product, and support content",
-        "Performance and render considerations for critical landing templates",
-      ],
-    },
-    {
-      title: "Operations",
-      paragraphs: [
-        "Exchange uptime depends on ops tooling as much as trading code. Admin flows were designed for repeatable support actions with audit-friendly logs.",
-      ],
-      list: [
-        "Role-separated admin capabilities for support vs configuration",
-        "Reconciliation views for transaction exceptions",
-        "Runbooks supported by in-app status and retry controls",
-      ],
-    },
-    {
       title: "Results",
       paragraphs: [
         "Exswaping operates as a structured exchange platform with admin and monitoring tooling suitable for production operations.",
@@ -91,13 +120,18 @@ export const exswaping: ProjectPage = {
     { href: "/services/web-application-development", label: "Web application development" },
     { href: "/services/seo", label: "SEO services" },
     { href: "/services/marketplace-development", label: "Marketplace development" },
+    { href: "/ai-automation-development-cost", label: "AI automation development cost guide" },
     { href: "/contact", label: "Contact DEWEB" },
     { href: "/marketplace", label: "DEWEB Marketplace" },
   ],
   cta: {
-    title: "Planning an exchange or trading platform?",
+    title: "Need an exchange or fintech platform?",
     description:
-      "Contact DEWEB to scope trading workflows, admin operations, and SEO-ready architecture — discovery required, no fabricated growth claims.",
+      "Talk to DEWEB about trading workflows, admin operations, and SEO-ready architecture — discovery required, no fabricated growth claims.",
+    primaryLabel: "Talk to DEWEB",
+    primaryHref: "/contact",
+    secondaryLabel: "Post on DEWEB Marketplace",
+    secondaryHref: "/marketplace",
   },
   breadcrumbCurrent: "Exswaping",
 };

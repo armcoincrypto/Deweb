@@ -1434,6 +1434,21 @@
     "marketplaceLink": "Marketplace",
     "contactLink": "Контакты",
     "ctaContact": "Обсудить похожий проект",
-    "ctaMarketplace": "Разместить на DEWEB Marketplace"
+    "ctaMarketplace": "Разместить на DEWEB Marketplace",
+    "trustProjectType": "Тип проекта",
+    "trustIndustry": "Отрасль",
+    "trustTechnology": "Технологии",
+    "trustDeploymentModel": "Модель развёртывания",
+    "systemArchitectureTitle": "Архитектура системы",
+    "supportedNetworksTitle": "Поддерживаемые сети",
+    "coreCapabilitiesTitle": "Ключевые возможности",
+    "securityReliabilityTitle": "Безопасность и надёжность",
+    "developmentStackTitle": "Стек разработки",
+    "exchangeWorkflowTitle": "Workflow биржи",
+    "platformComponentsTitle": "Компоненты платформы",
+    "seoEngineeringTitle": "SEO-инженерия",
+    "operationsTitle": "Операции",
+    "challengesSolvedTitle": "Решённые задачи",
+    "engineeringLessonsTitle": "Инженерные выводы"
   }
 }

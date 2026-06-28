@@ -1434,6 +1434,21 @@
     "marketplaceLink": "Marketplace",
     "contactLink": "Contacto",
     "ctaContact": "Hablar de un proyecto similar",
-    "ctaMarketplace": "Publicar en DEWEB Marketplace"
+    "ctaMarketplace": "Publicar en DEWEB Marketplace",
+    "trustProjectType": "Tipo de proyecto",
+    "trustIndustry": "Industria",
+    "trustTechnology": "Tecnología",
+    "trustDeploymentModel": "Modelo de despliegue",
+    "systemArchitectureTitle": "Arquitectura del sistema",
+    "supportedNetworksTitle": "Redes soportadas",
+    "coreCapabilitiesTitle": "Capacidades principales",
+    "securityReliabilityTitle": "Seguridad y fiabilidad",
+    "developmentStackTitle": "Stack de desarrollo",
+    "exchangeWorkflowTitle": "Flujo del exchange",
+    "platformComponentsTitle": "Componentes de la plataforma",
+    "seoEngineeringTitle": "Ingeniería SEO",
+    "operationsTitle": "Operaciones",
+    "challengesSolvedTitle": "Desafíos resueltos",
+    "engineeringLessonsTitle": "Lecciones de ingeniería"
   }
 }

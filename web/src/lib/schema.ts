@@ -173,11 +173,13 @@ export function creativeWorkSchema({
   description,
   url,
   keywords,
+  about,
 }: {
   name: string;
   description: string;
   url: string;
   keywords?: string[];
+  about?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -188,6 +190,7 @@ export function creativeWorkSchema({
     url,
     creator: { "@id": `${SITE_URL}/#organization` },
     publisher: { "@id": `${SITE_URL}/#organization` },
+    ...(about ? { about } : {}),
     ...(keywords?.length ? { keywords: keywords.join(", ") } : {}),
   };
 }

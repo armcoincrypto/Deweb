@@ -11,6 +11,7 @@ export const kobbopay: ProjectPage = {
     "A production payment platform supporting TRON, BSC, and Ethereum USDT with merchant and admin portals, treasury tooling, webhooks, and monitored settlement flows.",
   projectType: "Fintech · Crypto payments",
   accent: "#00f2ff",
+  schemaAbout: "Multi-rail cryptocurrency payment platform and merchant treasury operations",
   tags: [
     "NestJS",
     "PostgreSQL",
@@ -20,6 +21,67 @@ export const kobbopay: ProjectPage = {
     "ETH USDT",
     "Webhooks",
     "Treasury",
+  ],
+  trust: {
+    projectType: "Production payment platform",
+    industry: "Fintech · Crypto payments",
+    technology: "NestJS · PostgreSQL · Redis · Multi-chain USDT",
+    deploymentModel: "Cloud-hosted API · Merchant & admin portals",
+  },
+  architectureFlow: {
+    title: "End-to-end payment path from merchant integration to settlement",
+    steps: [
+      { label: "Merchant", description: "Checkout, API keys, and webhook endpoints" },
+      { label: "API", description: "NestJS services, auth, and transaction state" },
+      { label: "Wallet Infrastructure", description: "Unique deposit addresses per payment intent" },
+      { label: "Blockchain", description: "TRON, BSC, and Ethereum USDT monitoring" },
+      { label: "Treasury", description: "Inbound flow tracking and balance segregation" },
+      { label: "Settlement", description: "Merchant-available balances and withdrawals" },
+    ],
+  },
+  networks: ["TRON (TRC20)", "BNB Smart Chain (BEP20)", "Ethereum (ERC20)"],
+  capabilities: [
+    "Unique deposit addresses",
+    "Automatic payment detection",
+    "Confirmation tracking",
+    "Merchant balances",
+    "Treasury management",
+    "Withdrawals",
+    "Webhooks",
+    "Admin controls",
+  ],
+  securityHighlights: {
+    title: "Security & Reliability",
+    items: [
+      "Multi-network validation before crediting merchant balances",
+      "Confirmation thresholds configured per rail and risk profile",
+      "Operational monitoring for stuck deposits and webhook failures",
+      "Withdrawal controls with approval steps for high-risk actions",
+      "Treasury separation between inbound flows and payout queues",
+    ],
+  },
+  techStackGrid: [
+    "NestJS",
+    "TypeScript",
+    "PostgreSQL",
+    "Redis",
+    "Nginx",
+    "TRON",
+    "BSC",
+    "Ethereum",
+  ],
+  challengesSolved: [
+    "Unified USDT acceptance across three chains without three separate merchant integrations",
+    "Reliable webhook delivery with idempotency and operator-visible retry logs",
+    "Ledger-style transaction states that support reconciliation and support investigations",
+    "Admin tooling for treasury review without direct database intervention",
+    "Decoupling chain listeners from core API latency under webhook fan-out load",
+  ],
+  engineeringLessons: [
+    "Payment platforms benefit from explicit state machines — implicit balance updates create support debt",
+    "Chain adapters should isolate RPC and confirmation logic so new rails do not rewrite core domains",
+    "Merchant and admin portals should share API contracts but never share permission models",
+    "Treasury operations need first-class UI — spreadsheets do not scale with webhook volume",
   ],
   sections: [
     {
@@ -42,58 +104,6 @@ export const kobbopay: ProjectPage = {
       ],
     },
     {
-      title: "Architecture",
-      paragraphs: [
-        "The platform uses a NestJS service layer with PostgreSQL as the system of record and Redis for queues, caching, and rate-sensitive workflows.",
-      ],
-      list: [
-        "NestJS modular domains — merchants, wallets, transactions, webhooks, admin",
-        "PostgreSQL schemas for ledger-like transaction states and audit trails",
-        "Redis for job queues, session/cache layers, and webhook retry scheduling",
-        "Chain adapters for TRON, BSC, and Ethereum USDT deposit detection",
-        "Separate merchant portal and admin portal frontends on shared API contracts",
-      ],
-    },
-    {
-      title: "Core Features",
-      paragraphs: ["Production capabilities delivered across merchant and admin surfaces:"],
-      list: [
-        "Multi-rail USDT deposit addresses and confirmation tracking",
-        "Merchant portal for balances, transaction history, and withdrawal requests",
-        "Admin portal for merchant onboarding, limits, and operational review",
-        "Webhook delivery with signing, retries, and delivery logs",
-        "Treasury management views for inbound flows and outbound settlements",
-        "Withdrawal workflows with approval steps and status monitoring",
-        "Transaction monitoring dashboards for stuck or anomalous states",
-        "Settlement flows connecting confirmed deposits to merchant-available balances",
-      ],
-    },
-    {
-      title: "Security Considerations",
-      paragraphs: [
-        "Payment platforms require conservative defaults — the implementation prioritized least-privilege access, auditable admin actions, and explicit state machines over implicit balance updates.",
-      ],
-      list: [
-        "Role-based access separation between merchant and admin capabilities",
-        "Webhook signature verification and replay-safe idempotency keys",
-        "Environment-isolated keys and configuration for chain RPC providers",
-        "Structured logging for financial state transitions without exposing secrets",
-        "Manual approval gates for high-risk treasury and withdrawal operations",
-      ],
-    },
-    {
-      title: "Scaling Challenges",
-      paragraphs: [
-        "Multi-chain monitoring and webhook fan-out create operational load that must be isolated from core API latency.",
-      ],
-      list: [
-        "Chain listener workers decoupled from HTTP request threads",
-        "Queue-backed webhook retries with backoff and dead-letter visibility",
-        "Database indexing strategy for high-volume transaction lookups",
-        "Admin tooling to reprocess failed jobs without direct database edits",
-      ],
-    },
-    {
       title: "Outcome",
       paragraphs: [
         "Kobbopay ships as a unified merchant payment stack across three USDT rails with operational tooling for treasury, settlements, and support — built for production monitoring rather than demo-only flows.",
@@ -105,13 +115,18 @@ export const kobbopay: ProjectPage = {
     { href: "/services/web-application-development", label: "Web application development" },
     { href: "/services/marketplace-development", label: "Marketplace development" },
     { href: "/dedicated-development-team", label: "Dedicated development team" },
+    { href: "/ecommerce-development-cost", label: "Ecommerce development cost guide" },
     { href: "/contact", label: "Contact DEWEB" },
     { href: "/marketplace", label: "DEWEB Marketplace" },
   ],
   cta: {
-    title: "Building a fintech or payments product?",
+    title: "Need a custom payment platform?",
     description:
-      "Talk to DEWEB about multi-rail architecture, admin operations, and production-grade settlement workflows — scoped discovery, no fabricated metrics.",
+      "Talk to DEWEB about multi-rail architecture, treasury operations, and production-grade settlement workflows — scoped discovery, no fabricated metrics.",
+    primaryLabel: "Contact DEWEB",
+    primaryHref: "/contact",
+    secondaryLabel: "Explore DEWEB Marketplace",
+    secondaryHref: "/marketplace",
   },
   breadcrumbCurrent: "Kobbopay",
 };
