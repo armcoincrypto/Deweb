@@ -945,7 +945,8 @@
     "telegramBots": "Telegram բոտերի զարգացում",
     "privacyPolicy": "Գաղտնիության քաղաքականություն",
     "cookiePolicy": "Cookie քաղաքականություն",
-    "termsOfUse": "Օգտագործման պայմաններ"
+    "termsOfUse": "Օգտագործման պայմաններ",
+    "costGuides": "Արժեքի և найմի ուղեցույցներ"
   },
   "cookies": {
     "title": "Մենք գնահատում ենք ձեր գաղտնիությունը",
@@ -1417,5 +1418,18 @@
     "ctaDescription": "Talk DEWEB engineering capacity roadmap discovery squad design long-term partnership no fabricated metrics:",
     "ctaPrimary": "Request team consultation",
     "ctaSecondary": "Explore DEWEB Marketplace"
+  },
+  "costGuides": {
+    "shared": {
+      "breadcrumbHome": "Գլխավոր",
+      "costRangesTitle": "Սովորական արժեքային միջակայքեր",
+      "costDisclaimer": "Միջակայքերը պլանավորման գնահատականներ են։ Վերջնական արժեքը կախված է scope-ից, ինտեգրացիաներից, դիզայնից և ժամկետներից — անհրաժեշտ է discovery։",
+      "comparisonTitle": "Համեմատության ակնարկ",
+      "whenToChooseTitle": "Երբ ընտրել այս մոտեցումը",
+      "relatedServicesTitle": "Կապված ծառայություններ և ուղեցույցներ",
+      "faqTitle": "Հաճախակի հարցեր",
+      "ctaPrimary": "Ստանալ scope-ով գնահատական",
+      "ctaSecondary": "Հրապարակել DEWEB Marketplace-ում"
+    }
   }
 }

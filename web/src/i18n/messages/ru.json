@@ -945,7 +945,8 @@
     "telegramBots": "Разработка Telegram-ботов",
     "privacyPolicy": "Политика конфиденциальности",
     "cookiePolicy": "Политика cookie",
-    "termsOfUse": "Условия использования"
+    "termsOfUse": "Условия использования",
+    "costGuides": "Гиды по стоимости и найму"
   },
   "cookies": {
     "title": "Мы ценим вашу конфиденциальность",
@@ -1389,5 +1390,18 @@
     "ctaDescription": "Обсудите engineering capacity для roadmap — discovery, squad design, long-term partnership без fabricated metrics.",
     "ctaPrimary": "Запросить консультацию",
     "ctaSecondary": "DEWEB Marketplace"
+  },
+  "costGuides": {
+    "shared": {
+      "breadcrumbHome": "Главная",
+      "costRangesTitle": "Типичные диапазоны стоимости",
+      "costDisclaimer": "Диапазоны — только ориентиры для планирования. Итоговая цена зависит от scope, интеграций, дизайна и сроков — требуется discovery.",
+      "comparisonTitle": "Обзор сравнения",
+      "whenToChooseTitle": "Когда выбрать этот подход",
+      "relatedServicesTitle": "Связанные услуги и гиды",
+      "faqTitle": "Часто задаваемые вопросы",
+      "ctaPrimary": "Получить оценку с учётом scope",
+      "ctaSecondary": "Разместить проект на DEWEB Marketplace"
+    }
   }
 }

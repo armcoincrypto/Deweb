@@ -942,11 +942,11 @@
     "seoServices": "Servicios SEO",
     "mobileDev": "Desarrollo de apps móviles",
     "dedicatedTeam": "Equipo de desarrollo dedicado",
-    "dedicatedTeam": "Equipo de desarrollo dedicado",
     "telegramBots": "Desarrollo de bots de Telegram",
     "privacyPolicy": "Política de privacidad",
     "cookiePolicy": "Política de cookies",
-    "termsOfUse": "Términos de uso"
+    "termsOfUse": "Términos de uso",
+    "costGuides": "Guías de costes y contratación"
   },
   "cookies": {
     "title": "Valoramos tu privacidad",
@@ -1390,5 +1390,18 @@
     "ctaDescription": "Habla con DEWEB sobre capacidad de ingeniería para tu roadmap — discovery, diseño de squad y partnership a largo plazo sin métricas fabricadas.",
     "ctaPrimary": "Solicitar consulta de equipo",
     "ctaSecondary": "Explorar DEWEB Marketplace"
+  },
+  "costGuides": {
+    "shared": {
+      "breadcrumbHome": "Inicio",
+      "costRangesTitle": "Rangos de coste habituales",
+      "costDisclaimer": "Los rangos son estimaciones de planificación. El precio final depende del alcance, integraciones, diseño y plazos — se requiere discovery.",
+      "comparisonTitle": "Comparación general",
+      "whenToChooseTitle": "Cuándo elegir este enfoque",
+      "relatedServicesTitle": "Servicios y guías relacionados",
+      "faqTitle": "Preguntas frecuentes",
+      "ctaPrimary": "Obtener una estimación detallada",
+      "ctaSecondary": "Publicar en DEWEB Marketplace"
+    }
   }
 }
