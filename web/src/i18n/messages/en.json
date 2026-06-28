@@ -945,7 +945,8 @@
     "telegramBots": "Telegram Bot Development",
     "privacyPolicy": "Privacy Policy",
     "cookiePolicy": "Cookie Policy",
-    "termsOfUse": "Terms of Use"
+    "termsOfUse": "Terms of Use",
+    "costGuides": "Cost & hiring guides"
   },
   "cookies": {
     "title": "We value your privacy",
@@ -1390,5 +1391,18 @@
     "ctaDescription": "Talk to DEWEB about dedicated engineering capacity for your product roadmap — scoped discovery, squad design, and long-term delivery partnership without fabricated metrics or guarantees.",
     "ctaPrimary": "Request a team consultation",
     "ctaSecondary": "Explore DEWEB Marketplace"
+  },
+  "costGuides": {
+    "shared": {
+      "breadcrumbHome": "Home",
+      "costRangesTitle": "Typical cost ranges",
+      "costDisclaimer": "Ranges are planning estimates only. Final pricing depends on scope, integrations, design, and timeline — discovery required.",
+      "comparisonTitle": "Comparison overview",
+      "whenToChooseTitle": "When to choose this approach",
+      "relatedServicesTitle": "Related services and guides",
+      "faqTitle": "Frequently asked questions",
+      "ctaPrimary": "Get a scoped estimate",
+      "ctaSecondary": "Post on DEWEB Marketplace"
+    }
   }
 }

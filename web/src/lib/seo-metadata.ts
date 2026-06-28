@@ -56,6 +56,66 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "Build a dedicated software development team with DEWEB — long-term engineering capacity for startups, SaaS, marketplaces, mobile apps, and ecommerce with transparent scoped discovery.",
   },
+  "mvp-development-cost": {
+    title: "MVP Development Cost (2026) | Typical Budget Ranges | DEWEB",
+    description:
+      "Planning estimates for MVP development in 2026 — prototype, launch-ready MVP, and post-launch iteration ranges. Scoped discovery required before any firm quote.",
+  },
+  "custom-web-app-development-cost": {
+    title: "Custom Web App Development Cost (2026) | Budget Guide | DEWEB",
+    description:
+      "Typical custom web application development cost ranges — internal tools, customer portals, and platform builds with scope-based disclaimers from DEWEB.",
+  },
+  "marketplace-development-cost": {
+    title: "Marketplace Development Cost (2026) | Multi-Vendor Budget Guide | DEWEB",
+    description:
+      "Marketplace development cost planning guide — MVP, growth-stage, and enterprise ranges for multi-vendor platforms. Estimate only; discovery required.",
+  },
+  "ai-chatbot-development-cost": {
+    title: "AI Chatbot Development Cost (2026) | Typical Ranges | DEWEB",
+    description:
+      "AI chatbot development cost guide — FAQ bots, lead capture assistants, and integrated support automation with transparent scope disclaimers.",
+  },
+  "hire-nextjs-developers": {
+    title: "Hire Next.js Developers | Compare Proposals & Scope Projects | DEWEB",
+    description:
+      "Hire Next.js developers through DEWEB — post projects, compare specialist proposals, and staff React/Next.js builds with clear budgets and timelines.",
+  },
+  "hire-shopify-developers": {
+    title: "Hire Shopify Developers | Store Builds & Custom Apps | DEWEB",
+    description:
+      "Hire Shopify developers for storefront builds, theme work, and custom apps — compare proposals on DEWEB Marketplace or request agency delivery.",
+  },
+  "hire-react-developers": {
+    title: "Hire React Developers | Typical Rates & Team Budgets | DEWEB",
+    description:
+      "Hire React developers through DEWEB — compare specialist proposals, typical rate ranges, and squad budgets for product and marketing builds.",
+  },
+  "hire-full-stack-developers": {
+    title: "Hire Full-Stack Developers | Scope Projects & Compare Teams | DEWEB",
+    description:
+      "Full-stack developer hiring guide — typical hourly rates, squad budgets, and fixed-scope estimates for web products with clear discovery disclaimers.",
+  },
+  "ecommerce-development-cost": {
+    title: "Ecommerce Development Cost (2026) | Typical Budget Ranges | DEWEB",
+    description:
+      "Ecommerce development cost planning guide — Shopify, custom storefronts, and marketplace-adjacent builds with scope-based estimate disclaimers.",
+  },
+  "mobile-app-development-cost": {
+    title: "Mobile App Development Cost (2026) | iOS & Android Ranges | DEWEB",
+    description:
+      "Mobile app development cost guide — MVP, cross-platform, and native builds with typical ranges and discovery-required disclaimers from DEWEB.",
+  },
+  "dedicated-development-team-cost": {
+    title: "Dedicated Development Team Cost (2026) | Monthly Squad Budgets | DEWEB",
+    description:
+      "Dedicated development team cost guide — typical monthly squad ranges, role mix, and engagement models with transparent scope disclaimers.",
+  },
+  "ai-automation-development-cost": {
+    title: "AI Automation Development Cost (2026) | Workflow & Integration Ranges | DEWEB",
+    description:
+      "AI automation development cost guide — workflow bots, integrations, and ops automation with typical ranges and discovery-required estimates.",
+  },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
     description:
