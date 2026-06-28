@@ -89,4 +89,5 @@ export const dexKobbex: ProjectPage = {
       "Talk to DEWEB about wallet integration, swap UX, and maintainable Web3 front-end architecture — discovery-led scoping without unverifiable on-chain claims.",
   },
   breadcrumbCurrent: "DEX Kobbex",
+  githubDocPath: "docs/projects/dex-kobbex-architecture.md",
 };

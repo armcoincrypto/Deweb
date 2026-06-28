@@ -129,4 +129,5 @@ export const kobbopay: ProjectPage = {
     secondaryHref: "/marketplace",
   },
   breadcrumbCurrent: "Kobbopay",
+  githubDocPath: "docs/projects/kobbopay-architecture.md",
 };

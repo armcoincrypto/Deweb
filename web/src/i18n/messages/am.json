@@ -1477,6 +1477,9 @@
     "seoEngineeringTitle": "SEO engineering",
     "operationsTitle": "Operations",
     "challengesSolvedTitle": "Challenges solved",
-    "engineeringLessonsTitle": "Engineering lessons"
+    "engineeringLessonsTitle": "Engineering lessons",
+    "engineeringDocTitle": "Engineering documentation",
+    "engineeringDocDescription": "Read the technical architecture and implementation notes behind this project.",
+    "engineeringDocLink": "View on GitHub"
   }
 }

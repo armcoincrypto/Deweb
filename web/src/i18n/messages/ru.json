@@ -1449,6 +1449,9 @@
     "seoEngineeringTitle": "SEO-инженерия",
     "operationsTitle": "Операции",
     "challengesSolvedTitle": "Решённые задачи",
-    "engineeringLessonsTitle": "Инженерные выводы"
+    "engineeringLessonsTitle": "Инженерные выводы",
+    "engineeringDocTitle": "Инженерная документация",
+    "engineeringDocDescription": "Ознакомьтесь с технической архитектурой и заметками по реализации этого проекта.",
+    "engineeringDocLink": "Открыть на GitHub"
   }
 }

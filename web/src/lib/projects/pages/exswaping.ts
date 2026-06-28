@@ -134,4 +134,5 @@ export const exswaping: ProjectPage = {
     secondaryHref: "/marketplace",
   },
   breadcrumbCurrent: "Exswaping",
+  githubDocPath: "docs/projects/exswaping-architecture.md",
 };

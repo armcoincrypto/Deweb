@@ -3,6 +3,7 @@ import { Link } from "@/i18n/routing";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { ProjectEnhancementSections } from "@/components/projects/ProjectEnhancementSections";
+import { ProjectGitHubDocPanel } from "@/components/projects/ProjectGitHubDocPanel";
 import { ProjectTrustPanel } from "@/components/projects/ProjectTrustPanel";
 import type { ProjectPage } from "@/lib/projects/types";
 
@@ -108,6 +109,15 @@ export async function ProjectDetailView({ project }: ProjectDetailViewProps) {
               )}
             </div>
           ))}
+
+          <ProjectGitHubDocPanel
+            project={project}
+            labels={{
+              title: t("engineeringDocTitle"),
+              description: t("engineeringDocDescription"),
+              link: t("engineeringDocLink"),
+            }}
+          />
 
           <div>
             <h2 className="text-2xl font-bold text-white">{t("relatedServicesTitle")}</h2>

@@ -1449,6 +1449,9 @@
     "seoEngineeringTitle": "Ingeniería SEO",
     "operationsTitle": "Operaciones",
     "challengesSolvedTitle": "Desafíos resueltos",
-    "engineeringLessonsTitle": "Lecciones de ingeniería"
+    "engineeringLessonsTitle": "Lecciones de ingeniería",
+    "engineeringDocTitle": "Documentación de ingeniería",
+    "engineeringDocDescription": "Consulte la arquitectura técnica y las notas de implementación de este proyecto.",
+    "engineeringDocLink": "Ver en GitHub"
   }
 }

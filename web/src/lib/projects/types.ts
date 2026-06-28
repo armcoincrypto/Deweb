@@ -63,4 +63,6 @@ export type ProjectPage = {
   operationsDetail?: { title: string; paragraphs?: string[]; items?: string[] };
   challengesSolved?: string[];
   engineeringLessons?: string[];
+  /** Relative path under the DEWEB GitHub repo (e.g. docs/projects/kobbopay-architecture.md) */
+  githubDocPath?: string;
 };

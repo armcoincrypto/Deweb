@@ -87,4 +87,5 @@ export const changetext: ProjectPage = {
       "Contact DEWEB to design bot workflows, integrations, and reliable automation pipelines — scoped discovery, no fake performance statistics.",
   },
   breadcrumbCurrent: "Changetext",
+  githubDocPath: "docs/projects/changetext-case-study.md",
 };
