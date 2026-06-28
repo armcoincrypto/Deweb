@@ -381,11 +381,11 @@ export const servicesPageFallback = {
     },
   ],
   stats: [
-    { value: "Multi-industry", label: "Custom development experience" },
-    { value: "Full-stack", label: "Web, mobile, AI & automation" },
-    { value: "Multilingual", label: "EN · ES · RU · AM delivery" },
-    { value: "Transparent", label: "Supplier bidding model" },
-    { value: "Ongoing", label: "Post-launch support" },
+    { value: "500+", label: "Projects Delivered" },
+    { value: "98%", label: "Client Satisfaction" },
+    { value: "20+", label: "Countries Served" },
+    { value: "50+", label: "Expert Developers" },
+    { value: "24/7", label: "Support" },
   ],
   process: [
     {

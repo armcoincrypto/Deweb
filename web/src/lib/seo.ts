@@ -5,7 +5,6 @@ import { serviceCategories } from "@/lib/services-data";
 import { BLOG_ARTICLE_SLUGS } from "@/lib/blog";
 import { blogCategories } from "@/lib/blog/categories";
 import { getServiceLandingPaths } from "@/lib/service-landing";
-import { getCostGuidePaths } from "@/lib/cost-guides";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://dewebam.com";
@@ -34,7 +33,6 @@ export const PUBLIC_STATIC_PATHS = [
   "/marketplace/hire-ai-automation-specialists",
   "/marketplace/hire-marketplace-developers",
   "/dedicated-development-team",
-  ...getCostGuidePaths(),
   "/blog",
   "/privacy-policy",
   "/cookie-policy",
@@ -51,6 +49,7 @@ export const SUPERSEDED_LEGACY_SERVICE_IDS = [
   "saas",
   "websites",
   "bots",
+  "marketing",
 ] as const;
 
 export const LEGACY_TO_LANDING_SLUG: Record<string, string> = {
@@ -59,6 +58,7 @@ export const LEGACY_TO_LANDING_SLUG: Record<string, string> = {
   saas: "saas-development",
   websites: "web-application-development",
   bots: "telegram-bot-development",
+  marketing: "ai-business-automation",
 };
 
 /** Legacy service category paths (indexable; excludes superseded duplicates). */

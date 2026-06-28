@@ -56,36 +56,6 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "Build a dedicated software development team with DEWEB — long-term engineering capacity for startups, SaaS, marketplaces, mobile apps, and ecommerce with transparent scoped discovery.",
   },
-  "mvp-development-cost": {
-    title: "MVP Development Cost (2026) | Typical Budget Ranges | DEWEB",
-    description:
-      "Planning estimates for MVP development in 2026 — prototype, launch-ready MVP, and post-launch iteration ranges. Scoped discovery required before any firm quote.",
-  },
-  "custom-web-app-development-cost": {
-    title: "Custom Web App Development Cost (2026) | Budget Guide | DEWEB",
-    description:
-      "Typical custom web application development cost ranges — internal tools, customer portals, and platform builds with scope-based disclaimers from DEWEB.",
-  },
-  "marketplace-development-cost": {
-    title: "Marketplace Development Cost (2026) | Multi-Vendor Budget Guide | DEWEB",
-    description:
-      "Marketplace development cost planning guide — MVP, growth-stage, and enterprise ranges for multi-vendor platforms. Estimate only; discovery required.",
-  },
-  "ai-chatbot-development-cost": {
-    title: "AI Chatbot Development Cost (2026) | Typical Ranges | DEWEB",
-    description:
-      "AI chatbot development cost guide — FAQ bots, lead capture assistants, and integrated support automation with transparent scope disclaimers.",
-  },
-  "hire-nextjs-developers": {
-    title: "Hire Next.js Developers | Compare Proposals & Scope Projects | DEWEB",
-    description:
-      "Hire Next.js developers through DEWEB — post projects, compare specialist proposals, and staff React/Next.js builds with clear budgets and timelines.",
-  },
-  "hire-shopify-developers": {
-    title: "Hire Shopify Developers | Store Builds & Custom Apps | DEWEB",
-    description:
-      "Hire Shopify developers for storefront builds, theme work, and custom apps — compare proposals on DEWEB Marketplace or request agency delivery.",
-  },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
     description:

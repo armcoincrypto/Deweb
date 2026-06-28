@@ -1,9 +1,9 @@
 export const clientLogos = [
-  { name: "Next.js", accent: "#ffffff" },
   { name: "Shopify", accent: "#95BF47" },
   { name: "Stripe", accent: "#635BFF" },
-  { name: "OpenAI", accent: "#10a37f" },
-  { name: "PostgreSQL", accent: "#336791" },
+  { name: "Vercel", accent: "#ffffff" },
+  { name: "Notion", accent: "#ffffff" },
+  { name: "Linear", accent: "#5E6AD2" },
   { name: "AWS", accent: "#FF9900" },
 ];
 

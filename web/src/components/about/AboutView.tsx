@@ -14,6 +14,7 @@ import {
   platformModules,
   heroFloatIcons,
 } from "@/lib/about-data";
+import { getServiceCanonicalPath } from "@/lib/seo";
 
 function WorldMapHero({
   icons = heroFloatIcons,
@@ -241,7 +242,7 @@ export function AboutView({ content }: AboutViewProps) {
                 ))}
               </ul>
               <Link
-                href={`/services/${featured.slug}`}
+                href={getServiceCanonicalPath(featured.slug)}
                 className="mt-8 inline-flex w-fit items-center justify-center rounded-full border border-deweb-cyan/50 bg-deweb-cyan/10 px-6 py-3 text-sm font-bold text-deweb-cyan transition-colors hover:bg-deweb-cyan/20"
               >
                 {t("learnMore")} →
@@ -285,7 +286,7 @@ export function AboutView({ content }: AboutViewProps) {
                   ))}
                 </ul>
                 <Link
-                  href={`/services/${svc.slug}`}
+                  href={getServiceCanonicalPath(svc.slug)}
                   className="mt-5 inline-block text-sm font-semibold text-deweb-cyan hover:underline"
                 >
                   {t("learnMore")} →

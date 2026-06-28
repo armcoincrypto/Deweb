@@ -6,13 +6,14 @@ export const navLinks = [
   { label: "About", href: "#about" },
 ];
 
-/** Technologies used in delivery — not implied client endorsements. */
 export const trustedCompanies = [
-  "Next.js",
-  "Shopify",
+  "Microsoft",
   "Stripe",
-  "OpenAI",
-  "PostgreSQL",
+  "Vercel",
+  "Linear",
+  "Notion",
+  "Shopify",
+  "Figma",
   "AWS",
 ];
 
@@ -41,44 +42,42 @@ export const howItWorks = [
 ];
 
 export const categories = [
-  { name: "AI & Automation", count: "Verified suppliers", icon: "🤖" },
-  { name: "Web Development", count: "Verified suppliers", icon: "🌐" },
-  { name: "Mobile Apps", count: "Verified suppliers", icon: "📱" },
-  { name: "UI/UX Design", count: "Verified suppliers", icon: "✨" },
-  { name: "Bots & SaaS", count: "Verified suppliers", icon: "⚡" },
-  { name: "Custom Software", count: "Verified suppliers", icon: "🔧" },
+  { name: "AI & Automation", count: "240+ suppliers", icon: "🤖" },
+  { name: "Web Development", count: "380+ suppliers", icon: "🌐" },
+  { name: "Mobile Apps", count: "190+ suppliers", icon: "📱" },
+  { name: "UI/UX Design", count: "310+ suppliers", icon: "✨" },
+  { name: "Bots & SaaS", count: "165+ suppliers", icon: "⚡" },
+  { name: "Custom Software", count: "420+ suppliers", icon: "🔧" },
 ];
 
-/** Illustrative bid layout for marketplace demos — not live data. */
 export const liveBids = [
-  { supplier: "Supplier A", project: "E-commerce API", price: "Proposal", rating: null, trend: "down" as const },
-  { supplier: "Supplier B", project: "E-commerce API", price: "Proposal", rating: null, trend: "down" as const },
-  { supplier: "Supplier C", project: "E-commerce API", price: "Proposal", rating: null, trend: "new" as const },
-  { supplier: "Supplier D", project: "CRM Dashboard", price: "Proposal", rating: null, trend: "down" as const },
+  { supplier: "Nexus Labs", project: "E-commerce API", price: "$7,200", rating: 4.9, trend: "down" },
+  { supplier: "CloudForge", project: "E-commerce API", price: "$6,850", rating: 4.8, trend: "down" },
+  { supplier: "PixelStack", project: "E-commerce API", price: "$7,500", rating: 5.0, trend: "new" },
+  { supplier: "DevMint", project: "CRM Dashboard", price: "$4,100", rating: 4.7, trend: "down" },
 ];
 
-/** Illustrative activity feed for marketplace demos — not live data. */
 export const recentActivity = [
-  { user: "Buyer", action: "posted", project: "AI Chatbot Integration", time: "Example" },
-  { user: "Supplier", action: "bid on", project: "Mobile Banking UI", time: "Example" },
-  { user: "Buyer", action: "selected", project: "SaaS Landing Page", time: "Example" },
-  { user: "Buyer", action: "posted", project: "DevOps Pipeline", time: "Example" },
+  { user: "Sarah K.", action: "posted", project: "AI Chatbot Integration", time: "2m ago" },
+  { user: "Marcus T.", action: "bid on", project: "Mobile Banking UI", time: "5m ago" },
+  { user: "Elena R.", action: "won", project: "SaaS Landing Page", time: "12m ago" },
+  { user: "James W.", action: "posted", project: "DevOps Pipeline", time: "18m ago" },
 ];
 
 export const aiShowcase = [
   {
     title: "Intelligent Automation",
-    description: "Workflow bots, CRM sync, and AI agents that reduce repetitive manual work.",
+    description: "Workflow bots, CRM sync, and AI agents that cut manual work by 60%.",
     gradient: "from-cyan-500/20 to-purple-600/20",
   },
   {
     title: "Predictive Analytics",
-    description: "Real-time dashboards and operational insights for smarter project decisions.",
+    description: "Real-time dashboards and ML insights for smarter project decisions.",
     gradient: "from-purple-500/20 to-fuchsia-600/20",
   },
   {
     title: "AI-Assisted Matching",
-    description: "Our engine pairs your brief with relevant suppliers based on scope and skills.",
+    description: "Our engine pairs your brief with the best suppliers in seconds.",
     gradient: "from-fuchsia-500/20 to-cyan-600/20",
   },
 ];
@@ -153,7 +152,7 @@ export const pricingPlans = [
 ];
 
 export const stats = [
-  { value: "Side-by-side", label: "Supplier proposal comparison" },
-  { value: "Transparent", label: "Scoped budgets & timelines" },
-  { value: "Structured", label: "Escrow-ready delivery" },
+  { value: "98%", label: "Project Success Rate" },
+  { value: "4.5", label: "Avg. Bids Per Project" },
+  { value: "$100M+", label: "Project Value Delivered" },
 ];

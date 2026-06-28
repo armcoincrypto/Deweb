@@ -3,7 +3,6 @@ import { Link } from "@/i18n/routing";
 import type { Locale } from "@/i18n/routing";
 import { getLocalizedBlogArticle } from "@/lib/i18n/content";
 import { DEDICATED_TEAM_GUIDES } from "@/lib/dedicated-team-guides";
-import { P5_COST_GUIDE_LINKS } from "@/lib/cost-guides/p5-links";
 import { DedicatedDevelopmentTeamCta } from "./DedicatedDevelopmentTeamCta";
 
 const RELATED_SERVICES = [
@@ -151,23 +150,6 @@ export async function DedicatedDevelopmentTeamContent({
             </ul>
           </div>
         )}
-
-        <div>
-          <h2 className="text-2xl font-bold text-white">{t("costGuidesTitle")}</h2>
-          <p className="mt-4 leading-relaxed text-white/65">{t("costGuidesIntro")}</p>
-          <ul className="mt-4 space-y-3 text-white/65">
-            {P5_COST_GUIDE_LINKS.map((guide) => (
-              <li key={guide.slug}>
-                <Link
-                  href={`/${guide.slug}`}
-                  className="font-semibold text-deweb-cyan hover:underline"
-                >
-                  {guide.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
 
         <div>
           <h2 className="text-2xl font-bold text-white">{t("faqTitle")}</h2>

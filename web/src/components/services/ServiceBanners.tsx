@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { ServiceBannerVisual } from "@/components/services/ServiceBannerVisual";
 import { serviceBanners, type ServiceBanner } from "@/lib/service-banners-data";
+import { getServiceCanonicalPath } from "@/lib/seo";
 import { bannerReveal3D, motion3DStyle, transition3D, PERSPECTIVE } from "@/lib/motion-3d";
 
 function MetaBlock({
@@ -138,7 +139,7 @@ function ServiceRow({ banner, index }: { banner: ServiceBanner; index: number })
               {t("requestBids")}
             </GlowButton>
             <Link
-              href={`/services/${banner.slug}`}
+              href={getServiceCanonicalPath(banner.slug)}
               className="text-sm font-semibold text-white/50 transition-colors hover:text-deweb-cyan sm:ml-1"
             >
               {t("learnMore")} →

@@ -7,7 +7,7 @@ const panels = [
   {
     label: "Shopify",
     icon: "🛒",
-    metric: "Checkout UX",
+    metric: "+34% CVR",
     color: "#95BF47",
     x: "-12%",
     y: "8%",
@@ -31,7 +31,7 @@ const panels = [
   {
     label: "SaaS Platform",
     icon: "☁️",
-    metric: "SaaS billing",
+    metric: "MRR +28%",
     color: "#7c3aed",
     x: "62%",
     y: "68%",

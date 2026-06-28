@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
-import { P5_COST_GUIDE_LINKS } from "@/lib/cost-guides/p5-links";
 
 export async function MarketplaceHubContent() {
   const t = await getTranslations("marketplace.hub");
@@ -176,20 +175,6 @@ export async function MarketplaceHubContent() {
             {" "}
             {t("resourcesP3")}
           </p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-bold text-white">{t("costGuidesTitle")}</h2>
-          <p className="mt-4 leading-relaxed text-white/65">{t("costGuidesIntro")}</p>
-          <ul className="mt-4 space-y-3 text-white/65">
-            {P5_COST_GUIDE_LINKS.map((guide) => (
-              <li key={guide.slug}>
-                <Link href={`/${guide.slug}`} className="font-semibold text-deweb-cyan hover:underline">
-                  {guide.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div>

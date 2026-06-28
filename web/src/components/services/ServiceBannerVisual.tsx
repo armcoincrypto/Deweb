@@ -54,8 +54,8 @@ function ShopifyDashboard() {
         <div className="flex items-center gap-3">
           <Image src="/shopify-logo.svg" alt="Shopify" width={36} height={42} />
           <div>
-            <p className="text-sm font-bold text-white">Store performance</p>
-            <p className="text-[10px] text-[#95BF47]">Checkout & catalog UX</p>
+            <p className="text-sm font-bold text-white">Revenue Overview</p>
+            <p className="text-[10px] text-[#95BF47]">+24% this month</p>
           </div>
         </div>
         <div className="mt-4 flex items-end justify-between gap-2 px-1">
@@ -71,10 +71,10 @@ function ShopifyDashboard() {
           ))}
         </div>
         <div className="mt-4 grid grid-cols-3 gap-2">
-          {["Orders", "CVR", "AOV"].map((label) => (
+          {["Orders", "CVR", "AOV"].map((label, i) => (
             <div key={label} className="rounded-lg border border-white/10 bg-white/5 p-2 text-center">
               <p className="text-[9px] text-white/40">{label}</p>
-              <p className="text-xs font-bold text-deweb-cyan">—</p>
+              <p className="text-xs font-bold text-deweb-cyan">{["1.2k", "3.4%", "$89"][i]}</p>
             </div>
           ))}
         </div>
@@ -93,7 +93,7 @@ function ShopifyDashboard() {
               />
             </svg>
             <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white">
-              UX
+              65%
             </span>
           </div>
         </div>
@@ -181,9 +181,9 @@ function MarketplaceVisual() {
       <div className="flex-1 p-4">
         <div className="grid grid-cols-3 gap-2 text-center">
           {[
-            { v: "Bids", l: "Compare" },
-            { v: "Scope", l: "Review" },
-            { v: "Terms", l: "Select" },
+            { v: "248", l: "Bids" },
+            { v: "$2.5k", l: "Volume" },
+            { v: "98%", l: "Success" },
           ].map((s) => (
             <div key={s.l} className="rounded-lg border border-deweb-cyan/20 bg-deweb-cyan/5 py-2">
               <p className="text-sm font-bold text-deweb-cyan">{s.v}</p>
@@ -302,11 +302,11 @@ function SeoVisual() {
         <div className="mt-auto grid grid-cols-2 gap-2">
           <div className="rounded border border-white/10 p-2">
             <p className="text-[9px] text-white/40">Organic</p>
-            <p className="text-sm font-bold text-emerald-400">Visibility</p>
+            <p className="text-sm font-bold text-emerald-400">+127%</p>
           </div>
           <div className="rounded border border-white/10 p-2">
-            <p className="text-[9px] text-white/40">Structure</p>
-            <p className="text-sm font-bold text-deweb-cyan">On-page SEO</p>
+            <p className="text-[9px] text-white/40">Keywords</p>
+            <p className="text-sm font-bold text-deweb-cyan">Top 10</p>
           </div>
         </div>
       </div>

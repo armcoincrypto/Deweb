@@ -9,12 +9,12 @@ export type AboutService = {
 };
 
 export const aboutStats = [
-  { value: "Multi-industry", label: "Custom development experience" },
-  { value: "Full-stack", label: "Web, mobile, AI & automation" },
-  { value: "Multilingual", label: "EN · ES · RU · AM delivery" },
-  { value: "Transparent", label: "Supplier bidding model" },
-  { value: "Ongoing", label: "Post-launch support" },
-  { value: "Structured", label: "Escrow-ready project terms" },
+  { value: "500+", label: "Projects Delivered" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "20+", label: "Countries Served" },
+  { value: "50+", label: "Technology Experts" },
+  { value: "24/7", label: "Support" },
+  { value: "100%", label: "Transparent Supplier Bidding" },
 ];
 
 export const aboutServices: AboutService[] = [

@@ -26,7 +26,7 @@ export type ServiceBanner = {
 export const serviceBanners: ServiceBanner[] = [
   {
     id: "shopify",
-    slug: "ecommerce",
+    slug: "shopify-development",
     title: "Shopify Development",
     icon: "🛒",
     deliverables: ["Shopify Plus", "Speed", "CRO", "Custom Themes"],
@@ -40,7 +40,7 @@ export const serviceBanners: ServiceBanner[] = [
   },
   {
     id: "ai-chatbots",
-    slug: "ai",
+    slug: "ai-chatbot-development",
     title: "AI Chatbots & Automation",
     icon: "🤖",
     deliverables: ["24/7 Support", "Lead Gen", "CRM Integration", "Custom NLP"],
@@ -52,7 +52,7 @@ export const serviceBanners: ServiceBanner[] = [
   },
   {
     id: "custom-software",
-    slug: "websites",
+    slug: "web-application-development",
     title: "Custom Software Development",
     icon: "💻",
     deliverables: ["Web Apps", "APIs", "Databases", "Cloud Solutions"],
@@ -64,7 +64,7 @@ export const serviceBanners: ServiceBanner[] = [
   },
   {
     id: "marketplace",
-    slug: "saas",
+    slug: "marketplace-development",
     title: "Marketplace Development",
     icon: "🏪",
     deliverables: ["Bidding", "Escrow", "User Roles", "Secure Payments"],
@@ -112,7 +112,7 @@ export const serviceBanners: ServiceBanner[] = [
   },
   {
     id: "enterprise",
-    slug: "websites",
+    slug: "web-application-development",
     title: "Enterprise Solutions",
     icon: "🏢",
     deliverables: ["Scalability", "Security", "Integration", "Custom Architecture"],

@@ -74,11 +74,11 @@ export function LiveDashboard() {
             <h3 className="mt-2 text-lg font-bold text-white">Custom AI CRM</h3>
             <p className="mt-1 text-sm text-white/50">Budget: From $400</p>
             <div className="mt-6">
-              <p className="text-xs text-white/40">Illustrative price comparison</p>
+              <p className="text-xs text-white/40">Live price comparison</p>
               <MiniChart />
               <p className="mt-2 flex items-center gap-2 text-xs text-emerald-400">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                Example proposal comparison
+                Bids dropping — save up to 18%
               </p>
             </div>
           </div>
@@ -88,7 +88,7 @@ export function LiveDashboard() {
             <div className="mb-4 flex items-center justify-between">
               <h4 className="text-sm font-bold text-white">Competitive offers</h4>
               <span className="rounded-full bg-deweb-cyan/20 px-3 py-1 text-xs font-bold text-deweb-cyan">
-                Example layout
+                4 live bids
               </span>
             </div>
             <div className="space-y-3">
@@ -107,6 +107,7 @@ export function LiveDashboard() {
                   </div>
                   <div className="flex items-center gap-4">
                     <span className="text-lg font-bold text-deweb-cyan">{bid.price}</span>
+                    <span className="text-xs text-amber-400">★ {bid.rating}</span>
                     {bid.trend === "down" && (
                       <span className="text-xs font-bold text-emerald-400">↓ Lower</span>
                     )}

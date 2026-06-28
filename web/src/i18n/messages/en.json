@@ -28,7 +28,7 @@
     "subtitle": "We create Shopify stores, AI systems, automation platforms, websites and scalable digital solutions.",
     "ctaPrimary": "Start Your Project",
     "ctaSecondary": "Explore Services",
-    "trusted": "Technologies we work with",
+    "trusted": "Built with technology trusted by growing businesses",
     "testimonialsKicker": "Example scenario",
     "testimonialsTitle": "Example outcomes from common DEWEB projects",
     "testimonialsSubtitle": "Illustrative scenarios showing the types of problems DEWEB can help solve. These are not client testimonials.",
@@ -112,9 +112,9 @@
       "offerLabel": "What we deliver",
       "opportunityLabel": "The Shopify opportunity",
       "opportunityText": "Shopify powers 4.5M+ stores worldwide. Ecommerce sales exceed $6 trillion globally — brands that launch on Shopify reach 175+ countries with built-in payments, inventory, and marketing tools from day one.",
-      "stat1": "Shopify powers millions of stores worldwide",
-      "stat2": "Performance-focused storefront and checkout delivery",
-      "stat3": "Shopify Plus migrations and custom commerce builds",
+      "stat1": "10%+ of all US ecommerce runs on Shopify",
+      "stat2": "Average 36% conversion lift after CRO optimization",
+      "stat3": "Shopify Plus for $1M+ brands — we build & migrate",
       "timeline": "Typical delivery",
       "cta": "Get Shopify Quote",
       "consult": "Free consultation",
@@ -148,7 +148,7 @@
         "excerpt": "Why posting projects to multiple suppliers drives better pricing and faster delivery.",
         "body1": "Traditional IT procurement often means negotiating with a single vendor — leaving money and options on the table. Competitive bidding changes that by inviting verified suppliers to submit offers side by side.",
         "body2": "On DEWEB, clients post a brief with budget and timeline. Suppliers compete with transparent pricing, portfolios, and delivery plans. You compare everything in one dashboard before choosing.",
-        "body3": "The result: competitive pricing through supplier comparison, faster turnaround, and higher confidence in your supplier choice."
+        "body3": "The result: average savings of 15–30% on project costs, faster turnaround, and higher confidence in your supplier choice."
       },
       "choosing-the-right-web-stack": {
         "title": "Choosing the right web stack in 2026",
@@ -693,7 +693,7 @@
     "teamSubtitle": "Experienced leaders driving marketplace innovation, web excellence, and AI-native delivery.",
     "yearsExperience": "{years}+ years of experience",
     "techTitle": "Technologies We Use",
-    "techSubtitle": "Modern stacks we use in production projects.",
+    "techSubtitle": "Modern stacks trusted by enterprise teams worldwide.",
     "ctaTitle": "Ready To Build Your Next Digital Product?",
     "ctaSubtitle": "Receive multiple supplier offers, compare expertise, and launch your project with confidence.",
     "requestProposal": "Request Proposal",
@@ -945,8 +945,7 @@
     "telegramBots": "Telegram Bot Development",
     "privacyPolicy": "Privacy Policy",
     "cookiePolicy": "Cookie Policy",
-    "termsOfUse": "Terms of Use",
-    "costGuides": "Cost & hiring guides"
+    "termsOfUse": "Terms of Use"
   },
   "cookies": {
     "title": "We value your privacy",
@@ -1391,18 +1390,5 @@
     "ctaDescription": "Talk to DEWEB about dedicated engineering capacity for your product roadmap — scoped discovery, squad design, and long-term delivery partnership without fabricated metrics or guarantees.",
     "ctaPrimary": "Request a team consultation",
     "ctaSecondary": "Explore DEWEB Marketplace"
-  },
-  "costGuides": {
-    "shared": {
-      "breadcrumbHome": "Home",
-      "costRangesTitle": "Typical cost ranges",
-      "costDisclaimer": "Ranges are planning estimates only. Final pricing depends on scope, integrations, design, and timeline — discovery required.",
-      "comparisonTitle": "Comparison overview",
-      "whenToChooseTitle": "When to choose this approach",
-      "relatedServicesTitle": "Related services and guides",
-      "faqTitle": "Frequently asked questions",
-      "ctaPrimary": "Get a scoped estimate",
-      "ctaSecondary": "Post on DEWEB Marketplace"
-    }
   }
 }
