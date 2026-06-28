@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import { BlogArticleView } from "@/components/blog/BlogArticleView";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getAuthor, BLOG_ARTICLE_SLUGS } from "@/lib/blog";
-import { fetchPublishedCmsPosts } from "@/lib/blog/cms";
+import { getAuthor } from "@/lib/blog";
+import { getAllBlogRouteSlugs } from "@/lib/blog/static-slugs";
 import { getArticleMerged } from "@/lib/blog/server";
+import { buildLocaleSlugParams } from "@/lib/i18n/locale-static-params";
 import { metadataFromEntry, absoluteUrl } from "@/lib/seo";
 import { getLocalizedBlogSeo } from "@/lib/i18n/locale-seo";
 import type { Locale } from "@/i18n/routing";
@@ -15,7 +16,7 @@ import {
   webPageSchema,
 } from "@/lib/schema";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 export const revalidate = 60;
 
 type Props = {
@@ -23,13 +24,8 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const staticSlugs = BLOG_ARTICLE_SLUGS.map((slug) => ({ slug }));
-  const cmsItems = await fetchPublishedCmsPosts();
-  const staticSet = new Set<string>(BLOG_ARTICLE_SLUGS);
-  const cmsSlugs = cmsItems
-    .filter((post) => !staticSet.has(post.slug))
-    .map((post) => ({ slug: post.slug }));
-  return [...staticSlugs, ...cmsSlugs];
+  const slugs = await getAllBlogRouteSlugs();
+  return buildLocaleSlugParams(slugs);
 }
 
 export async function generateMetadata({ params }: Props) {
