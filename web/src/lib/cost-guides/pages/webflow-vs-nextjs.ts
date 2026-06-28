@@ -71,6 +71,8 @@ export const webflowVsNextjs: CostGuidePage = {
     },
   ],
   relatedServices: [
+    { href: "/hire-nextjs-developers", label: "Hire Next.js developers guide" },
+    { href: "/custom-web-app-development-cost", label: "Custom web app development cost" },
     { href: "/services/web-application-development", label: "Web application development" },
     { href: "/services/landing-page-development", label: "Landing page development" },
     { href: "/services/seo", label: "SEO services" },

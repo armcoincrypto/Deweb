@@ -76,6 +76,7 @@ export const shopifyVsCustomEcommerce: CostGuidePage = {
     },
   ],
   relatedServices: [
+    { href: "/hire-shopify-developers", label: "Hire Shopify developers guide" },
     { href: "/services/shopify-development", label: "Shopify development" },
     { href: "/services/shopify-store-design", label: "Shopify store design" },
     { href: "/services/shopify-custom-apps", label: "Shopify custom apps" },

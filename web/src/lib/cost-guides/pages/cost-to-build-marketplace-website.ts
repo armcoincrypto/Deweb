@@ -99,6 +99,7 @@ export const costToBuildMarketplaceWebsite: CostGuidePage = {
     },
   ],
   relatedServices: [
+    { href: "/marketplace-development-cost", label: "Marketplace development cost guide" },
     { href: "/services/marketplace-development", label: "Marketplace development services" },
     { href: "/marketplace/hire-marketplace-developers", label: "Hire marketplace developers" },
     { href: "/dedicated-development-team", label: "Dedicated development team" },

@@ -56,30 +56,35 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "Build a dedicated software development team with DEWEB — long-term engineering capacity for startups, SaaS, marketplaces, mobile apps, and ecommerce with transparent scoped discovery.",
   },
-  "cost-to-build-marketplace-website": {
-    title: "Marketplace Website Cost (2026) | Typical Budget Ranges | DEWEB",
+  "mvp-development-cost": {
+    title: "MVP Development Cost (2026) | Typical Budget Ranges | DEWEB",
     description:
-      "Planning estimates for marketplace website development in 2026 — MVP, multi-vendor platform, and dedicated team ranges with scope disclaimers. Scoped discovery required.",
+      "Planning estimates for MVP development in 2026 — prototype, launch-ready MVP, and post-launch iteration ranges. Scoped discovery required before any firm quote.",
   },
-  "shopify-vs-custom-ecommerce": {
-    title: "Shopify vs Custom Ecommerce (2026) | Cost & Decision Guide | DEWEB",
+  "custom-web-app-development-cost": {
+    title: "Custom Web App Development Cost (2026) | Budget Guide | DEWEB",
     description:
-      "Compare Shopify and custom ecommerce development — typical costs, timelines, trade-offs, and when each approach fits. Transparent estimates from DEWEB.",
+      "Typical custom web application development cost ranges — internal tools, customer portals, and platform builds with scope-based disclaimers from DEWEB.",
   },
-  "webflow-vs-nextjs": {
-    title: "Webflow vs Next.js (2026) | Business Website Comparison | DEWEB",
+  "marketplace-development-cost": {
+    title: "Marketplace Development Cost (2026) | Multi-Vendor Budget Guide | DEWEB",
     description:
-      "Compare Webflow and Next.js for business websites — cost ranges, CMS control, performance, integrations, and when to choose each stack.",
+      "Marketplace development cost planning guide — MVP, growth-stage, and enterprise ranges for multi-vendor platforms. Estimate only; discovery required.",
   },
-  "landing-page-cost": {
-    title: "Landing Page Cost (2026) | Design & Development Estimates | DEWEB",
+  "ai-chatbot-development-cost": {
+    title: "AI Chatbot Development Cost (2026) | Typical Ranges | DEWEB",
     description:
-      "Typical landing page design and development cost ranges in 2026 — campaign pages, premium builds, and funnel systems with scope-based disclaimers.",
+      "AI chatbot development cost guide — FAQ bots, lead capture assistants, and integrated support automation with transparent scope disclaimers.",
   },
-  "saas-development-cost": {
-    title: "SaaS Development Cost (2026) | MVP & Growth Budget Guide | DEWEB",
+  "hire-nextjs-developers": {
+    title: "Hire Next.js Developers | Compare Proposals & Scope Projects | DEWEB",
     description:
-      "SaaS development cost guide for 2026 — MVP, growth-stage, and dedicated team estimates with transparent scope disclaimers from DEWEB.",
+      "Hire Next.js developers through DEWEB — post projects, compare specialist proposals, and staff React/Next.js builds with clear budgets and timelines.",
+  },
+  "hire-shopify-developers": {
+    title: "Hire Shopify Developers | Store Builds & Custom Apps | DEWEB",
+    description:
+      "Hire Shopify developers for storefront builds, theme work, and custom apps — compare proposals on DEWEB Marketplace or request agency delivery.",
   },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",

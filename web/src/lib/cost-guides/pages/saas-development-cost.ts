@@ -83,6 +83,7 @@ export const saasDevelopmentCost: CostGuidePage = {
     },
   ],
   relatedServices: [
+    { href: "/mvp-development-cost", label: "MVP development cost guide" },
     { href: "/services/saas-development", label: "SaaS development services" },
     { href: "/dedicated-development-team", label: "Dedicated development team" },
     { href: "/services/web-application-development", label: "Web application development" },

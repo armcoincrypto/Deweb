@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { BrandLogo } from "@/components/layout/BrandLogo";
 import { SocialLinks } from "@/components/contact/SocialLinks";
+import { COMMERCIAL_AUTHORITY_LINKS } from "@/lib/cost-guides/p5-links";
 
 export function PlatformFooter() {
   const tNav = useTranslations("nav");
@@ -11,7 +12,7 @@ export function PlatformFooter() {
 
   return (
     <footer className="border-t border-white/[0.06] bg-black/50 py-14">
-      <div className="container-narrow grid gap-10 px-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 sm:px-6 lg:px-8">
+      <div className="container-narrow grid gap-10 px-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 sm:px-6 lg:px-8">
         <div>
           <div className="flex items-center gap-2">
             <BrandLogo size={36} />
@@ -46,16 +47,6 @@ export function PlatformFooter() {
           </ul>
         </div>
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-wider text-white/40">{t("costGuides")}</h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/60">
-            <li><Link href="/cost-to-build-marketplace-website" className="hover:text-deweb-cyan">{t("marketplaceCostGuide")}</Link></li>
-            <li><Link href="/shopify-vs-custom-ecommerce" className="hover:text-deweb-cyan">{t("shopifyVsCustom")}</Link></li>
-            <li><Link href="/webflow-vs-nextjs" className="hover:text-deweb-cyan">{t("webflowVsNextjs")}</Link></li>
-            <li><Link href="/landing-page-cost" className="hover:text-deweb-cyan">{t("landingPageCost")}</Link></li>
-            <li><Link href="/saas-development-cost" className="hover:text-deweb-cyan">{t("saasDevCost")}</Link></li>
-          </ul>
-        </div>
-        <div>
           <h4 className="text-xs font-bold uppercase tracking-wider text-white/40">{t("company")}</h4>
           <ul className="mt-4 space-y-2 text-sm text-white/60">
             <li><Link href="/about" className="hover:text-deweb-cyan">{tNav("about")}</Link></li>
@@ -63,6 +54,18 @@ export function PlatformFooter() {
             <li className="pt-0.5">
               <SocialLinks size="footer" />
             </li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-wider text-white/40">{t("costGuides")}</h4>
+          <ul className="mt-4 space-y-2 text-sm text-white/60">
+            {COMMERCIAL_AUTHORITY_LINKS.map((guide) => (
+              <li key={guide.slug}>
+                <Link href={`/${guide.slug}`} className="hover:text-deweb-cyan">
+                  {guide.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div>

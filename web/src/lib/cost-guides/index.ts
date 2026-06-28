@@ -1,6 +1,12 @@
 import type { CostGuidePage, CostGuideSlug } from "./types";
+import { aiChatbotDevelopmentCost } from "./pages/ai-chatbot-development-cost";
 import { costToBuildMarketplaceWebsite } from "./pages/cost-to-build-marketplace-website";
+import { customWebAppDevelopmentCost } from "./pages/custom-web-app-development-cost";
+import { hireNextjsDevelopers } from "./pages/hire-nextjs-developers";
+import { hireShopifyDevelopers } from "./pages/hire-shopify-developers";
 import { landingPageCost } from "./pages/landing-page-cost";
+import { marketplaceDevelopmentCost } from "./pages/marketplace-development-cost";
+import { mvpDevelopmentCost } from "./pages/mvp-development-cost";
 import { saasDevelopmentCost } from "./pages/saas-development-cost";
 import { shopifyVsCustomEcommerce } from "./pages/shopify-vs-custom-ecommerce";
 import { webflowVsNextjs } from "./pages/webflow-vs-nextjs";
@@ -12,6 +18,12 @@ const COST_GUIDE_REGISTRY: Record<CostGuideSlug, CostGuidePage> = {
   "webflow-vs-nextjs": webflowVsNextjs,
   "landing-page-cost": landingPageCost,
   "saas-development-cost": saasDevelopmentCost,
+  "mvp-development-cost": mvpDevelopmentCost,
+  "custom-web-app-development-cost": customWebAppDevelopmentCost,
+  "marketplace-development-cost": marketplaceDevelopmentCost,
+  "ai-chatbot-development-cost": aiChatbotDevelopmentCost,
+  "hire-nextjs-developers": hireNextjsDevelopers,
+  "hire-shopify-developers": hireShopifyDevelopers,
 };
 
 export function getCostGuide(slug: CostGuideSlug): CostGuidePage {

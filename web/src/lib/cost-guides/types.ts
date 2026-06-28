@@ -3,7 +3,13 @@ export type CostGuideSlug =
   | "shopify-vs-custom-ecommerce"
   | "webflow-vs-nextjs"
   | "landing-page-cost"
-  | "saas-development-cost";
+  | "saas-development-cost"
+  | "mvp-development-cost"
+  | "custom-web-app-development-cost"
+  | "marketplace-development-cost"
+  | "ai-chatbot-development-cost"
+  | "hire-nextjs-developers"
+  | "hire-shopify-developers";
 
 export type ComparisonTable = {
   headers: string[];
