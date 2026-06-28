@@ -31,6 +31,7 @@ Full index: [dewebam.com/en/projects](https://dewebam.com/en/projects)
 
 Architecture notes and engineering references for production systems:
 
+- [Project architecture index](docs/projects/README.md)
 - [Engineering docs index](docs/engineering/README.md)
 - [Crypto payment gateway architecture](docs/engineering/crypto-payment-gateway-architecture.md)
 - [Multi-rail settlement system](docs/engineering/multi-rail-settlement-system.md)
