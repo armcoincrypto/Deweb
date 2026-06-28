@@ -56,6 +56,31 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "Build a dedicated software development team with DEWEB — long-term engineering capacity for startups, SaaS, marketplaces, mobile apps, and ecommerce with transparent scoped discovery.",
   },
+  "cost-to-build-marketplace-website": {
+    title: "Marketplace Website Cost (2026) | Typical Budget Ranges | DEWEB",
+    description:
+      "Planning estimates for marketplace website development in 2026 — MVP, multi-vendor platform, and dedicated team ranges with scope disclaimers. Scoped discovery required.",
+  },
+  "shopify-vs-custom-ecommerce": {
+    title: "Shopify vs Custom Ecommerce (2026) | Cost & Decision Guide | DEWEB",
+    description:
+      "Compare Shopify and custom ecommerce development — typical costs, timelines, trade-offs, and when each approach fits. Transparent estimates from DEWEB.",
+  },
+  "webflow-vs-nextjs": {
+    title: "Webflow vs Next.js (2026) | Business Website Comparison | DEWEB",
+    description:
+      "Compare Webflow and Next.js for business websites — cost ranges, CMS control, performance, integrations, and when to choose each stack.",
+  },
+  "landing-page-cost": {
+    title: "Landing Page Cost (2026) | Design & Development Estimates | DEWEB",
+    description:
+      "Typical landing page design and development cost ranges in 2026 — campaign pages, premium builds, and funnel systems with scope-based disclaimers.",
+  },
+  "saas-development-cost": {
+    title: "SaaS Development Cost (2026) | MVP & Growth Budget Guide | DEWEB",
+    description:
+      "SaaS development cost guide for 2026 — MVP, growth-stage, and dedicated team estimates with transparent scope disclaimers from DEWEB.",
+  },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
     description:

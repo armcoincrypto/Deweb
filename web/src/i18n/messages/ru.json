@@ -275,6 +275,8 @@
       "resourcesP2": "или",
       "resourcesContactLink": "свяжитесь с DEWEB",
       "resourcesP3": "для помощи в формировании проекта до публикации.",
+      "costGuidesTitle": "Гиды по стоимости и сравнению",
+      "costGuidesIntro": "Материалы для планирования с типичными диапазонами бюджета и оговорками по scope — не фиксированные цены.",
       "faqTitle": "Часто задаваемые вопросы",
       "faq1q": "Что такое DEWEB Marketplace?",
       "faq1a": "DEWEB Marketplace — IT-маркетплейс, где клиенты публикуют software-проекты, а технические специалисты размещают услуги или откликаются предложениями. Платформа объединяет проектные листинги, сервисные предложения и продуктовые объявления на dewebam.com.",
@@ -922,6 +924,19 @@
     "save": "Сохранить",
     "cancel": "Отмена"
   },
+  "costGuides": {
+    "shared": {
+      "breadcrumbHome": "Главная",
+      "costRangesTitle": "Типичные диапазоны стоимости (оценки)",
+      "costDisclaimer": "Диапазоны — иллюстративные оценки для планирования. Итоговая цена зависит от scope, интеграций, локации команды, сроков и discovery.",
+      "comparisonTitle": "Сравнение side-by-side",
+      "whenToChooseTitle": "Когда выбрать каждый вариант",
+      "relatedServicesTitle": "Связанные услуги DEWEB",
+      "faqTitle": "Часто задаваемые вопросы",
+      "ctaPrimary": "Запросить оценку после discovery",
+      "ctaSecondary": "DEWEB Marketplace"
+    }
+  },
   "footer": {
     "tagline": "Поставщики соревнуются. Клиенты выигрывают. Глобальный IT-маркетплейс.",
     "platform": "Платформа",
@@ -943,6 +958,12 @@
     "mobileDev": "Разработка мобильных приложений",
     "dedicatedTeam": "Выделенная команда разработки",
     "telegramBots": "Разработка Telegram-ботов",
+    "costGuides": "Гиды по стоимости",
+    "marketplaceCostGuide": "Стоимость маркетплейса",
+    "shopifyVsCustom": "Shopify vs custom ecommerce",
+    "webflowVsNextjs": "Webflow vs Next.js",
+    "landingPageCost": "Стоимость landing page",
+    "saasDevCost": "Стоимость SaaS-разработки",
     "privacyPolicy": "Политика конфиденциальности",
     "cookiePolicy": "Политика cookie",
     "termsOfUse": "Условия использования"
@@ -1261,6 +1282,26 @@
     "dedicated-development-team": {
       "title": "Выделенная команда разработки | Нанять dedicated engineers | DEWEB",
       "description": "Выделенная команда разработки ПО с DEWEB — long-term engineering capacity для стартапов, SaaS, marketplace, mobile и ecommerce с прозрачным discovery."
+    },
+    "cost-to-build-marketplace-website": {
+      "title": "Стоимость маркетплейса (2026) | Типичные диапазоны бюджета | DEWEB",
+      "description": "Оценки стоимости разработки маркетплейса в 2026 — MVP, multi-vendor платформа и dedicated team с оговорками по scope."
+    },
+    "shopify-vs-custom-ecommerce": {
+      "title": "Shopify vs custom ecommerce (2026) | Сравнение и стоимость | DEWEB",
+      "description": "Сравните Shopify и custom ecommerce — типичные бюджеты, сроки, trade-offs и когда выбрать каждый подход."
+    },
+    "webflow-vs-nextjs": {
+      "title": "Webflow vs Next.js (2026) | Сравнение для business-сайтов | DEWEB",
+      "description": "Сравните Webflow и Next.js — диапазоны стоимости, CMS, performance и интеграции для business-сайтов."
+    },
+    "landing-page-cost": {
+      "title": "Стоимость landing page (2026) | Оценки design и development | DEWEB",
+      "description": "Типичные диапазоны стоимости landing page в 2026 — campaign pages, premium builds и funnel systems."
+    },
+    "saas-development-cost": {
+      "title": "Стоимость SaaS-разработки (2026) | MVP и growth budget | DEWEB",
+      "description": "Гид по стоимости SaaS в 2026 — MVP, growth-stage и dedicated team с прозрачными оговорками по scope."
     }
   },
   "serviceLanding": {
@@ -1366,6 +1407,8 @@
     "relatedServiceHireMarketplace": "Нанять разработчиков маркетплейсов",
     "guidesTitle": "Связанные материалы",
     "guidesIntro": "Статьи DEWEB о hiring models, outsourcing и delivery planning:",
+    "costGuidesTitle": "Гиды по стоимости и сравнению",
+    "costGuidesIntro": "Материалы с типичными диапазонами бюджета и оговорками по scope для marketplace, ecommerce, SaaS и website.",
     "faqTitle": "Частые вопросы",
     "faq1q": "Что такое dedicated development team?",
     "faq1a": "Stable group engineers на months/quarters с context codebase, architecture, business priorities — не one-off tasks.",

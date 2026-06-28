@@ -275,6 +275,8 @@
       "resourcesP2": "կամ",
       "resourcesContactLink": "կապվեք DEWEB-ի հետ",
       "resourcesP3": "նախագիծը ձևավորելու օգնության համար հրապարակումից առաջ։",
+      "costGuidesTitle": "Cost & comparison guides",
+      "costGuidesIntro": "Planning guides with typical budget ranges and scope disclaimers — not fixed quotes.",
       "faqTitle": "Հաճախ տրվող հարցեր",
       "faq1q": "Ի՞նչ է DEWEB Marketplace-ը։",
       "faq1a": "DEWEB Marketplace-ը IT շուկա է, որտեղ հաճախորդները հրապարակում են ծրագրային նախագծեր, իսկ տեխնիկական մասնագետները տեղադրում են ծառայություններ կամ պատասխանում են առաջարկներով։ Այն միավորում է նախագծի ցանկերը, ծառայության առաջարկները և արտադրանքի հայտարարությունները dewebam.com-ում։",
@@ -922,6 +924,19 @@
     "save": "Պահպանել",
     "cancel": "Չեղարկել"
   },
+  "costGuides": {
+    "shared": {
+      "breadcrumbHome": "Գլխավոր",
+      "costRangesTitle": "Typical cost ranges (estimates)",
+      "costDisclaimer": "Ranges are illustrative estimates for planning. Final pricing depends on scope, integrations, team location, timeline, and discovery.",
+      "comparisonTitle": "Side-by-side comparison",
+      "whenToChooseTitle": "When to choose each option",
+      "relatedServicesTitle": "Related DEWEB services",
+      "faqTitle": "Frequently asked questions",
+      "ctaPrimary": "Request a scoped estimate",
+      "ctaSecondary": "Explore DEWEB Marketplace"
+    }
+  },
   "footer": {
     "tagline": "Մատակարարները մրցում են։ Հաճախորդը հաղթում է։ Գլոբալ IT շուկա։",
     "platform": "Հարթակ",
@@ -943,6 +958,12 @@
     "mobileDev": "Բջջային հավելվածների զարգացում",
     "dedicatedTeam": "Dedicated development team",
     "telegramBots": "Telegram բոտերի զարգացում",
+    "costGuides": "Cost & comparison guides",
+    "marketplaceCostGuide": "Marketplace website cost",
+    "shopifyVsCustom": "Shopify vs custom ecommerce",
+    "webflowVsNextjs": "Webflow vs Next.js",
+    "landingPageCost": "Landing page cost",
+    "saasDevCost": "SaaS development cost",
     "privacyPolicy": "Գաղտնիության քաղաքականություն",
     "cookiePolicy": "Cookie քաղաքականություն",
     "termsOfUse": "Օգտագործման պայմաններ"
@@ -1289,6 +1310,26 @@
     "dedicated-development-team": {
       "title": "Dedicated development team | Dedicated engineers | DEWEB",
       "description": "Dedicated software development team DEWEB-ով — startup, SaaS, marketplace, mobile, ecommerce long-term engineering capacity:"
+    },
+    "cost-to-build-marketplace-website": {
+      "title": "Marketplace website cost (2026) | Typical budget ranges | DEWEB",
+      "description": "Marketplace development planning estimates for 2026 — MVP, multi-vendor platform, and dedicated team ranges with scope disclaimers."
+    },
+    "shopify-vs-custom-ecommerce": {
+      "title": "Shopify vs custom ecommerce (2026) | Cost & decision guide | DEWEB",
+      "description": "Compare Shopify and custom ecommerce — typical costs, timelines, trade-offs, and when each approach fits."
+    },
+    "webflow-vs-nextjs": {
+      "title": "Webflow vs Next.js (2026) | Business website comparison | DEWEB",
+      "description": "Compare Webflow and Next.js — cost ranges, CMS control, performance, and integrations."
+    },
+    "landing-page-cost": {
+      "title": "Landing page cost (2026) | Design & development estimates | DEWEB",
+      "description": "Typical landing page cost ranges in 2026 — campaign pages, premium builds, and funnel systems."
+    },
+    "saas-development-cost": {
+      "title": "SaaS development cost (2026) | MVP & growth budget guide | DEWEB",
+      "description": "SaaS development cost guide for 2026 — MVP, growth-stage, and dedicated team estimates with transparent disclaimers."
     }
   },
   "serviceLanding": {
@@ -1394,6 +1435,8 @@
     "relatedServiceHireMarketplace": "Hire marketplace developers",
     "guidesTitle": "Related guides",
     "guidesIntro": "DEWEB articles hiring, outsourcing, delivery planning pre-commit:",
+    "costGuidesTitle": "Cost & comparison guides",
+    "costGuidesIntro": "Planning guides with typical budget ranges and scope disclaimers for marketplace, ecommerce, SaaS, and websites.",
     "faqTitle": "FAQ",
     "faq1q": "What is dedicated development team?",
     "faq1a": "Stable engineers group months/quarters product roadmap context codebase architecture business priorities:",

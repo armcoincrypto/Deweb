@@ -279,6 +279,8 @@
       "resourcesP2": "or",
       "resourcesContactLink": "contact DEWEB",
       "resourcesP3": "for help scoping a project before you post.",
+      "costGuidesTitle": "Cost & comparison guides",
+      "costGuidesIntro": "High-intent planning guides with typical budget ranges and transparent scope disclaimers — not fixed quotes.",
       "faqTitle": "Frequently asked questions",
       "faq1q": "What is DEWEB Marketplace?",
       "faq1a": "DEWEB Marketplace is an IT marketplace where clients post software projects and technical specialists publish services or respond with proposals. It combines project listings, service offers, and product listings on dewebam.com.",
@@ -922,6 +924,19 @@
     "save": "Save",
     "cancel": "Cancel"
   },
+  "costGuides": {
+    "shared": {
+      "breadcrumbHome": "Home",
+      "costRangesTitle": "Typical cost ranges (estimates)",
+      "costDisclaimer": "Ranges are illustrative estimates for planning conversations. Final pricing depends on scope, integrations, team location, timeline, and discovery.",
+      "comparisonTitle": "Side-by-side comparison",
+      "whenToChooseTitle": "When to choose each option",
+      "relatedServicesTitle": "Related DEWEB services",
+      "faqTitle": "Frequently asked questions",
+      "ctaPrimary": "Request a scoped estimate",
+      "ctaSecondary": "Explore DEWEB Marketplace"
+    }
+  },
   "footer": {
     "tagline": "Suppliers compete. Customers win. Global IT marketplace.",
     "platform": "Platform",
@@ -943,6 +958,12 @@
     "mobileDev": "Mobile App Development",
     "dedicatedTeam": "Dedicated Development Team",
     "telegramBots": "Telegram Bot Development",
+    "costGuides": "Cost & comparison guides",
+    "marketplaceCostGuide": "Marketplace website cost",
+    "shopifyVsCustom": "Shopify vs custom ecommerce",
+    "webflowVsNextjs": "Webflow vs Next.js",
+    "landingPageCost": "Landing page cost",
+    "saasDevCost": "SaaS development cost",
     "privacyPolicy": "Privacy Policy",
     "cookiePolicy": "Cookie Policy",
     "termsOfUse": "Terms of Use"
@@ -1261,6 +1282,26 @@
     "dedicated-development-team": {
       "title": "Dedicated Development Team | Hire Dedicated Software Engineers | DEWEB",
       "description": "Build a dedicated software development team with DEWEB — long-term engineering capacity for startups, SaaS, marketplaces, mobile apps, and ecommerce with transparent scoped discovery."
+    },
+    "cost-to-build-marketplace-website": {
+      "title": "Marketplace Website Cost (2026) | Typical Budget Ranges | DEWEB",
+      "description": "Planning estimates for marketplace website development in 2026 — MVP, multi-vendor platform, and dedicated team ranges with scope disclaimers."
+    },
+    "shopify-vs-custom-ecommerce": {
+      "title": "Shopify vs Custom Ecommerce (2026) | Cost & Decision Guide | DEWEB",
+      "description": "Compare Shopify and custom ecommerce development — typical costs, timelines, trade-offs, and when each approach fits."
+    },
+    "webflow-vs-nextjs": {
+      "title": "Webflow vs Next.js (2026) | Business Website Comparison | DEWEB",
+      "description": "Compare Webflow and Next.js for business websites — cost ranges, CMS control, performance, and integrations."
+    },
+    "landing-page-cost": {
+      "title": "Landing Page Cost (2026) | Design & Development Estimates | DEWEB",
+      "description": "Typical landing page design and development cost ranges in 2026 — campaign pages, premium builds, and funnel systems."
+    },
+    "saas-development-cost": {
+      "title": "SaaS Development Cost (2026) | MVP & Growth Budget Guide | DEWEB",
+      "description": "SaaS development cost guide for 2026 — MVP, growth-stage, and dedicated team estimates with transparent scope disclaimers."
     }
   },
   "serviceLanding": {
@@ -1367,6 +1408,8 @@
     "relatedServiceDedicatedTeam": "Dedicated development team",
     "guidesTitle": "Related guides",
     "guidesIntro": "These DEWEB articles help you evaluate hiring models, outsourcing strategy, and delivery planning before you commit to a dedicated team:",
+    "costGuidesTitle": "Cost & comparison guides",
+    "costGuidesIntro": "Planning guides with typical budget ranges and scope disclaimers for marketplace, ecommerce, SaaS, and website decisions.",
     "faqTitle": "Frequently asked questions",
     "faq1q": "What is a dedicated development team?",
     "faq1a": "A dedicated development team is a stable group of engineers and delivery contributors focused on your product roadmap over months or quarters. They retain context on your codebase, architecture, and business priorities instead of treating each task as a one-off engagement.",

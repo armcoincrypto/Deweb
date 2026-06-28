@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 import { getBlogPost } from "@/lib/blog-data";
 import { getServiceLandingPaths } from "@/lib/service-landing";
+import { getCostGuidePaths } from "@/lib/cost-guides";
 import { LEGAL_LAST_UPDATED } from "@/lib/legal-content";
 
 const LANDING_PATHS = new Set(getServiceLandingPaths());
+const COST_GUIDE_PATHS = new Set(getCostGuidePaths());
 const LEGAL_LAST_MOD = new Date(LEGAL_LAST_UPDATED);
 
 /** Stable lastmod dates for static marketing pages (avoid sitemap-wide `now`). */
@@ -22,7 +24,8 @@ export function pathPriority(path: string): number {
     path === "/marketplace/hire-telegram-bot-developers" ||
     path === "/marketplace/hire-ai-automation-specialists" ||
     path === "/marketplace/hire-marketplace-developers" ||
-    path === "/dedicated-development-team"
+    path === "/dedicated-development-team" ||
+    COST_GUIDE_PATHS.has(path)
   ) {
     return 0.9;
   }
@@ -58,6 +61,7 @@ export function pathLastModified(path: string, fallback = MARKETING_LAST_MOD): D
     path === "/marketplace/hire-ai-automation-specialists" ||
     path === "/marketplace/hire-marketplace-developers" ||
     path === "/dedicated-development-team" ||
+    COST_GUIDE_PATHS.has(path) ||
     path === "/blog"
   ) {
     return MARKETING_LAST_MOD;

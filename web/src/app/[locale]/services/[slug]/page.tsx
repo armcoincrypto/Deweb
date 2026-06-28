@@ -15,6 +15,7 @@ import {
   type ServiceLandingSlug,
 } from "@/lib/service-landing";
 import { resolveRelatedGuides } from "@/lib/service-landing/resolve-related-guides";
+import { resolveCostGuides } from "@/lib/cost-guides/resolve-cost-guides";
 import { SUPERSEDED_LEGACY_SERVICE_IDS, absoluteUrl } from "@/lib/seo";
 import {
   localizedLandingMetadata,
@@ -78,7 +79,10 @@ export default async function ServicePage({ params }: Props) {
       { name: "Services", path: "/services" },
       { name: page.h1, path: page.path },
     ];
-    const relatedGuides = await resolveRelatedGuides(slug as ServiceLandingSlug, loc);
+    const relatedGuides = [
+      ...(await resolveRelatedGuides(slug as ServiceLandingSlug, loc)),
+      ...resolveCostGuides(slug as ServiceLandingSlug),
+    ];
     const tGuides = await getTranslations("serviceLanding.relatedGuides");
 
     return (
