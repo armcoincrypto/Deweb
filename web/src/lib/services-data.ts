@@ -381,11 +381,11 @@ export const servicesPageFallback = {
     },
   ],
   stats: [
-    { value: "500+", label: "Projects Delivered" },
-    { value: "98%", label: "Client Satisfaction" },
-    { value: "20+", label: "Countries Served" },
-    { value: "50+", label: "Expert Developers" },
-    { value: "24/7", label: "Support" },
+    { value: "🛠", label: "Production delivery" },
+    { value: "💳", label: "Crypto payment systems" },
+    { value: "🏪", label: "Marketplace platforms" },
+    { value: "⚙️", label: "Automation workflows" },
+    { value: "🌐", label: "Multilingual web platforms" },
   ],
   process: [
     {

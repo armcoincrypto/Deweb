@@ -183,7 +183,7 @@ function MarketplaceVisual() {
           {[
             { v: "248", l: "Bids" },
             { v: "$2.5k", l: "Volume" },
-            { v: "98%", l: "Success" },
+            { v: "Open", l: "Bids" },
           ].map((s) => (
             <div key={s.l} className="rounded-lg border border-deweb-cyan/20 bg-deweb-cyan/5 py-2">
               <p className="text-sm font-bold text-deweb-cyan">{s.v}</p>

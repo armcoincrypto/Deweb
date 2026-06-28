@@ -15,7 +15,7 @@ export function SocialProof() {
     <CinematicSection id="trust" fullScreen={false} className="section-padding border-y border-white/[0.06] bg-white/[0.02]">
       <div className="container-narrow px-4 sm:px-6 lg:px-8">
         <p className="mb-8 text-center text-xs font-bold uppercase tracking-wider text-white/50">
-          {t("trusted")}
+          {t("techStackTitle")}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
           {clientLogos.map((logo, i) => (

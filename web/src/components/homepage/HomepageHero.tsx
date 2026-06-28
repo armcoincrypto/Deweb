@@ -5,10 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { GlowButton } from "@/components/ui/GlowButton";
 
 const TRUST_STATS = [
-  { value: "500+", key: "statProjects" },
-  { value: "98%", key: "statSatisfaction" },
-  { value: "20+", key: "statCountries" },
-  { value: "24/7", key: "statSupport" },
+  { value: "🛠", key: "statProduction" },
+  { value: "📂", key: "statPortfolio" },
+  { value: "💳", key: "statCrypto" },
+  { value: "🏪", key: "statMarketplace" },
 ] as const;
 
 const SERVICE_PILLS = [

@@ -57,15 +57,9 @@ export function Hero() {
             </GlowButton>
           </motion.div>
 
-          <div className="mt-14 flex flex-wrap items-center justify-center gap-6 text-sm text-white/45">
-            <span>
-              <span className="font-bold text-white">150+</span> projects
-            </span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
-            <span>
-              <span className="font-bold text-emerald-400">98%</span> satisfaction
-            </span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
+          <div className="mt-14 flex flex-wrap items-center justify-center gap-4 text-sm text-white/45">
+            <span>{t("trusted")}</span>
+            <span className="h-1 w-1 rounded-full bg-white/20" aria-hidden />
             <span>Shopify · AI · SaaS · Web</span>
           </div>
         </motion.div>

@@ -20,8 +20,8 @@ export function HomePortfolio() {
       <div className="container-narrow px-4 sm:px-6 lg:px-8">
         <SectionHeading
           kicker="Case Studies"
-          title="Real projects. Real results."
-          subtitle="Professional project examples showing the problems we solve, how we solve them, and the business results clients care about."
+          title="Production portfolio examples"
+          subtitle="Illustrative project examples showing the problems we solve, our delivery approach, and practical engineering outcomes."
           id="portfolio-heading"
         />
 

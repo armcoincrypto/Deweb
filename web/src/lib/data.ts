@@ -152,7 +152,7 @@ export const pricingPlans = [
 ];
 
 export const stats = [
-  { value: "98%", label: "Project Success Rate" },
-  { value: "4.5", label: "Avg. Bids Per Project" },
-  { value: "$100M+", label: "Project Value Delivered" },
+  { value: "🛠", label: "Production delivery" },
+  { value: "📂", label: "Portfolio-backed work" },
+  { value: "⚙️", label: "Engineering-led execution" },
 ];

@@ -90,10 +90,10 @@ export function MarketplaceActivity() {
 
           <GlassCard className="lg:col-span-3 p-5" delay={0.2}>
             <h4 className="mb-2 text-sm font-bold text-white">Completed deals</h4>
-            <p className="text-2xl font-bold text-emerald-400">+34%</p>
-            <p className="text-xs text-white/45 mb-4">vs last month</p>
+            <p className="text-2xl font-bold text-emerald-400">Active</p>
+            <p className="text-xs text-white/45 mb-4">marketplace activity</p>
             <ActivityChart variant="deals" />
-            <p className="mt-4 text-xs text-white/40">127 projects delivered this week</p>
+            <p className="mt-4 text-xs text-white/40">Illustrative bidding activity on DEWEB Marketplace</p>
           </GlassCard>
         </div>
       </div>
