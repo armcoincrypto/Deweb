@@ -1129,10 +1129,6 @@
       "title": "Իմ առաջարկները | DEWEB մատակարարի վահանակ",
       "description": "Դիտեք բաց նախագծերը և ներկայացրեք մրցակցային առաջարկներ DEWEB հաճախորդներին։"
     },
-    "projects": {
-      "title": "Իմ նախագծերը | DEWEB հաճախորդի վահանակ",
-      "description": "Հրապարակեք նախագծեր, վերանայեք մատակարարների առաջարկները և հետևեք առաքմանը DEWEB-ում։"
-    },
     "submit-offer": {
       "title": "Ներկայացնել առաջարկ | DEWEB",
       "description": "Ներկայացրեք ծառայության առաջարկ կամ նախագծի հայտ։ DEWEB թիմը կկապվի ձեզ հետ պայմանները քննարկելու համար։"
@@ -1290,6 +1286,26 @@
     "dedicated-development-team": {
       "title": "Dedicated development team | Dedicated engineers | DEWEB",
       "description": "Dedicated software development team DEWEB-ով — startup, SaaS, marketplace, mobile, ecommerce long-term engineering capacity:"
+    },
+    "projects-kobbopay": {
+      "title": "Kobbopay Case Study | Multi-Rail Crypto Payment Platform | DEWEB",
+      "description": "Production case study: Kobbopay — NestJS, PostgreSQL, Redis, merchant portal, admin ops, webhooks, treasury."
+    },
+    "projects-exswaping": {
+      "title": "Exswaping Case Study | Cryptocurrency Exchange Platform | DEWEB",
+      "description": "Production case study: Exswaping — trading workflows, admin operations, AML/KYC, liquidity, monitoring, SEO."
+    },
+    "projects-changetext": {
+      "title": "Changetext Case Study | AI Telegram Content Automation | DEWEB",
+      "description": "Production case study: Changetext — Telegram bot, OpenAI, Google Sheets, automation workflows."
+    },
+    "projects-dex-kobbex": {
+      "title": "DEX Kobbex Case Study | Decentralized Swap Platform | DEWEB",
+      "description": "Production case study: DEX Kobbex — wallet integration, token swaps, Web3 frontend architecture."
+    },
+    "portfolio": {
+      "title": "DEWEB Projects | Production case studies",
+      "description": "Real DEWEB production projects — fintech payments, crypto exchange, AI Telegram automation, Web3 DEX case studies."
     }
   },
   "serviceLanding": {
@@ -1431,5 +1447,21 @@
       "ctaPrimary": "Ստանալ scope-ով գնահատական",
       "ctaSecondary": "Հրապարակել DEWEB Marketplace-ում"
     }
+  },
+  "projects": {
+    "breadcrumbHome": "Գլխավոր",
+    "breadcrumbProjects": "Նախագծեր",
+    "indexKicker": "Production case studies",
+    "indexTitle": "DEWEB-ի կողմից կառուցված իրական նախագծեր",
+    "indexSubtitle": "Production engineering case studies — fintech payments, crypto exchange, AI Telegram automation, Web3 DEX architecture with real stack and operations detail.",
+    "viewCaseStudy": "View case study",
+    "techStack": "Tech stack",
+    "relatedServicesTitle": "Related services",
+    "indexLinksTitle": "Explore DEWEB",
+    "servicesLink": "Services",
+    "marketplaceLink": "Marketplace",
+    "contactLink": "Contact",
+    "ctaContact": "Discuss a similar project",
+    "ctaMarketplace": "Post on DEWEB Marketplace"
   }
 }

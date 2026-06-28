@@ -1127,10 +1127,6 @@
       "title": "Мои предложения | Панель поставщика DEWEB",
       "description": "Просматривайте открытые проекты и подавайте конкурентные предложения клиентам DEWEB."
     },
-    "projects": {
-      "title": "Мои проекты | Панель клиента DEWEB",
-      "description": "Публикуйте проекты, просматривайте предложения поставщиков и отслеживайте сдачу на DEWEB."
-    },
     "submit-offer": {
       "title": "Отправить предложение | DEWEB",
       "description": "Отправьте предложение услуги или запрос на проект. Команда DEWEB свяжется с вами для согласования условий."
@@ -1262,6 +1258,26 @@
     "dedicated-development-team": {
       "title": "Выделенная команда разработки | Нанять dedicated engineers | DEWEB",
       "description": "Выделенная команда разработки ПО с DEWEB — long-term engineering capacity для стартапов, SaaS, marketplace, mobile и ecommerce с прозрачным discovery."
+    },
+    "projects-kobbopay": {
+      "title": "Case study Kobbopay | Multi-rail crypto payment platform | DEWEB",
+      "description": "Production case study: Kobbopay — NestJS, PostgreSQL, Redis, merchant portal, admin, webhooks, treasury management."
+    },
+    "projects-exswaping": {
+      "title": "Case study Exswaping | Cryptocurrency exchange | DEWEB",
+      "description": "Production case study: Exswaping — trading workflows, admin ops, AML/KYC, liquidity, monitoring, SEO engineering."
+    },
+    "projects-changetext": {
+      "title": "Case study Changetext | AI Telegram automation | DEWEB",
+      "description": "Production case study: Changetext — Telegram bot, OpenAI, Google Sheets, reliable automation pipelines."
+    },
+    "projects-dex-kobbex": {
+      "title": "Case study DEX Kobbex | Decentralized swap platform | DEWEB",
+      "description": "Production case study: DEX Kobbex — wallet integration, token swaps, Web3 frontend architecture."
+    },
+    "portfolio": {
+      "title": "Проекты DEWEB | Production case studies",
+      "description": "Реальные production-проекты DEWEB — fintech-платежи, crypto exchange, AI Telegram automation и Web3 DEX с архитектурным описанием."
     }
   },
   "serviceLanding": {
@@ -1403,5 +1419,21 @@
       "ctaPrimary": "Получить оценку с учётом scope",
       "ctaSecondary": "Разместить проект на DEWEB Marketplace"
     }
+  },
+  "projects": {
+    "breadcrumbHome": "Главная",
+    "breadcrumbProjects": "Проекты",
+    "indexKicker": "Production case studies",
+    "indexTitle": "Реальные проекты, созданные DEWEB",
+    "indexSubtitle": "Production case studies: fintech-платежи, crypto exchange, AI-автоматизация в Telegram и Web3 DEX — с описанием архитектуры и операционных решений.",
+    "viewCaseStudy": "Смотреть case study",
+    "techStack": "Технологический стек",
+    "relatedServicesTitle": "Связанные услуги",
+    "indexLinksTitle": "Изучить DEWEB",
+    "servicesLink": "Услуги",
+    "marketplaceLink": "Marketplace",
+    "contactLink": "Контакты",
+    "ctaContact": "Обсудить похожий проект",
+    "ctaMarketplace": "Разместить на DEWEB Marketplace"
   }
 }

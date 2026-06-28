@@ -116,6 +116,31 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
     description:
       "AI automation development cost guide — workflow bots, integrations, and ops automation with typical ranges and discovery-required estimates.",
   },
+  portfolio: {
+    title: "DEWEB Projects | Production Case Studies & Engineering Portfolio",
+    description:
+      "Real DEWEB production projects — fintech payments, crypto exchange, AI Telegram automation, and Web3 DEX engineering case studies with architecture detail.",
+  },
+  "projects-kobbopay": {
+    title: "Kobbopay Case Study | Multi-Rail Crypto Payment Platform | DEWEB",
+    description:
+      "Production case study: Kobbopay multi-rail USDT payment platform — NestJS, PostgreSQL, Redis, merchant portal, admin ops, webhooks, and treasury management.",
+  },
+  "projects-exswaping": {
+    title: "Exswaping Case Study | Cryptocurrency Exchange Platform | DEWEB",
+    description:
+      "Production case study: Exswaping crypto exchange — trading workflows, admin operations, AML/KYC processes, liquidity ops, monitoring, and SEO engineering.",
+  },
+  "projects-changetext": {
+    title: "Changetext Case Study | AI Telegram Content Automation | DEWEB",
+    description:
+      "Production case study: Changetext — Telegram bot automation with OpenAI, Google Sheets integrations, and reliable content workflow pipelines.",
+  },
+  "projects-dex-kobbex": {
+    title: "DEX Kobbex Case Study | Decentralized Swap Platform | DEWEB",
+    description:
+      "Production case study: DEX Kobbex Web3 swap platform — wallet integration, token swap flows, and frontend architecture for on-chain trading UX.",
+  },
   blog: {
     title: "DEWEB Blog | Shopify, AI Automation & SaaS Growth Guides",
     description:

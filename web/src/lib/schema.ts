@@ -168,6 +168,30 @@ export function authorPersonSchema({
   };
 }
 
+export function creativeWorkSchema({
+  name,
+  description,
+  url,
+  keywords,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  keywords?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `${url}#creativework`,
+    name,
+    description,
+    url,
+    creator: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    ...(keywords?.length ? { keywords: keywords.join(", ") } : {}),
+  };
+}
+
 export function articleSchema({
   headline,
   description,

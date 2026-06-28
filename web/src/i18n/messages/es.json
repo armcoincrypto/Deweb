@@ -1083,10 +1083,6 @@
       "title": "Mis propuestas | Panel de proveedor DEWEB",
       "description": "Explora proyectos abiertos y envía propuestas competitivas a clientes DEWEB."
     },
-    "projects": {
-      "title": "Mis proyectos | Panel de cliente DEWEB",
-      "description": "Publica proyectos, revisa propuestas de proveedores y sigue la entrega en DEWEB."
-    },
     "submit-offer": {
       "title": "Envía tu oferta | DEWEB",
       "description": "Envía tu oferta de servicio o solicitud de proyecto. El equipo DEWEB te contactará para negociar condiciones."
@@ -1262,6 +1258,26 @@
     "dedicated-development-team": {
       "title": "Equipo de desarrollo dedicado | Contratar ingenieros dedicados | DEWEB",
       "description": "Equipo de desarrollo de software dedicado con DEWEB — capacidad de ingeniería a largo plazo para startups, SaaS, marketplaces, mobile y ecommerce."
+    },
+    "projects-kobbopay": {
+      "title": "Caso Kobbopay | Plataforma de pagos cripto multi-rail | DEWEB",
+      "description": "Caso de estudio: Kobbopay — NestJS, PostgreSQL, Redis, portal merchant, admin, webhooks y gestión de tesorería."
+    },
+    "projects-exswaping": {
+      "title": "Caso Exswaping | Plataforma de exchange cripto | DEWEB",
+      "description": "Caso de estudio: Exswaping — flujos de trading, operaciones admin, AML/KYC, liquidez, monitorización y SEO."
+    },
+    "projects-changetext": {
+      "title": "Caso Changetext | Automatización de contenido Telegram con IA | DEWEB",
+      "description": "Caso de estudio: Changetext — bot Telegram, OpenAI, Google Sheets y pipelines de automatización fiables."
+    },
+    "projects-dex-kobbex": {
+      "title": "Caso DEX Kobbex | Plataforma swap descentralizada | DEWEB",
+      "description": "Caso de estudio: DEX Kobbex — integración wallet, swaps de tokens y arquitectura frontend Web3."
+    },
+    "portfolio": {
+      "title": "Proyectos DEWEB | Casos de estudio en producción",
+      "description": "Proyectos reales de DEWEB — pagos fintech, exchange cripto, automatización Telegram con IA y DEX Web3 con detalle de arquitectura."
     }
   },
   "serviceLanding": {
@@ -1403,5 +1419,21 @@
       "ctaPrimary": "Obtener una estimación detallada",
       "ctaSecondary": "Publicar en DEWEB Marketplace"
     }
+  },
+  "projects": {
+    "breadcrumbHome": "Inicio",
+    "breadcrumbProjects": "Proyectos",
+    "indexKicker": "Casos de estudio en producción",
+    "indexTitle": "Proyectos reales desarrollados por DEWEB",
+    "indexSubtitle": "Casos de estudio de ingeniería en producción: pagos fintech, exchanges cripto, automatización Telegram con IA y arquitectura DEX Web3 — con detalle técnico y operativo real.",
+    "viewCaseStudy": "Ver caso de estudio",
+    "techStack": "Stack tecnológico",
+    "relatedServicesTitle": "Servicios relacionados",
+    "indexLinksTitle": "Explorar DEWEB",
+    "servicesLink": "Servicios",
+    "marketplaceLink": "Marketplace",
+    "contactLink": "Contacto",
+    "ctaContact": "Hablar de un proyecto similar",
+    "ctaMarketplace": "Publicar en DEWEB Marketplace"
   }
 }

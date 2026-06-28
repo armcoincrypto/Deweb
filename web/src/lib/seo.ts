@@ -5,6 +5,7 @@ import { serviceCategories } from "@/lib/services-data";
 import { BLOG_ARTICLE_SLUGS } from "@/lib/blog";
 import { blogCategories } from "@/lib/blog/categories";
 import { getServiceLandingPaths } from "@/lib/service-landing";
+import { getProjectPaths } from "@/lib/projects";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://dewebam.com";
@@ -33,6 +34,7 @@ export const PUBLIC_STATIC_PATHS = [
   "/marketplace/hire-ai-automation-specialists",
   "/marketplace/hire-marketplace-developers",
   "/dedicated-development-team",
+  "/projects",
   "/blog",
   "/privacy-policy",
   "/cookie-policy",
@@ -96,7 +98,8 @@ export function getPageSitemapPaths(): string[] {
     ...new Set([...getLegacyServicePaths(), ...getLandingServicePaths()]),
   ];
   const blogCategoriesOnly = getBlogCategoryPaths();
-  return ["/", ...staticPaths, ...servicePaths, ...blogCategoriesOnly];
+  const projectPaths = getProjectPaths().filter((p) => p !== "/projects");
+  return ["/", ...staticPaths, ...servicePaths, ...blogCategoriesOnly, ...projectPaths];
 }
 
 /** All blog article paths for sitemap-blog.xml. */
