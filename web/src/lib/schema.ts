@@ -208,6 +208,34 @@ export type PortfolioListItem = {
   description: string;
 };
 
+export function portfolioCollectionPageSchema({
+  name,
+  url,
+  description,
+  projectUrls,
+}: {
+  name: string;
+  url: string;
+  description?: string;
+  projectUrls: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collectionpage`,
+    name,
+    url,
+    ...(description ? { description } : {}),
+    isPartOf: websiteRef,
+    about: organizationRef,
+    hasPart: projectUrls.map((projectUrl) => ({
+      "@type": "CreativeWork",
+      "@id": `${projectUrl}#creativework`,
+      url: projectUrl,
+    })),
+  };
+}
+
 export function portfolioItemListSchema({
   name,
   url,

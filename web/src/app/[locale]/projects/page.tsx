@@ -4,7 +4,7 @@ import { ProjectsIndexView } from "@/components/projects/ProjectsIndexView";
 import { getLocalizedPageSeo } from "@/lib/i18n/locale-seo";
 import { localizedPageMetadata } from "@/lib/i18n/page-metadata";
 import { getAllProjects } from "@/lib/projects";
-import { portfolioItemListSchema } from "@/lib/schema";
+import { portfolioCollectionPageSchema, portfolioItemListSchema } from "@/lib/schema";
 import { absoluteUrl } from "@/lib/seo";
 import type { Locale } from "@/i18n/routing";
 
@@ -22,6 +22,13 @@ export default async function ProjectsIndexPage({ params }: Props) {
   const projects = getAllProjects();
   const pageUrl = absoluteUrl(loc, "/projects");
 
+  const projectItems = projects.map((project) => ({
+    name: project.title,
+    url: absoluteUrl(loc, project.path),
+    description: project.summary,
+  }));
+  const projectUrls = projectItems.map((item) => item.url);
+
   return (
     <>
       <PageSchemas
@@ -36,14 +43,16 @@ export default async function ProjectsIndexPage({ params }: Props) {
       />
       <JsonLd
         data={[
+          portfolioCollectionPageSchema({
+            name: "DEWEB Projects",
+            url: pageUrl,
+            description: seo.description,
+            projectUrls,
+          }),
           portfolioItemListSchema({
             name: seo.title,
             url: pageUrl,
-            items: projects.map((project) => ({
-              name: project.title,
-              url: absoluteUrl(loc, project.path),
-              description: project.summary,
-            })),
+            items: projectItems,
           }),
         ]}
       />

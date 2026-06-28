@@ -9,12 +9,12 @@ export type AboutService = {
 };
 
 export const aboutStats = [
-  { value: "500+", label: "Projects Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "20+", label: "Countries Served" },
-  { value: "50+", label: "Technology Experts" },
-  { value: "24/7", label: "Support" },
-  { value: "100%", label: "Transparent Supplier Bidding" },
+  { value: "🛠", label: "Production software delivery" },
+  { value: "💳", label: "Crypto payment infrastructure" },
+  { value: "🏪", label: "Marketplace architecture" },
+  { value: "⚙️", label: "Automation systems" },
+  { value: "🌐", label: "Multilingual web platforms" },
+  { value: "📂", label: "Portfolio-backed engineering" },
 ];
 
 export const aboutServices: AboutService[] = [
