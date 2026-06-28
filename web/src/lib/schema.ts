@@ -4,13 +4,39 @@ import { LEGAL_CONTACT_EMAIL } from "@/lib/legal-content";
 
 export type BreadcrumbItem = { name: string; path: string };
 
+export const DEWEB_ORG_ID = `${SITE_URL}/#organization`;
+export const DEWEB_WEBSITE_ID = `${SITE_URL}/#website`;
+export const DEWEB_GITHUB_URL = "https://github.com/armcoincrypto/Deweb";
+
+export const DEWEB_KNOWS_ABOUT = [
+  "Crypto payment gateways",
+  "Web application development",
+  "Marketplace development",
+  "Next.js development",
+  "Automation systems",
+  "Multi-rail settlement systems",
+] as const;
+
+export const organizationRef = { "@id": DEWEB_ORG_ID };
+export const websiteRef = { "@id": DEWEB_WEBSITE_ID };
+
+function buildEntitySameAs(): string[] {
+  const links = [
+    DEWEB_GITHUB_URL,
+    `${SITE_URL}/en/projects/kobbopay`,
+    `${SITE_URL}/en/projects/exswaping`,
+    ...Object.values(defaultSocialLinks).map((s) => s.href),
+  ];
+  return [...new Set(links)];
+}
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": `${SITE_URL}/#organization`,
+    "@id": DEWEB_ORG_ID,
     name: "DEWEB",
-    alternateName: ["DEWEB Marketplace", "DeWeb"],
+    alternateName: ["DEWEB Marketplace", "DeWeb", "dewebam.com"],
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
@@ -20,9 +46,10 @@ export function organizationSchema() {
     },
     image: DEFAULT_OG_IMAGE,
     description:
-      "DEWEB is an IT marketplace connecting businesses with verified developers for Shopify, AI, web and digital services.",
+      "DEWEB is an IT marketplace and engineering agency for Shopify development, AI automation, SaaS, marketplaces, crypto payment systems, and custom web applications.",
     email: LEGAL_CONTACT_EMAIL,
-    sameAs: Object.values(defaultSocialLinks).map((s) => s.href),
+    sameAs: buildEntitySameAs(),
+    knowsAbout: [...DEWEB_KNOWS_ABOUT],
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -40,13 +67,14 @@ export function websiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": `${SITE_URL}/#website`,
+    "@id": DEWEB_WEBSITE_ID,
     name: "DEWEB",
+    alternateName: ["DEWEB Marketplace", "DeWeb", "dewebam.com"],
     url: SITE_URL,
     description:
-      "IT marketplace for Shopify development, AI automation, web applications and verified digital services.",
-    publisher: { "@id": `${SITE_URL}/#organization` },
-    copyrightHolder: { "@id": `${SITE_URL}/#organization` },
+      "Multilingual IT marketplace and engineering site for Shopify, AI automation, web applications, portfolio case studies, and supplier bidding.",
+    publisher: organizationRef,
+    copyrightHolder: organizationRef,
     inLanguage: ["en", "es", "ru", "am"],
   };
 }
@@ -87,7 +115,7 @@ export function serviceSchema({
     description,
     url,
     serviceType,
-    provider: { "@id": `${SITE_URL}/#organization` },
+    provider: organizationRef,
     areaServed,
     ...(priceRange
       ? {
@@ -141,8 +169,8 @@ export function webPageSchema({
     name,
     description,
     url,
-    isPartOf: { "@id": `${SITE_URL}/#website` },
-    publisher: { "@id": `${SITE_URL}/#organization` },
+    isPartOf: websiteRef,
+    publisher: organizationRef,
   };
 }
 
@@ -164,7 +192,7 @@ export function authorPersonSchema({
     name,
     jobTitle: role,
     url,
-    worksFor: { "@id": `${SITE_URL}/#organization` },
+    worksFor: organizationRef,
   };
 }
 
@@ -188,8 +216,12 @@ export function creativeWorkSchema({
     name,
     description,
     url,
-    creator: { "@id": `${SITE_URL}/#organization` },
-    publisher: { "@id": `${SITE_URL}/#organization` },
+    creator: organizationRef,
+    author: organizationRef,
+    publisher: organizationRef,
+    provider: organizationRef,
+    isPartOf: websiteRef,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
     ...(about ? { about } : {}),
     ...(keywords?.length ? { keywords: keywords.join(", ") } : {}),
   };
@@ -218,7 +250,7 @@ export function articleSchema({
     ? { "@id": `${SITE_URL}/#author-${authorId}` }
     : authorName
       ? { "@type": "Person" as const, name: authorName }
-      : { "@id": `${SITE_URL}/#organization` };
+      : organizationRef;
 
   return {
     "@context": "https://schema.org",
@@ -230,7 +262,7 @@ export function articleSchema({
     datePublished,
     dateModified: dateModified || datePublished,
     author,
-    publisher: { "@id": `${SITE_URL}/#organization` },
+    publisher: organizationRef,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 }

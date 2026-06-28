@@ -20,7 +20,7 @@
     "admin": "Ադմին"
   },
   "home": {
-    "badge": "Պրեմիում տեխնոլոգիական ընկերություն",
+    "badge": "Production-focused technology company",
     "seoH1": "Կառուցում ենք Թվային Բիզնեսի Ապագան",
     "taglineAria": "Shopify, AI, SaaS և անհատական թվային լուծումներ",
     "title": "Կառուցում ենք Թվային Բիզնեսի Ապագան",
@@ -57,19 +57,19 @@
     "aiKicker": "AI ավտոմատացում",
     "aiTitle": "Ինտելեկտ յուրաքանչյուր շերտում",
     "aiSubtitle": "Մատակարարների համապատասխանեցումից մինչև workflow բոտեր — DEWEB-ը միավորում է շուկայի մրցակցությունը AI-նատիվ առաքման հետ։",
-    "featuredKicker": "Լավագույն մատակարարներ",
-    "featuredTitle": "Գնահատված մասնագետներ՝ ձեր նախագծերի համար",
+    "featuredKicker": "Featured suppliers",
+    "featuredTitle": "Portfolio-backed specialists competing for your projects",
     "pricingKicker": "Գնացուցակ",
     "pricingTitle": "Պլաններ ձեր նպատակներին համապատասխան",
-    "ctaFinalTitle": "Պատրա՞ստ եք աճելու պրեմիում տեխնոլոգիայով",
+    "ctaFinalTitle": "Ready to grow with practical technology?",
     "ctaFinalSubtitle": "Պատմեք մեզ ձեր Shopify խանութի, AI ավտոմատացման, SaaS արտադրանքի կամ շուկայի գաղափարի մասին։ DEWEB-ը պատասխանում է 24 ժամվա ընթացքում։",
     "ctaFinalPrimary": "Սկսել նախագիծը",
     "ctaFinalSecondary": "Ծանոթանալ ծառայություններին"
   },
   "services": {
     "title": "Ծառայություններ",
-    "subtitle": "Պրեմիում IT առաքում վեբ, AI, մոբայլ և աճի ոլորտներում — թափանցիկ փաթեթներ և մրցակցային մատակարարների սակագնում։",
-    "heroTitle": "Կառուցեք, ավտոմատացրեք և մասշտաբացրեք բիզնեսը էլիտար թվային լուծումներով",
+    "subtitle": "Engineering-led IT delivery across web, AI, mobile, and growth — with transparent packages and competitive supplier bidding.",
+    "heroTitle": "Build, Automate & Scale Your Business With Production-Focused Digital Solutions",
     "heroSubtitle": "Shopify խանութներ, AI չատբոտներ, անհատական վեբ հավելվածներ, մոբայլ արտադրանք և ընկերության ավտոմատացում — ստուգված DEWEB մատակարարների կողմից։",
     "consultation": "Ստանալ անվճար խորհրդատվություն",
     "requestBids": "Պահանջել մատակարարների առաջարկներ",
@@ -679,7 +679,7 @@
   },
   "about": {
     "heroTitle": "Կառուցում ենք Թվային Բիզնեսի Ապագան",
-    "heroSubtitle": "DEWEB-ը միավորում է բիզնեսները էլիտար մշակողների, AI մասնագետների, Shopify փորձագետների և տեխնոլոգիական մատակարարների հետ մեկ հզոր էկոհամակարգում։",
+    "heroSubtitle": "DEWEB connects businesses with portfolio-backed developers, AI specialists, Shopify experts, and technology suppliers through one practical ecosystem.",
     "consultation": "Ստանալ անվճար խորհրդատվություն",
     "startProject": "Սկսել նախագիծ",
     "whoKicker": "Ով ենք մենք",
@@ -687,7 +687,7 @@
     "whoText": "DEWEB-ը միավորում է տեխնոլոգիական շուկա, Shopify զարգացման թիմ, AI ավտոմատացման ստուդիա, ծրագրային գործակալություն և մատակարարների մրցակցության հարթակ մեկ էկոհամակարգում։",
     "statsTitle": "Ինչու են հաճախորդները ընտրում DEWEB-ը",
     "servicesTitle": "Մեր հիմնական ծառայությունները",
-    "servicesSubtitle": "Shopify խանութներից մինչև AI ավտոմատացում — էլիտար առաքում թափանցիկ գներով և մրցակցային մատակարարների սակագնումով։",
+    "servicesSubtitle": "From Shopify stores to AI automation — maintainable delivery with transparent pricing and competitive supplier bidding.",
     "processTitle": "Մեր գործընթացը",
     "teamTitle": "Ղեկավար թիմ",
     "teamSubtitle": "Փորձառու ղեկավարներ՝ շուկայի նորարարություն, վեբ գերազանցություն և AI-նատիվ առաքում։",
@@ -1006,16 +1006,16 @@
     "whoLabel": "Ով՝ ",
     "resultLabel": "Արդյունք՝ ",
     "scrollHint": "Ոլորեք՝ լուծումներն ուսումնասիրելու համար",
-    "featured": "Լավագույն"
+    "featured": "Featured"
   },
   "seo": {
     "home": {
       "title": "DeWeb | Կառուցում ենք Թվային Բիզնեսի Ապագան",
-      "description": "Մենք ստեղծում ենք Shopify խանութներ, AI համակարգեր, ավտոմատացման հարթակներ, կայքեր և մասշտաբային թվային լուծումներ։ Պրեմիում տեխնոլոգիական ընկերություն աճող բիզնեսների համար։"
+      "description": "We create Shopify stores, AI systems, automation platforms, websites and scalable digital solutions. Engineering-led technology company built around real production projects."
     },
     "about": {
-      "title": "DEWEB-ի մասին | Պրեմիում IT զարգացման գործակալություն",
-      "description": "Ծանոթացեք DEWEB-ին — պրեմիում գործակալություն Shopify զարգացման, AI ավտոմատացման, SaaS արտադրանքների, շուկաների և անհատական վեբ հավելվածների համար։"
+      "title": "About DEWEB | Engineering-Led IT Development",
+      "description": "Meet DEWEB — an engineering-led agency for Shopify development, AI automation, SaaS products, marketplaces, and custom web applications."
     },
     "contact": {
       "title": "Կապ DEWEB-ի հետ | Սկսեք Shopify, AI կամ SaaS նախագիծ",

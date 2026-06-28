@@ -20,7 +20,7 @@
     "admin": "Admin"
   },
   "home": {
-    "badge": "Empresa tecnológica premium",
+    "badge": "Empresa tecnológica enfocada en producción",
     "seoH1": "Construyendo el futuro del negocio digital",
     "taglineAria": "Shopify, IA, SaaS y soluciones digitales a medida",
     "title": "Construyendo el futuro del negocio digital",
@@ -58,18 +58,18 @@
     "aiTitle": "Inteligencia integrada en cada capa",
     "aiSubtitle": "Desde el emparejamiento de proveedores hasta bots de flujo de trabajo — DEWEB combina ofertas en marketplace con entrega nativa de IA.",
     "featuredKicker": "Proveedores destacados",
-    "featuredTitle": "Talento mejor valorado compitiendo por tus proyectos",
+    "featuredTitle": "Especialistas respaldados por portfolio compitiendo por tus proyectos",
     "pricingKicker": "Precios",
     "pricingTitle": "Planes que escalan con tu ambición",
-    "ctaFinalTitle": "¿Listo para crecer con tecnología premium?",
+    "ctaFinalTitle": "¿Listo para crecer con tecnología práctica?",
     "ctaFinalSubtitle": "Cuéntanos sobre tu tienda Shopify, automatización con IA, producto SaaS o idea de marketplace. DEWEB responde en 24 horas.",
     "ctaFinalPrimary": "Iniciar tu proyecto",
     "ctaFinalSecondary": "Explorar servicios"
   },
   "services": {
     "title": "Servicios",
-    "subtitle": "Entrega de TI premium en web, IA, móvil y crecimiento — con paquetes transparentes y ofertas competitivas de proveedores.",
-    "heroTitle": "Construye, automatiza y escala tu negocio con soluciones digitales de élite",
+    "subtitle": "Entrega de TI engineering-led en web, IA, móvil y crecimiento — con paquetes transparentes y ofertas competitivas de proveedores.",
+    "heroTitle": "Construye, automatiza y escala tu negocio con soluciones digitales centradas en producción",
     "heroSubtitle": "Tiendas Shopify, chatbots de IA, aplicaciones web a medida, productos móviles y automatización empresarial — entregados por proveedores verificados de DEWEB.",
     "consultation": "Consulta gratuita",
     "requestBids": "Solicitar ofertas de proveedores",
@@ -679,7 +679,7 @@
   },
   "about": {
     "heroTitle": "Construyendo el futuro del negocio digital",
-    "heroSubtitle": "DEWEB conecta empresas con desarrolladores de élite, especialistas en IA, expertos en Shopify y proveedores tecnológicos en un ecosistema potente.",
+    "heroSubtitle": "DEWEB conecta empresas con desarrolladores respaldados por portfolio, especialistas en IA, expertos en Shopify y proveedores tecnológicos en un ecosistema práctico.",
     "consultation": "Consulta gratuita",
     "startProject": "Iniciar tu proyecto",
     "whoKicker": "Quiénes somos",
@@ -687,7 +687,7 @@
     "whoText": "DEWEB combina un marketplace tecnológico, equipo de desarrollo Shopify, estudio de automatización con IA, agencia de software y plataforma de ofertas de proveedores en un solo ecosistema.",
     "statsTitle": "Por qué los clientes eligen DEWEB",
     "servicesTitle": "Nuestros servicios principales",
-    "servicesSubtitle": "Desde tiendas Shopify hasta automatización con IA — entrega de élite con precios transparentes y ofertas competitivas.",
+    "servicesSubtitle": "Desde tiendas Shopify hasta automatización con IA — entrega mantenible con precios transparentes y ofertas competitivas.",
     "processTitle": "Nuestro proceso",
     "teamTitle": "Equipo directivo",
     "teamSubtitle": "Líderes con experiencia impulsando innovación en marketplace, excelencia web y entrega nativa de IA.",
@@ -1009,11 +1009,11 @@
   "seo": {
     "home": {
       "title": "DeWeb | Construyendo el futuro del negocio digital",
-      "description": "Creamos tiendas Shopify, sistemas de IA, plataformas de automatización, sitios web y soluciones digitales escalables. Empresa tecnológica premium para negocios en crecimiento."
+      "description": "Creamos tiendas Shopify, sistemas de IA, plataformas de automatización, sitios web y soluciones digitales escalables. Empresa tecnológica engineering-led basada en proyectos de producción reales."
     },
     "about": {
-      "title": "Sobre DEWEB | Agencia premium de desarrollo de TI",
-      "description": "Conoce DEWEB — agencia premium de desarrollo Shopify, automatización con IA, productos SaaS, marketplaces y aplicaciones web a medida."
+      "title": "Sobre DEWEB | Desarrollo de TI engineering-led",
+      "description": "Conoce DEWEB — agencia engineering-led de desarrollo Shopify, automatización con IA, productos SaaS, marketplaces y aplicaciones web a medida."
     },
     "contact": {
       "title": "Contacto DEWEB | Inicia tu proyecto Shopify, IA o SaaS",

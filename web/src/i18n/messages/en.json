@@ -20,7 +20,7 @@
     "admin": "Admin"
   },
   "home": {
-    "badge": "Premium technology company",
+    "badge": "Production-focused technology company",
     "seoH1": "Building The Future Of Digital Business",
     "taglineAria": "Shopify, AI, SaaS and custom digital solutions",
     "title": "Building The Future Of Digital Business",
@@ -58,18 +58,18 @@
     "aiTitle": "Intelligence built into every layer",
     "aiSubtitle": "From supplier matching to workflow bots — DEWEB combines marketplace bidding with AI-native delivery.",
     "featuredKicker": "Featured suppliers",
-    "featuredTitle": "Top-rated talent competing for your projects",
+    "featuredTitle": "Portfolio-backed specialists competing for your projects",
     "pricingKicker": "Pricing",
     "pricingTitle": "Plans that scale with your ambition",
-    "ctaFinalTitle": "Ready to grow with premium technology?",
+    "ctaFinalTitle": "Ready to grow with practical technology?",
     "ctaFinalSubtitle": "Tell us about your Shopify store, AI automation, SaaS product, or marketplace idea. DEWEB responds within 24 hours.",
     "ctaFinalPrimary": "Start Your Project",
     "ctaFinalSecondary": "Explore Services"
   },
   "services": {
     "title": "Services",
-    "subtitle": "Premium IT delivery across web, AI, mobile, and growth — with transparent packages and competitive supplier bidding.",
-    "heroTitle": "Build, Automate & Scale Your Business With Elite Digital Solutions",
+    "subtitle": "Engineering-led IT delivery across web, AI, mobile, and growth — with transparent packages and competitive supplier bidding.",
+    "heroTitle": "Build, Automate & Scale Your Business With Production-Focused Digital Solutions",
     "heroSubtitle": "Shopify stores, AI chatbots, custom web apps, mobile products, and enterprise automation — delivered by verified DEWEB suppliers.",
     "consultation": "Get Free Consultation",
     "requestBids": "Request Supplier Bids",
@@ -679,7 +679,7 @@
   },
   "about": {
     "heroTitle": "Building The Future Of Digital Business",
-    "heroSubtitle": "DEWEB connects businesses with elite developers, AI specialists, Shopify experts, and technology suppliers through one powerful ecosystem.",
+    "heroSubtitle": "DEWEB connects businesses with portfolio-backed developers, AI specialists, Shopify experts, and technology suppliers through one practical ecosystem.",
     "consultation": "Get Free Consultation",
     "startProject": "Start Your Project",
     "whoKicker": "Who We Are",
@@ -687,7 +687,7 @@
     "whoText": "DEWEB combines a technology marketplace, Shopify development team, AI automation studio, software agency, and supplier bidding platform into one ecosystem.",
     "statsTitle": "Why Clients Choose DEWEB",
     "servicesTitle": "Our Core Services",
-    "servicesSubtitle": "From Shopify stores to AI automation — elite delivery with transparent pricing and competitive supplier bidding.",
+    "servicesSubtitle": "From Shopify stores to AI automation — maintainable delivery with transparent pricing and competitive supplier bidding.",
     "processTitle": "Our Process",
     "teamTitle": "Leadership Team",
     "teamSubtitle": "Experienced leaders driving marketplace innovation, web excellence, and AI-native delivery.",
@@ -1009,11 +1009,11 @@
   "seo": {
     "home": {
       "title": "DeWeb | Building The Future Of Digital Business",
-      "description": "We create Shopify stores, AI systems, automation platforms, websites and scalable digital solutions. Premium technology company for growing businesses."
+      "description": "We create Shopify stores, AI systems, automation platforms, websites and scalable digital solutions. Engineering-led technology company built around real production projects."
     },
     "about": {
-      "title": "About DEWEB | Premium IT Development Agency",
-      "description": "Meet DEWEB — a premium agency for Shopify development, AI automation, SaaS products, marketplaces, and custom web applications."
+      "title": "About DEWEB | Engineering-Led IT Development",
+      "description": "Meet DEWEB — an engineering-led agency for Shopify development, AI automation, SaaS products, marketplaces, and custom web applications."
     },
     "contact": {
       "title": "Contact DEWEB | Start Your Shopify, AI or SaaS Project",
