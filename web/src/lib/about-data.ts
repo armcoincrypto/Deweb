@@ -9,18 +9,18 @@ export type AboutService = {
 };
 
 export const aboutStats = [
-  { value: "500+", label: "Projects Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "20+", label: "Countries Served" },
-  { value: "50+", label: "Technology Experts" },
-  { value: "24/7", label: "Support" },
-  { value: "100%", label: "Transparent Supplier Bidding" },
+  { value: "Multi-industry", label: "Custom development experience" },
+  { value: "Full-stack", label: "Web, mobile, AI & automation" },
+  { value: "Multilingual", label: "EN · ES · RU · AM delivery" },
+  { value: "Transparent", label: "Supplier bidding model" },
+  { value: "Ongoing", label: "Post-launch support" },
+  { value: "Structured", label: "Escrow-ready project terms" },
 ];
 
 export const aboutServices: AboutService[] = [
   {
     id: "shopify",
-    slug: "ecommerce",
+    slug: "shopify-development",
     icon: "🛒",
     featured: true,
     title: "Shopify Development",
@@ -34,7 +34,7 @@ export const aboutServices: AboutService[] = [
   },
   {
     id: "ai-chatbots",
-    slug: "ai",
+    slug: "ai-chatbot-development",
     icon: "🤖",
     title: "AI Chatbots",
     desc: "Intelligent assistants that qualify leads, support customers, and integrate with your stack 24/7.",
@@ -42,7 +42,7 @@ export const aboutServices: AboutService[] = [
   },
   {
     id: "web-apps",
-    slug: "websites",
+    slug: "web-application-development",
     icon: "🌐",
     title: "Custom Web Applications",
     desc: "Modern web apps with APIs, dashboards, and performance built for growth.",
@@ -58,7 +58,7 @@ export const aboutServices: AboutService[] = [
   },
   {
     id: "ai-automation",
-    slug: "marketing",
+    slug: "ai-business-automation",
     icon: "⚙️",
     title: "AI Automation",
     desc: "Workflow automation, intelligent agents, and operations that run while you sleep.",
@@ -66,7 +66,7 @@ export const aboutServices: AboutService[] = [
   },
   {
     id: "marketplace",
-    slug: "saas",
+    slug: "marketplace-development",
     icon: "🏪",
     title: "Marketplace Development",
     desc: "Multi-vendor platforms with bidding, escrow, and supplier dashboards.",
@@ -74,7 +74,7 @@ export const aboutServices: AboutService[] = [
   },
   {
     id: "telegram",
-    slug: "bots",
+    slug: "telegram-bot-development",
     icon: "⚡",
     title: "Telegram Bots",
     desc: "Sales, support, and community bots on Telegram and Discord.",
@@ -82,7 +82,7 @@ export const aboutServices: AboutService[] = [
   },
   {
     id: "saas",
-    slug: "saas",
+    slug: "saas-development",
     icon: "☁️",
     title: "SaaS Platforms",
     desc: "Subscription products with auth, billing, and multi-tenant architecture.",

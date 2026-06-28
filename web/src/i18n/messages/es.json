@@ -28,7 +28,7 @@
     "subtitle": "Creamos tiendas Shopify, sistemas de IA, plataformas de automatización, sitios web y soluciones digitales escalables.",
     "ctaPrimary": "Iniciar tu proyecto",
     "ctaSecondary": "Explorar servicios",
-    "trusted": "Construido con tecnología en la que confían empresas en crecimiento",
+    "trusted": "Tecnologías con las que trabajamos",
     "testimonialsKicker": "Escenario de ejemplo",
     "testimonialsTitle": "Resultados de ejemplo en proyectos habituales de DEWEB",
     "testimonialsSubtitle": "Escenarios ilustrativos que muestran los tipos de problemas que DEWEB puede ayudar a resolver. No son testimonios de clientes.",
@@ -112,9 +112,9 @@
       "offerLabel": "Lo que entregamos",
       "opportunityLabel": "La oportunidad de Shopify",
       "opportunityText": "Shopify impulsa más de 4,5 millones de tiendas en todo el mundo. Las ventas de ecommerce superan los 6 billones de dólares a nivel global — las marcas que lanzan en Shopify llegan a más de 175 países con pagos, inventario y herramientas de marketing integrados desde el primer día.",
-      "stat1": "Más del 10 % del ecommerce de EE. UU. funciona con Shopify",
-      "stat2": "Mejora media del 36 % en conversión tras optimización CRO",
-      "stat3": "Shopify Plus para marcas de más de 1 M$ — construimos y migramos",
+      "stat1": "Shopify impulsa millones de tiendas en todo el mundo",
+      "stat2": "Entrega de storefront y checkout orientada al rendimiento",
+      "stat3": "Migraciones Shopify Plus y desarrollo commerce a medida",
       "timeline": "Entrega habitual",
       "cta": "Presupuesto Shopify",
       "consult": "Consulta gratuita",
@@ -148,7 +148,7 @@
         "excerpt": "Por qué publicar proyectos a varios proveedores mejora precios y acelera la entrega.",
         "body1": "La contratación tradicional de TI suele implicar negociar con un solo proveedor — dejando dinero y opciones sobre la mesa. Las ofertas competitivas cambian eso al invitar a proveedores verificados a presentar propuestas lado a lado.",
         "body2": "En DEWEB, los clientes publican un brief con presupuesto y plazos. Los proveedores compiten con precios transparentes, portafolios y planes de entrega. Comparas todo en un solo panel antes de elegir.",
-        "body3": "El resultado: ahorros medios del 15–30 % en costes de proyecto, plazos más cortos y mayor confianza en tu elección de proveedor."
+        "body3": "El resultado: precios competitivos mediante comparación de propuestas, plazos más cortos y mayor confianza en tu elección de proveedor."
       },
       "choosing-the-right-web-stack": {
         "title": "Elegir el stack web adecuado en 2026",
@@ -275,8 +275,6 @@
       "resourcesP2": "o",
       "resourcesContactLink": "contacta con DEWEB",
       "resourcesP3": "para ayuda al definir un proyecto antes de publicarlo.",
-      "costGuidesTitle": "Guías de coste y comparación",
-      "costGuidesIntro": "Guías de planificación con rangos de presupuesto típicos y disclaimers de alcance — no precios fijos.",
       "faqTitle": "Preguntas frecuentes",
       "faq1q": "¿Qué es DEWEB Marketplace?",
       "faq1a": "DEWEB Marketplace es un marketplace IT donde los clientes publican proyectos de software y los especialistas técnicos ofrecen servicios o responden con propuestas. Combina listados de proyectos, ofertas de servicio y productos en dewebam.com.",
@@ -695,7 +693,7 @@
     "teamSubtitle": "Líderes con experiencia impulsando innovación en marketplace, excelencia web y entrega nativa de IA.",
     "yearsExperience": "{years}+ años de experiencia",
     "techTitle": "Tecnologías que usamos",
-    "techSubtitle": "Stacks modernos en los que confían equipos empresariales en todo el mundo.",
+    "techSubtitle": "Stacks modernos que usamos en proyectos de producción.",
     "ctaTitle": "¿Listo para construir tu próximo producto digital?",
     "ctaSubtitle": "Recibe varias ofertas de proveedores, compara experiencia y lanza tu proyecto con confianza.",
     "requestProposal": "Solicitar propuesta",
@@ -924,19 +922,6 @@
     "save": "Guardar",
     "cancel": "Cancelar"
   },
-  "costGuides": {
-    "shared": {
-      "breadcrumbHome": "Inicio",
-      "costRangesTitle": "Rangos de coste típicos (estimaciones)",
-      "costDisclaimer": "Los rangos son estimaciones ilustrativas para planificación. El precio final depende del alcance, integraciones, ubicación del equipo, plazos y discovery.",
-      "comparisonTitle": "Comparación lado a lado",
-      "whenToChooseTitle": "Cuándo elegir cada opción",
-      "relatedServicesTitle": "Servicios DEWEB relacionados",
-      "faqTitle": "Preguntas frecuentes",
-      "ctaPrimary": "Solicitar estimación con alcance",
-      "ctaSecondary": "Explorar DEWEB Marketplace"
-    }
-  },
   "footer": {
     "tagline": "Los proveedores compiten. Los clientes ganan. Marketplace global de TI.",
     "platform": "Plataforma",
@@ -959,12 +944,6 @@
     "dedicatedTeam": "Equipo de desarrollo dedicado",
     "dedicatedTeam": "Equipo de desarrollo dedicado",
     "telegramBots": "Desarrollo de bots de Telegram",
-    "costGuides": "Guías de coste",
-    "marketplaceCostGuide": "Coste de marketplace",
-    "shopifyVsCustom": "Shopify vs ecommerce custom",
-    "webflowVsNextjs": "Webflow vs Next.js",
-    "landingPageCost": "Coste de landing page",
-    "saasDevCost": "Coste de desarrollo SaaS",
     "privacyPolicy": "Política de privacidad",
     "cookiePolicy": "Política de cookies",
     "termsOfUse": "Términos de uso"
@@ -1283,26 +1262,6 @@
     "dedicated-development-team": {
       "title": "Equipo de desarrollo dedicado | Contratar ingenieros dedicados | DEWEB",
       "description": "Equipo de desarrollo de software dedicado con DEWEB — capacidad de ingeniería a largo plazo para startups, SaaS, marketplaces, mobile y ecommerce."
-    },
-    "cost-to-build-marketplace-website": {
-      "title": "Coste de marketplace (2026) | Rangos de presupuesto típicos | DEWEB",
-      "description": "Estimaciones de coste para desarrollar un marketplace en 2026 — MVP, plataforma multivendedor y equipo dedicado con disclaimers de alcance."
-    },
-    "shopify-vs-custom-ecommerce": {
-      "title": "Shopify vs ecommerce custom (2026) | Guía de coste y decisión | DEWEB",
-      "description": "Compara Shopify y ecommerce custom — costes típicos, plazos, trade-offs y cuándo encaja cada enfoque."
-    },
-    "webflow-vs-nextjs": {
-      "title": "Webflow vs Next.js (2026) | Comparación para sitios corporativos | DEWEB",
-      "description": "Compara Webflow y Next.js — rangos de coste, CMS, rendimiento e integraciones para sitios de negocio."
-    },
-    "landing-page-cost": {
-      "title": "Coste de landing page (2026) | Estimaciones de diseño y desarrollo | DEWEB",
-      "description": "Rangos típicos de coste de landing pages en 2026 — páginas de campaña, builds premium y funnels."
-    },
-    "saas-development-cost": {
-      "title": "Coste de desarrollo SaaS (2026) | Guía MVP y crecimiento | DEWEB",
-      "description": "Guía de coste SaaS 2026 — MVP, fase de crecimiento y equipo dedicado con disclaimers transparentes."
     }
   },
   "serviceLanding": {
@@ -1408,8 +1367,6 @@
     "relatedServiceHireMarketplace": "Contratar desarrolladores de marketplaces",
     "guidesTitle": "Guías relacionadas",
     "guidesIntro": "Artículos DEWEB sobre hiring, outsourcing y planificación de delivery:",
-    "costGuidesTitle": "Guías de coste y comparación",
-    "costGuidesIntro": "Guías con rangos de presupuesto típicos y disclaimers de alcance para marketplace, ecommerce, SaaS y sitios web.",
     "faqTitle": "Preguntas frecuentes",
     "faq1q": "¿Qué es un dedicated development team?",
     "faq1a": "Grupo estable de ingenieros enfocado en tu roadmap durante meses o trimestres, con contexto de codebase y prioridades de negocio.",

@@ -43,9 +43,9 @@ export function MarketplaceActivity() {
     <section id="services" className="section-padding">
       <div className="container-narrow">
         <SectionHeading
-          kicker="Live activity"
-          title="Real-time marketplace pulse"
-          subtitle="Watch bids flow in, prices compete down, and deals close — transparency at every step."
+          kicker="Example flow"
+          title="How supplier bidding works"
+          subtitle="Illustrative marketplace workflow — post a brief, compare proposals, and choose delivery terms with transparent scope."
         />
         <div className="grid gap-6 lg:grid-cols-12">
           <GlassCard className="lg:col-span-3 p-5" delay={0}>
@@ -71,7 +71,7 @@ export function MarketplaceActivity() {
           <GlassCard glow className="lg:col-span-6 p-6" delay={0.1}>
             <div className="mb-4 flex items-center justify-between">
               <h4 className="font-bold text-white">Live price comparison</h4>
-              <span className="text-xs text-emerald-400">↓ 12% avg savings</span>
+              <span className="text-xs text-emerald-400">Compare proposals</span>
             </div>
             <p className="text-sm text-white/50 mb-4">E-commerce API — 4 suppliers competing</p>
             <ActivityChart variant="bids" />
@@ -90,10 +90,10 @@ export function MarketplaceActivity() {
 
           <GlassCard className="lg:col-span-3 p-5" delay={0.2}>
             <h4 className="mb-2 text-sm font-bold text-white">Completed deals</h4>
-            <p className="text-2xl font-bold text-emerald-400">+34%</p>
-            <p className="text-xs text-white/45 mb-4">vs last month</p>
+            <p className="text-lg font-bold text-emerald-400">Scoped delivery</p>
+            <p className="text-xs text-white/45 mb-4">Illustrative milestone flow</p>
             <ActivityChart variant="deals" />
-            <p className="mt-4 text-xs text-white/40">127 projects delivered this week</p>
+            <p className="mt-4 text-xs text-white/40">Example project stages from brief to launch</p>
           </GlassCard>
         </div>
       </div>

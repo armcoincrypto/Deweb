@@ -2,12 +2,12 @@ import type { LocaleContentModule } from "@/lib/i18n/content/types";
 
 export const about: LocaleContentModule["about"] = {
   stats: [
-    { label: "Proyectos entregados" },
-    { label: "Satisfacción del cliente" },
-    { label: "Países atendidos" },
-    { label: "Expertos en tecnología" },
-    { label: "Soporte" },
-    { label: "Pujas transparentes de proveedores" },
+    { label: "Experiencia en desarrollo a medida" },
+    { label: "Web, mobile, IA y automatización" },
+    { label: "Entrega EN · ES · RU · AM" },
+    { label: "Modelo de pujas de proveedores" },
+    { label: "Soporte post-lanzamiento" },
+    { label: "Condiciones estructuradas con escrow" },
   ],
   services: [
     {

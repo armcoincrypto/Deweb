@@ -2,12 +2,12 @@ import type { LocaleContentModule } from "@/lib/i18n/content/types";
 
 export const about: LocaleContentModule["about"] = {
   stats: [
-    { label: "Ավարտված նախագծեր" },
-    { label: "Հաճախորդների գոհունակություն" },
-    { label: "Ծառայություն մատուցող երկրներ" },
-    { label: "Տեխնոլոգիական փորձագետներ" },
-    { label: "Աջակցություն" },
-    { label: "Թափանցիկ մատակարարների գնային առաջարկներ" },
+    { label: "Custom զարգացման փորձ" },
+    { label: "Web, mobile, AI և ավտոմատացում" },
+    { label: "EN · ES · RU · AM մատուցում" },
+    { label: "Մատակարարների գնային մրցակցություն" },
+    { label: "Launch-ից հետո աջակցություն" },
+    { label: "Escrow-ով կառուցված պայմաններ" },
   ],
   services: [
     {

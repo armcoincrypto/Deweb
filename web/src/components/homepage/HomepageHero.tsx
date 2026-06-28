@@ -4,11 +4,11 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { GlowButton } from "@/components/ui/GlowButton";
 
-const TRUST_STATS = [
-  { value: "500+", key: "statProjects" },
-  { value: "98%", key: "statSatisfaction" },
-  { value: "20+", key: "statCountries" },
-  { value: "24/7", key: "statSupport" },
+const TRUST_PILLARS = [
+  { value: "Multi-industry", label: "Custom development" },
+  { value: "Full-stack", label: "Web, mobile & AI" },
+  { value: "Multilingual", label: "EN · ES · RU · AM" },
+  { value: "Ongoing", label: "Post-launch support" },
 ] as const;
 
 const SERVICE_PILLS = [
@@ -81,14 +81,14 @@ export function HomepageHero() {
           </div>
 
           <div className="mt-10 grid w-full max-w-2xl grid-cols-2 gap-3 sm:mt-14 sm:grid-cols-4 sm:gap-4">
-            {TRUST_STATS.map((stat) => (
+            {TRUST_PILLARS.map((stat) => (
               <div
-                key={stat.key}
+                key={stat.label}
                 className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-3 sm:px-4 sm:py-4"
               >
                 <p className="text-xl font-bold text-deweb-cyan sm:text-2xl">{stat.value}</p>
                 <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-white/45 sm:text-xs">
-                  {t(stat.key)}
+                  {stat.label}
                 </p>
               </div>
             ))}

@@ -5,8 +5,8 @@ import { motion3DStyle } from "@/lib/motion-3d";
 
 const windows = [
   { title: "code.tsx", content: "export App", x: "10%", y: "16%", rotateY: -10, z: 30 },
-  { title: "Dashboard", content: "MRR +32%", x: "52%", y: "12%", rotateY: 8, z: 55 },
-  { title: "Live App", content: "1,840 users", x: "38%", y: "55%", rotateY: -4, z: 70 },
+  { title: "Dashboard", content: "Billing overview", x: "52%", y: "12%", rotateY: 8, z: 55 },
+  { title: "Live App", content: "User dashboard", x: "38%", y: "55%", rotateY: -4, z: 70 },
 ];
 
 export function WebSaasScene() {
