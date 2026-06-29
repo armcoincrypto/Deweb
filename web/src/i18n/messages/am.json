@@ -111,7 +111,7 @@
     "formError": "Չհաջողվեց ուղարկել։ Խնդրում ենք կրկին փորձել։",
     "estimateHint": "Առաջարկվող ժամկետ",
     "shopifySpotlight": {
-      "partner": "Shopify-ի պաշտոնական գործընկեր",
+      "partner": "Shopify-կենտրոնացված զարգացում",
       "title": "Shopify զարգացում",
       "pricingLabel": "Իրական գներ",
       "offerLabel": "Ինչ ենք առաքում",
@@ -1016,11 +1016,11 @@
   "seo": {
     "home": {
       "title": "DeWeb | Կառուցում ենք Թվային Բիզնեսի Ապագան",
-      "description": "Մենք ստեղծում ենք Shopify խանութներ, AI համակարգեր, ավտոմատացման հարթակներ, կայքեր և մասշտաբային թվային լուծումներ։ Engineering-led technology company՝ կառուցված իրական production նախագծերի շուրջ։"
+      "description": "Մենք ստեղծում ենք Shopify խանութներ, AI համակարգեր, ավտոմատացման հարթակներ, կայքեր և մասշտաբային թվային լուծումներ։ Ինժեներական առաջնորդությամբ տեխնոլոգիական ընկերություն՝ կառուցված իրական production նախագծերի շուրջ։"
     },
     "about": {
-      "title": "About DEWEB | Engineering-Led IT Development",
-      "description": "Meet DEWEB — an engineering-led agency for Shopify development, AI automation, SaaS products, marketplaces, and custom web applications."
+      "title": "DEWEB-ի մասին | Ինժեներական առաջնորդությամբ IT զարգացում",
+      "description": "Ծանոթացեք DEWEB-ին՝ Shopify զարգացման, AI ավտոմատացման, SaaS արտադրանքների, շուկաների և անհատական վեբ հավելվածների ինժեներական առաջնորդությամբ թիմի հետ։"
     },
     "contact": {
       "title": "Կապ DEWEB-ի հետ | Սկսեք Shopify, AI կամ SaaS նախագիծ",
@@ -1285,32 +1285,32 @@
       "description": "Վարձեք AI ավտոմատացման մասնագետներ DEWEB Marketplace-ի միջոցով — հրապարակեք workflow, ինտեգրացիայի և intelligent operations նախագծերը; համեմատեք verified ավտոմատացման ինժեներների առաջարկները։"
     },
     "hire-marketplace-developers": {
-      "title": "Marketplace ծրագրավորողներ | Նախագիծ հրապարակել | DEWEB",
-      "description": "Marketplace developer hiring DEWEB-ով — multivendor platform նախագծեր, proposal համեմատություն, payments, commissions և scalable architecture մասնագետներ:"
+      "title": "Վարձել marketplace մշակողներ | Հրապարակել նախագիծ և համեմատել առաջարկներ | DEWEB",
+      "description": "Վարձեք marketplace մշակողներ DEWEB-ի միջոցով՝ հրապարակեք բազմավաճառող հարթակի նախագծերը, համեմատեք առաջարկները և հավաքեք ինժեներներ վճարումների, հանձնաժողովների, ադմին վահանակների և մասշտաբային ճարտարապետության համար։"
     },
     "dedicated-development-team": {
-      "title": "Dedicated development team | Dedicated engineers | DEWEB",
-      "description": "Dedicated software development team DEWEB-ով — startup, SaaS, marketplace, mobile, ecommerce long-term engineering capacity:"
+      "title": "Նվիրված զարգացման թիմ | DEWEB",
+      "description": "Կառուցեք նվիրված ծրագրային զարգացման թիմ DEWEB-ի հետ՝ երկարաժամկետ ինժեներական capacity startup-ների, SaaS-ի, շուկաների, մոբայլ հավելվածների և ecommerce-ի համար՝ թափանցիկ discovery-ով։"
     },
     "projects-kobbopay": {
-      "title": "Kobbopay Case Study | Multi-Rail Crypto Payment Platform | DEWEB",
-      "description": "Production case study: Kobbopay — NestJS, PostgreSQL, Redis, merchant portal, admin ops, webhooks, treasury."
+      "title": "Kobbopay | Production case study | Բազմակողմանի crypto վճարային հարթակ | DEWEB",
+      "description": "Production case study՝ Kobbopay բազմակողմանի USDT վճարային հարթակ՝ NestJS, PostgreSQL, Redis, merchant portal, admin ops, webhooks և treasury կառավարում։"
     },
     "projects-exswaping": {
-      "title": "Exswaping Case Study | Cryptocurrency Exchange Platform | DEWEB",
-      "description": "Production case study: Exswaping — trading workflows, admin operations, AML/KYC, liquidity, monitoring, SEO."
+      "title": "Exswaping | Production case study | Կրիպտոարժույթի բորսա | DEWEB",
+      "description": "Production case study՝ Exswaping կրիպտո բորսա՝ trading workflow-ներ, admin գործառնություններ, AML/KYC, liquidity ops, monitoring և SEO engineering։"
     },
     "projects-changetext": {
-      "title": "Changetext Case Study | AI Telegram Content Automation | DEWEB",
-      "description": "Production case study: Changetext — Telegram bot, OpenAI, Google Sheets, automation workflows."
+      "title": "Changetext | Production case study | AI Telegram բովանդակության ավտոմատացում | DEWEB",
+      "description": "Production case study՝ Changetext՝ Telegram bot ավտոմատացում OpenAI-ով, Google Sheets ինտեգրացիաներով և հուսալի բովանդակության workflow-ներով։"
     },
     "projects-dex-kobbex": {
-      "title": "DEX Kobbex Case Study | Decentralized Swap Platform | DEWEB",
-      "description": "Production case study: DEX Kobbex — wallet integration, token swaps, Web3 frontend architecture."
+      "title": "DEX Kobbex | Production case study | Decentralized swap հարթակ | DEWEB",
+      "description": "Production case study՝ DEX Kobbex Web3 swap հարթակ՝ wallet ինտեգրացիա, token swap հոսքեր և on-chain trading UX ճարտարապետություն։"
     },
     "portfolio": {
-      "title": "DEWEB Projects | Production case studies",
-      "description": "Real DEWEB production projects — fintech payments, crypto exchange, AI Telegram automation, Web3 DEX case studies."
+      "title": "DEWEB նախագծեր | Production case studies",
+      "description": "DEWEB-ի իրական production նախագծեր՝ fintech վճարումներ, crypto exchange, AI Telegram ավտոմատացում և Web3 DEX engineering case studies։"
     }
   },
   "serviceLanding": {
