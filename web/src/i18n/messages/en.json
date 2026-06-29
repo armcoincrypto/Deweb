@@ -48,14 +48,14 @@
     "howTitle": "From brief to delivery in three steps",
     "howSubtitle": "Supplier bidding, transparent pricing, and escrow-backed payments — built for IT procurement at scale.",
     "step1Title": "Post Your Project",
-    "step1Desc": "Describe scope, budget, and timeline. DEWEB routes your brief to verified IT suppliers instantly.",
+    "step1Desc": "Describe scope, budget, and timeline. DEWEB shares your brief with marketplace suppliers.",
     "step2Title": "Receive Competitive Bids",
     "step2Desc": "Multiple suppliers submit offers with pricing, delivery time, and portfolios — you compare side by side.",
     "step3Title": "Choose & Launch",
     "step3Desc": "Pick the best fit, pay in DEWEB coins, and track milestones until delivery — with escrow protection.",
     "marketKicker": "Marketplace",
     "marketTitle": "Every IT category. One competitive platform.",
-    "marketSubtitle": "Browse verified suppliers across AI, web, mobile, design, and custom software.",
+    "marketSubtitle": "Browse marketplace suppliers across AI, web, mobile, design, and custom software.",
     "activityKicker": "Live activity",
     "activityTitle": "Real-time marketplace pulse",
     "activitySubtitle": "Watch bids flow in, prices compete down, and deals close — transparency at every step.",
@@ -75,7 +75,7 @@
     "title": "Services",
     "subtitle": "Engineering-led IT delivery across web, AI, mobile, and growth — with transparent packages and competitive supplier bidding.",
     "heroTitle": "Build, Automate & Scale Your Business With Production-Focused Digital Solutions",
-    "heroSubtitle": "Shopify stores, AI chatbots, custom web apps, mobile products, and enterprise automation — delivered by verified DEWEB suppliers.",
+    "heroSubtitle": "Shopify stores, AI chatbots, custom web apps, mobile products, and enterprise automation — delivered through DEWEB agency work and marketplace specialists.",
     "consultation": "Get Free Consultation",
     "requestBids": "Request Supplier Bids",
     "whyChoose": "Why Businesses Choose DEWEB",
@@ -88,7 +88,7 @@
     "process4": "Development",
     "process5": "Launch & Growth",
     "ctaTitle": "Ready To Build Your Next Digital Product?",
-    "ctaSubtitle": "Post your project and let verified suppliers compete with transparent pricing and escrow protection.",
+    "ctaSubtitle": "Post your project and let marketplace suppliers compete with transparent pricing.",
     "getProposal": "Get Proposal",
     "startProject": "Start Project",
     "cta": "Request a custom quote",
@@ -124,7 +124,7 @@
       "cta": "Get Shopify Quote",
       "consult": "Free consultation",
       "getConsultation": "Get Free Consultation",
-      "ctaHint": "Launch your Shopify store with verified DEWEB experts — transparent pricing and supplier bidding."
+      "ctaHint": "Launch your Shopify store with DEWEB — transparent pricing and supplier bidding."
     }
   },
   "serviceDetail": {
@@ -151,7 +151,7 @@
       "how-competitive-bidding-saves-it-budgets": {
         "title": "How competitive bidding saves IT budgets",
         "excerpt": "Why posting projects to multiple suppliers drives better pricing and faster delivery.",
-        "body1": "Traditional IT procurement often means negotiating with a single vendor — leaving money and options on the table. Competitive bidding changes that by inviting verified suppliers to submit offers side by side.",
+        "body1": "Traditional IT procurement often means negotiating with a single vendor — leaving money and options on the table. Competitive bidding changes that by inviting marketplace suppliers to submit offers side by side.",
         "body2": "On DEWEB, clients post a brief with budget and timeline. Suppliers compete with transparent pricing, portfolios, and delivery plans. You compare everything in one dashboard before choosing.",
         "body3": "The result: average savings of 15–30% on project costs, faster turnaround, and higher confidence in your supplier choice."
       },
@@ -174,10 +174,10 @@
         "excerpt": "Protect both clients and suppliers with milestone-based DEWEB coin escrow.",
         "body1": "IT projects involve trust on both sides. Clients worry about delivery; suppliers worry about payment. Escrow holds funds until milestones are approved.",
         "body2": "DEWEB uses DEWEB coins (1:1 USDT) locked in escrow when you accept a proposal. Funds release as work completes — reducing disputes and fraud.",
-        "body3": "Transparent milestones, chat moderation, and verified suppliers make remote IT deals safer for everyone."
+        "body3": "Transparent milestones, chat moderation, and clear supplier profiles make remote IT deals easier to evaluate."
       },
       "building-trust-with-verified-suppliers": {
-        "title": "Building trust with verified suppliers",
+        "title": "Building trust on the marketplace",
         "excerpt": "How DEWEB vets talent and keeps marketplace quality high.",
         "body1": "Not every freelancer is equal. DEWEB verifies supplier profiles, portfolios, and track records before they bid on projects.",
         "body2": "Customers see ratings, past work, and skills upfront. Suppliers build reputation through successful deliveries and client reviews.",
@@ -213,7 +213,7 @@
     "close": "Close",
     "loading": "Loading…",
     "error": "Something went wrong",
-    "verified": "Verified",
+    "verified": "Marketplace",
     "from": "from",
     "perProject": "per project",
     "viewProfile": "View profile",
@@ -684,7 +684,7 @@
   },
   "about": {
     "heroTitle": "Building The Future Of Digital Business",
-    "heroSubtitle": "DEWEB connects businesses with portfolio-backed developers, AI specialists, Shopify experts, and technology suppliers through one practical ecosystem.",
+    "heroSubtitle": "DEWEB connects businesses with developers, AI specialists, Shopify builders, and technology suppliers through one practical ecosystem.",
     "consultation": "Get Free Consultation",
     "startProject": "Start Your Project",
     "whoKicker": "Who We Are",
@@ -694,8 +694,8 @@
     "servicesTitle": "Our Core Services",
     "servicesSubtitle": "From Shopify stores to AI automation — maintainable delivery with transparent pricing and competitive supplier bidding.",
     "processTitle": "Our Process",
-    "teamTitle": "Leadership Team",
-    "teamSubtitle": "Experienced leaders driving marketplace innovation, web excellence, and AI-native delivery.",
+    "teamTitle": "Founder",
+    "teamSubtitle": "DEWEB product direction, marketplace operations, and delivery coordination.",
     "yearsExperience": "{years}+ years of experience",
     "techTitle": "Technologies We Use",
     "techSubtitle": "Based on practical engineering experience with maintainable modern stacks.",
@@ -707,9 +707,9 @@
     "title": "About DEWEB",
     "subtitle": "A global IT ecosystem where suppliers compete and customers win — marketplace, agency, and AI automation in one platform.",
     "mission": "Our mission",
-    "missionText": "Make IT procurement transparent, fast, and fair through competitive bidding and verified talent.",
+    "missionText": "Make IT procurement transparent, fast, and fair through competitive bidding and marketplace discovery.",
     "vision": "Our vision",
-    "visionText": "Become the default platform for AI-powered IT marketplaces worldwide."
+    "visionText": "Build a transparent marketplace for AI-powered IT services and engineering delivery."
   },
   "pricing": {
     "title": "Pricing",
@@ -1106,7 +1106,7 @@
     },
     "signup": {
       "title": "Create Account | Join DEWEB Marketplace",
-      "description": "Create a DEWEB account as a customer or supplier. Post projects, submit offers and connect with verified developers."
+      "description": "Create a DEWEB account as a customer or supplier. Post projects, submit offers, and connect with marketplace developers."
     },
     "forgot-password": {
       "title": "Reset Password | DEWEB",
@@ -1154,7 +1154,7 @@
     },
     "pricing": {
       "title": "Pricing & Project Quotes | DEWEB Marketplace",
-      "description": "Get competitive quotes from verified developers. Post your project on DEWEB and compare proposals by price and timeline."
+      "description": "Get competitive quotes from marketplace developers. Post your project on DEWEB and compare proposals by price and timeline."
     },
     "dashboard-customer": {
       "title": "Customer Dashboard | DEWEB",
@@ -1195,7 +1195,7 @@
     "landings": {
       "shopify-development": {
         "title": "Shopify Development Services | Custom Stores & Integrations | DEWEB",
-        "description": "Expert Shopify development — custom themes, Shopify Plus, app integrations and ecommerce optimization by verified DEWEB developers."
+        "description": "Shopify development — custom themes, Shopify Plus when scoped, app integrations, and ecommerce optimization by DEWEB developers."
       },
       "shopify-store-design": {
         "title": "Shopify Store Design Services | Ecommerce UX & Branding | DEWEB",

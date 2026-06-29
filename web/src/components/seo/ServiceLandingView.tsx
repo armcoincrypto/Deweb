@@ -163,7 +163,7 @@ export function ServiceLandingView({
               Why Choose DEWEB
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-white/50">
-              Verified experts, transparent delivery and results that scale with your business.
+              Marketplace specialists, transparent delivery, and engineering scoped to your product goals.
             </p>
           </ScrollReveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

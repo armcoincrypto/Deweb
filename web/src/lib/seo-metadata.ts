@@ -168,7 +168,7 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
   signup: {
     title: "Create Account | Join DEWEB Marketplace",
     description:
-      "Create a DEWEB account as a customer or supplier. Post projects, submit offers and connect with verified developers.",
+      "Create a DEWEB account as a customer or supplier. Post projects, submit offers and connect with marketplace developers.",
   },
   "forgot-password": {
     title: "Reset Password | DEWEB",
@@ -222,7 +222,7 @@ export const PAGE_SEO: Record<string, SeoEntry> = {
   pricing: {
     title: "Pricing & Project Quotes | DEWEB Marketplace",
     description:
-      "Get competitive quotes from verified developers. Post your project on DEWEB and compare proposals by price and timeline.",
+      "Get competitive quotes from marketplace developers. Post your project on DEWEB and compare proposals by price and timeline.",
   },
   "dashboard-customer": {
     title: "Customer Dashboard | DEWEB",
@@ -319,12 +319,12 @@ export const LANDING_SEO: Record<string, SeoEntry> = {
   "shopify-development": {
     title: "Shopify Development Services | Custom Stores & Integrations | DEWEB",
     description:
-      "Expert Shopify development — custom themes, Shopify Plus, app integrations and ecommerce optimization by verified DEWEB developers.",
+      "Expert Shopify development — custom themes, Shopify Plus when scoped, app integrations and ecommerce optimization by DEWEB developers.",
   },
   "shopify-store-design": {
     title: "Shopify Store Design Services | Ecommerce UX & Branding | DEWEB",
     description:
-      "High-converting Shopify store design — mobile-first UX, brand identity and Figma-to-theme handoff by DEWEB designers.",
+      "Shopify store design — mobile-first UX, brand identity and Figma-to-theme handoff by DEWEB designers.",
   },
   "shopify-custom-apps": {
     title: "Shopify Custom App Development | Private & Public Apps | DEWEB",
@@ -425,7 +425,7 @@ export function getServiceSeo(id: string, fallbackTitle?: string, fallbackDesc?:
     title: `${name} Services | DEWEB`,
     description:
       fallbackDesc ||
-      `Professional ${name.toLowerCase()} services from verified DEWEB developers. Request a quote today.`,
+      `Professional ${name.toLowerCase()} services from DEWEB developers. Request a quote today.`,
   };
 }
 

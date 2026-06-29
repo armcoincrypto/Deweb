@@ -263,14 +263,14 @@ export function getServiceById(id: string) {
 /** Static fallback when API is unavailable (mirrors backend services-page.json). */
 export const servicesPageFallback = {
   hero: {
-    title: "Build, Automate & Scale Your Business With Elite Digital Solutions",
+    title: "Shopify, AI Automation, SaaS, and Custom Web Development",
     subtitle:
-      "Shopify stores, AI chatbots, custom web apps, mobile products, and enterprise automation — delivered by verified DEWEB suppliers with transparent pricing and milestone escrow.",
+      "Shopify stores, AI chatbots, custom web apps, mobile products, and enterprise automation — delivered through DEWEB agency work and marketplace specialists with transparent pricing.",
     trustBadges: [
-      "Shopify Experts",
-      "AI Automation Specialists",
+      "Shopify-focused development",
+      "AI Automation",
       "Custom Software Development",
-      "Enterprise Solutions",
+      "Marketplace platforms",
     ],
     orbitIcons: ["🛒", "🤖", "📱", "🌐", "⚡", "☁️"],
   },
@@ -302,7 +302,7 @@ export const servicesPageFallback = {
       ],
       timeline: "2–6 weeks",
       price: "From $300",
-      highlight: "Increase Conversions Up To 35%",
+      highlight: "AI-assisted customer support",
       imageAccent: "ai",
     },
   ],
@@ -398,7 +398,7 @@ export const servicesPageFallback = {
       step: 2,
       icon: "🏷️",
       title: "Supplier Bidding",
-      desc: "Verified DEWEB suppliers submit competitive offers with pricing, portfolios, and delivery plans.",
+      desc: "Marketplace suppliers submit competitive offers with pricing, portfolios, and delivery plans.",
     },
     {
       step: 3,

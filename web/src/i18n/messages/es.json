@@ -684,7 +684,7 @@
   },
   "about": {
     "heroTitle": "Construyendo el futuro del negocio digital",
-    "heroSubtitle": "DEWEB conecta empresas con desarrolladores respaldados por portfolio, especialistas en IA, expertos en Shopify y proveedores tecnológicos en un ecosistema práctico.",
+    "heroSubtitle": "DEWEB conecta empresas con desarrolladores, especialistas en IA, constructores Shopify y proveedores tecnológicos en un ecosistema práctico.",
     "consultation": "Consulta gratuita",
     "startProject": "Iniciar tu proyecto",
     "whoKicker": "Quiénes somos",
@@ -694,8 +694,8 @@
     "servicesTitle": "Nuestros servicios principales",
     "servicesSubtitle": "Desde tiendas Shopify hasta automatización con IA — entrega mantenible con precios transparentes y ofertas competitivas.",
     "processTitle": "Nuestro proceso",
-    "teamTitle": "Equipo directivo",
-    "teamSubtitle": "Líderes con experiencia impulsando innovación en marketplace, excelencia web y entrega nativa de IA.",
+    "teamTitle": "Fundador",
+    "teamSubtitle": "Dirección de producto, operaciones del marketplace y coordinación de entrega en DEWEB.",
     "yearsExperience": "{years}+ años de experiencia",
     "techTitle": "Tecnologías que usamos",
     "techSubtitle": "Basado en experiencia práctica de ingeniería con stacks modernos mantenibles.",
@@ -707,9 +707,9 @@
     "title": "Sobre DEWEB",
     "subtitle": "Un ecosistema global de TI donde los proveedores compiten y los clientes ganan — marketplace, agencia y automatización con IA en una plataforma.",
     "mission": "Nuestra misión",
-    "missionText": "Hacer la contratación de TI transparente, rápida y justa mediante ofertas competitivas y talento verificado.",
+    "missionText": "Hacer la contratación de TI transparente, rápida y justa mediante ofertas competitivas y descubrimiento en el marketplace.",
     "vision": "Nuestra visión",
-    "visionText": "Ser la plataforma por defecto para marketplaces de TI impulsados por IA en todo el mundo."
+    "visionText": "Construir un marketplace transparente para servicios de TI con IA e ingeniería."
   },
   "pricing": {
     "title": "Precios",

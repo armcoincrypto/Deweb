@@ -369,9 +369,11 @@ export function AboutView({ content }: AboutViewProps) {
                     <h3 className="text-xl font-bold text-white">{member.name}</h3>
                     <p className="mt-1 text-sm font-semibold text-deweb-cyan">{member.role}</p>
                     <p className="mt-3 text-sm leading-relaxed text-white/55">{member.expertise}</p>
-                    <p className="mt-4 text-xs font-bold uppercase tracking-wider text-white/35">
-                      {t("yearsExperience", { years: member.yearsExperience })}
-                    </p>
+                    {member.yearsExperience != null && member.yearsExperience > 0 ? (
+                      <p className="mt-4 text-xs font-bold uppercase tracking-wider text-white/35">
+                        {t("yearsExperience", { years: member.yearsExperience })}
+                      </p>
+                    ) : null}
                   </div>
                 </GlassCard>
               </motion.div>

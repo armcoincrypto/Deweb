@@ -684,7 +684,7 @@
   },
   "about": {
     "heroTitle": "Կառուցում ենք Թվային Բիզնեսի Ապագան",
-    "heroSubtitle": "DEWEB connects businesses with portfolio-backed developers, AI specialists, Shopify experts, and technology suppliers through one practical ecosystem.",
+    "heroSubtitle": "DEWEB-ը կապում է բիզնեսները մշակողների, AI մասնագետների, Shopify կառուցողների և տեխնոլոգիական մատակարարների հետ մեկ գործնական էկոհամակարգում։",
     "consultation": "Ստանալ անվճար խորհրդատվություն",
     "startProject": "Սկսել նախագիծ",
     "whoKicker": "Ով ենք մենք",
@@ -694,8 +694,8 @@
     "servicesTitle": "Մեր հիմնական ծառայությունները",
     "servicesSubtitle": "From Shopify stores to AI automation — maintainable delivery with transparent pricing and competitive supplier bidding.",
     "processTitle": "Մեր գործընթացը",
-    "teamTitle": "Ղեկավար թիմ",
-    "teamSubtitle": "Փորձառու ղեկավարներ՝ շուկայի նորարարություն, վեբ գերազանցություն և AI-նատիվ առաքում։",
+    "teamTitle": "Հիմնադիր",
+    "teamSubtitle": "DEWEB-ի արտադրանքի ուղղություն, շուկայի գործառնություններ և առաքման կոորդինացիա։",
     "yearsExperience": "{years}+ տարվա փորձ",
     "techTitle": "Օգտագործվող տեխնոլոգիաներ",
     "techSubtitle": "Practical engineering experience-ի վրա հիմնված, maintainable modern stack-եր։",
@@ -707,9 +707,9 @@
     "title": "DEWEB-ի մասին",
     "subtitle": "Գլոբալ IT էկոհամակարգ, որտեղ մատակարարները մրցում են, հաճախորդը հաղթում է — շուկա, գործակալություն և AI ավտոմատացում մեկ հարթակում։",
     "mission": "Մեր առաքելությունը",
-    "missionText": "IT գնումները դարձնել թափանցիկ, արագ և արդար մրցակցային սակագնումով և ստուգված մասնագետներով։",
+    "missionText": "IT գնումները դարձնել թափանցիկ, արագ և արդար՝ մրցակցային սակագնումով և շուկայի discovery-ով։",
     "vision": "Մեր տեսլականը",
-    "visionText": "Դառնալ AI-ով շարժվող IT շուկաների հիմնական հարթակը աշխարհում։"
+    "visionText": "Կառուցել թափանցիկ շուկա AI-ով IT ծառայությունների և ինժեներական առաքման համար։"
   },
   "pricing": {
     "title": "Գնացուցակ",

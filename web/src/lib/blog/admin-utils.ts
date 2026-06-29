@@ -53,7 +53,7 @@ export function postToArticle(post: BlogPostDetail): BlogArticle {
     internalLinks: content.internalLinks || [],
     cta: content.cta || {
       title: "Need Shopify, AI, SaaS or Marketplace development?",
-      description: "Contact DEWEB to discuss your project with verified developers.",
+      description: "Contact DEWEB to discuss your project with marketplace developers.",
       primaryLabel: "Get a Free Consultation",
       primaryHref: "/contact",
     },

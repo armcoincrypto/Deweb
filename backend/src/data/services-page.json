@@ -1,12 +1,12 @@
 {
   "hero": {
-    "title": "Build, Automate & Scale Your Business With Elite Digital Solutions",
-    "subtitle": "Shopify stores, AI chatbots, custom web apps, mobile products, and enterprise automation — delivered by verified DEWEB suppliers with transparent pricing and milestone escrow.",
+    "title": "Shopify, AI Automation, SaaS, and Custom Web Development",
+    "subtitle": "Shopify stores, AI chatbots, custom web apps, mobile products, and enterprise automation — delivered through DEWEB agency work and marketplace specialists with transparent pricing.",
     "trustBadges": [
-      "Shopify Experts",
-      "AI Automation Specialists",
+      "Shopify-focused development",
+      "AI Automation",
       "Custom Software Development",
-      "Enterprise Solutions"
+      "Marketplace platforms"
     ],
     "orbitIcons": ["🛒", "🤖", "📱", "🌐", "⚡", "☁️"]
   },
@@ -38,7 +38,7 @@
       ],
       "timeline": "2–6 weeks",
       "price": "From $300",
-      "highlight": "Increase Conversions Up To 35%",
+      "highlight": "AI-assisted customer support",
       "imageAccent": "ai"
     }
   ],
@@ -117,15 +117,15 @@
     }
   ],
   "stats": [
-    { "value": "500+", "label": "Projects Delivered" },
-    { "value": "98%", "label": "Client Satisfaction" },
-    { "value": "20+", "label": "Countries Served" },
-    { "value": "50+", "label": "Expert Developers" },
-    { "value": "24/7", "label": "Support" }
+    { "value": "🛠", "label": "Production delivery" },
+    { "value": "💳", "label": "Crypto payment systems" },
+    { "value": "🏪", "label": "Marketplace platforms" },
+    { "value": "⚙️", "label": "Automation workflows" },
+    { "value": "🌐", "label": "Multilingual web platforms" }
   ],
   "process": [
     { "step": 1, "icon": "💬", "title": "Free Consultation", "desc": "Share your goals, budget, and timeline. We scope the project and match you with specialists." },
-    { "step": 2, "icon": "🏷️", "title": "Supplier Bidding", "desc": "Verified DEWEB suppliers submit competitive offers with pricing, portfolios, and delivery plans." },
+    { "step": 2, "icon": "🏷️", "title": "Supplier Bidding", "desc": "Marketplace suppliers submit competitive offers with pricing, portfolios, and delivery plans." },
     { "step": 3, "icon": "📋", "title": "Project Planning", "desc": "Choose your supplier, define milestones, and lock terms with escrow-backed DEWEB payments." },
     { "step": 4, "icon": "⚙️", "title": "Development", "desc": "Build in sprints with transparent progress, reviews, and direct communication." },
     { "step": 5, "icon": "🚀", "title": "Launch & Growth", "desc": "Deploy, hand off documentation, and scale with ongoing support and optimization." }

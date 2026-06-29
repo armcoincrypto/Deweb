@@ -16,7 +16,7 @@ import { AdminBlogShell } from "./AdminBlogShell";
 
 const DEFAULT_CTA: BlogPostContent["cta"] = {
   title: "Need Shopify, AI, SaaS or Marketplace development?",
-  description: "Contact DEWEB to discuss your project with verified developers.",
+  description: "Contact DEWEB to discuss your project with marketplace developers.",
   primaryLabel: "Get a Free Consultation",
   primaryHref: "/contact",
 };

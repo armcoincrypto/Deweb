@@ -19,9 +19,9 @@ export function HomePortfolio() {
     >
       <div className="container-narrow px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          kicker="Case Studies"
-          title="Production portfolio examples"
-          subtitle="Illustrative project examples showing the problems we solve, our delivery approach, and practical engineering outcomes."
+          kicker="Example case studies"
+          title="Illustrative project examples"
+          subtitle="Demo scenarios showing typical problems, delivery approach, and possible engineering outcomes — not verified client results."
           id="portfolio-heading"
         />
 

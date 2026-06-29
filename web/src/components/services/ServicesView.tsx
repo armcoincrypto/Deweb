@@ -43,7 +43,7 @@ export function ServicesView({ banners = serviceBanners }: { banners?: typeof se
           <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">{data.hero.title}</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/55">
             Shopify development, AI automation, SaaS platforms, marketplaces, and custom web
-            applications — built for measurable business growth.
+            applications — scoped discovery, transparent pricing, and maintainable delivery.
           </p>
           </motion.div>
         </div>

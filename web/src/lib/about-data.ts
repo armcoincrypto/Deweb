@@ -14,7 +14,7 @@ export const aboutStats = [
   { value: "🏪", label: "Marketplace architecture" },
   { value: "⚙️", label: "Automation systems" },
   { value: "🌐", label: "Multilingual web platforms" },
-  { value: "📂", label: "Portfolio-backed engineering" },
+  { value: "📂", label: "Production project experience" },
 ];
 
 export const aboutServices: AboutService[] = [
@@ -24,10 +24,10 @@ export const aboutServices: AboutService[] = [
     icon: "🛒",
     featured: true,
     title: "Shopify Development",
-    desc: "High-converting Shopify stores, Plus migrations, and custom commerce experiences built for scale.",
+    desc: "Shopify stores, Plus migrations when scoped, and custom commerce experiences built for maintainable operations.",
     bullets: [
-      "Shopify Plus & custom themes",
-      "Speed optimization & CRO",
+      "Custom themes and Shopify builds",
+      "Speed optimization & checkout clarity",
       "Payment & shipping integrations",
       "Inventory & fulfillment automation",
     ],
@@ -93,7 +93,7 @@ export const aboutServices: AboutService[] = [
     slug: "uiux",
     icon: "✨",
     title: "UI/UX Design",
-    desc: "Product design, design systems, and prototypes that convert.",
+    desc: "Product design, design systems, and prototypes focused on clarity and usability.",
     bullets: ["Figma design", "Design systems", "User research", "Developer handoff"],
   },
   {
@@ -108,7 +108,7 @@ export const aboutServices: AboutService[] = [
 
 export const aboutProcess = [
   { step: 1, icon: "💬", title: "Consultation", desc: "Scope goals, budget, and timeline with our team." },
-  { step: 2, icon: "🏷️", title: "Supplier Competition", desc: "Verified suppliers submit competitive offers." },
+  { step: 2, icon: "🏷️", title: "Supplier Competition", desc: "Marketplace suppliers submit competitive offers." },
   { step: 3, icon: "📋", title: "Planning", desc: "Define milestones and lock terms with escrow." },
   { step: 4, icon: "⚙️", title: "Development", desc: "Build in sprints with transparent progress." },
   { step: 5, icon: "🚀", title: "Launch", desc: "Deploy, test, and hand off with documentation." },

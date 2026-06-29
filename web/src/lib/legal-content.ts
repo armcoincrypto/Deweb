@@ -13,7 +13,7 @@ export const privacyPolicySections: LegalSection[] = [
   {
     title: "Introduction",
     paragraphs: [
-      `DEWEB ("we", "us", "our") operates dewebam.com — an IT marketplace and development studio connecting businesses with verified developers for Shopify, AI, SaaS, web and marketplace projects.`,
+      `DEWEB ("we", "us", "our") operates dewebam.com — an IT marketplace and development studio connecting businesses with developers for Shopify, AI, SaaS, web and marketplace projects.`,
       "This Privacy Policy explains what personal data we collect, how we use it, how long we keep it, and what rights you have. By using our website or creating an account, you agree to this policy.",
     ],
   },
