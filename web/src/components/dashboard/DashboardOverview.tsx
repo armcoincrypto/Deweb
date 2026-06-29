@@ -11,14 +11,14 @@ export function DashboardOverview({ role }: DashboardOverviewProps) {
   const t = useTranslations("dashboard");
 
   const customerStats = [
-    { label: t("activeProjects"), value: "3", href: "/dashboard/customer/projects" },
-    { label: t("pendingOffers"), value: "12", href: "/dashboard/customer/offers" },
+    { label: t("activeProjects"), value: "—", href: "/dashboard/customer/projects" },
+    { label: t("pendingOffers"), value: "—", href: "/dashboard/customer/offers" },
   ];
 
   const supplierStats = [
-    { label: t("activeProposals"), value: "7", href: "/dashboard/supplier/proposals" },
-    { label: t("orders"), value: "5", href: "/dashboard/supplier/orders" },
-    { label: t("revenue"), value: "By inquiry", href: "/account/proposals" },
+    { label: t("activeProposals"), value: "—", href: "/dashboard/supplier/proposals" },
+    { label: t("orders"), value: "—", href: "/dashboard/supplier/orders" },
+    { label: t("revenue"), value: "—", href: "/account/proposals" },
   ];
 
   const stats = role === "supplier" ? supplierStats : customerStats;
@@ -57,28 +57,23 @@ export function DashboardOverview({ role }: DashboardOverviewProps) {
           <h3 className="font-bold text-white">
             {role === "customer" ? "Recent offers" : "Recent proposals"}
           </h3>
-          <ul className="mt-4 space-y-3 text-sm text-white/60">
-            <li className="flex justify-between border-b border-white/5 pb-2">
-              <span>Nexus Labs — E-commerce API</span>
-              <span className="font-bold text-deweb-cyan">$7,200</span>
-            </li>
-            <li className="flex justify-between border-b border-white/5 pb-2">
-              <span>CloudForge — CRM Dashboard</span>
-              <span className="font-bold text-deweb-cyan">$4,100</span>
-            </li>
-            <li className="flex justify-between">
-              <span>PixelStack — Mobile UI</span>
-              <span className="font-bold text-deweb-cyan">$5,800</span>
-            </li>
-          </ul>
+          <p className="mt-4 text-sm leading-relaxed text-white/55">
+            {role === "customer"
+              ? "No offers to display yet. Post a project brief to start receiving scoped proposals from specialists."
+              : "No proposals to display yet. Publish a service offer or respond to open client briefs on DEWEB Marketplace."}
+          </p>
+          <Link
+            href={role === "customer" ? "/marketplace" : "/account/submit-offer"}
+            className="mt-4 inline-block text-sm font-bold text-deweb-cyan hover:underline"
+          >
+            {role === "customer" ? "Post a project →" : "Submit an offer →"}
+          </Link>
         </GlassCard>
         <GlassCard className="p-6">
           <h3 className="font-bold text-white">{t("notifications")}</h3>
-          <ul className="mt-4 space-y-3 text-sm text-white/60">
-            <li>New bid received on Custom AI CRM</li>
-            <li>Milestone approved — Web App Phase 2</li>
-            <li>Supplier message from DevMint</li>
-          </ul>
+          <p className="mt-4 text-sm leading-relaxed text-white/55">
+            Notifications appear here when bids, milestones, or messages are available in your account.
+          </p>
         </GlassCard>
       </div>
     </div>

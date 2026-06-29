@@ -76,9 +76,9 @@ export function LiveDashboard() {
             <div className="mt-6">
               <p className="text-xs text-white/40">Live price comparison</p>
               <MiniChart />
-              <p className="mt-2 flex items-center gap-2 text-xs text-emerald-400">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                Bids dropping — save up to 18%
+              <p className="mt-2 flex items-center gap-2 text-xs text-white/45">
+                <span className="h-1.5 w-1.5 rounded-full bg-deweb-cyan/60" />
+                Illustrative bidding workflow
               </p>
             </div>
           </div>
@@ -88,13 +88,13 @@ export function LiveDashboard() {
             <div className="mb-4 flex items-center justify-between">
               <h4 className="text-sm font-bold text-white">Competitive offers</h4>
               <span className="rounded-full bg-deweb-cyan/20 px-3 py-1 text-xs font-bold text-deweb-cyan">
-                4 live bids
+                Illustrative
               </span>
             </div>
             <div className="space-y-3">
               {liveBids.map((bid, i) => (
                 <motion.div
-                  key={bid.supplier}
+                  key={`${bid.project}-${i}`}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 + i * 0.1 }}
@@ -106,14 +106,7 @@ export function LiveDashboard() {
                     <p className="text-xs text-white/45">{bid.project}</p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="text-lg font-bold text-deweb-cyan">{bid.price}</span>
-                    <span className="text-xs text-amber-400">★ {bid.rating}</span>
-                    {bid.trend === "down" && (
-                      <span className="text-xs font-bold text-emerald-400">↓ Lower</span>
-                    )}
-                    {bid.trend === "new" && (
-                      <span className="text-xs font-bold text-deweb-cyan">New</span>
-                    )}
+                    <span className="text-sm font-semibold text-deweb-cyan">{bid.price}</span>
                     <button
                       type="button"
                       className="rounded-lg border border-deweb-cyan/40 px-3 py-1.5 text-xs font-bold text-deweb-cyan hover:bg-deweb-cyan/10"

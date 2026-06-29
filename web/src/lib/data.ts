@@ -31,42 +31,43 @@ export const howItWorks = [
 ];
 
 export const categories = [
-  { name: "AI & Automation", count: "240+ suppliers", icon: "🤖" },
-  { name: "Web Development", count: "380+ suppliers", icon: "🌐" },
-  { name: "Mobile Apps", count: "190+ suppliers", icon: "📱" },
-  { name: "UI/UX Design", count: "310+ suppliers", icon: "✨" },
-  { name: "Bots & SaaS", count: "165+ suppliers", icon: "⚡" },
-  { name: "Custom Software", count: "420+ suppliers", icon: "🔧" },
+  { name: "AI & Automation", count: "Marketplace category", icon: "🤖" },
+  { name: "Web Development", count: "Marketplace category", icon: "🌐" },
+  { name: "Mobile Apps", count: "Marketplace category", icon: "📱" },
+  { name: "UI/UX Design", count: "Marketplace category", icon: "✨" },
+  { name: "Bots & SaaS", count: "Marketplace category", icon: "⚡" },
+  { name: "Custom Software", count: "Marketplace category", icon: "🔧" },
 ];
 
+/** Illustrative marketplace bid rows — not real suppliers or prices. */
 export const liveBids = [
-  { supplier: "Nexus Labs", project: "E-commerce API", price: "$7,200", rating: 4.9, trend: "down" },
-  { supplier: "CloudForge", project: "E-commerce API", price: "$6,850", rating: 4.8, trend: "down" },
-  { supplier: "PixelStack", project: "E-commerce API", price: "$7,500", rating: 5.0, trend: "new" },
-  { supplier: "DevMint", project: "CRM Dashboard", price: "$4,100", rating: 4.7, trend: "down" },
+  { supplier: "Open proposal", project: "E-commerce API scope", price: "Pending review", rating: "—", trend: "new" },
+  { supplier: "Open proposal", project: "CRM dashboard scope", price: "Pending review", rating: "—", trend: "new" },
+  { supplier: "Open proposal", project: "Mobile UI scope", price: "Pending review", rating: "—", trend: "new" },
 ];
 
+/** Illustrative activity feed — not real users or timestamps. */
 export const recentActivity = [
-  { user: "Sarah K.", action: "posted", project: "AI Chatbot Integration", time: "2m ago" },
-  { user: "Marcus T.", action: "bid on", project: "Mobile Banking UI", time: "5m ago" },
-  { user: "Elena R.", action: "won", project: "SaaS Landing Page", time: "12m ago" },
-  { user: "James W.", action: "posted", project: "DevOps Pipeline", time: "18m ago" },
+  { user: "Client brief", action: "posted", project: "AI chatbot integration", time: "Illustrative" },
+  { user: "Specialist offer", action: "submitted", project: "Mobile banking UI", time: "Illustrative" },
+  { user: "Project milestone", action: "updated", project: "SaaS landing page", time: "Illustrative" },
+  { user: "Client brief", action: "posted", project: "DevOps pipeline", time: "Illustrative" },
 ];
 
 export const aiShowcase = [
   {
     title: "Intelligent Automation",
-    description: "Workflow bots, CRM sync, and AI agents that cut manual work by 60%.",
+    description: "Workflow bots, CRM sync, and AI agents for repeatable operational tasks.",
     gradient: "from-cyan-500/20 to-purple-600/20",
   },
   {
     title: "Predictive Analytics",
-    description: "Real-time dashboards and ML insights for smarter project decisions.",
+    description: "Dashboards and operational insights for clearer project decisions.",
     gradient: "from-purple-500/20 to-fuchsia-600/20",
   },
   {
     title: "AI-Assisted Matching",
-    description: "Our engine pairs your brief with the best suppliers in seconds.",
+    description: "Brief-to-listing workflows that help buyers compare scoped proposals.",
     gradient: "from-fuchsia-500/20 to-cyan-600/20",
   },
 ];

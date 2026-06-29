@@ -70,19 +70,19 @@ export function MarketplaceActivity() {
 
           <GlassCard glow className="lg:col-span-6 p-6" delay={0.1}>
             <div className="mb-4 flex items-center justify-between">
-              <h4 className="font-bold text-white">Live price comparison</h4>
-              <span className="text-xs text-emerald-400">↓ 12% avg savings</span>
+              <h4 className="font-bold text-white">Illustrative price comparison</h4>
+              <span className="text-xs text-white/45">Example view</span>
             </div>
-            <p className="text-sm text-white/50 mb-4">E-commerce API — 4 suppliers competing</p>
+            <p className="text-sm text-white/50 mb-4">Scoped proposals can be compared side by side after posting a brief.</p>
             <ActivityChart variant="bids" />
             <div className="mt-4 space-y-2">
-              {liveBids.slice(0, 3).map((b) => (
+              {liveBids.slice(0, 3).map((b, i) => (
                 <div
-                  key={b.supplier}
+                  key={`${b.project}-${i}`}
                   className="flex justify-between text-sm"
                 >
-                  <span className="text-white/70">{b.supplier}</span>
-                  <span className="font-bold text-deweb-cyan">{b.price}</span>
+                  <span className="text-white/70">{b.project}</span>
+                  <span className="font-semibold text-deweb-cyan">{b.price}</span>
                 </div>
               ))}
             </div>
