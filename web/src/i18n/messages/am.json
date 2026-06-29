@@ -1016,7 +1016,7 @@
   "seo": {
     "home": {
       "title": "DeWeb | Կառուցում ենք Թվային Բիզնեսի Ապագան",
-      "description": "Մենք ստեղծում ենք Shopify խանութներ, AI համակարգեր, ավտոմատացման հարթակներ, կայքեր և մասշտաբային թվային լուծումներ։ Ինժեներական առաջնորդությամբ տեխնոլոգիական ընկերություն՝ կառուցված իրական production նախագծերի շուրջ։"
+      "description": "Մենք ստեղծում ենք Shopify խանութներ, AI համակարգեր, ավտոմատացման հարթակներ, կայքեր և մասշտաբային թվային լուծումներ։ Ինժեներական առաջնորդությամբ տեխնոլոգիական ընկերություն՝ կառուցված իրական գործարանային նախագծերի շուրջ։"
     },
     "about": {
       "title": "DEWEB-ի մասին | Ինժեներական առաջնորդությամբ IT զարգացում",
@@ -1293,24 +1293,24 @@
       "description": "Կառուցեք նվիրված ծրագրային զարգացման թիմ DEWEB-ի հետ՝ երկարաժամկետ ինժեներական capacity startup-ների, SaaS-ի, շուկաների, մոբայլ հավելվածների և ecommerce-ի համար՝ թափանցիկ discovery-ով։"
     },
     "projects-kobbopay": {
-      "title": "Kobbopay | Production case study | Բազմակողմանի crypto վճարային հարթակ | DEWEB",
-      "description": "Production case study՝ Kobbopay բազմակողմանի USDT վճարային հարթակ՝ NestJS, PostgreSQL, Redis, merchant portal, admin ops, webhooks և treasury կառավարում։"
+      "title": "Kobbopay | Գործարանային նախագիծ | Բազմակողմանի կրիպտո վճարային հարթակ | DEWEB",
+      "description": "Գործարանային նախագիծ՝ Kobbopay բազմակողմանի USDT վճարային հարթակ՝ NestJS, PostgreSQL, Redis, վաճառողների պորտալ, ադմին գործառնություններ, webhook-ներ և գանձապահական կառավարում։"
     },
     "projects-exswaping": {
-      "title": "Exswaping | Production case study | Կրիպտոարժույթի բորսա | DEWEB",
-      "description": "Production case study՝ Exswaping կրիպտո բորսա՝ trading workflow-ներ, admin գործառնություններ, AML/KYC, liquidity ops, monitoring և SEO engineering։"
+      "title": "Exswaping | Գործարանային նախագիծ | Կրիպտոարժույթի բորսա | DEWEB",
+      "description": "Գործարանային նախագիծ՝ Exswaping կրիպտո բորսա՝ առևտրի գործընթացներ, ադմին գործառնություններ, AML/KYC, լիկվիդության կառավարում, մոնիտորինգ և SEO ինժեներիա։"
     },
     "projects-changetext": {
-      "title": "Changetext | Production case study | AI Telegram բովանդակության ավտոմատացում | DEWEB",
-      "description": "Production case study՝ Changetext՝ Telegram bot ավտոմատացում OpenAI-ով, Google Sheets ինտեգրացիաներով և հուսալի բովանդակության workflow-ներով։"
+      "title": "Changetext | Գործարանային նախագիծ | AI Telegram բովանդակության ավտոմատացում | DEWEB",
+      "description": "Գործարանային նախագիծ՝ Changetext Telegram բոտի ավտոմատացում OpenAI-ով, Google Sheets ինտեգրացիաներով և հուսալի բովանդակության աշխատանքային հոսքերով։"
     },
     "projects-dex-kobbex": {
-      "title": "DEX Kobbex | Production case study | Decentralized swap հարթակ | DEWEB",
-      "description": "Production case study՝ DEX Kobbex Web3 swap հարթակ՝ wallet ինտեգրացիա, token swap հոսքեր և on-chain trading UX ճարտարապետություն։"
+      "title": "DEX Kobbex | Գործարանային նախագիծ | Ապակենտրոնացված swap հարթակ | DEWEB",
+      "description": "Գործարանային նախագիծ՝ DEX Kobbex Web3 swap հարթակ՝ դրամապանակի ինտեգրացիա, token swap հոսքեր և on-chain առևտրի UX ճարտարապետություն։"
     },
     "portfolio": {
-      "title": "DEWEB նախագծեր | Production case studies",
-      "description": "DEWEB-ի իրական production նախագծեր՝ fintech վճարումներ, crypto exchange, AI Telegram ավտոմատացում և Web3 DEX engineering case studies։"
+      "title": "DEWEB նախագծեր | Գործարանային նախագիծների ուսումնասիրություններ",
+      "description": "DEWEB-ի իրական գործարանային նախագծեր՝ fintech վճարումներ, կրիպտո բորսա, AI Telegram ավտոմատացում և Web3 DEX ինժեներական ուսումնասիրություններ։"
     }
   },
   "serviceLanding": {
