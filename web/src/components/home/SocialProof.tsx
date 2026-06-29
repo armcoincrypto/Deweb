@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { CinematicSection } from "@/components/cinematic/CinematicSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { clientLogos, exampleScenarioIds } from "@/lib/social-proof-data";
+import { techStackTags, exampleScenarioIds } from "@/lib/social-proof-data";
 import { cardReveal3D, transitionFast } from "@/lib/motion-3d";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -18,17 +18,17 @@ export function SocialProof() {
           {t("techStackTitle")}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
-          {clientLogos.map((logo, i) => (
+          {techStackTags.map((tag, i) => (
             <motion.span
-              key={logo.name}
+              key={tag.label}
               initial={reduceMotion ? false : { opacity: 0 }}
               whileInView={reduceMotion ? undefined : { opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.03, duration: 0.3 }}
-              className="text-base font-bold tracking-tight text-white/40 sm:text-lg"
-              style={{ color: `${logo.accent}99` }}
+              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold tracking-tight text-white/60 sm:text-sm"
+              style={{ color: `${tag.accent}99` }}
             >
-              {logo.name}
+              {tag.label}
             </motion.span>
           ))}
         </div>

@@ -1,10 +1,10 @@
-export const clientLogos = [
-  { name: "Shopify", accent: "#95BF47" },
-  { name: "Stripe", accent: "#635BFF" },
-  { name: "Vercel", accent: "#ffffff" },
-  { name: "Notion", accent: "#ffffff" },
-  { name: "Linear", accent: "#5E6AD2" },
-  { name: "AWS", accent: "#FF9900" },
+export const techStackTags = [
+  { label: "Next.js", accent: "#ffffff" },
+  { label: "React", accent: "#61DAFB" },
+  { label: "TypeScript", accent: "#3178C6" },
+  { label: "Node.js", accent: "#339933" },
+  { label: "PostgreSQL", accent: "#336791" },
+  { label: "API integrations", accent: "#00f2ff" },
 ];
 
 /** Stable ids for homepage illustrative scenario cards (copy lives in i18n). */

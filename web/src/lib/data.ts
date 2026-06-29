@@ -6,17 +6,6 @@ export const navLinks = [
   { label: "About", href: "#about" },
 ];
 
-export const trustedCompanies = [
-  "Microsoft",
-  "Stripe",
-  "Vercel",
-  "Linear",
-  "Notion",
-  "Shopify",
-  "Figma",
-  "AWS",
-];
-
 export const howItWorks = [
   {
     step: "01",
